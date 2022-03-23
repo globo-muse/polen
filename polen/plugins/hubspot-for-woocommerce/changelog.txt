@@ -1,0 +1,57 @@
+ *** HubSpot for WooCommerce Changelog ***
+2022-01-31 - version 1.2.8
+* Added - Update Scopes.
+
+2022-01-13 - version 1.2.7
+* Added - Deal Company association.
+
+2021-12-08 - version 1.2.6
+* Fix - Newsletter Subscription Property issue.
+
+ 2021-11-15 - version 1.2.5
+* Fix - Sync message issue.
+
+2021-09-13 - version 1.2.4
+* Add - Content Part
+
+2021-08-18 - version 1.2.3
+* Add - Association bug fixes.
+ 
+2021-07-05 - version 1.2.2
+* Add - Added redirect link by HubSpot.
+
+2021-06-03 - version 1.2.1
+* Add - Bug Fixes.
+
+2021-05-21 - version 1.2.0
+* Add - Historical Sync.
+
+2021-04-23 - version 1.0.9
+* Fix - Creating Groups issue.
+
+2021-04-09 - version 1.0.8
+* Fix - Create new HS account.
+
+2021-04-06 - version 1.0.7
+* Fix - Authentication issue.
+
+2020-10-18 - version 1.0.6
+* Fix - Deal update issue.
+
+2020-09-30 - version 1.0.5
+* Fix - Source tracking. 
+
+2020-06-23 - version 1.0.4
+* Fix - Session issue and minor bugs. 
+
+2020-05-21 - version 1.0.3
+* Add - Shipment tracking and re-sync deals.
+
+2020-05-15 - version 1.0.2
+* Add - Multi site support.
+
+2020-05-07 - version 1.0.1
+* Fix - Contact sync from sync tab.
+
+2020-01-24 - version 1.0.0
+* Initial release.

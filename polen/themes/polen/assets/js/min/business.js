@@ -1,0 +1,1 @@
+const form="#bus-form",url_success=document.getElementById("url-success").value,bus_form=new Vue({el:form,data:{phone:""},methods:{handleChange:function(e){},handleSubmit:function(){polAjaxForm(form,(function(e){window.location.href=url_success}),(function(e){polMessages.error(e)}))}}});

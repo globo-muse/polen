@@ -1,0 +1,343 @@
+@font-face {
+	font-family: "PolenIcons";
+	src: url('../fonts/PolenIcons.eot');
+	src: url('../fonts/PolenIcons.eot?#iefix') format('eot'),
+		url('../fonts/PolenIcons.woff') format('woff'),
+		url('../fonts/PolenIcons.ttf') format('truetype'),
+		url('../fonts/PolenIcons.svg#PolenIcons') format('svg');
+}
+
+@mixin icon-styles {
+	font-family: "PolenIcons";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+	text-decoration: none;
+	text-transform: none;
+}
+
+%icon {
+	@include icon-styles;
+}
+
+@function icon-char($filename) {
+	$char: "";
+
+	@if $filename == arrow-down {
+		$char: "\E001";
+	}
+	@if $filename == books {
+		$char: "\E002";
+	}
+	@if $filename == calendar {
+		$char: "\E003";
+	}
+	@if $filename == camera-video {
+		$char: "\E004";
+	}
+	@if $filename == check-o {
+		$char: "\E005";
+	}
+	@if $filename == chevron-down {
+		$char: "\E006";
+	}
+	@if $filename == clock {
+		$char: "\E007";
+	}
+	@if $filename == close-o {
+		$char: "\E008";
+	}
+	@if $filename == close {
+		$char: "\E009";
+	}
+	@if $filename == company {
+		$char: "\E00A";
+	}
+	@if $filename == copy {
+		$char: "\E00B";
+	}
+	@if $filename == credit-card {
+		$char: "\E00C";
+	}
+	@if $filename == criesp {
+		$char: "\E00D";
+	}
+	@if $filename == donate {
+		$char: "\E00E";
+	}
+	@if $filename == down-arrow {
+		$char: "\E00F";
+	}
+	@if $filename == download-alt {
+		$char: "\E010";
+	}
+	@if $filename == edit {
+		$char: "\E011";
+	}
+	@if $filename == error-o {
+		$char: "\E012";
+	}
+	@if $filename == error-outline {
+		$char: "\E013";
+	}
+	@if $filename == facebook {
+		$char: "\E014";
+	}
+	@if $filename == filter {
+		$char: "\E015";
+	}
+	@if $filename == hand-thumbs-up {
+		$char: "\E016";
+	}
+	@if $filename == instagram {
+		$char: "\E017";
+	}
+	@if $filename == language {
+		$char: "\E018";
+	}
+	@if $filename == left-arrow {
+		$char: "\E019";
+	}
+	@if $filename == like {
+		$char: "\E01A";
+	}
+	@if $filename == linkedin {
+		$char: "\E01B";
+	}
+	@if $filename == load {
+		$char: "\E01C";
+	}
+	@if $filename == menu {
+		$char: "\E01D";
+	}
+	@if $filename == mobile {
+		$char: "\E01E";
+	}
+	@if $filename == no-photo {
+		$char: "\E01F";
+	}
+	@if $filename == pages {
+		$char: "\E020";
+	}
+	@if $filename == paypal {
+		$char: "\E021";
+	}
+	@if $filename == phone {
+		$char: "\E022";
+	}
+	@if $filename == play {
+		$char: "\E023";
+	}
+	@if $filename == reload {
+		$char: "\E024";
+	}
+	@if $filename == research {
+		$char: "\E025";
+	}
+	@if $filename == right-arrow {
+		$char: "\E026";
+	}
+	@if $filename == search {
+		$char: "\E027";
+	}
+	@if $filename == share {
+		$char: "\E028";
+	}
+	@if $filename == software-download {
+		$char: "\E029";
+	}
+	@if $filename == star-fill {
+		$char: "\E02A";
+	}
+	@if $filename == star {
+		$char: "\E02B";
+	}
+	@if $filename == tiktok {
+		$char: "\E02C";
+	}
+	@if $filename == trash {
+		$char: "\E02D";
+	}
+	@if $filename == twitter {
+		$char: "\E02E";
+	}
+	@if $filename == up-arrow {
+		$char: "\E02F";
+	}
+	@if $filename == video-camera {
+		$char: "\E030";
+	}
+	@if $filename == whatsapp {
+		$char: "\E031";
+	}
+	@if $filename == x-circle {
+		$char: "\E032";
+	}
+
+	@return $char;
+}
+
+@mixin icon($filename, $insert: before, $extend: true) {
+	&:#{$insert} {
+		@if $extend {
+			@extend %icon;
+		} @else {
+			@include icon-styles;
+		}
+		content: icon-char($filename);
+	}
+}
+
+.icon-arrow-down {
+	@include icon(arrow-down);
+}
+.icon-books {
+	@include icon(books);
+}
+.icon-calendar {
+	@include icon(calendar);
+}
+.icon-camera-video {
+	@include icon(camera-video);
+}
+.icon-check-o {
+	@include icon(check-o);
+}
+.icon-chevron-down {
+	@include icon(chevron-down);
+}
+.icon-clock {
+	@include icon(clock);
+}
+.icon-close-o {
+	@include icon(close-o);
+}
+.icon-close {
+	@include icon(close);
+}
+.icon-company {
+	@include icon(company);
+}
+.icon-copy {
+	@include icon(copy);
+}
+.icon-credit-card {
+	@include icon(credit-card);
+}
+.icon-criesp {
+	@include icon(criesp);
+}
+.icon-donate {
+	@include icon(donate);
+}
+.icon-down-arrow {
+	@include icon(down-arrow);
+}
+.icon-download-alt {
+	@include icon(download-alt);
+}
+.icon-edit {
+	@include icon(edit);
+}
+.icon-error-o {
+	@include icon(error-o);
+}
+.icon-error-outline {
+	@include icon(error-outline);
+}
+.icon-facebook {
+	@include icon(facebook);
+}
+.icon-filter {
+	@include icon(filter);
+}
+.icon-hand-thumbs-up {
+	@include icon(hand-thumbs-up);
+}
+.icon-instagram {
+	@include icon(instagram);
+}
+.icon-language {
+	@include icon(language);
+}
+.icon-left-arrow {
+	@include icon(left-arrow);
+}
+.icon-like {
+	@include icon(like);
+}
+.icon-linkedin {
+	@include icon(linkedin);
+}
+.icon-load {
+	@include icon(load);
+}
+.icon-menu {
+	@include icon(menu);
+}
+.icon-mobile {
+	@include icon(mobile);
+}
+.icon-no-photo {
+	@include icon(no-photo);
+}
+.icon-pages {
+	@include icon(pages);
+}
+.icon-paypal {
+	@include icon(paypal);
+}
+.icon-phone {
+	@include icon(phone);
+}
+.icon-play {
+	@include icon(play);
+}
+.icon-reload {
+	@include icon(reload);
+}
+.icon-research {
+	@include icon(research);
+}
+.icon-right-arrow {
+	@include icon(right-arrow);
+}
+.icon-search {
+	@include icon(search);
+}
+.icon-share {
+	@include icon(share);
+}
+.icon-software-download {
+	@include icon(software-download);
+}
+.icon-star-fill {
+	@include icon(star-fill);
+}
+.icon-star {
+	@include icon(star);
+}
+.icon-tiktok {
+	@include icon(tiktok);
+}
+.icon-trash {
+	@include icon(trash);
+}
+.icon-twitter {
+	@include icon(twitter);
+}
+.icon-up-arrow {
+	@include icon(up-arrow);
+}
+.icon-video-camera {
+	@include icon(video-camera);
+}
+.icon-whatsapp {
+	@include icon(whatsapp);
+}
+.icon-x-circle {
+	@include icon(x-circle);
+}

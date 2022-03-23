@@ -1,0 +1,77 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.mt-2 {
+  margin-top: 1rem !important;
+}
+
+.mt-4 {
+  margin-top: 2rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 1rem !important;
+}
+
+.ml-1 {
+  margin-left: 0.5rem !important;
+}
+
+.ml-2 {
+  margin-left: 1rem !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.batch-coupon {
+  width: 400px;
+}
+
+.batch-coupon .row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.batch-coupon .col {
+  display: block;
+  width: 100%;
+}
+
+.batch-coupon input, .batch-coupon select {
+  padding: 5px 8px;
+  width: 100%;
+  min-height: 28px;
+}
+
+.batch-coupon textarea {
+  width: 100%;
+}
+
+.batch-coupon .btn-send {
+  padding: 10px 30px;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.batch-coupon input,
+.batch-coupon textarea {
+}
+
+.batch-coupon input::placeholder,
+.batch-coupon textarea::placeholder {
+  opacity: 0.5;
+}
+
+.batch-coupon .hidden {
+  display: none;
+}
+
+.bc-label {
+  display: block;
+}

@@ -1,0 +1,16 @@
+.btn-outline-light {
+  color: var(--bs-high-dark);
+  border-color: var(--bs-high-dark);
+  &:hover,
+  &:active {
+    color: var(--bs-low-dark);
+    background-color: var(--bs-high-dark);
+  }
+  &:focus {
+    box-shadow: 0 0 0 0.25rem rgb(0 0 0 / 25%);
+  }
+}
+
+.btn {
+  font-weight: 700;
+}

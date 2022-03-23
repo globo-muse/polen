@@ -1,0 +1,28 @@
+@import "../../styles/mixins";
+
+.banner-scrollable {
+  position: relative;
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
+  .banner-scrollable__content {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    // flex-wrap: nowrap;
+    width: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .banner-scrollable__nav {
+
+  }
+  @include desktop {
+  }
+}

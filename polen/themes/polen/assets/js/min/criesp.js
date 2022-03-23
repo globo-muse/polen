@@ -1,0 +1,1 @@
+function closeCriespModal(){polSetCookie(polenObj.COOKIES.CRIESP_BANNER_HOME,!0),closeModal()}

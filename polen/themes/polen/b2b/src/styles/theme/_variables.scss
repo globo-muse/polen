@@ -1,0 +1,116 @@
+// Default variable overrides
+$body-bg: $neutral_color_low_dark;
+$body-color: $neutral_color_high_pure;
+$font-family-sans-serif: "Inter";
+$line-height-base: 1.2;
+$primary: $brand_color_primary_pure;
+
+$link-color: $neutral_color_high_pure;
+$link-hover-color: $neutral_color_high_medium;
+$link-decoration: none;
+
+$theme-colors: (
+  "primary": $brand_color_primary_pure,
+  "secondary": $brand_color_primary_light,
+  "success": $feedback_color_success_pure,
+  "danger": $feedback_color_helper_pure,
+);
+
+$custom-colors: (
+  "primary-light": $brand_color_primary_light,
+  "primary-dark": $brand_color_primary_dark,
+  "low-pure": $neutral_color_low_pure,
+  "low-medium": $neutral_color_low_medium,
+  "low-light": $neutral_color_low_light,
+  "low-dark": $neutral_color_low_dark,
+  "high-pure": $neutral_color_high_pure,
+  "high-medium": $neutral_color_high_medium,
+  "high-light": $neutral_color_high_light,
+  "high-dark": $neutral_color_high_dark,
+  "success-light": $feedback_color_success_light,
+  "success-medium": $feedback_color_success_medium,
+  "success-dark": $feedback_color_success_dark,
+  "warning-pure": $feedback_color_warning_pure,
+  "warning-light": $feedback_color_warning_light,
+  "warning-medium": $feedback_color_warning_medium,
+  "warning-dark": $feedback_color_warning_dark,
+  "helper-pure": $feedback_color_helper_pure,
+  "helper-light": $feedback_color_helper_light,
+  "helper-medium": $feedback_color_helper_medium,
+  "helper-dark": $feedback_color_helper_dark,
+);
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$grid-columns: 12;
+$grid-gutter-width: 32px;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1920px,
+);
+
+$border-widths: (
+  1: 1px,
+  2: 2px,
+  3: 3px,
+  4: 4px,
+  5: 5px
+);
+
+$custom-border-widths: (
+  8: 8px,
+);
+
+$border-widths: map-merge($border-widths, $custom-border-widths);
+
+$border-radius:               8px;
+$border-radius-sm:            8px;
+$border-radius-lg:            8px;
+$border-radius-pill:          200px;
+$border-radius-circular:      50%;
+
+$font-size-root:              null;
+$font-size-base:              1rem;
+$font-size-sm:                $font-size-base;
+$font-size-lg:                $font-size-base;
+
+$line-height-base:            1;
+$line-height-sm:              1.2;
+$line-height-lg:              1.5;
+
+$input-btn-padding-y:         1rem;
+$input-btn-padding-x:         1.5rem;
+$input-btn-font-family:       null;
+$input-btn-font-size:         $font-size-base;
+$input-btn-line-height:       $line-height-base;
+
+$input-bg:                    var(--bs-low-medium);
+$input-border-color:          #515151;
+$input-placeholder-color:      $input-border-color;
+
+$input-btn-focus-width:         .25rem;
+$input-btn-focus-color-opacity: .25;
+// $input-btn-focus-color:         rgba($component-active-bg, $input-btn-focus-color-opacity);
+$input-btn-focus-blur:          0;
+$input-btn-focus-box-shadow:    0 0 $input-btn-focus-blur $input-btn-focus-width $brand_color_primary_light;
+
+$input-btn-padding-y-sm:      .5rem;
+$input-btn-padding-x-sm:      .5rem;
+$input-btn-font-size-sm:      $font-size-sm;
+
+$input-btn-padding-y-lg:      1rem;
+$input-btn-padding-x-lg:      1rem;
+$input-btn-font-size-lg:      1rem;
+
+$btn-font-size-lg: $input-btn-font-size-lg;

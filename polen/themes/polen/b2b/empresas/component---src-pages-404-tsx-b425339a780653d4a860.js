@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpolen_b2b=self.webpackChunkpolen_b2b||[]).push([[218],{9786:function(e,n,t){t.r(n),t.d(n,{default:function(){return l}});var u=t(7294);function l(){return u.createElement("main",null,u.createElement("h1",null,"Erro 404 - Página não existe"))}}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-b425339a780653d4a860.js.map

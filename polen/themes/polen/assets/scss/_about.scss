@@ -1,0 +1,96 @@
+#about-banner {
+  .banner {
+    background: url("../img/about-banner-desktop.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 358px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include media-breakpoint-down(sm) {
+      background: url("../img/about-banner-mobile.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.5);
+      height: 100%;
+      flex-wrap: wrap;
+      padding: 50px;
+      h5 {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+        letter-spacing: 0em;
+        text-align: center;
+        color: #fff;
+        width: 100%;
+      }
+      h2 {
+        width: 100%;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 32px;
+        letter-spacing: 0em;
+        text-align: center;
+        color: #fff;
+      }
+      @include media-breakpoint-down(sm) {
+        padding: 50px 15px;
+        h5 {
+          font-size: 18px;
+          margin-top: 50px;
+        }
+        h2 {
+          font-size: 22px;
+        }
+      }
+      .arrow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 10px;
+        background: rgba(0, 0, 0, 0.26);
+        border-radius: 50%;
+        width: 56px;
+        height: 56px;
+      }
+    }
+  }
+}
+
+#about-text {
+  h2 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 20px;
+  }
+  .entry-content {
+    p {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+  }
+}
+
+#about-video {
+  video {
+    width: 100%;
+    cursor: pointer;
+  }
+}

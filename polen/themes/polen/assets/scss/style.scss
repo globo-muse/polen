@@ -1,0 +1,38 @@
+// Your variable overrides
+@import "colors";
+@import "variables";
+
+// Bootstrap por último
+@import "../node_modules/bootstrap/scss/bootstrap";
+// @import "../slick/slick.scss";
+// @import "../slick/slick-theme.scss";
+@import "fonts";
+@import "icons";
+@import "../sprite/css/sprite.css";
+@import "themes";
+@import "typography";
+@import "reset";
+@import "header";
+@import "forms";
+@import "owl-carousel";
+@import "zuck";
+@import "components";
+@import "cards";
+@import "woocommerce";
+@import "stripe";
+@import "talent";
+@import "checkout";
+@import "footer";
+
+@import "landing";
+@import "tributes";
+// @import "video-autografo";
+@import "social";
+@import "masterclass";
+// @import "setembro-amarelo";
+@import "business";
+@import "help";
+@import "about";
+@import "media-news";
+@import "material-components-web.css";
+@import "lacta";

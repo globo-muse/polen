@@ -1,0 +1,54 @@
+.custom-donation-box {
+	img,
+	video {
+		display: block;
+		max-width: 100%;
+	}
+	.video-slider {
+		border-radius: 8px;
+		overflow: hidden;
+		-webkit-mask-image: -webkit-radial-gradient(white, black);
+	}
+	p {
+		&.small {
+			font-size: 10px;
+		}
+	}
+}
+
+.image-slider {
+	position: relative;
+	margin-left: -1.5rem;
+	width: calc(100% + 3rem);
+	overflow: hidden;
+	.image-slider-content {
+		position: relative;
+		display: flex;
+		flex-direction: row;
+		width: auto;
+		overflow-y: hidden;
+		overflow-x: auto;
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		.item {
+			display: block;
+			margin: 0 13px 0 0;
+			width: 107px;
+			border-radius: 8px;
+			overflow: hidden;
+		}
+		> *:first-child {
+			.item {
+				margin-left: 13px;
+			}
+		}
+	}
+}
+
+.criesp-thankyou-box {
+	color: var(--light);
+	background: linear-gradient(180deg, #3CC13B 0%, #0F9E0E 100%);
+}

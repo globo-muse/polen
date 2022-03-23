@@ -1,0 +1,90 @@
+.svg-amex {
+	background: url("svg/sprite.css-f1f52d23.svg") 0 0 no-repeat;
+}
+
+.svg-amex-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-applepay {
+	background: url("svg/sprite.css-f1f52d23.svg") 50% 0 no-repeat;
+}
+
+.svg-applepay-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-diners {
+	background: url("svg/sprite.css-f1f52d23.svg") 0 33.333333333333336% no-repeat;
+}
+
+.svg-diners-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-discover {
+	background: url("svg/sprite.css-f1f52d23.svg") 50% 33.333333333333336% no-repeat;
+}
+
+.svg-discover-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-elo {
+	background: url("svg/sprite.css-f1f52d23.svg") 100% 0 no-repeat;
+}
+
+.svg-elo-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-googlepay {
+	background: url("svg/sprite.css-f1f52d23.svg") 100% 33.333333333333336% no-repeat;
+}
+
+.svg-googlepay-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-maestro {
+	background: url("svg/sprite.css-f1f52d23.svg") 0 66.66666666666667% no-repeat;
+}
+
+.svg-maestro-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-master {
+	background: url("svg/sprite.css-f1f52d23.svg") 50% 66.66666666666667% no-repeat;
+}
+
+.svg-master-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-paypal {
+	background: url("svg/sprite.css-f1f52d23.svg") 100% 66.66666666666667% no-repeat;
+}
+
+.svg-paypal-dims {
+	width: 34px;
+	height: 24px;
+}
+
+.svg-visa {
+	background: url("svg/sprite.css-f1f52d23.svg") 0 100% no-repeat;
+}
+
+.svg-visa-dims {
+	width: 34px;
+	height: 24px;
+}
+

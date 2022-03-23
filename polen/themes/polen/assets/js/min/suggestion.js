@@ -1,0 +1,1 @@
+const formName="form#talent-suggestion",form=document.querySelector(formName);form.addEventListener("submit",(function(e){e.preventDefault(),polAjaxForm(formName,(function(){polMessages.message("Sugestão enviada","Obrigado por nos enviar sua sugestão")}),(function(e){polMessages.error(e)}))}));

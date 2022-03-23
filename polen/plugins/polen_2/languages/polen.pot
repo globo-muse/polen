@@ -1,0 +1,7 @@
+# Copyright (C) 2021 Automattic
+
+msgid "Occasion"
+msgstr "Ocasião"
+
+msgid "Occasions Search"
+msgstr "Procurar Ocasiões"
