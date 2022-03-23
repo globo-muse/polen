@@ -1,0 +1,1 @@
+const formName="form#landpage-form",form_landpage=document.querySelector(formName);form_landpage.addEventListener("submit",(function(e){e.preventDefault(),polAjaxForm(formName,(function(){polMessages.message("Seu e-mail foi adicionado a lista","Aguarde nossas novidades!")}),(function(e){polMessages.error(e)})),polRequestZapier(formName)}));

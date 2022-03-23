@@ -1,0 +1,18 @@
+$colors: map-remove(
+  $colors,
+  "blue",
+  "indigo",
+  "purple",
+  "pink",
+  "orange",
+  "red",
+  "yellow",
+  "green",
+  "teal",
+  "cyan",
+  "gray",
+  "white",
+  "gray-dark"
+);
+
+$grays: ();

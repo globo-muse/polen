@@ -1,0 +1,273 @@
+.va-top-banner {
+	position: relative;
+	height: 290px;
+	.box-round {
+		position: absolute;
+		width: 100%;
+		height: 230px;
+		top: 60px;
+		overflow: hidden;
+		background-color: var(--dark);
+		.img-bg {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	.content {
+		position: relative;
+		margin: auto;
+		max-width: 150px;
+		text-align: center;
+		.title {
+			margin: 10px 0 0;
+			font-size: 20px;
+			font-weight: 700;
+			color: var(--light);
+		}
+	}
+	&.small {
+		height: 86px;
+		.box-round {
+			height: 100%;
+			top: 0;
+		}
+		.content {
+			display: flex;
+			align-items: center;
+			max-width: 100%;
+			height: 100%;
+			.book-cover {
+				margin: 5px 0 0 15px;
+				width: auto;
+				height: 90%;
+			}
+			.title {
+				margin: 0 0 0 1rem;
+				font-size: 16px;
+			}
+		}
+	}
+}
+
+.book-info-wrapp {
+	.title {
+		font-size: 14px;
+	}
+	p {
+		font-size: 12px;
+		line-height: 1.8;
+		&.more-text {
+			display: none;
+		}
+	}
+}
+
+.book-info {
+	text-align: center;
+	.title {
+		font-size: 9px;
+	}
+	.icon {
+		margin: 6px 0;
+		font-size: 20px;
+	}
+	.description {
+		font-size: 9px;
+		font-weight: 700;
+	}
+}
+
+.book-rate {
+	.icon {
+		font-size: 28px;
+	}
+	.skill-value {
+		position: relative;
+		margin: 15px auto 0;
+		display: block;
+		&::before {
+			content: "Nota: ";
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 25px;
+			height: 1px;
+			bottom: 3px;
+			left: calc(50% + 9px);
+			background-color: var(--dark);
+		}
+	}
+}
+
+p.more-text, .link-more-text {
+	display: none;
+	&.show {
+		display: inline-block;
+	}
+}
+
+.va-banner {
+	position: relative;
+	min-height: 220px;
+	border-radius: 10px;
+	overflow: hidden;
+	.image {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: 0 0;
+	}
+    .desktop-img {
+        display: none !important;
+    }
+    .mobile-img {
+        display: block !important;
+    }
+	.content {
+		position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+		padding: 0px 0 0 22px;
+		width: 70%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		color: var(--light);
+		box-sizing: border-box;
+		z-index: 2;
+		background: linear-gradient(90deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+        h2 {
+            font-size: 20px;
+        }
+		img {
+			width: 95px;
+		}
+		.btn-md {
+			font-weight: 400;
+            width: 100px;
+		}
+	}
+	@include media-breakpoint-up(md) {
+		height: 350px;
+        .desktop-img {
+            display: block !important;
+        }
+        .mobile-img {
+            display: none !important;
+        }
+		.content {
+			padding: 0px 0 0 35px;
+			p {
+				font-size: 16px;
+				font-weight: 500;
+			}
+			img {
+				width: 184px;
+			}
+			.btn-md {
+				padding: 12px 20px;
+				font-size: 17px;
+                width: 180px;
+			}
+		}
+	}
+}
+
+.magalu-box {
+	padding: 10px;
+	background: var(--gray-light);
+	border-radius: 8px;
+	.header-box {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		::after {
+			content: "";
+			position: absolute;
+			display: block;
+			width: 100%;
+			height: 2px;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: var(--gray);
+			opacity: 0.25;
+		}
+		img {
+			margin-right: 10px;
+		}
+		h3 {
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 1.6;
+			color: var(--gray-dark);
+		}
+	}
+	.content-box {
+		p {
+			font-size: 14px;
+			line-height: 20px;
+			text-align: center;
+			letter-spacing: -0.01em;
+			color: var(--gray-dark);
+			padding: 20px;
+			margin-bottom: 0;
+		}
+		.description {
+			text-align: left;
+			padding: 0px;
+			// b {
+			// 	color: #14c7ff;
+			// }
+		}
+		.order-flow {
+			.item {
+				min-height: 80px;
+			}
+			.status {
+				display: flex;
+				align-items: center;
+        		justify-content: center;
+				font-weight: 700;
+				font-size: 12px;
+				color: var(--light);
+				border-color: var(--gray-dark);
+				background-color: var(--gray-dark);
+			}
+			.item.complete::after {
+				background: var(--gray);
+
+			}
+			.v-line, .order-flow::after, .order-flow .item::before, .order-flow .item.complete::after {
+				width: 2px;
+				opacity: 0.25;
+			}
+		}
+	}
+}
+
+.va-what-is {
+	.ico {
+		font-size: 12px;
+		color: var(--primary);
+	}
+}
+
+.va-check-o {
+	.icon, .bi {
+		font-size: 26px;
+		color: var(--success);
+	}
+}
+
+label.lg {
+	font-size: 14px;
+	font-weight: 700;
+}

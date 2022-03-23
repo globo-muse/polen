@@ -1,0 +1,19 @@
+@import "theme/colors";
+@import "theme/typography";
+@import "theme/vector";
+@import "theme/variables";
+
+$sm: map-get($grid-breakpoints, "sm");
+
+@mixin mobile {
+  @media only screen and (max-width: $sm) {
+    @content
+  }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: $sm) {
+    @content
+  }
+}
+

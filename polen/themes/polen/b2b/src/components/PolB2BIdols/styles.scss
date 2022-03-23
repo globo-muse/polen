@@ -1,0 +1,61 @@
+@import "../../styles/mixins";
+
+.categories-list {
+  border-bottom: 1px solid #515151;
+  display: flex;
+  overflow-x: scroll;
+  .form-check-label {
+    cursor: pointer;
+  }
+  @include desktop {
+    overflow-x: hidden;
+    justify-content: center;
+  }
+  .form-check-input {
+    border: 1px solid #515151;
+    cursor: pointer;
+    margin-bottom: 20px;
+    border-radius: 50%;
+  }
+  .form-check-input:checked {
+    border: none;
+    background: #FFC300;
+  }
+  .form-check-input:focus{
+    outline:0px !important;
+    -webkit-appearance:none;
+    box-shadow: none !important;
+  }
+}
+
+.idols-list {
+  .arrow {
+    bottom: -60px;
+  }
+  .video-card {
+    position: relative;
+    z-index: 10;
+  }
+  .idol-name {
+    background: linear-gradient(180deg, rgba(16, 16, 16, 0) 0%, rgba(16, 16, 16, 0.76) 100%);
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: flex-end;
+    z-index: 11;
+  }
+}
+
+.loading-item {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background: var(--bs-low-medium);
+  border-right: 1px solid #000;
+}

@@ -1,0 +1,19 @@
+.wc-stripe-elements-field,
+.wc-stripe-iban-element-field {
+	padding: 15px !important;
+	border-radius: 8px;
+}
+
+label[for="card-element"] {
+	display: none;
+}
+
+label[for="wc-stripe-new-payment-method"] {
+	font-size: 12px !important;
+}
+
+.criesp-text {
+	a {
+		color: var(--success);
+	}
+}

@@ -1,0 +1,26 @@
+{
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "4.6.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "material-components-web": "^13.0.0"
+  },
+  "scripts": {
+    "compress": "gulp compressjs",
+    "iconfont": "gulp iconfont; gulp sass",
+    "sprite": "gulp sprite",
+    "sass": "gulp sass",
+    "sass:watch": "gulp sass:watch",
+    "deploy": "gulp sass; gulp compressjs"
+  },
+  "devDependencies": {
+    "fancy-log": "^1.3.3",
+    "gulp": "^4.0.2",
+    "gulp-iconfont": "^11.0.0",
+    "gulp-iconfont-css": "^3.0.0",
+    "gulp-sass": "^4.1.0",
+    "gulp-svg-sprite": "^1.5.0",
+    "gulp-uglify-es": "^2.0.0",
+    "node-sass": "^5.0.0"
+  }
+}

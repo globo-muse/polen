@@ -1,0 +1,7 @@
+input#braspag_creditcardName { 
+    text-transform: uppercase !important;
+}
+
+.my-account-card-content {
+    padding: 10px 10px 0 10px !important;
+}

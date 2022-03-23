@@ -1,0 +1,156 @@
+@mixin theme-light {
+	color: var(--dark);
+	background-color: var(--light);
+	.custom-logo {
+		&.light {
+			display: inline-block;
+		}
+		&.dark {
+			display: none;
+		}
+	}
+	.btn-outline-light {
+		color: var(--dark);
+		border-color: var(--gray);
+		&:hover,
+		&:active {
+			color: var(--light);
+			border-color: var(--dark) !important;
+			background-color: var(--dark);
+		}
+		&:disabled {
+			color: var(--dark);
+			opacity: 0.5;
+			&:hover,
+			&:active {
+				border-color: var(--gray) !important;
+				background-color: transparent;
+			}
+		}
+	}
+	.custom-select {
+		background-image: url(../img/down-arrow-black.png);
+	}
+	.box-round,
+	.tag-link,
+	.box-color,
+	.woocommerce-MyAccount-navigation li.is-active {
+		background-color: var(--box-color-light);
+	}
+	.text {
+		color: var(--dark);
+	}
+	.background {
+		background-color: var(--light);
+	}
+	.subtitle {
+		color: var(--subtitle-dark);
+	}
+	.form-control,
+	.form-control:focus,
+	.form-control:disabled,
+	.form-control[readonly] {
+		border: 1px solid #818181;
+		background-color: var(--light);
+	}
+	.image-bg {
+		&::after {
+			background: linear-gradient(
+				360deg,
+				#fff 0%,
+				rgba(255, 255, 255, 0) 100%
+			);
+		}
+	}
+	input[type="checkbox"],
+	input[type="radio"] {
+		--background: var(--box-color-light);
+	}
+	.talent-card .status {
+		background-color: #bfbfbf;
+	}
+	.modal .border-bottom {
+		border-color: rgba($color: #000000, $alpha: 0.5) !important;
+	}
+	.fog,
+	.blockUI.blockOverlay {
+		background-color: rgba(255, 255, 255, 0.5) !important;
+	}
+}
+
+@mixin theme-dark {
+	color: var(--light);
+	background-color: var(--dark);
+	.custom-logo {
+		&.light {
+			display: none;
+		}
+		&.dark {
+			display: inline-block;
+		}
+	}
+	.btn-outline-light {
+		color: var(--light);
+		border-color: var(--gray-light) !important;
+		border-color: var(--gray-light);
+		&:hover,
+		&:active {
+			color: var(--dark) !important;
+			background-color: var(--light);
+		}
+		&:disabled {
+			color: var(--light);
+			opacity: 0.5;
+		}
+	}
+	.custom-select {
+		background-image: url(../img/down-arrow-white.png);
+	}
+	.box-round,
+	.tag-link,
+	.box-color,
+	.woocommerce-MyAccount-navigation li.is-active {
+		background-color: var(--box-color-dark);
+	}
+	.text {
+		color: var(--light);
+	}
+	.background {
+		background-color: var(--dark);
+	}
+	.subtitle {
+		color: var(--subtitle-light);
+	}
+	.form-control,
+	.form-control:focus,
+	.form-control:disabled,
+	.form-control[readonly] {
+		background-color: var(--gray-dark);
+	}
+	.image-bg {
+		&::after {
+			background: linear-gradient(360deg, #000 0%, rgba(0, 0, 0, 0) 100%);
+		}
+	}
+	input[type="checkbox"],
+	input[type="radio"] {
+		--background: var(--gray);
+	}
+	.talent-card .status {
+		background-color: #000;
+	}
+	.modal .border-bottom {
+		border-color: rgba($color: #ffffff, $alpha: 0.5) !important;
+	}
+	.fog,
+	.blockUI.blockOverlay {
+		background-color: rgba(0, 0, 0, 0.5) !important;
+	}
+}
+
+@mixin theme-auto {
+	@include theme-light();
+	@media (prefers-color-scheme: dark) {
+		@include theme-dark();
+	}
+}

@@ -1,0 +1,107 @@
+.landing {
+	max-width: 1440px;
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+	.custom-logo {
+		width: 95px;
+	}
+	.title {
+		font-size: 24px;
+		font-weight: 700;
+		line-height: 1.2;
+		letter-spacing: -0.05em;
+		@include media-breakpoint-up(md) {
+			font-size: 30px;
+		}
+		@include media-breakpoint-up(lg) {
+			font-size: 40px;
+		}
+		span {
+			font-size: 21px;
+			font-weight: 400;
+			line-height: 28px;
+			letter-spacing: -0.05em;
+			@include media-breakpoint-up(md) {
+				font-size: 28px;
+			}
+			@include media-breakpoint-up(lg) {
+				font-size: 38px;
+			}
+		}
+	}
+	.description {
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 24px;
+		letter-spacing: 0em;
+	}
+
+	.site-footer {
+		border-top: 2px solid #404040;
+		.custom-logo {
+			width: 70px;
+		}
+		@include media-breakpoint-down(sm) {
+			border: none;
+		}
+	}
+	.form-control {
+		background-color: #404040;
+		@include media-breakpoint-up(md) {
+			padding: 30px 15px;
+		}
+		&::placeholder {
+			color: white;
+		}
+	}
+	.btn-lg {
+		@include media-breakpoint-up(md) {
+			padding: 20px 1rem;
+		}
+	}
+}
+
+.landpage-card {
+	padding: 4rem 0 8rem;
+	border: 1px solid #E6E6E6;
+	border-left: none;
+	border-right: none;
+	.image-cropper {
+		padding-top: 100%;
+		width: 100%;
+		height: initial;
+		img {
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
+	.title {
+		font-size: 32px;
+		line-height: 1.5;
+	}
+	.subtitle {
+		font-size: 24px;
+		font-weight: 400;
+		line-height: 1.5;
+		color: inherit;
+	}
+	.label {
+		font-size: 19px;
+		font-weight: 700;
+	}
+	@include media-breakpoint-down(sm) {
+		padding: 2rem 0 6rem;
+		.title {
+			font-size: 28px;
+		}
+		.subtitle {
+			font-size: 18px;
+		}
+		.label {
+			font-size: 16px;
+		}
+	}
+}

@@ -1,0 +1,36 @@
+:root {
+  --pol-font-14-regular: #{#{$global_font_weight_regular} #{$global_font_size_xxs}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-14-bold: #{#{$global_font_weight_bold} #{$global_font_size_xxs}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-16-regular: #{#{$global_font_weight_regular} #{$global_font_size_xs}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-16-bold: #{#{$global_font_weight_bold} #{$global_font_size_xs}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-20-regular: #{#{$global_font_weight_regular} #{$global_font_size_sm}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-20-bold: #{#{$global_font_weight_bold} #{$global_font_size_sm}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-24-regular: #{#{$global_font_weight_regular} #{$global_font_size_md}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-24-bold: #{#{$global_font_weight_bold} #{$global_font_size_md}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-32-regular: #{#{$global_font_weight_regular} #{$global_font_size_lg}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-32-bold: #{#{$global_font_weight_bold} #{$global_font_size_lg}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+  --pol-font-40-regular: #{#{$global_font_weight_regular} #{$global_font_size_xl}/#{$global_line_height_sm} #{$font-family-sans-serif}};
+};
+
+:root {
+  --pol-radius-sm: #{$global_border_radius_sm};
+  --pol-radius-md: #{$global_border_radius_md};
+  --pol-radius-lg: #{$global_border_radius_lg};
+  --pol-radius-pill: #{$global_border_radius_pill};
+  --pol-radius-circular: #{$global_border_radius_circular};
+}
+
+:root {
+  --pol-border-width-none: #{$global_border_width_none};
+  --pol-border-width-hairline: #{$global_border_width_hairline};
+  --pol-border-width-thin: #{$global_border_width_thin};
+  --pol-border-width-thick: #{$global_border_width_thick};
+  --pol-border-width-heavy: #{$global_border_width_heavy};
+}
+
+// :root {
+//   --pol-shadow-1: #{$global_shadow_level_1};
+//   --pol-shadow-2: #{$global_shadow_level_2};
+//   --pol-shadow-3: #{$global_shadow_level_3};
+//   --pol-shadow-4: #{$global_shadow_level_4};
+// }

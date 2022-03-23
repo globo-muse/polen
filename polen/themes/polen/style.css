@@ -1,0 +1,14 @@
+/*!
+Theme Name: Polen
+Author: Polen
+Description: A Polen theme
+Version: 1.0.0
+Tested up to: 5.4
+Requires PHP: 5.6
+Text Domain: polen
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+*/
+
+.body{
+    font-size: 18px;
+}

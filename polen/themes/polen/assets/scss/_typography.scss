@@ -1,0 +1,167 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
+$font-primary: "Poppins", sans-serif;
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4 {
+  font-family: $font-primary;
+}
+
+h1,
+.h1,
+h2,
+.h2 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+h3,
+.h3,
+h4,
+.h4 {
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 12px;
+  font-weight: 400;
+  word-wrap: break-word;
+  &.muted {
+    opacity: 0.8;
+  }
+}
+
+a {
+  font-family: $font-primary;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.title-alt {
+  font-family: $font-primary;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.link-alt {
+  font-family: $font-primary;
+  font-size: 14px;
+  font-weight: 400;
+  color: inherit;
+  text-decoration: underline;
+  &:hover,
+  &:active {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.no-underline {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.btn {
+  font-size: 0.8rem;
+}
+
+.btn-lg {
+  padding: 0.93rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03rem;
+}
+
+legend {
+  font-weight: bold;
+}
+
+.category-title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 28.13px;
+  @include media-breakpoint-up(md) {
+    font-size: 40px;
+    line-height: 46.88px;
+    font-weight: 400;
+  }
+}
+
+.category-result {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18.75px;
+}
+
+// Tipografia básica dos componentes - Usar esses. Não tipar na classe do componente ------------------------
+.typo {
+  line-height: 1.2;
+}
+
+.typo-title {
+  font-size: 1rem;
+  font-weight: 700;
+  word-break:break-all;
+  color: var(--dark);
+}
+
+.typo-subtitle-large {
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.typo-text {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.typo-p {
+  font-size: 14px;
+  line-height: 1.3;
+}
+
+.typo-small {
+  font-size: 12px;
+}
+
+.typo-double-line-height {
+  line-height: 2!important;
+}
+
+.typo-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  &.typo-no-underline {
+    text-decoration: none;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  &.typo-bold {
+    font-weight: 700;
+  }
+}
+
+.typo-category {
+  font-size: 12px;
+  font-weight: 400;
+}

@@ -1,0 +1,379 @@
+:root {
+  .event-lacta,
+  .page-template-page-lacta {
+    --primary: #0033a0;
+  }
+}
+
+.page-template-page-lacta {
+  .custom-logo.light {
+    display: none;
+  }
+  .custom-logo.dark {
+    display: block;
+  }
+  .bus-menu-item {
+    color: var(--light);
+  }
+  .menu-icon {
+    path {
+      stroke: white;
+    }
+  }
+}
+
+.lacta-top-banner {
+  width: 100%;
+  height: 150vw;
+  max-height: 480px;
+  color: var(--light);
+  background: no-repeat center bottom/cover url(../img/lacta/top-bg-desktop.svg);
+  position: relative;
+  @include media-breakpoint-down(sm) {
+    background: no-repeat center bottom/cover url(../img/lacta/top-bg-mobile.svg);
+    max-height: 400px;
+  }
+  .content {
+    padding-bottom: 50px;
+    .title {
+      font-size: 32px;
+    }
+    p {
+      opacity: 0.8;
+    }
+  }
+  .lacta-logo {
+    position: absolute;
+    left:50%;
+    margin-left: -38px;
+    bottom: 145px;
+    @include media-breakpoint-down(sm) {
+      bottom: 50px;
+    }
+  }
+}
+
+.lacta-profile {
+  .image {
+    width: 130px;
+    height: 130px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: no-repeat center/cover;
+    img {
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  h2 {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: center;
+    width: 100%;
+  }
+  &.mini {
+    .image {
+      margin: 0;
+      width: 48px;
+      height: 48px;
+    }
+    .name {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+    .category {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+}
+
+.lacta-btn-disable {
+  opacity: 0.5;
+  .mdc-button {
+    cursor: auto!important;
+  }
+}
+
+.lacta-bio {
+  background: #F3F3F3;
+  border-radius: 8px;
+  padding: 16px;
+  width: 100%;
+  h5 {
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: center;
+  }
+  p {
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+}
+
+.lacta-instruction {
+	padding: 20px;
+	border-radius: 8px;
+  border: 1px solid var(--primary);
+  width: 100%;
+	.header-box {
+		position: relative;
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		img {
+			margin-right: 10px;
+		}
+		h3 {
+			font-size: 14px;
+			font-weight: 700;
+			line-height: 1.6;
+			color: var(--primary);
+		}
+	}
+	.content-box {
+		p {
+			font-size: 14px;
+			line-height: 20px;
+			text-align: center;
+			letter-spacing: -0.01em;
+			color: var(--primary);
+			padding: 20px;
+			margin-bottom: 0;
+		}
+		.description {
+			text-align: left;
+			padding: 8px 0px;
+		}
+		.order-flow {
+			.item {
+				min-height: 60px;
+			}
+      .text {
+        padding-left: 45px;
+      }
+			.status {
+				display: flex;
+				align-items: center;
+        justify-content: center;
+				font-weight: 700;
+				font-size: 12px;
+        margin-top: 8px;
+				color: var(--light);
+				border-color: var(--primary);
+				background-color: var(--primary);
+			}
+			.item.complete::after {
+				background: var(--gray);
+
+			}
+			.v-line, .order-flow::after, .order-flow .item::before, .order-flow .item.complete::after {
+				width: 2px;
+				opacity: 0.25;
+			}
+		}
+	}
+}
+
+.step-box {
+  border-bottom: 1px solid #D7D7D7;
+  height: 100%;
+  padding: 22px 0px;
+  p {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-bottom: 0px;
+  }
+  a {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark);
+    text-decoration: underline;
+  }
+}
+
+.lacta-banner-link {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.lacta-thank-you {
+  padding: 20px;
+  background: url("../img/lacta/thank-you.jpg");
+  width: 100%;
+  background-size: cover!important;
+  border-radius: 8px;
+  .title-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #2057CE;
+    margin-bottom: 20px;
+    padding: 10px 0px;
+    flex-wrap: wrap;
+    h4 {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: #fff;
+      @include media-breakpoint-down(xs) {
+        font-size: 14px;
+      }
+    }
+  }
+  p {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #fff;
+    @include media-breakpoint-down(xs) {
+      font-size: 12px;
+    }
+  }
+}
+
+.lacta-header-talent {
+  background: url("../img/lacta/bg-talent-header.jpg");
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  background-size: cover;
+  border-radius: 8px;
+  width: 100%;
+  padding: 20px;
+  .image {
+    width: 70px;
+    height: 70px;
+    margin: 0px;
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background: no-repeat center/cover;
+    img {
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  h2 {
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #fff;
+    margin-left: 10px;
+    margin-bottom: 0px;
+  }
+}
+
+.lacta-toast {
+  .pol-toast {
+    background: #DCF8E7;
+    border: 1px solid #ACD6BF;
+    border-radius: 2px;
+    margin-bottom: 20px!important;
+    .text {
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+      letter-spacing: 0em;
+      text-align: left;
+      color: #1C9554;
+    }
+    .pol-toast-close {
+      display: none;
+    }
+  }
+}
+
+.event-lacta {
+  .order-flow {
+    .item {
+      height: auto;
+    }
+  }
+  .order-flow .item.complete::after {
+    background: var(--primary);
+  }
+  .mdc-button--outlined {
+    color: var(--primary);
+    border-color: var(--primary);;
+  }
+}
+
+.lacta-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  .lacta-carousel {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
+    img {
+      position: relative;
+      margin-right: 10px;
+      border-radius: 8px;
+    }
+  }
+}
+
+.lacta-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.go-back-button {
+  background: #F7F7F7;
+  border-radius: 47px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  i {
+    color: #000;
+    font-size: 17px;
+  }
+}

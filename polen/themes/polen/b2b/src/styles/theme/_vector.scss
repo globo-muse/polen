@@ -1,0 +1,24 @@
+$global_border_radius_none: 0;
+$global_border_radius_sm: 8px;
+$global_border_radius_md: 16px;
+$global_border_radius_lg: 24px;
+$global_border_radius_pill: 200px;
+$global_border_radius_circular: 50%;
+
+
+$global_border_width_none: 0;
+$global_border_width_hairline: 1px;
+$global_border_width_thin: 2px;
+$global_border_width_thick: 4px;
+$global_border_width_heavy: 8px;
+
+$global_opacicy_semiopaque: 0.72;
+$global_opacicy_intense: 0.64;
+$global_opacicy_medium: 0.32;
+$global_opacicy_light: 0.16;
+$global_opacicy_semitransparent: 0.08;
+
+$global_shadow_level_1: 0 4px 8px rgba(0,0,0,$global_opacicy_semitransparent);
+$global_shadow_level_2: 0 8px 24px rgba(0,0,0,$global_opacicy_semitransparent);
+$global_shadow_level_3: 0 16px 32px rgba(0,0,0,$global_opacicy_semitransparent);
+$global_shadow_level_4: 0 16px 48px rgba(0,0,0,$global_opacicy_semitransparent);

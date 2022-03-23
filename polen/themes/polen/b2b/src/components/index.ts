@@ -1,0 +1,15 @@
+export { default as PolSEO } from "components/PolSEO";
+export { default as PolB2BHeader } from "components/PolB2BHeader";
+export { default as PolB2BSuperBanner } from "components/PolB2BSuperBanner";
+export { default as PolB2BHelpYou } from "components/PolB2BHelpYou";
+export { default as PolScrollable } from "components/PolScrollable";
+export { default as PolB2BHowItWork } from "components/PolB2BHowItWork";
+export { default as PolB2BForm } from "components/PolB2BForm";
+export { default as PolB2BIdols } from "components/PolB2BIdols";
+export { default as PolB2BFaq } from "components/PolB2BFaq";
+export { default as PolB2BFooter } from "components/PolB2BFooter";
+export { default as PolB2BCases } from "components/PolB2BCases";
+export { default as PolB2BPartners } from "components/PolB2BPartners";
+export { default as PolNonce } from "components/PolNonce";
+export { default as PolMessage } from "components/PolMessage";
+export { default as PolPreloader } from "components/PolPreloader";

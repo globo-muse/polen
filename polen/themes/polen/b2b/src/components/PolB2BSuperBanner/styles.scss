@@ -1,0 +1,93 @@
+@import "styles/mixins";
+
+.super-banner-item {
+  position: relative;
+  width: 241px;
+  height: 353px;
+  background-color: #000;
+  .play-button {
+    margin: auto;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    z-index: 10;
+  }
+  .video-card {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    .poster {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
+    .video-player {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 3;
+      opacity: 0;
+      transition: opacity 250ms ease;
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+  .logo {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    z-index: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
+    margin-bottom: 0px;
+    .image {
+      width: auto;
+      height: 70px;
+    }
+    .name {
+      margin-top: 0.8rem;
+      width: 100%;
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.videos-list {
+  overflow: hidden;
+  height: 380px;
+  @include desktop {
+    height: 707px;
+  }
+  .super-banner-item {
+    @include desktop {
+      width: 402px;
+      height: 637px;
+    }
+  }
+  .arrow {
+    bottom: 0px;
+  }
+}
+
+.title-b2b {
+  @include desktop {
+    font-size: 48px;
+  }
+  .title-b2b-highlight {
+    padding: 15px;
+    font-style: normal;
+    background: no-repeat center/contain url("images/b2b-elipse.png");
+  }
+}
+
+.cta-button {
+  max-width: 420px;
+}
