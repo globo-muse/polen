@@ -34,6 +34,7 @@ polen/plugins/debug-bar/*
 polen/plugins/polen_2/test/*
 polen/plugins/polen_2/composer.lock
 polen/uploads/*
+polen/plugins/kinsta-mu-plugins/*
 
 # Ignorar temas específicos
 wp-content/themes/twenty*/
