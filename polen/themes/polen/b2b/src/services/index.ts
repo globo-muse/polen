@@ -47,3 +47,15 @@ export async function contactFormB2B(params: ContactB2B) {
     throw err.response;
   }
 }
+
+export async function getCitiesByState(state: String) {
+  try {
+    const res = await axios
+      .create()
+      .get(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios?orderBy=nome`);
+
+    return res.data;
+  } catch (err) {
+    throw err.response;
+  }
+}

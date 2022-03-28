@@ -31,6 +31,15 @@ $inputs = new Material_Inputs();
         <div class="item">
           <?php
             $banners = array(
+              "mobile" => TEMPLATE_URI.'/assets/img/banners/b2b/banner-mobile.png',
+              "desktop" => TEMPLATE_URI.'/assets/img/banners/b2b/banner-desktop.png'
+            );
+          ?>
+          <?php polen_get_banner('Polen para Empresas', $banners, site_url('/empresas')); ?>
+				</div>
+        <div class="item">
+          <?php
+            $banners = array(
               "mobile" => TEMPLATE_URI.'/assets/img/banners/galo/banner-mobile.png',
               "desktop" => TEMPLATE_URI.'/assets/img/banners/galo/banner-desktop.png'
             );

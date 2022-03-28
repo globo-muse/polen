@@ -11,7 +11,7 @@ $categories = [
     "Outro",
 ];
 
-$cnpj = '';
+$cnpj_cpf = '';
 $corporate_name = '';
 $company_name = '';
 $instructions_to_video = '';
@@ -23,7 +23,7 @@ if(!empty($_GET['post'])) {
         $order                 = wc_get_order($post->ID);
         $polen_order           = new Polen_Order_Module($order);
 
-        $cnpj                  = $polen_order->get_billing_cnpj();
+        $cnpj_cpf              = $polen_order->get_billing_cnpj_cpf();
         $corporate_name        = $polen_order->get_corporate_name();
         $company_name          = $polen_order->get_company_name();
         $instructions_to_video = $polen_order->get_instructions_to_video();
@@ -47,8 +47,8 @@ if(!empty($_GET['post'])) {
     </div>
     <div>
     <p class="form-field form-field-wide">
-        <label for="cnpj">CNPJ da empresa</label>
-        <input type="text" id="cnpj" name="cnpj" value="<?= $cnpj; ?>" />
+        <label for="cnpj">CNPJ da empresa ou CPF do representante</label>
+        <input type="text" id="cnpj" name="cnpj" value="<?= $cnpj_cpf; ?>" />
     </p>
     </div>
     <div class="clear"></div>

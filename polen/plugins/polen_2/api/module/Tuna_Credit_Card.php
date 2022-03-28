@@ -19,8 +19,11 @@ class Tuna_Credit_Card extends Gateway_Tuna
         $token = parent::generate_token_card($session_id, $data);
         $tuna_expiration_date = $this->separate_month_year($data['tuna_expiration_date']);
 
+        $value_document = preg_replace( '/[^0-9]/', '', $data['cnpj']);
+        $type_document = parent::check_cpf_cnpj($value_document);
+
         return [
-            "Token" => $token,
+            "Token" => $token,  
             "TokenProvider" => 'Tuna',
             "CardHolderName" => sanitize_text_field($data["tuna_card_holder_name"]),
             "BrandName" => sanitize_text_field($data["tuna_card_brand"]),
@@ -29,8 +32,8 @@ class Tuna_Credit_Card extends Gateway_Tuna
             "TokenSingleUse" => 1,
             "SaveCard" => false,
             "BillingInfo" => [
-                "Document" => 'cnpj',
-                "DocumentType" => sanitize_text_field($data['cnpj']),
+                "Document" => $type_document,
+                "DocumentType" => $value_document,
                 "Address" => [
                     "Street" => '',
                     "Number" => '',
