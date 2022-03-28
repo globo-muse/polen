@@ -2,41 +2,41 @@
 *.DS_Store
 
 # Ignorar Configurações
-wordpress/.htaccess
-wordpress/wp-config.php
+.htaccess
+wp-config.php
 
 # Ignorar Modelos padrões do Wordpress
-wordpress/wp-config-sample.php
-wordpress/license.txt
-wordpress/readme.html
+wp-config-sample.php
+license.txt
+readme.html
 
 # Ignorar tudo no wp-content/cubonove exceto os diretórios
 # "mu-plugins", "plugins", "themes"
-wordpress/wp-content/*
-!wordpress/wp-content/languages/
-!wordpress/wp-content/mu-plugins/
-!wordpress/wp-content/plugins/
-!wordpress/wp-content/themes/
-wordpress/polen/*
-!wordpress/polen/languages/
-!wordpress/polen/mu-plugins/
-!wordpress/polen/plugins/
-!wordpress/polen/themes/
+wp-content/*
+!wp-content/languages/
+!wp-content/mu-plugins/
+!wp-content/plugins/
+!wp-content/themes/
+polen/*
+!polen/languages/
+!polen/mu-plugins/
+!polen/plugins/
+!polen/themes/
 
 # Ignorar Arquivo de conteudo gerado dinamicamente podem no acesso ele é estátivo
-wordpress/occasions.json
+occasions.json
 
 # Ignorar determinados plugins
-wordpress/wp-content/plugins/hello.php
-wordpress/polen/plugins/hello.php
-wordpress/wp-content/plugins/debug-bar/*
-wordpress/polen/plugins/debug-bar/*
-wordpress/polen/plugins/polen_2/test/*
-wordpress/polen/plugins/polen_2/composer.lock
+wp-content/plugins/hello.php
+polen/plugins/hello.php
+wp-content/plugins/debug-bar/*
+polen/plugins/debug-bar/*
+polen/plugins/polen_2/test/*
+polen/plugins/polen_2/composer.lock
 
 # Ignorar temas específicos
-wordpress/wp-content/themes/twenty*/
-wordpress/polen/themes/twenty*/
+wp-content/themes/twenty*/
+polen/themes/twenty*/
 
 # Ignorar dependências do node
 node_modules/
@@ -44,7 +44,7 @@ package-lock.json
 yarn.lock
 
 # Ignorar dependencias do composer
-wordpress/polen/plugins/polen_2/vendor/*
+polen/plugins/polen_2/vendor/*
 
 # Ignorar arquivos descompactados no diretório de uploads padrão
 uploads/*
@@ -66,4 +66,4 @@ sql/*
 #ignorar arquivos temporários de estilos
 *.css.map
 
-wordpress/polen/plugins/woo-preview-emails
+polen/plugins/woo-preview-emails
