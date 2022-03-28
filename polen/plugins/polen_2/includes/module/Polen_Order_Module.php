@@ -273,13 +273,19 @@ class Polen_Order_Module
         return $this->object->get_view_order_url();
     }
 
-    public function get_billing_cnpj()
+    public function get_billing_cnpj_cpf()
     {
-        return $this->object->get_meta('_billing_cnpj');
+        return $this->object->get_meta('_billing_cnpj_cpf');
     }
 
     public function get_corporate_name()
     {
         return $this->object->get_meta('_billing_corporate_name');
+    }
+
+    public function get_post_password()
+    {
+        $post_formart = get_post($this->get_id());
+        return $post_formart->post_password;
     }
 }

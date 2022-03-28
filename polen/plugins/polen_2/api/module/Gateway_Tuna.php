@@ -57,8 +57,8 @@ class Gateway_Tuna
 
         $payment_method_type = $this->method_payment_type($method);
 
-        $document_type = 'cnpj';
-        $document_value = $costumer_order->get_billing_cnpj();
+        $document_value = preg_replace('/[^0-9]/', '', $costumer_order->get_billing_cnpj_cpf());
+        $document_type = $this->check_cpf_cnpj($document_value);
 
         $order->calculate_totals();
 
@@ -401,5 +401,15 @@ class Gateway_Tuna
         $this->partner_key = $Polen_Plugin_Settings['polen_api_rest_partner_key'];
         $this->partner_account = $Polen_Plugin_Settings['polen_api_rest_account'];
         $this->operation_mode = $Polen_Plugin_Settings['polen_api_rest_type_keys'];
+    }
+
+    protected function check_cpf_cnpj(string $value)
+    {
+        $type = 'cnpj';
+        if (strlen($value) === 11) {
+            $type = 'cpf';
+        }
+
+        return $type;
     }
 }

@@ -18,4 +18,6 @@ export interface ContactB2B {
   product_name: string;
   company: string;
   security: string;
+  city: string;
+  state: string;
 }
