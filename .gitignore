@@ -33,6 +33,7 @@ wp-content/plugins/debug-bar/*
 polen/plugins/debug-bar/*
 polen/plugins/polen_2/test/*
 polen/plugins/polen_2/composer.lock
+polen/uploads/*
 
 # Ignorar temas específicos
 wp-content/themes/twenty*/
