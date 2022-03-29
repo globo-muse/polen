@@ -604,3 +604,38 @@
 #video-instructions {
   word-wrap: break-word;
 }
+
+.idol-tabs {
+  ul {
+    border: 1px solid #515151;
+    padding: 10px 10px 15px 10px;
+    display: flex;
+    li {
+      text-align: center;
+      flex: 1;
+      .nav-link {
+        color: var(--light);
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 400;
+      }
+      .nav-link.active {
+        background: transparent;
+        position: relative;
+        &:after {
+          content: '';
+          position: absolute;
+          display: block;
+          width: 53px;
+          height: 2px;
+          background-color: var(--primary);
+          bottom: -5px;
+          left:0;
+          right:0;
+          margin-left:auto;
+          margin-right:auto;
+        }
+      }
+    }
+  }
+}

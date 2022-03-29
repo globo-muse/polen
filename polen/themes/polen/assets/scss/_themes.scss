@@ -110,7 +110,8 @@
 	.tag-link,
 	.box-color,
 	.woocommerce-MyAccount-navigation li.is-active {
-		background-color: var(--box-color-dark);
+		background-color: transparent;
+    border: 1px solid #515151;
 	}
 	.text {
 		color: var(--light);
