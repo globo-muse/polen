@@ -4,9 +4,9 @@ namespace Polen\Includes\Module\Products;
 use Exception;
 use Polen\Includes\Module\Polen_Order_Module;
 
-class Polen_B2B_Orders extends Polen_Order_Module
+class Polen_B2B_Orders
 {
-    private \WC_Order $order;
+    private Polen_Order_Module $order;
 
     /**
      * @throws Exception
@@ -14,7 +14,6 @@ class Polen_B2B_Orders extends Polen_Order_Module
     public function __construct($order_id, $order_key)
     {
         $this->order = $this->get_order($order_id, $order_key);
-        parent::__construct($this->get_order($order_id, $order_key));
     }
 
     /**
@@ -22,25 +21,25 @@ class Polen_B2B_Orders extends Polen_Order_Module
      *
      * @param int $order_id
      * @param string $order_key
-     * @return \WC_Order
      * @throws Exception
      */
-    public function get_order(int $order_id, string $order_key): \WC_Order
+    public function get_order(int $order_id, string $order_key): Polen_Order_Module
     {
         $order = wc_get_order($order_id);
         if (empty($order)) {
-            throw new Exception('Não existe pedido com esse ID', 403);
+            throw new Exception('Não existe pedido com esse ID', 404);
         }
 
         if ($order->get_status() == 'completed') {
-            throw new Exception('Esse pedido já foi pago!', 406);
+            throw new Exception('Esse pedido já foi pago', 406);
         }
 
-//        if ($order->get_order_key() !== $order_key) {
-//            throw new Exception('Chave do pedido é diferente da chave informada', 403);
-//        }
+        $module_order = new Polen_Order_Module($order);
+        if ($module_order->get_post_password() !== $order_key) {
+            throw new Exception('Chave do pedido é diferente da chave informada', 404);
+        }
 
-        return $order;
+        return $module_order;
     }
 
     /**
@@ -65,13 +64,13 @@ class Polen_B2B_Orders extends Polen_Order_Module
      */
     public function get_order_info_step_one(): array
     {
-        $cnpj = parent::get_billing_cnpj();
-        $corporate_name = parent::get_corporate_name();
-        $company_name = parent::get_company_name();
-        $instructions_to_video = parent::get_instructions_to_video();
-        $licence_in_days = parent::get_licence_in_days();
-        $price = parent::get_total();
-        $category_video = parent::get_video_category();
+        $cnpj = $this->order->get_billing_cnpj_cpf();
+        $corporate_name = $this->order->get_corporate_name();
+        $company_name = $this->order->get_company_name();
+        $instructions_to_video = $this->order->get_instructions_to_video();
+        $licence_in_days = $this->order->get_licence_in_days();
+        $price = $this->order->get_total();
+        $category_video = $this->order->get_video_category();
 
         return compact('cnpj', 'corporate_name', 'company_name', 'instructions_to_video', 'licence_in_days', 'category_video', 'price');
     }

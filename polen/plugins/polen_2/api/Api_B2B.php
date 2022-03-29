@@ -117,8 +117,20 @@ class Api_B2B
         $company = filter_var($request->get_param( 'company' ), FILTER_SANITIZE_SPECIAL_CHARS);
         $phone   = filter_var($request->get_param( 'phone' ), FILTER_SANITIZE_SPECIAL_CHARS);
         $product = filter_var($request->get_param( 'product_name' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $city = filter_var($request->get_param( 'city' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $state = filter_var($request->get_param( 'state' ), FILTER_SANITIZE_SPECIAL_CHARS);
+
+
+        $utm_source = filter_var($request->get_param( 'utm_source' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $utm_medium = filter_var($request->get_param( 'utm_medium' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $utm_campaign = filter_var($request->get_param( 'utm_campaign' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $utm_term = filter_var($request->get_param( 'utm_term' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $utm_content = filter_var($request->get_param( 'utm_content' ), FILTER_SANITIZE_SPECIAL_CHARS);
+
+
         $terms   = '1';
-        $body = compact('form_id', 'name', 'email', 'company', 'phone');
+        $body = compact('form_id', 'name', 'email', 'company', 'phone', 'city', 'state');
+        $to_zapier = compact('utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content');
         try {
             if(!Api_Util_Security::verify_nonce($ip . $client, $nonce)) {
                 throw new Exception('Erro na segurança', 403);
@@ -128,15 +140,17 @@ class Api_B2B
 
             $form_db = new Polen_Form_DB();
             $form_db->insert($body);
-            
+
             $body['product'] = $product;
             $form_service = new Polen_Forms();
             $form_service->mailSend($body);
 
+            $body_zapier = array_merge($body, $to_zapier);
+
             $url_zapier_b2b_hotspot = $Polen_Plugin_Settings['polen_url_zapier_b2b_hotspot'];
             $zapier = new Polen_Zapier();
-            $zapier->send($url_zapier_b2b_hotspot, $body);
-            
+            $zapier->send($url_zapier_b2b_hotspot, $body_zapier);
+
             return api_response(true, 201);
         } catch(Exception $e) {
             return api_response($e->getMessage(), $e->getCode());

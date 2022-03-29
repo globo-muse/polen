@@ -262,11 +262,17 @@ function polen_front_get_card($item, $size = "small", $social = false, $campanha
         <?php if (!$social) : ?>
           <div class="price text-right" itemprop="price">
             <?php if (get_post_meta($item['ID'], 'polen_price_range_b2b', true)) : ?>
-              <?php echo get_post_meta($item['ID'], 'polen_price_range_b2b', true); ?>
+              <?php
+                echo 'A partir de R$';
+                echo get_post_meta($item['ID'], 'polen_price_range_b2b', true);
+              ?>
             <?php else : ?>
               <?php if ($item['in_stock']) : ?>
-                <?php /* ?><span class="mr-2"><?php Icon_Class::polen_icon_camera_video(); ?></span><?php */ ?>
-                <span><?php echo str_replace(",00", "", $item['price_formatted']); ?></span>
+                <?php if ($item['price_formatted']) : ?>
+                  <span><?php echo str_replace(",00", "", $item['price_formatted']); ?></span>
+                <?php else : ?>
+                  <?php echo 'Sob Consulta';?>
+                <?php endif; ?>
               <?php else : ?>
                 <span>Esgotado</span>
               <?php endif; ?>

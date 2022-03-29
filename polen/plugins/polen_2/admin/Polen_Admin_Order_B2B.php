@@ -54,8 +54,7 @@ class Polen_Admin_Order_B2B
     public function show_link_order_b2b()
     {
         global $post;
-        //TODO: Tirar o LINK do hardcode e colocar num lugar apropriado ex. Redux
-        echo printf('https://pagamento.polen.me?order=%s&code=%s', $post->ID, $post->post_password);
+        echo "https://pagar.polen.me?order={$post->ID}&code={$post->post_password}";
     }
 
 
@@ -104,7 +103,7 @@ class Polen_Admin_Order_B2B
             
             update_post_meta($order_id, 'b2b', '1');
             update_post_meta($order_id, Api_Checkout::ORDER_METAKEY, 'b2b');
-            update_post_meta($order_id, '_billing_cnpj', $cnpj);
+            update_post_meta($order_id, '_billing_cnpj_cpf', $cnpj);
             update_post_meta($order_id, '_billing_corporate_name', $corporate_name);
             update_post_meta($order_id, '_billing_company', $company_name);
 
