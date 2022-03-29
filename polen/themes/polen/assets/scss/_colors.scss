@@ -1,13 +1,13 @@
 $light-100: #fff;
 $light-50: #c4c4c4;
 $light-25: rgba(#ffffff, 0.25);
-$dark-100: #000;
+$dark-100: #141114;
 $dark-50: rgba(#000000, 0.5);
 $dark-25: #707070;
 $error-box-color: hsl(0, 82%, 96%);
 $yellow: #fff7dd;
 
-$body-bg: #000;
+$body-bg: #141114;
 $body-color: $light-100;
 $primary: #fd6c36;
 $primary-hover: lighten($primary, 10%);
@@ -49,7 +49,7 @@ $neutral-400: #868E96;
 $neutral-500: #ADB5BD;
 $neutral-600: #CED4DA;
 $neutral-700: #DEE2E6;
-$neutral-900: #FFFFFF;
+$neutral-900: #E0E0E0;
 
 $theme-colors: (
 	"primary": $polen-primary,
