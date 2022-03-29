@@ -3,6 +3,7 @@ namespace Polen\Api\b2b\Checkout;
 
 use Exception;
 use Polen\Api\Api_Util_Security;
+use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Api\Module\{Tuna_Credit_Card,Tuna_Pix};
 use Polen\Includes\Module\Products\Polen_B2B_Orders;
 use Polen\Includes\Polen_Create_Customer;
@@ -147,8 +148,12 @@ class Api_Checkout extends WP_REST_Controller
                 throw new Exception('Não existe pedido com esse ID', 403);
             }
 
+            $order_module = new Polen_Order_Module($order);
+            $product_order = $order_module->get_product_from_order();
+
             $response = [
-                'total' => $order->get_total()
+                'product' => $product_order->get_title(),
+                'total' => $order_module->get_total()
             ];
 
             return api_response($response);
