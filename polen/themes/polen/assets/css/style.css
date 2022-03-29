@@ -9277,7 +9277,8 @@ body {
     body.theme-dark .tag-link,
     body.theme-dark .box-color,
     body.theme-dark .woocommerce-MyAccount-navigation li.is-active {
-      background-color: var(--box-color-dark); }
+      background-color: transparent;
+      border: 1px solid #515151; }
     body.theme-dark .text {
       color: var(--light); }
     body.theme-dark .background {
@@ -9376,7 +9377,8 @@ body {
         body.theme-auto .tag-link,
         body.theme-auto .box-color,
         body.theme-auto .woocommerce-MyAccount-navigation li.is-active {
-          background-color: var(--box-color-dark); }
+          background-color: transparent;
+          border: 1px solid #515151; }
         body.theme-auto .text {
           color: var(--light); }
         body.theme-auto .background {

@@ -272,19 +272,17 @@ function polen_get_talent_card($talent, $social = false)
 function polen_talent_deadline($deadline_medio)
 {
 ?>
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-12">
-        <div class="row">
-          <div class="col-12 col-md-12">
-            <div class="box-round py-3 px-3 text-center text-md-center">
-              <p class="typo-double-line-height mb-0">
-                Peça hoje e receba até <br>
-                <b>
-                  <?php echo $deadline_medio; ?>
-                </b>
-              </p>
-            </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <div class="box-round py-3 px-3 text-center text-md-center">
+            <p class="typo-double-line-height mb-0">
+              Peça hoje e receba até <br>
+              <b>
+                <?php echo $deadline_medio; ?>
+              </b>
+            </p>
           </div>
         </div>
       </div>

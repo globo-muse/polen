@@ -59,9 +59,11 @@ $inputs = new Material_Inputs();
           <li class="nav-item" role="presentation">
             <a class="nav-link active" id="b2b-tab" data-toggle="pill" href="#pills-b2b" role="tab" aria-controls="pills-b2b" aria-selected="true">Vídeo para empresa</a>
           </li>
+          <?php /*
           <li class="nav-item" role="presentation">
             <a class="nav-link" id="b2c-tab" data-toggle="pill" href="#pills-b2c" role="tab" aria-controls="pills-b2c" aria-selected="false">Vídeo para uso pessoal</a>
           </li>
+          */ ?>
         </ul>
       </div>
     </div>
@@ -100,6 +102,7 @@ $inputs = new Material_Inputs();
             </div>
           </div>
         </div>
+        <?php /*
         <div class="tab-pane fade" id="pills-b2c" role="tabpanel" aria-labelledby="b2c-tab">
           <div class="row">
             <!-- CONTEUDO -->
@@ -110,7 +113,8 @@ $inputs = new Material_Inputs();
               <!-- Bio -->
               <div class="row mt-4">
                 <div class="col-12">
-                  <?php echo $polen_product->get_description(); ?>
+                  <h2 class="mb-3 typo typo-subtitle-large">Biografia</h2>
+                  <p class="typo typo-p"><?php echo $polen_product->get_description(); ?></p>
                 </div>
               </div>
 
@@ -119,6 +123,9 @@ $inputs = new Material_Inputs();
 
               <!-- Tags -->
               <div class="row mt-4">
+                <div class="col-12">
+                  <h2 class="mb-3 typo typo-subtitle-large">Tags</h2>
+                </div>
                 <div class="col-12">
                   <?php if (count($terms) > 0) : ?>
                     <?php foreach ($terms as $k => $term) : ?>
@@ -154,6 +161,7 @@ $inputs = new Material_Inputs();
             <!-- /BOTAO DE COMPRA -->
           </div>
         </div>
+        */ ?>
       </div>
     </div>
   </div>
