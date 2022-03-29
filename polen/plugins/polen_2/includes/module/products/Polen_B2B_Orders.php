@@ -64,6 +64,8 @@ class Polen_B2B_Orders
      */
     public function get_order_info_step_one(): array
     {
+        $product_order = $this->order->get_product_from_order();
+        $product = $product_order->get_title();
         $cnpj = $this->order->get_billing_cnpj_cpf();
         $corporate_name = $this->order->get_corporate_name();
         $company_name = $this->order->get_company_name();
@@ -72,7 +74,7 @@ class Polen_B2B_Orders
         $price = $this->order->get_total();
         $category_video = $this->order->get_video_category();
 
-        return compact('cnpj', 'corporate_name', 'company_name', 'instructions_to_video', 'licence_in_days', 'category_video', 'price');
+        return compact('cnpj', 'corporate_name', 'company_name', 'instructions_to_video', 'licence_in_days', 'category_video', 'price', 'product');
     }
 
     /**
