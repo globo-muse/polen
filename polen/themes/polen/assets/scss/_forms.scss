@@ -477,10 +477,36 @@ textarea {
   }
 }
 
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__trailing,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover
+  .mdc-notched-outline
+  .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover
+  .mdc-notched-outline
+  .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover
+  .mdc-notched-outline
+  .mdc-notched-outline__trailing {
+  border-color: var(--light);
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input,
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--light);
+  &::placeholder {
+    color: rgba(253, 178, 130, 0.14);
+  }
+}
+
 .mdc-button {
   width: 100%;
   --mdc-theme-primary: var(--primary);
-  --mdc-theme-on-primary: var(--light);
+  --mdc-theme-on-primary: var(--dark);
   --mdc-shape-small: 8px;
   --mdc-typography-button-font-size: 1rem;
   --mdc-typography-button-font-weight: 600;

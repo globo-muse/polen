@@ -55,7 +55,7 @@ uploads/*
 
 # Ignorar arquivos de log e bancos de dados 
 # exceto o arquivo padrão do banco do projeto
-wordpress/wp-admin/*.log
+wp-admin/*.log
 *.log
 *.sql
 *.sqlite
