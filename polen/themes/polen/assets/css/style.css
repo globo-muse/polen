@@ -13368,7 +13368,8 @@ label[for="wc-stripe-new-payment-method"] {
     padding-right: 3px; }
 
 .box-line {
-  border: 1px solid #515151; }
+  border: 1px solid #515151;
+  background-color: var(--dark); }
 
 .cta-b2b {
   position: static; }
@@ -13387,7 +13388,8 @@ hr {
   @media (min-width: 768px) {
     .fixed-scroll {
       position: fixed;
-      left: 58.2%; } }
+      left: 58.2%;
+      z-index: 100; } }
 
 .talent-dashboard-start .title,
 .box-round .title,

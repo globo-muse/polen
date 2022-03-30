@@ -262,6 +262,7 @@
 
 .box-line {
   border: 1px solid #515151;
+  background-color: var(--dark);
 }
 
 .cta-b2b {
@@ -283,6 +284,7 @@ hr {
   @include media-breakpoint-up(md) {
     position: fixed;
     left: 58.2%;
+    z-index: 100;
   }
 }
 
