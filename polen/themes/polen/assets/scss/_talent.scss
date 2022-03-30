@@ -264,19 +264,27 @@
   border: 1px solid #515151;
 }
 
+.cta-b2b {
+  position: static;
+  @include media-breakpoint-up(md) {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    max-width: 403px;
+  }
+}
+
+hr {
+  border-color: #515151;
+}
+
 .fixed-scroll {
   position: static;
   @include media-breakpoint-up(md) {
     position: fixed;
-    top: 20px;
+    left: 58.2%;
   }
 }
-
-.rightColumn {
-  position: absolute;
-  right: 0;
-  top: 0;
- }
 
 .talent-dashboard-start,
 .box-round,

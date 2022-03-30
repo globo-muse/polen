@@ -13370,17 +13370,24 @@ label[for="wc-stripe-new-payment-method"] {
 .box-line {
   border: 1px solid #515151; }
 
+.cta-b2b {
+  position: static; }
+  @media (min-width: 768px) {
+    .cta-b2b {
+      position: absolute;
+      right: 0;
+      top: 20px;
+      max-width: 403px; } }
+
+hr {
+  border-color: #515151; }
+
 .fixed-scroll {
   position: static; }
   @media (min-width: 768px) {
     .fixed-scroll {
       position: fixed;
-      top: 20px; } }
-
-.rightColumn {
-  position: absolute;
-  right: 0;
-  top: 0; }
+      left: 58.2%; } }
 
 .talent-dashboard-start .title,
 .box-round .title,

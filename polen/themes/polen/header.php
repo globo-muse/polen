@@ -9,7 +9,6 @@
  *
  * @package Polen
  */
-
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -49,9 +48,9 @@
         </div>
   <?php if ($is_single) : ?>
       </div>
-      <img src='<?php echo TEMPLATE_URI;?>/assets/img/supla.png' class="idol-cover"></img>
+      <img src='<?= polen_get_thumbnail(get_the_id())['image']; ?>' class="idol-cover"></img>
       <div class="container">
-        <h2 class="typo idol-name">Supla</h2>
+        <h2 class="typo idol-name"><?= get_the_title(); ?></h2>
       </div>
     </div>
   <?php endif; ?>
