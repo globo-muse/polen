@@ -16,10 +16,22 @@ import {
 } from "components";
 import { PolMessage } from "components";
 
-const IndexPage = () => {
+const AGENCIES = {
+  REDMIDIA: { PATH: "1", GTM: "GTM-RED" },
+  FAST: { PATH: "2", GTM: "GTM-FAST" },
+};
+
+const getGTM = (params) => {
+  const filter = Object.keys(AGENCIES)
+    .map((item) => AGENCIES[item])
+    .filter((value) => value.PATH === params.agency);
+  return (filter.length && filter[0].GTM) || undefined;
+};
+
+const IndexPage = ({ params }) => {
   return (
     <>
-      <PolSEO GTM="GTM-T65KTZ3" />
+      <PolSEO GTM={getGTM(params)} />
       <AppWrapper>
         <main>
           <Container fluid className="px-0">
