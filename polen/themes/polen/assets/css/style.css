@@ -362,7 +362,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.1); }
+  border-top: 1px solid #515151; }
 
 small,
 .small {
@@ -13366,6 +13366,9 @@ label[for="wc-stripe-new-payment-method"] {
   .skill-value .bi,
   .skill-value .icon {
     padding-right: 3px; }
+
+.box-line {
+  border: 1px solid #515151; }
 
 .talent-dashboard-start .title,
 .box-round .title,
