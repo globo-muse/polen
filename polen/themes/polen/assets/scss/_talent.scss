@@ -264,6 +264,20 @@
   border: 1px solid #515151;
 }
 
+.fixed-scroll {
+  position: static;
+  @include media-breakpoint-up(md) {
+    position: fixed;
+    top: 20px;
+  }
+}
+
+.rightColumn {
+  position: absolute;
+  right: 0;
+  top: 0;
+ }
+
 .talent-dashboard-start,
 .box-round,
 .talent-order-modal {

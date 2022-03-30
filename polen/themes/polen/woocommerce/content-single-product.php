@@ -75,17 +75,17 @@ $inputs = new Material_Inputs();
         <div class="tab-pane fade show active" id="pills-b2b" role="tabpanel" aria-labelledby="b2b-tab">
           <div class="row">
             <!-- CONTEUDO -->
-            <div class="col-sm-12 col-md-7">
+            <div class="col-sm-12 col-md-7 left-column">
               <!-- Bio -->
-              <div class="row mt-4">
+              <div class="row mb-4">
                 <div class="col-12">
                   <h2 class="mb-3 typo typo-title">Biografia</h2>
-                  <p class="typo typo-p mb-4"><?php echo $polen_product->get_description(); ?></p>
+                  <p class="typo typo-p mb-5"><?php echo $polen_product->get_description(); ?></p>
                   <hr></hr>
                 </div>
               </div>
               <!-- Tags -->
-              <div class="row mt-2">
+              <div class="row mb-5">
                 <div class="col-12">
                   <h2 class="mb-3 typo typo-title">Tags</h2>
                 </div>
@@ -100,28 +100,30 @@ $inputs = new Material_Inputs();
             </div>
             <!-- /CONTEUDO -->
             <!-- BOTAO DE COMPRA -->
-            <div class="col-sm-12 col-md-5 mt-5">
-              <div class="box-line p-4">
-                <div class="row">
-                  <div class="col-12 d-flex justify-content-between mb-2">
-                    <h5 class="typo typo-p"><strong>Vídeo para meu negócio</strong></h5>
-                    <h5 class="typo typo-p">
-                      <strong>
-                        <?php
-                          if (get_post_meta(get_the_ID(), 'polen_price_range_b2b', true)) {
-                            echo get_post_meta(get_the_ID(), 'polen_price_range_b2b', true);
-                          } else {
-                            echo "Sob consulta";
-                          }
-                        ?>
-                      </strong>
-                    </h5>
-                  </div>
-                  <div class="col-12">
-                    <p class="typo typo-p">Os valores dos vídeos variam de acordo com cada necessidade, analisamos cada pedido para termos a solução ideal para o seu negócio.  </p>
-                  </div>
-                  <div class="col-12">
-                    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", "https://wa.me/5581981233638?text=", true, "", array(),); ?>
+            <div class="col-sm-12 col-md-5 mt-5 position-relative">
+              <div class="col-md-4 fixed-scroll">
+                <div class="box-line p-4">
+                  <div class="row">
+                    <div class="col-12 d-flex justify-content-between mb-2">
+                      <h5 class="typo typo-p"><strong>Vídeo para meu negócio</strong></h5>
+                      <h5 class="typo typo-p">
+                        <strong>
+                          <?php
+                            if (get_post_meta(get_the_ID(), 'polen_price_range_b2b', true)) {
+                              echo get_post_meta(get_the_ID(), 'polen_price_range_b2b', true);
+                            } else {
+                              echo "Sob consulta";
+                            }
+                          ?>
+                        </strong>
+                      </h5>
+                    </div>
+                    <div class="col-12">
+                      <p class="typo typo-p">Os valores dos vídeos variam de acordo com cada necessidade, analisamos cada pedido para termos a solução ideal para o seu negócio.  </p>
+                    </div>
+                    <div class="col-12">
+                      <?php $inputs->material_button_link("", "Falar com a equipe de vendas", "https://wa.me/5581981233638?text=", true, "", array(),); ?>
+                    </div>
                   </div>
                 </div>
               </div>

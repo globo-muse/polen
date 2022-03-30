@@ -362,7 +362,7 @@ hr {
   margin-top: 1rem;
   margin-bottom: 1rem;
   border: 0;
-  border-top: 1px solid #515151; }
+  border-top: 1px solid rgba(0, 0, 0, 0.1); }
 
 small,
 .small {
@@ -13369,6 +13369,18 @@ label[for="wc-stripe-new-payment-method"] {
 
 .box-line {
   border: 1px solid #515151; }
+
+.fixed-scroll {
+  position: static; }
+  @media (min-width: 768px) {
+    .fixed-scroll {
+      position: fixed;
+      top: 20px; } }
+
+.rightColumn {
+  position: absolute;
+  right: 0;
+  top: 0; }
 
 .talent-dashboard-start .title,
 .box-round .title,
