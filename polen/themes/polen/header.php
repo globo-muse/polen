@@ -48,7 +48,7 @@
         </div>
   <?php if ($is_single) : ?>
       </div>
-      <img src='<?= polen_get_thumbnail(get_the_id())['image']; ?>' class="idol-cover"></img>
+      <img src='<?= polen_get_thumbnail(get_the_id())['image']; ?>' alt='<?= get_the_title(); ?>' class="idol-cover"></img>
       <div class="container">
         <h2 class="typo idol-name"><?= get_the_title(); ?></h2>
       </div>
