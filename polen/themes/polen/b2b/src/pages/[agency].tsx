@@ -17,7 +17,7 @@ import {
 import { PolMessage } from "components";
 
 const AGENCIES = {
-  REDMIDIA: { PATH: "1", GTM: "GTM-RED" },
+  REDMIDIA: { PATH: "1", GTM: "GTM-NKXXWBK" },
   FAST: { PATH: "2", GTM: "GTM-TTG2MQX" },
 };
 
