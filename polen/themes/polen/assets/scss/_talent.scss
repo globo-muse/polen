@@ -294,6 +294,9 @@ hr {
     left: 58.2%;
     z-index: 100;
   }
+  @include media-breakpoint-up(xl) {
+
+  }
 }
 
 .talent-dashboard-start,
