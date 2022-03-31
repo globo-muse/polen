@@ -9642,7 +9642,7 @@ iframe {
   max-width: 50px; }
 
 .bg-single {
-  min-height: 80vh;
+  min-height: 65vh;
   overflow: hidden;
   position: relative;
   background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%); }
@@ -13386,7 +13386,7 @@ label[for="wc-stripe-new-payment-method"] {
       position: absolute;
       right: 0;
       top: 20px;
-      max-width: 403px; } }
+      max-width: 459px; } }
 
 hr {
   border-color: #515151; }
@@ -13396,8 +13396,54 @@ hr {
   @media (min-width: 768px) {
     .fixed-scroll {
       position: fixed;
-      left: 58.2%;
+      left: 54.2%;
       z-index: 100; } }
+
+.chart {
+  width: 110px;
+  height: 110px;
+  margin: 1em auto;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .chart .bg-circle {
+    position: relative;
+    z-index: 1;
+    background: var(--dark);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; }
+  .chart p {
+    position: relative;
+    z-index: 1;
+    font-size: 2em; }
+
+.chart::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - var(--bord));
+  height: calc(100% - var(--bord));
+  background: white;
+  border-radius: inherit; }
+
+.chart-label {
+  width: 100%; }
+  .chart-label .label-circle {
+    width: 10px;
+    height: 10px;
+    background: #564200;
+    border-radius: 50%;
+    margin-top: 5px; }
+  .chart-label .yellow {
+    background-color: var(--primary); }
+  .chart-label .typo-p {
+    font-size: 16px;
+    position: relative; }
 
 .talent-dashboard-start .title,
 .box-round .title,

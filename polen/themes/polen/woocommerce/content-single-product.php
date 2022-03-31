@@ -75,7 +75,7 @@ $inputs = new Material_Inputs();
         <div class="tab-pane fade show active" id="pills-b2b" role="tabpanel" aria-labelledby="b2b-tab">
           <div class="row">
             <!-- CONTEUDO -->
-            <div class="col-sm-12 col-md-7 left-column">
+            <div class="col-sm-12 col-md-6 left-column">
               <!-- Bio -->
               <?php if ($polen_product->get_description()) : ?>
                 <div class="row mb-4">
@@ -144,6 +144,38 @@ $inputs = new Material_Inputs();
                         <div class="progress-bar" role="progressbar" style="width: 20.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
                       </div>
                       <h5 class="typo typo-p m-0">20,4%</h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <hr></hr>
+                </div>
+              </div>
+              <!-- Público -->
+              <div class="row mb-4">
+                <div class="col-12">
+                  <h2 class="mb-3 typo typo-title">Público</h2>
+                </div>
+                <div class="col-12 mb-3">
+                  <div class="row">
+                    <div class="col-4 mt-4">
+                      <h5 class="typo typo-title mb-0 text-right"><strong>40%</strong></h5>
+                      <div class="chart-label d-flex justify-content-end">
+                        <div class="label-circle mr-1"></div>
+                        <p class="typo typo-p">Mulheres</p>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="chart" style="background-image: conic-gradient(#FFC300 60%, #564200 60%);">
+                        <div class="bg-circle"></div>
+                      </div>
+                    </div>
+                    <div class="col-4 mt-4">
+                      <h5 class="typo typo-title mb-0"><strong>60%</strong></h5>
+                      <div class="chart-label d-flex">
+                        <div class="label-circle mr-1 yellow"></div>
+                        <p class="typo typo-p">Homens</p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -390,7 +422,7 @@ pol_print_schema_data_extended($talent_id, $reviews, $total_reviews, $sum_review
   jQuery(document).ready(function($) {
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
-        if (scroll >= 620) {
+        if (scroll >= 510) {
           $(".cta-b2b").addClass("fixed-scroll");
         } else {
           $(".cta-b2b").removeClass("fixed-scroll");
