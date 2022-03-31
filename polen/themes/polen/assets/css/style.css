@@ -13389,24 +13389,35 @@ label[for="wc-stripe-new-payment-method"] {
     background-color: var(--primary); }
 
 .cta-b2b {
-  position: static; }
-  @media (min-width: 768px) {
+  position: static;
+  right: 0;
+  top: 20px; }
+  @media (max-width: 998px) {
+    .cta-b2b {
+      max-width: 350px;
+      position: absolute; } }
+  @media (min-width: 999px) {
     .cta-b2b {
       position: absolute;
-      right: 0;
-      top: 20px;
       max-width: 459px; } }
 
 hr {
   border-color: #515151; }
 
 .fixed-scroll {
-  position: static; }
+  position: static;
+  z-index: 900; }
   @media (min-width: 768px) {
     .fixed-scroll {
       position: fixed;
-      left: 54.2%;
-      z-index: 100; } }
+      left: 54.2%; } }
+
+.cta-fixed-mobile {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  left: 0; }
 
 .chart {
   width: 110px;
@@ -14053,7 +14064,7 @@ hr {
     font-size: 12px;
     line-height: 21px;
     font-weight: 400;
-    color: inherit; }
+    color: var(--light); }
     .footer-menu li a i {
       margin-right: 5px; }
 
@@ -14776,7 +14787,7 @@ hr {
   line-height: 19px;
   letter-spacing: 0em;
   text-align: center;
-  color: #000; }
+  color: var(--light); }
 
 #faq .panel-group .panel {
   border-bottom: 1px solid #CED4DA;

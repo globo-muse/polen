@@ -69,6 +69,11 @@ $inputs = new Material_Inputs();
   </div>
   */ ?>
 
+  <!-- CTA Fixo apenas no mobile -->
+  <div class="cta-fixed-mobile d-block d-md-none p-3">
+    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", "https://wa.me/5581981233638?text=", true, "", array(),); ?>
+  </div>
+
   <div class="row mt-5 mb-5">
     <div class="col-12">
       <div class="tab-content" id="pills-tabContent">
@@ -244,6 +249,36 @@ $inputs = new Material_Inputs();
                   <hr></hr>
                 </div>
               </div>
+              <!-- Quanto custa - Apenas XS -->
+              <div class="row mb-5 d-block d-md-none">
+                <div class="col-12">
+                  <h2 class="mb-3 typo typo-subtitle-large">Quanto custa um vídeo para o meu negocio?</h2>
+                </div>
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <h5 class="typo typo-p">
+                        <strong>
+                          <?php
+                            if (get_post_meta(get_the_ID(), 'polen_price_range_b2b', true)) {
+                              echo 'A partir de R$';
+                              echo get_post_meta(get_the_ID(), 'polen_price_range_b2b', true);
+                            } else {
+                              echo "Sob consulta";
+                            }
+                          ?>
+                        </strong>
+                      </h5>
+                    </div>
+                    <div class="col-12">
+                      <p class="typo typo-p">Os valores dos vídeos variam de acordo com as necessidades do seu negócio. Analisamos cada pedido separadamente para disponibilizar a melhor solução para cada cliente.</p>
+                    </div>
+                    <div class="col-12">
+                      <hr></hr>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <!-- Tags -->
               <?php if ($terms) : ?>
                 <div class="row mb-5">
@@ -262,7 +297,7 @@ $inputs = new Material_Inputs();
             </div>
             <!-- /CONTEUDO -->
             <!-- BOTAO DE COMPRA -->
-            <div class="cta-b2b col-sm-12">
+            <div class="cta-b2b col-sm-12 d-none d-md-block">
               <div class="box-line p-4">
                 <div class="row">
                   <div class="col-12 d-flex justify-content-between mb-2">
@@ -271,6 +306,7 @@ $inputs = new Material_Inputs();
                       <strong>
                         <?php
                           if (get_post_meta(get_the_ID(), 'polen_price_range_b2b', true)) {
+                            echo 'A partir de R$';
                             echo get_post_meta(get_the_ID(), 'polen_price_range_b2b', true);
                           } else {
                             echo "Sob consulta";

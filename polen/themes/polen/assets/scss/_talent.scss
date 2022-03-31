@@ -275,12 +275,17 @@
 
 .cta-b2b {
   position: static;
-  @include media-breakpoint-up(md) {
+  right: 0;
+  top: 20px;
+  @media (max-width: 998px) {
+    max-width: 350px;
     position: absolute;
-    right: 0;
-    top: 20px;
+  }
+  @media (min-width: 999px) {
+    position: absolute;
     max-width: 459px;
   }
+
 }
 
 hr {
@@ -289,11 +294,19 @@ hr {
 
 .fixed-scroll {
   position: static;
+  z-index: 900;
   @include media-breakpoint-up(md) {
     position: fixed;
     left: 54.2%;
-    z-index: 100;
   }
+}
+
+.cta-fixed-mobile {
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  width: 100%;
+  left: 0;
 }
 
 .chart {
