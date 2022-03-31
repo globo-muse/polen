@@ -52,3 +52,10 @@
 Deploy this starter with one click on [Gatsby Cloud](https://www.gatsbyjs.com/cloud/):
 
 [<img src="https://www.gatsbyjs.com/deploynow.svg" alt="Deploy to Gatsby Cloud">](https://www.gatsbyjs.com/dashboard/deploynow?url=https://github.com/gatsbyjs/gatsby-starter-minimal)
+
+
+5. **Example .env.development**
+
+BASE_URL=https://polen-homolog.c9t.pw/wp-json/polen/v1
+ASSETS_URI=https://polen-homolog.c9t.pw/polen/themes/polen/b2b/src/images
+NODE_ENV=development

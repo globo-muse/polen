@@ -8,6 +8,7 @@ class Enterprise_Rewrite
     const QUERY_VARS_MASTER_CLASS_APP     = 'enterprise_app';
 
     const QUERY_VARS_MASTER_CLASS_IS_HOME = 'enterprise_is_home';
+    const QUERY_VARS_MASTER_CLASS_IS_TALENT = 'enterprise_talent';
     const QUERY_VARS_MASTER_CLASS_SUCCESS = 'enterprise_success';
 
     public function __construct($static = false)
@@ -31,7 +32,7 @@ class Enterprise_Rewrite
      */
     public function rewrites()
     {
-        add_rewrite_rule( self::BASE_URL . '/sucesso[/]?$', 'index.php?'.self::QUERY_VARS_MASTER_CLASS_APP.'=1&'.self::QUERY_VARS_MASTER_CLASS_SUCCESS.'=1', 'top' );
+        add_rewrite_rule( self::BASE_URL . '/([^/]*)/?', 'index.php?'.self::QUERY_VARS_MASTER_CLASS_APP.'=1&'.self::QUERY_VARS_MASTER_CLASS_IS_TALENT.'=1', 'top' );
         add_rewrite_rule( self::BASE_URL . '[/]?$', 'index.php?'.self::QUERY_VARS_MASTER_CLASS_APP.'=1&'.self::QUERY_VARS_MASTER_CLASS_IS_HOME.'=1', 'top' );
     }
 
@@ -43,6 +44,7 @@ class Enterprise_Rewrite
     {
         $query_vars[] = self::QUERY_VARS_MASTER_CLASS_APP;
         $query_vars[] = self::QUERY_VARS_MASTER_CLASS_IS_HOME;
+        $query_vars[] = self::QUERY_VARS_MASTER_CLASS_IS_TALENT;
         $query_vars[] = self::QUERY_VARS_MASTER_CLASS_SUCCESS;
         return $query_vars;
     }
@@ -66,6 +68,12 @@ class Enterprise_Rewrite
             //return get_template_directory() . '/enterprise/index.php';
         }
 
+        if ($this->is_talent())
+        {
+            $GLOBALS[self::QUERY_VARS_MASTER_CLASS_IS_TALENT] = '1';
+            return get_template_directory() . '/b2b/empresas/[agency]/index.html';
+        }
+
         if( $this->is_page_success() ) {
             $GLOBALS[self::QUERY_VARS_MASTER_CLASS_SUCCESS] = '1';
             return get_template_directory() . '/enterprise/success.php';
@@ -81,6 +89,16 @@ class Enterprise_Rewrite
     {
         $is_home = get_query_var(self::QUERY_VARS_MASTER_CLASS_IS_HOME);
         if (!empty($is_home) || $is_home == '1') {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function is_talent()
+    {
+        $is_talent = get_query_var(self::QUERY_VARS_MASTER_CLASS_IS_TALENT);
+        if (!empty($is_talent) || $is_talent == '1') {
             return true;
         }
 
