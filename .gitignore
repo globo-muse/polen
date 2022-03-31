@@ -10,6 +10,8 @@ wp-config-sample.php
 license.txt
 readme.html
 
+polen_kinsta.code-workspace
+
 # Ignorar tudo no wp-content/cubonove exceto os diretórios
 # "mu-plugins", "plugins", "themes"
 wp-content/*
@@ -55,7 +57,7 @@ uploads/*
 
 # Ignorar arquivos de log e bancos de dados 
 # exceto o arquivo padrão do banco do projeto
-wordpress/wp-admin/*.log
+wp-admin/*.log
 *.log
 *.sql
 *.sqlite
