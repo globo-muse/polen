@@ -10,7 +10,6 @@ $yellow: #fff7dd;
 $body-bg: #141114;
 $body-color: $light-100;
 $primary: #fd6c36;
-$primary-hover: lighten($primary, 10%);
 $secondary: #377dff;
 $accept: #3cc13b;
 $teal: #ebf9eb;
@@ -40,6 +39,7 @@ $polen-primary: #FFC300;
 $polen-primary-light: #FF9048;
 $polen-primary-dark: #E36131;
 $polen-gradient: #FAA629;
+$primary-hover: lighten($polen-primary, 10%);
 $institucional_gradient: linear-gradient(90deg, #faa629 1.23%, #fc6c36 100%);
 
 $neutral-100: #212529;

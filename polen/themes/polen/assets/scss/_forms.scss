@@ -521,8 +521,8 @@ textarea {
 }
 
 .mdc-button--outlined {
-  --mdc-outlined-button-label-text-color: var(--dark);
-  --mdc-outlined-button-outline-color: var(--dark);
+  --mdc-outlined-button-label-text-color: var(--light);
+  --mdc-outlined-button-outline-color: var(--light);
   --mdc-outlined-button-container-height: 54px;
 }
 
@@ -541,6 +541,18 @@ textarea {
 .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label,
 .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
   color: var(--primary);
+}
+
+.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading, .mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch, .mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing {
+  border-color: var(--light);
+}
+
+.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
+  color: var(--light);
+}
+
+#outlined-select-label {
+  color: var(--light);
 }
 
 .combo-advanced {

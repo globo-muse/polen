@@ -80,7 +80,7 @@ $inputs = new Material_Inputs();
               <?php if ($polen_product->get_description()) : ?>
                 <div class="row mb-4">
                   <div class="col-12">
-                    <h2 class="mb-3 typo typo-title">Biografia</h2>
+                    <h2 class="mb-3 typo typo-subtitle-large">Biografia</h2>
                   </div>
                   <div class="col-12">
                     <p class="typo typo-p"><?php echo $polen_product->get_description(); ?></p>
@@ -93,7 +93,7 @@ $inputs = new Material_Inputs();
               <!-- Influencia -->
               <div class="row mb-4">
                 <div class="col-12">
-                  <h2 class="mb-3 typo typo-title">Influência por região</h2>
+                  <h2 class="mb-3 typo typo-subtitle-large">Influência por região</h2>
                 </div>
                 <div class="col-12 mb-3">
                   <div class="row">
@@ -154,7 +154,7 @@ $inputs = new Material_Inputs();
               <!-- Público -->
               <div class="row mb-4">
                 <div class="col-12">
-                  <h2 class="mb-3 typo typo-title">Público</h2>
+                  <h2 class="mb-3 typo typo-subtitle-large">Público</h2>
                 </div>
                 <div class="col-12 mb-3">
                   <div class="row">
@@ -186,7 +186,7 @@ $inputs = new Material_Inputs();
               <!-- Faixa Etária -->
               <div class="row mb-4">
                 <div class="col-12">
-                  <h2 class="mb-3 typo typo-title">Faixa etária</h2>
+                  <h2 class="mb-3 typo typo-subtitle-large">Faixa etária</h2>
                 </div>
                 <div class="col-12 mb-3">
                   <div class="row">
@@ -248,7 +248,7 @@ $inputs = new Material_Inputs();
               <?php if ($terms) : ?>
                 <div class="row mb-5">
                   <div class="col-12">
-                    <h2 class="mb-3 typo typo-title">Tags</h2>
+                    <h2 class="mb-3 typo typo-subtitle-large">Tags</h2>
                   </div>
                   <div class="col-12">
                     <?php if (count($terms) > 0) : ?>
