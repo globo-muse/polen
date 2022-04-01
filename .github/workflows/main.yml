@@ -23,15 +23,11 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: SSH Command
-        uses: D3rHase/ssh-command-action@v0.2
+        uses: appleboy/ssh-action@master
+        
         with:
-          # hostname / IP of the server
-          HOST: 35.198.30.94
-          # ssh port of the server
-          PORT: 54742
-          # user of the server
-          USER: polenmain
-          # private ssh key registered on the server
-          PRIVATE_SSH_KEY: ${{ secrets.KINSTA_SSH }}
-          # command to be executed
-          COMMAND: ./deploy.sh
+          host: 35.198.30.94
+          username: polenmain
+          key: ${{ secrets.KINSTA_SSH }}
+          port: 54742
+          script: ./deploy.sh
