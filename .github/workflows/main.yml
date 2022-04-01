@@ -22,13 +22,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      # Runs a single command using the runners shell
-      - name: Run deploy.sh
-        run: echo Rodando deploy.sh
-        
       - name: SSH Command
         # You may pin to the exact commit or the version.
         # uses: D3rHase/ssh-command-action@3d8a11a6823dfe94f4fae068e6fc8b8f3d038c62
@@ -41,6 +34,6 @@ jobs:
           # user of the server
           USER: polenmain
           # private ssh key registered on the server
-          PRIVATE_SSH_KEY: ${{ secrets.KINSTA_SSH}}
+          PRIVATE_SSH_KEY: ${{ secrets.KINSTA_SSH }}
           # command to be executed
           COMMAND: ./deploy.sh
