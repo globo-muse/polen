@@ -13,13 +13,15 @@ const PolSEO: React.FC<SEO> = ({
   video,
   keywords,
   author,
+  GTM,
 }) => {
+  const showGTM = () => GTM && process.env.NODE_ENV === "production";
   return (
     <>
       <Helmet
-      htmlAttributes={{
-        lang: 'pt-BR',
-      }}
+        htmlAttributes={{
+          lang: "pt-BR",
+        }}
       >
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -61,6 +63,15 @@ const PolSEO: React.FC<SEO> = ({
         <meta property="og:site_name" content={site_name} key="og-site-name" />
         {type && <meta property="og:type" content={type} key="og-type" />}
         {video && <meta property="og:video" content={video} key="og-video" />}
+        {showGTM() ? (
+          <script>{`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${GTM}');
+          `}</script>
+        ) : null}
         <title>Polen B2B</title>
       </Helmet>
     </>

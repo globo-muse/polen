@@ -9,6 +9,7 @@ export interface SEO {
   video?: string;
   keywords?: string;
   author?: string;
+  GTM?: string;
 }
 export interface ContactB2B {
   form_id: string;
