@@ -71,7 +71,7 @@ $inputs = new Material_Inputs();
 
   <!-- CTA Fixo apenas no mobile -->
   <div class="cta-fixed-mobile d-block d-md-none p-3">
-    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", "https://wa.me/5581981233638?text=", true, "", array(),); ?>
+    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", site_url('empresas?talent='.get_the_title().'#faleconosco'), true, "", array(),); ?>
   </div>
 
   <div class="row mt-5 mb-5">
@@ -319,7 +319,7 @@ $inputs = new Material_Inputs();
                     <p class="typo typo-p">Os valores dos vídeos variam de acordo com cada necessidade, analisamos cada pedido para termos a solução ideal para o seu negócio.  </p>
                   </div>
                   <div class="col-12">
-                    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", "https://wa.me/5581981233638?text=", true, "", array(),); ?>
+                    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", site_url('empresas?talent='.get_the_title().'#faleconosco'), true, "", array(),); ?>
                   </div>
                 </div>
               </div>
