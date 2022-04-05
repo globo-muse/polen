@@ -5,6 +5,11 @@ name: DEPLOY_HOMOLOG
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
+<<<<<<< HEAD
+=======
+  push:
+    branches: [ ]
+>>>>>>> ac0460e477b1bc62cfc390f19672d5ab4535dd19
   pull_request:
     branches: [ homolog ]
 

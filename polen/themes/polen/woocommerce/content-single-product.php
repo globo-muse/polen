@@ -96,66 +96,68 @@ $inputs = new Material_Inputs();
                 </div>
               <?php endif; ?>
               <!-- Influencia -->
-              <div class="row mb-4">
-                <div class="col-12">
-                  <h2 class="mb-3 typo typo-subtitle-large">Influência por região</h2>
-                </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5 class="typo typo-p">Região Norte</h5>
-                    </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <div class="progress w-100 mr-3">
-                        <div class="progress-bar" role="progressbar" style="width: 12.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+              <?php if (polen_b2b_influence_by_region($polen_product->get_id())) : ?>
+                <div class="row mb-4">
+                  <div class="col-12">
+                    <h2 class="mb-3 typo typo-subtitle-large">Influência por região</h2>
+                  </div>
+                  <div class="col-12 mb-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="typo typo-p">Região Norte</h5>
                       </div>
-                      <h5 class="typo typo-p m-0">12,4%</h5>
+                      <div class="col-12 d-flex align-items-center">
+                        <div class="progress w-100 mr-3">
+                          <div class="progress-bar" role="progressbar" style="width: 12.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h5 class="typo typo-p m-0">12,4%</h5>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5 class="typo typo-p">Região Nordeste</h5>
-                    </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <div class="progress w-100 mr-3">
-                        <div class="progress-bar" role="progressbar" style="width: 8.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="col-12 mb-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="typo typo-p">Região Nordeste</h5>
                       </div>
-                      <h5 class="typo typo-p m-0">8,4%</h5>
+                      <div class="col-12 d-flex align-items-center">
+                        <div class="progress w-100 mr-3">
+                          <div class="progress-bar" role="progressbar" style="width: 8.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h5 class="typo typo-p m-0">8,4%</h5>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5 class="typo typo-p">Região Sul</h5>
-                    </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <div class="progress w-100 mr-3">
-                        <div class="progress-bar" role="progressbar" style="width: 17.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="col-12 mb-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="typo typo-p">Região Sul</h5>
                       </div>
-                      <h5 class="typo typo-p m-0">17,4%</h5>
+                      <div class="col-12 d-flex align-items-center">
+                        <div class="progress w-100 mr-3">
+                          <div class="progress-bar" role="progressbar" style="width: 17.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h5 class="typo typo-p m-0">17,4%</h5>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5 class="typo typo-p">Região Suldeste</h5>
-                    </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <div class="progress w-100 mr-3">
-                        <div class="progress-bar" role="progressbar" style="width: 20.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                  <div class="col-12 mb-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="typo typo-p">Região Suldeste</h5>
                       </div>
-                      <h5 class="typo typo-p m-0">20,4%</h5>
+                      <div class="col-12 d-flex align-items-center">
+                        <div class="progress w-100 mr-3">
+                          <div class="progress-bar" role="progressbar" style="width: 20.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h5 class="typo typo-p m-0">20,4%</h5>
+                      </div>
                     </div>
                   </div>
+                  <div class="col-12">
+                    <hr></hr>
+                  </div>
                 </div>
-                <div class="col-12">
-                  <hr></hr>
-                </div>
-              </div>
+              <?php endif; ?>
               <!-- Público -->
               <div class="row mb-4">
                 <div class="col-12">

@@ -156,4 +156,36 @@ class Polen_User_Module
         return $strong_password->verify_strong_password($password);
     }
 
+    /**
+     * retornar influencia por estado e cidade
+     *
+     * @return mixed|null
+     */
+    public function get_influence_by_region()
+    {
+        return get_field('metrics', 'user_'. $this->user->ID);
+    }
+
+    /**
+     * Retornar listagem de faixa etária
+     *
+     * @return array|null
+     */
+    public function get_age_group(): ?array
+    {
+        return get_field('age_group', 'user_'. $this->user->ID);
+    }
+
+    /**
+     * Retonar audiência por gênero
+     *
+     * @return array
+     */
+    public function get_audience(): array
+    {
+        return [
+            'man' => get_field('man', 'user_'. $this->user->ID),
+            'woman' => get_field('woman', 'user_'. $this->user->ID),
+        ];
+    }
 }
