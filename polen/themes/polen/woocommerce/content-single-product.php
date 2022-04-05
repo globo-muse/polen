@@ -96,7 +96,10 @@ $inputs = new Material_Inputs();
                 </div>
               <?php endif; ?>
               <!-- Influencia -->
-              <?php if (polen_b2b_influence_by_region($polen_product->get_id())) : ?>
+              <?php
+                $influence_region = polen_b2b_influence_by_region($polen_product->get_id());
+              ?>
+              <?php if ($influence_region) : ?>
                 <div class="row mb-4">
                   <div class="col-12">
                     <h2 class="mb-3 typo typo-subtitle-large">Influência por região</h2>
@@ -108,9 +111,9 @@ $inputs = new Material_Inputs();
                       </div>
                       <div class="col-12 d-flex align-items-center">
                         <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: 12.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['norte']; ?>%" aria-valuenow="<?= $influence_region['norte']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <h5 class="typo typo-p m-0">12,4%</h5>
+                        <h5 class="typo typo-p m-0"><?= $influence_region['norte']; ?>%</h5>
                       </div>
                     </div>
                   </div>
@@ -121,9 +124,9 @@ $inputs = new Material_Inputs();
                       </div>
                       <div class="col-12 d-flex align-items-center">
                         <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: 8.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['nordeste']; ?>%" aria-valuenow="<?= $influence_region['nordeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <h5 class="typo typo-p m-0">8,4%</h5>
+                        <h5 class="typo typo-p m-0"><?= $influence_region['nordeste']; ?>%</h5>
                       </div>
                     </div>
                   </div>
@@ -134,22 +137,22 @@ $inputs = new Material_Inputs();
                       </div>
                       <div class="col-12 d-flex align-items-center">
                         <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: 17.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['sul']; ?>%" aria-valuenow="<?= $influence_region['sul']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <h5 class="typo typo-p m-0">17,4%</h5>
+                        <h5 class="typo typo-p m-0"><?= $influence_region['sul']; ?>%</h5>
                       </div>
                     </div>
                   </div>
                   <div class="col-12 mb-3">
                     <div class="row">
                       <div class="col-12">
-                        <h5 class="typo typo-p">Região Suldeste</h5>
+                        <h5 class="typo typo-p">Região Sudeste</h5>
                       </div>
                       <div class="col-12 d-flex align-items-center">
                         <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: 20.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['sudeste']; ?>%" aria-valuenow="<?= $influence_region['sudeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
-                        <h5 class="typo typo-p m-0">20,4%</h5>
+                        <h5 class="typo typo-p m-0"><?= $influence_region['sudeste']; ?>%</h5>
                       </div>
                     </div>
                   </div>
@@ -159,98 +162,71 @@ $inputs = new Material_Inputs();
                 </div>
               <?php endif; ?>
               <!-- Público -->
-              <div class="row mb-4">
-                <div class="col-12">
-                  <h2 class="mb-3 typo typo-subtitle-large">Público</h2>
-                </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-4 mt-4">
-                      <h5 class="typo typo-title mb-0 text-right"><strong>40%</strong></h5>
-                      <div class="chart-label d-flex justify-content-end">
-                        <div class="label-circle mr-1"></div>
-                        <p class="typo typo-p">Mulheres</p>
+              <?php
+                $public_gendre = polen_b2b_audience($polen_product->get_id());
+              ?>
+              <?php if ($public_gendre['man'] && $public_gendre['woman']) : ?>
+                <div class="row mb-4">
+                  <div class="col-12">
+                    <h2 class="mb-3 typo typo-subtitle-large">Público</h2>
+                  </div>
+                  <div class="col-12 mb-3">
+                    <div class="row">
+                      <div class="col-4 mt-4">
+                        <h5 class="typo typo-title mb-0 text-right"><strong><?= $public_gendre['woman']; ?>%</strong></h5>
+                        <div class="chart-label d-flex justify-content-end">
+                          <div class="label-circle mr-1"></div>
+                          <p class="typo typo-p">Mulheres</p>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-4">
-                      <div class="chart" style="background-image: conic-gradient(#FFC300 60%, #564200 60%);">
-                        <div class="bg-circle"></div>
+                      <div class="col-4">
+                        <div class="chart" style="background-image: conic-gradient(#FFC300 <?= $public_gendre['man']; ?>%, #564200 <?= $public_gendre['man']; ?>%);">
+                          <div class="bg-circle"></div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-4 mt-4">
-                      <h5 class="typo typo-title mb-0"><strong>60%</strong></h5>
-                      <div class="chart-label d-flex">
-                        <div class="label-circle mr-1 yellow"></div>
-                        <p class="typo typo-p">Homens</p>
+                      <div class="col-4 mt-4">
+                        <h5 class="typo typo-title mb-0"><strong><?= $public_gendre['man']; ?>%</strong></h5>
+                        <div class="chart-label d-flex">
+                          <div class="label-circle mr-1 yellow"></div>
+                          <p class="typo typo-p">Homens</p>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <div class="col-12">
+                    <hr></hr>
+                  </div>
                 </div>
-                <div class="col-12">
-                  <hr></hr>
-                </div>
-              </div>
+              <?php endif; ?>
               <!-- Faixa Etária -->
+              <?php
+                $age_group = polen_b2b_age_group($polen_product->get_id());
+              ?>
+              <?php if ($age_group) : ?>
               <div class="row mb-4">
                 <div class="col-12">
                   <h2 class="mb-3 typo typo-subtitle-large">Faixa etária</h2>
                 </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5 class="typo typo-p">13-17</h5>
-                    </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <div class="progress w-100 mr-3">
-                        <div class="progress-bar" role="progressbar" style="width: 12.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                <?php foreach ($age_group as $item) : ?>
+                  <div class="col-12 mb-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="typo typo-p"><?php echo($item["range"]); ?></h5>
                       </div>
-                      <h5 class="typo typo-p m-0">12,4%</h5>
+                      <div class="col-12 d-flex align-items-center">
+                        <div class="progress w-100 mr-3">
+                          <div class="progress-bar" role="progressbar" style="width: 12.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h5 class="typo typo-p m-0"><?php echo($item["porcentage"]); ?>%</h5>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5 class="typo typo-p">18-28</h5>
-                    </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <div class="progress w-100 mr-3">
-                        <div class="progress-bar" role="progressbar" style="width: 8.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <h5 class="typo typo-p m-0">8,4%</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5 class="typo typo-p">28-38</h5>
-                    </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <div class="progress w-100 mr-3">
-                        <div class="progress-bar" role="progressbar" style="width: 17.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <h5 class="typo typo-p m-0">17,4%</h5>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-12 mb-3">
-                  <div class="row">
-                    <div class="col-12">
-                      <h5 class="typo typo-p">38-48</h5>
-                    </div>
-                    <div class="col-12 d-flex align-items-center">
-                      <div class="progress w-100 mr-3">
-                        <div class="progress-bar" role="progressbar" style="width: 20.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <h5 class="typo typo-p m-0">20,4%</h5>
-                    </div>
-                  </div>
-                </div>
+                <?php endforeach; ?>
                 <div class="col-12">
                   <hr></hr>
                 </div>
               </div>
+              <?php endif; ?>
               <!-- Quanto custa - Apenas XS -->
               <div class="row mb-5 d-block d-md-none">
                 <div class="col-12">
