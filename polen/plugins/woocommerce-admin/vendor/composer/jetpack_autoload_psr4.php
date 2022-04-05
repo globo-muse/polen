@@ -11,11 +11,11 @@ return array(
 		'path'    => array( $vendorDir . '/composer/installers/src/Composer/Installers' )
 	),
 	'Automattic\\WooCommerce\\Internal\\Admin\\' => array(
-		'version' => '3.3.1.0',
+		'version' => '3.3.2.0',
 		'path'    => array( $baseDir . '/src-internal/Admin' )
 	),
 	'Automattic\\WooCommerce\\Admin\\' => array(
-		'version' => '3.3.1.0',
+		'version' => '3.3.2.0',
 		'path'    => array( $baseDir . '/src' )
 	),
 	'Automattic\\Jetpack\\Autoloader\\' => array(

@@ -2,10 +2,10 @@
 # This file is distributed under the same license as the WooCommerce Admin package.
 msgid ""
 msgstr ""
-"Project-Id-Version: WooCommerce Admin 3.3.1\n"
+"Project-Id-Version: WooCommerce Admin 3.3.2\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/woocommerce-admin\n"
-"POT-Creation-Date: 2022-03-31 17:30:49+00:00\n"
+"POT-Creation-Date: 2022-04-05 19:41:14+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -46,7 +46,7 @@ msgstr ""
 #: src/Features/OnboardingTasks/Tasks/Appearance.php:61
 #: src/Features/OnboardingTasks/Tasks/Payments.php:49
 #: src/Features/OnboardingTasks/Tasks/Purchase.php:111
-#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:58
+#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:59
 #: client/two-column-tasks/headers/woocommerce-payments.js:86
 msgid "2 minutes"
 msgstr ""
@@ -191,9 +191,13 @@ msgstr ""
 #: src/API/Reports/Variations/Controller.php:427
 #: src/Features/Navigation/CoreMenu.php:95 src/ReportCSVEmail.php:36
 #: src-internal/Admin/Analytics.php:226
+#: client/analytics/report/revenue/table.js:65
+#: client/analytics/report/coupons/table.js:38
 #: client/analytics/report/customers/table.js:68
 #: client/analytics/report/get-reports.js:78
-#: client/analytics/report/revenue/table.js:65
+#: client/analytics/report/orders/config.js:36
+#: client/analytics/report/orders/table.js:353
+#: client/analytics/report/products/config.js:53
 #: client/analytics/report/taxes/config.js:57
 #: client/analytics/report/taxes/table.js:58
 #: client/analytics/report/variations/config.js:54
@@ -3021,25 +3025,25 @@ msgstr ""
 msgid "Yes please"
 msgstr ""
 
-#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:37
+#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:38
 msgid "Get paid with WooCommerce Payments"
 msgstr ""
 
-#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:46
+#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:47
 #: client/two-column-tasks/headers/woocommerce-payments.js:52
 msgid ""
 "You're only one step away from getting paid. Verify your business details "
 "to start managing transactions with WooCommerce Payments."
 msgstr ""
 
-#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:67
+#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:68
 #: client/activity-panel/activity-panel.js:236
 #: client/marketing/overview/installed-extensions/row.js:112
 #: client/tasks/fills/PaymentGatewaySuggestions/components/Action.js:126
 msgid "Finish setup"
 msgstr ""
 
-#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:76
+#: src/Features/OnboardingTasks/Tasks/WooCommercePayments.php:77
 msgid ""
 "By setting up, you are agreeing to the <a "
 "href=\"https://wordpress.com/tos/\" target=\"_blank\">Terms of Service</a>"
