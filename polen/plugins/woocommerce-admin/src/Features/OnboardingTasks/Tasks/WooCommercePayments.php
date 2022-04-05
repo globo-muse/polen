@@ -4,6 +4,7 @@ namespace Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks;
 
 use Automattic\WooCommerce\Admin\Features\Onboarding;
 use Automattic\WooCommerce\Admin\Features\OnboardingTasks\Task;
+use Automattic\WooCommerce\Admin\Features\PaymentGatewaySuggestions\DefaultPaymentGateways;
 use Automattic\WooCommerce\Admin\PluginsHelper;
 
 /**
@@ -145,19 +146,7 @@ class WooCommercePayments extends Task {
 	public static function is_supported() {
 		return in_array(
 			WC()->countries->get_base_country(),
-			array(
-				'US',
-				'PR',
-				'AU',
-				'CA',
-				'DE',
-				'ES',
-				'FR',
-				'GB',
-				'IE',
-				'IT',
-				'NZ',
-			),
+			DefaultPaymentGateways::get_wcpay_countries(),
 			true
 		);
 	}
