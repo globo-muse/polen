@@ -165,6 +165,7 @@ function CardIdol({ data }) {
               src={data.thumbnail}
               alt={data.name}
               className="poster"
+              loading="lazy"
             />
           </figure>
           <div className="idol-name">
