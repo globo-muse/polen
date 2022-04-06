@@ -15048,8 +15048,10 @@ hr {
 .page-template-page-lacta .bus-menu-item {
   color: var(--light); }
 
-.page-template-page-lacta .menu-icon path {
-  stroke: white; }
+.menu-icon {
+  cursor: pointer; }
+  .menu-icon path {
+    stroke: var(--light) !important; }
 
 .lacta-top-banner {
   width: 100%;
