@@ -459,15 +459,10 @@ pol_print_schema_data_extended($talent_id, $reviews, $total_reviews, $sum_review
     let relacionadosDivPosition = $('.idolos-relacionados').offset().top;
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
-        if (scroll >= ctaDivPosition) {
+        if (scroll >= ctaDivPosition && scroll <= relacionadosDivPosition - 200) {
           $(".cta-b2b").addClass("fixed-scroll");
         } else {
           $(".cta-b2b").removeClass("fixed-scroll");
-        }
-        if (scroll >= relacionadosDivPosition - 200) {
-          $(".box-line").fadeIn(1000).hide();
-        } else {
-          $(".box-line").fadeIn(1000).show();
         }
     });
   });
