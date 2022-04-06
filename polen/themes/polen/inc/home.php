@@ -90,7 +90,7 @@ $inputs = new Material_Inputs();
     );
   ?>
 
-  <div class="row">
+  <div class="row mt-4">
     <div class="col-sm-12 mb-4">
       <!-- Listagem de Talentos - Música -->
       <?php polen_banner_scrollable(polen_get_talents_by_product_cat("musica", 10), "Música", $emojis['musica'], '/categoria/musica'); ?>
