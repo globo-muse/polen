@@ -206,6 +206,7 @@ class Api_Checkout extends WP_REST_Controller
                 'tuna_expiration_date' => 'Data de Vencimento',
                 'tuna_card_number' => 'Numero do cartão',
                 'tuna_cvv' => 'Código de segurança',
+                'installments' => 'Parcelas',
             ];
 
             $fields = array_merge($fields, $cards);
