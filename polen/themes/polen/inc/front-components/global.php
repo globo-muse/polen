@@ -259,18 +259,16 @@ function polen_front_get_card($item, $size = "small", $social = false, $campanha
           polen_donate_badge("Social", true, false, false);
         } ?>
         <img loading="lazy" src="<?php echo $image_data["image"]; ?>" alt="<?php echo $image_data["alt"]; ?>" />
-        <?php if (!$social) : ?>
-          <div class="price text-right" itemprop="price">
-            <?php if (get_post_meta($item['ID'], 'polen_price_range_b2b', true)) : ?>
-              <?php
-                echo 'A partir de R$';
-                echo get_post_meta($item['ID'], 'polen_price_range_b2b', true);
-              ?>
-            <?php else : ?>
-              <?php echo 'Sob Consulta'; ?>
-            <?php endif; ?>
-          </div>
-        <?php endif; ?>
+        <div class="price text-right" itemprop="price">
+          <?php if (get_post_meta($item['ID'], 'polen_price_range_b2b', true)) : ?>
+            <?php
+              echo 'A partir de R$';
+              echo get_post_meta($item['ID'], 'polen_price_range_b2b', true);
+            ?>
+          <?php else : ?>
+            <?php echo 'Sob Consulta'; ?>
+          <?php endif; ?>
+        </div>
         <a href="<?= $item["talent_url"]; ?>" class="link"></a>
       </figure>
       <?php $stock = $item['stock'] ?? 0; ?>
