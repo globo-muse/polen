@@ -215,7 +215,7 @@ $inputs = new Material_Inputs();
                       </div>
                       <div class="col-12 d-flex align-items-center">
                         <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: 12.4%" aria-valuenow="12.4" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="progress-bar" role="progressbar" style="width: <?php echo($item["porcentage"]); ?>%" aria-valuenow="<?php echo($item["porcentage"]); ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <h5 class="typo typo-p m-0"><?php echo($item["porcentage"]); ?>%</h5>
                       </div>

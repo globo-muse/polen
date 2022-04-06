@@ -12,7 +12,7 @@ function polen_get_search_form()
       <div class="col-12 col-md-8 m-md-auto">
         <div class="row mb-3">
           <div class="col-12 text-right">
-            <button onclick="hiddeSearchForm()" class="button-no-bg black"><?php Icon_Class::polen_icon_close(); ?></button>
+            <button onclick="hiddeSearchForm()" class="button-no-bg"><?php Icon_Class::polen_icon_close(); ?></button>
           </div>
         </div>
         <form action="/" method="get">
