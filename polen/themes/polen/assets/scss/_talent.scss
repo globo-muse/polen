@@ -285,7 +285,6 @@
     position: absolute;
     max-width: 459px;
   }
-
 }
 
 hr {
@@ -299,6 +298,9 @@ hr {
     position: fixed;
     left: 54.2%;
   }
+  @media (min-width: 1600px) {
+    left: 53.2%;
+  }
 }
 
 .cta-fixed-mobile {
@@ -307,6 +309,7 @@ hr {
   z-index: 100;
   width: 100%;
   left: 0;
+  background-color: #121212;
 }
 
 .chart {

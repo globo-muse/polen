@@ -71,7 +71,7 @@ $inputs = new Material_Inputs();
 
   <!-- CTA Fixo apenas no mobile -->
   <div class="cta-fixed-mobile d-block d-md-none p-3">
-    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", site_url('empresas?talent='.get_the_title().'#faleconosco'), true, "", array(),); ?>
+    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", site_url('empresas?talent='.get_the_title().'#faleconosco'), false, "", array(),); ?>
   </div>
 
   <div class="row mt-5 mb-5">
@@ -81,6 +81,11 @@ $inputs = new Material_Inputs();
           <div class="row">
             <!-- CONTEUDO -->
             <div class="col-sm-12 col-md-6 left-column">
+              <div class="row mb-4">
+                <div class="col-12">
+                  <?php polen_front_get_talent_mini_bio($image_data, $polen_product->get_title(), $categories[0]->name); ?>
+                </div>
+              </div>
               <!-- Bio -->
               <?php if ($polen_product->get_description()) : ?>
                 <div class="row mb-4">
@@ -156,6 +161,19 @@ $inputs = new Material_Inputs();
                       </div>
                     </div>
                   </div>
+                  <div class="col-12 mb-3">
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="typo typo-p">Região Centro-Oeste</h5>
+                      </div>
+                      <div class="col-12 d-flex align-items-center">
+                        <div class="progress w-100 mr-3">
+                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['centro-oeste']; ?>%" aria-valuenow="<?= $influence_region['centro-oeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <h5 class="typo typo-p m-0"><?= $influence_region['centro-oeste']; ?>%</h5>
+                      </div>
+                    </div>
+                  </div>
                   <div class="col-12">
                     <hr></hr>
                   </div>
@@ -215,7 +233,7 @@ $inputs = new Material_Inputs();
                       </div>
                       <div class="col-12 d-flex align-items-center">
                         <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: <?php echo($item["porcentage"]); ?>%" aria-valuenow="<?php echo($item["porcentage"]); ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                          <div class="progress-bar" role="progressbar" style="width: <?php echo str_replace(",",".",$item["porcentage"]); ?>%" aria-valuenow="<?php echo str_replace(",",".",$item["porcentage"]); ?>" aria-valuemin="0" aria-valuemax="100"></div>
                         </div>
                         <h5 class="typo typo-p m-0"><?php echo($item["porcentage"]); ?>%</h5>
                       </div>
@@ -297,7 +315,7 @@ $inputs = new Material_Inputs();
                     <p class="typo typo-p">Os valores dos vídeos variam de acordo com cada necessidade, analisamos cada pedido para termos a solução ideal para o seu negócio.  </p>
                   </div>
                   <div class="col-12">
-                    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", site_url('empresas?talent='.get_the_title().'#faleconosco'), true, "", array(),); ?>
+                    <?php $inputs->material_button_link("", "Falar com a equipe de vendas", site_url('empresas?talent='.get_the_title().'#faleconosco'), false, "", array(),); ?>
                   </div>
                 </div>
               </div>
@@ -437,9 +455,11 @@ pol_print_schema_data_extended($talent_id, $reviews, $total_reviews, $sum_review
 
 <script>
   jQuery(document).ready(function($) {
+    let ctaDivPosition = $('.cta-b2b').offset().top;
+    let relacionadosDivPosition = $('.idolos-relacionados').offset().top;
     $(window).scroll(function() {
         var scroll = $(window).scrollTop();
-        if (scroll >= 510) {
+        if (scroll >= ctaDivPosition && scroll <= relacionadosDivPosition - 200) {
           $(".cta-b2b").addClass("fixed-scroll");
         } else {
           $(".cta-b2b").removeClass("fixed-scroll");

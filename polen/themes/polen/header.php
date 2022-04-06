@@ -32,10 +32,12 @@
 <body <?php body_class("theme-dark"); ?>>
 	<?php wp_body_open(); ?>
     <?php include_once TEMPLATE_DIR . '/inc/analitics_init_body.php'; ?>
+  <?php /*
   <?php if ($is_single) : ?>
     <div class="bg-single">
       <div class="top-fixed">
   <?php endif; ?>
+  */ ?>
         <div class="container header-single">
           <header id="masthead" class="masthead row pt-3 pb-4<?php echo social_is_in_social_app() || master_class_is_app() ? " header-home" : ""; ?>">
             <div class="col-8 col-sm-6 d-flex align-items-center">
@@ -46,6 +48,7 @@
             <?php endif; ?>
           </header>
         </div>
+  <?php /*
   <?php if ($is_single) : ?>
       </div>
       <img src='<?= polen_get_thumbnail(get_the_id())['image']; ?>' alt='<?= get_the_title(); ?>' class="idol-cover"></img>
@@ -54,4 +57,5 @@
       </div>
     </div>
   <?php endif; ?>
+  */ ?>
 	<div id="page" class="container site">

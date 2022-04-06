@@ -78,12 +78,12 @@ $inputs = new Material_Inputs();
 	</div> -->
 
   <!-- Como Funciona -->
-  <?php polen_front_get_tutorial(); ?>
+  <?php //polen_front_get_tutorial(); ?>
 
   <!-- Listagem de Vídeos em Destaque -->
   <?php
-    $videos = ["3492", "3806", "3554", "2930", "3898", "3168"];
-    polen_front_get_videos(polen_get_home_stories($videos));
+    //$videos = ["3492", "3806", "3554", "2930", "3898", "3168"];
+    //polen_front_get_videos(polen_get_home_stories($videos));
 
     $emojis = array(
       "b2b" => TEMPLATE_URI.'/assets/img/emoji/b2b.png',
@@ -97,10 +97,12 @@ $inputs = new Material_Inputs();
   ?>
 
   <div class="row">
+    <?php/*
     <div class="col-sm-12 mb-4">
       <!-- Listagem de Talentos - B2B -->
       <?php polen_banner_scrollable(polen_get_talents_by_product_cat("b2b-only", 10), "Para Empresas", $emojis['b2b'], '/categoria/b2b-only'); ?>
     </div>
+    */?>
     <div class="col-sm-12 mb-4">
       <!-- Listagem de Talentos - Música -->
       <?php polen_banner_scrollable(polen_get_talents_by_product_cat("musica", 10), "Música", $emojis['musica'], '/categoria/musica'); ?>
