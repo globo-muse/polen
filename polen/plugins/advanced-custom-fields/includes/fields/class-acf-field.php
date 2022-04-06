@@ -8,11 +8,11 @@ if ( ! class_exists( 'acf_field' ) ) :
 		var $name = '',
 		$label    = '',
 		$category = 'basic',
+		$defaults = array(),
 		$l10n     = array(),
 		$public   = true;
-        var array $defaults = array();
 
-        public $show_in_rest = true;
+		public $show_in_rest = true;
 
 		/*
 		*  __construct
