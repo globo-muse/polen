@@ -286,7 +286,7 @@ function polen_front_get_card($item, $size = "small", $social = false, $campanha
         <?php endif; ?>
         <a href="<?= $item["talent_url"]; ?>" class="link"></a>
       </figure>
-      <?php $stock = $item['stock']; ?>
+      <?php $stock = $item['stock'] ?? 0; ?>
       <?php if($stock > 0 && $stock <= 10): ?>
         <span class="polen-card__low-stock"><?php echo $stock; ?> videos apenas</span>
       <?php endif; ?>
