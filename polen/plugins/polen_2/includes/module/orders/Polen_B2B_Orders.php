@@ -2,7 +2,7 @@
 namespace Polen\Includes\Module\Products;
 
 use Exception;
-use Polen\Includes\Module\Polen_Order_Module;
+use Polen\Includes\Module\Orders\Polen_Order_Module;
 
 class Polen_B2B_Orders
 {
