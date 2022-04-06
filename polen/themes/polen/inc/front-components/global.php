@@ -616,7 +616,7 @@ function polen_box_related_product_by_product_id($product_id)
   $args = polen_get_array_related_products($product_id);
   $cat_link = polen_get_url_category_by_product_id($product_id);
 ?>
-  <div class="row">
+  <div class="row idolos-relacionados">
     <div class="col-12">
     <h2 class="typo typo-subtitle-large mr-2">Ídolos semelhantes</h2>
     </div>
