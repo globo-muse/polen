@@ -258,29 +258,16 @@ function polen_front_get_card($item, $size = "small", $social = false, $campanha
         <?php if ($donate == 'yes') {
           polen_donate_badge("Social", true, false, false);
         } ?>
-        <?php if (!$item['price_formatted']) : ?>
-          <span class="donate-badge<?php echo $inside_card ? "" : " alt"; ?><?php echo $yellow ? " yellow" : ""; ?>">
-            <strong>Para empresas</strong>
-          </span>
-        <?php endif; ?>
         <img loading="lazy" src="<?php echo $image_data["image"]; ?>" alt="<?php echo $image_data["alt"]; ?>" />
         <?php if (!$social) : ?>
           <div class="price text-right" itemprop="price">
-            <?php if ($item['in_stock']) : ?>
-              <?php if ($item['price_formatted']) : ?>
-                <span><?php echo str_replace(",00", "", $item['price_formatted']); ?></span>
-              <?php else : ?>
-                <?php if (get_post_meta($item['ID'], 'polen_price_range_b2b', true)) : ?>
-                  <?php
-                    echo 'A partir de R$';
-                    echo get_post_meta($item['ID'], 'polen_price_range_b2b', true);
-                  ?>
-                <?php else : ?>
-                  <?php echo 'Sob consulta'; ?>
-                <?php endif; ?>
-              <?php endif; ?>
+            <?php if (get_post_meta($item['ID'], 'polen_price_range_b2b', true)) : ?>
+              <?php
+                echo 'A partir de R$';
+                echo get_post_meta($item['ID'], 'polen_price_range_b2b', true);
+              ?>
             <?php else : ?>
-              <span>Esgotado</span>
+              <?php echo 'Sob Consulta'; ?>
             <?php endif; ?>
           </div>
         <?php endif; ?>
