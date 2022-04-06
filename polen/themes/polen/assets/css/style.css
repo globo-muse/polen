@@ -11211,7 +11211,7 @@ textarea {
 
 .button-no-bg {
   height: 100%;
-  color: var(--dark);
+  color: var(--light);
   border: none;
   background: none;
   outline: transparent; }
@@ -12482,7 +12482,7 @@ textarea {
   display: flex;
   justify-content: flex-end; }
   .pol-dots .icon {
-    color: #000;
+    color: var(--light);
     font-size: 19px;
     cursor: pointer; }
   .pol-dots .icon-left-arrow {
@@ -12669,10 +12669,13 @@ textarea {
 .category-button:hover,
 .category-button:active,
 .category-button:focus {
-  background: linear-gradient(90deg, #faa629 1.23%, #fc6c36 100%) !important;
-  border: 1px solid #fd6c36;
-  transition: 0.2s;
-  color: #fff !important; }
+  background: var(--primary) !important;
+  border: 1px solid var(--primary);
+  transition: 0.2s; }
+  .category-button:hover h5,
+  .category-button:active h5,
+  .category-button:focus h5 {
+    color: var(--dark); }
 
 .woocommerce div.product p.price,
 .woocommerce div.product span.price {
