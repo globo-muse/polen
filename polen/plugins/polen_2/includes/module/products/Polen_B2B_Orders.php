@@ -73,8 +73,18 @@ class Polen_B2B_Orders
         $licence_in_days = $this->order->get_licence_in_days();
         $price = $this->order->get_total();
         $category_video = $this->order->get_video_category();
+        $max_parcels = $this->order->get_installments();
 
-        return compact('cnpj', 'corporate_name', 'company_name', 'instructions_to_video', 'licence_in_days', 'category_video', 'price', 'product');
+        return compact('cnpj',
+'corporate_name',
+            'company_name', 
+            'instructions_to_video',
+            'licence_in_days',
+            'category_video',
+            'price',
+            'product',
+            'max_parcels',
+        );
     }
 
     /**
