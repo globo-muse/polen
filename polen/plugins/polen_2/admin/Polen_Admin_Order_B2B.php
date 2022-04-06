@@ -92,6 +92,7 @@ class Polen_Admin_Order_B2B
                 wp_die($error->get_error_message());
             }
 
+            $installments          = !empty($_POST['installments']) ? sanitize_text_field($_POST['installments']) : 1;
             $company_name          = sanitize_text_field($_POST['company_name']);
             $corporate_name        = sanitize_text_field($_POST['corporate_name']);
             $cnpj                  = sanitize_text_field($_POST['cnpj']);
@@ -108,6 +109,7 @@ class Polen_Admin_Order_B2B
             update_post_meta($order_id, '_billing_company', $company_name);
 
             wc_update_order_item_meta($item_order->get_id(), 'company_name', $company_name, true);
+            wc_update_order_item_meta($item_order->get_id(), 'installments', $installments, true);
             wc_update_order_item_meta($item_order->get_id(), 'video_to', $video_to, true);
             wc_update_order_item_meta($item_order->get_id(), 'email_to_video', $email_to_video, true);
             wc_update_order_item_meta($item_order->get_id(), 'instructions_to_video', $instructions_to_video, true);

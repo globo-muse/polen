@@ -288,4 +288,9 @@ class Polen_Order_Module
         $post_formart = get_post($this->get_id());
         return $post_formart->post_password;
     }
+
+    public function get_installments()
+    {
+        return $this->cart_item->get_installments();
+    }
 }
