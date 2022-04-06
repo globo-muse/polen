@@ -477,10 +477,36 @@ textarea {
   }
 }
 
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled)
+  .mdc-notched-outline__trailing,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover
+  .mdc-notched-outline
+  .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover
+  .mdc-notched-outline
+  .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled):not(.mdc-text-field--focused):hover
+  .mdc-notched-outline
+  .mdc-notched-outline__trailing {
+  border-color: var(--light);
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-text-field__input,
+.mdc-text-field:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--light);
+  &::placeholder {
+    color: rgba(253, 178, 130, 0.14);
+  }
+}
+
 .mdc-button {
   width: 100%;
   --mdc-theme-primary: var(--primary);
-  --mdc-theme-on-primary: var(--light);
+  --mdc-theme-on-primary: var(--dark);
   --mdc-shape-small: 8px;
   --mdc-typography-button-font-size: 1rem;
   --mdc-typography-button-font-weight: 600;
@@ -495,8 +521,8 @@ textarea {
 }
 
 .mdc-button--outlined {
-  --mdc-outlined-button-label-text-color: var(--dark);
-  --mdc-outlined-button-outline-color: var(--dark);
+  --mdc-outlined-button-label-text-color: var(--light);
+  --mdc-outlined-button-outline-color: var(--light);
   --mdc-outlined-button-container-height: 54px;
 }
 
@@ -515,6 +541,18 @@ textarea {
 .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label,
 .mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
   color: var(--primary);
+}
+
+.mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__leading, .mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__notch, .mdc-select--outlined:not(.mdc-select--disabled) .mdc-notched-outline__trailing {
+  border-color: var(--light);
+}
+
+.mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
+  color: var(--light);
+}
+
+#outlined-select-label {
+  color: var(--light);
 }
 
 .combo-advanced {

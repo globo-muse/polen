@@ -617,8 +617,11 @@ function polen_box_related_product_by_product_id($product_id)
   $cat_link = polen_get_url_category_by_product_id($product_id);
 ?>
   <div class="row">
+    <div class="col-12">
+    <h2 class="typo typo-subtitle-large mr-2">Ídolos semelhantes</h2>
+    </div>
     <div class="col-12 col-md-12">
-      <?php polen_banner_scrollable($args, "Veja também", "",$cat_link); ?>
+      <?php polen_banner_scrollable($args, "", "",$cat_link); ?>
     </div>
   </div>
 <?php

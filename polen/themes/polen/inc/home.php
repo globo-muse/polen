@@ -129,13 +129,13 @@ $inputs = new Material_Inputs();
 
   <!-- Banners -->
 	<div class="row d-flex justify-content-center my-4">
-		<div class="col-xs-12 col-sm-6 mb-5">
-      <?php $inputs->material_button_link_outlined("todos", "Ver todos os ídolos", home_url( "shop" ), false, "", array()); ?>
+		<div class="col-xs-12 col-sm-6">
+      <?php $inputs->material_button_link("todos", "Ver todos os ídolos", home_url( "shop" ), false, "", array()); ?>
 		</div>
 	</div>
 
   <!-- Polen na Mídia -->
-  <?php polen_get_media_news(); ?>
+  <?php //polen_get_media_news(); ?>
 
 </main><!-- #main -->
 
