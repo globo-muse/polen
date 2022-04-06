@@ -6,10 +6,13 @@ name: DEPLOY_HOMOLOG
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   push:
     branches: [ ]
 >>>>>>> ac0460e477b1bc62cfc390f19672d5ab4535dd19
+=======
+>>>>>>> b90a6cf077f0a5c33b16baa56587a6310f6fa11b
   pull_request:
     branches: [ homolog ]
 
