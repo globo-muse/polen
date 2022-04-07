@@ -58,7 +58,7 @@ class Tuna_Credit_Card extends Gateway_Tuna
 
         $installments = 1;
         if (isset($data['installments'])) {
-            $installments = sanitize_text_field(($data['installments']));
+            $installments = (int) sanitize_text_field($data['installments']);
         }
 
         $body = parent::body_for_request($order_id, $current_user, $card_info, $installments);
