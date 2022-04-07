@@ -547,6 +547,16 @@ textarea {
   border-color: var(--light);
 }
 
+.mdc-select--outlined:hover {
+  span {
+    border-color: var(--light)!important;
+  }
+}
+
+.mdc-select:not(.mdc-select--disabled) .mdc-select__dropdown-icon {
+  fill: var(--light);
+}
+
 .mdc-select:not(.mdc-select--disabled) .mdc-select__selected-text {
   color: var(--light);
 }
