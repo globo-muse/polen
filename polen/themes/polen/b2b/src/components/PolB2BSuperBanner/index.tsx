@@ -60,6 +60,7 @@ function SamplePrevArrow(props) {
     <div className="arrow prev-arrow me-4" onClick={onClick}>
       <ArrowLeft />
     </div>
+
   );
 }
 
@@ -77,15 +78,16 @@ const settings = {
       breakpoint: 900,
       settings: {
         arrows: false,
-      },
-    },
-  ],
+      }
+    }
+  ]
 };
 
 export default function () {
   const [videos, setVideos] = React.useState(videosData);
 
   const handleClick = (evt, key) => {
+
     if (!videos[key].paused) {
       evt.target.pause();
       setVideos((current) => {
@@ -105,6 +107,7 @@ export default function () {
     });
 
     playVideo(evt.target);
+
   };
 
   return (
@@ -136,37 +139,22 @@ export default function () {
                 <section key={`item-${key}`}>
                   <div
                     id={`super-banner-item-${key}`}
-                    className={`super-banner-item${
-                      key == videos.length ? "" : " me-3"
-                    }`}
+                    className={`super-banner-item${key == videos.length ? "" : " me-3"}`}
                     onClick={(evt) => handleClick(evt, key)}
                   >
                     <figure className="video-card">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="poster rounded"
-                        loading="lazy"
-                      />
+                      <img src={item.image} alt={item.name} className="poster rounded" />
                       <video
                         id={`super-banner-video-${key}`}
                         src={item.video}
-                        className={`rounded video-player${
-                          !videos[key].paused ? " active" : ""
-                        }`}
+                        className={`rounded video-player${!videos[key].paused ? " active" : ""
+                          }`}
                         playsInline
                       ></video>
                     </figure>
                     {videos[key].paused ? (
                       <figure className="logo">
-                        <img
-                          src={item.logo}
-                          alt={item.name}
-                          className="image"
-                          width={70}
-                          height={70}
-                          loading="lazy"
-                        />
+                        <img src={item.logo} alt={item.name} className="image" width={70} height={70} />
                         <figcaption className="name">{item.name}</figcaption>
                       </figure>
                     ) : null}

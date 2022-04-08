@@ -33,16 +33,15 @@ class DeprecatedExtendedTask extends Task {
 	/**
 	 * Constructor.
 	 *
-	 * @param TaskList $task_list Parent task list.
-	 * @param array    $args Array of task args.
+	 * @param array $args Array of task args.
 	 */
-	public function __construct( $task_list, $args ) {
-		parent::__construct( $task_list );
+	public function __construct( $args ) {
 		$task_args = wp_parse_args(
 			$args,
 			array(
 				'id'              => null,
 				'is_dismissable'  => false,
+				'is_snoozeable'   => false,
 				'is_snoozeable'   => false,
 				'can_view'        => true,
 				'level'           => 3,
@@ -91,6 +90,15 @@ class DeprecatedExtendedTask extends Task {
 	 */
 	public function get_content() {
 		return $this->content;
+	}
+
+	/**
+	 * Parent ID.
+	 *
+	 * @return string
+	 */
+	public function get_parent_id() {
+		return 'extended';
 	}
 
 	/**

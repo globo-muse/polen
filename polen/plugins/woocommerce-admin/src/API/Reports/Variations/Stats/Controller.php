@@ -63,15 +63,8 @@ class Controller extends \WC_REST_Reports_Controller {
 				'variations_count',
 			),
 		);
-		/**
-		 * Experimental: Filter the list of parameters provided when querying data from the data store.
-		 *
-		 * @ignore
-		 *
-		 * @param array $collection_params List of parameters.
-		 */
-		$collection_params = apply_filters( 'experimental_woocommerce_analytics_variations_stats_collection_params', $this->get_collection_params() );
-		$registered        = array_keys( $collection_params );
+
+		$registered = array_keys( $this->get_collection_params() );
 		foreach ( $registered as $param_name ) {
 			if ( isset( $request[ $param_name ] ) ) {
 				if ( isset( $this->param_mapping[ $param_name ] ) ) {

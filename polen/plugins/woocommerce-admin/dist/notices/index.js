@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["notices"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 488);
+/******/ 	return __webpack_require__(__webpack_require__.s = 468);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -94,7 +94,14 @@ this["wc"] = this["wc"] || {}; this["wc"]["notices"] =
 
 /***/ }),
 
-/***/ 488:
+/***/ 4:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["lodash"]; }());
+
+/***/ }),
+
+/***/ 468:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -120,10 +127,10 @@ __webpack_require__.d(selectors_namespaceObject, "getNotices", function() { retu
 var external_wp_notices_ = __webpack_require__(129);
 
 // EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(8);
+var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(5);
+var external_lodash_ = __webpack_require__(4);
 
 // CONCATENATED MODULE: ./packages/notices/build-module/store/utils/on-sub-key.js
 /**
@@ -134,9 +141,7 @@ var external_lodash_ = __webpack_require__(5);
  *
  * @return {Function} Higher-order reducer.
  */
-const onSubKey = actionProperty => reducer => function () {
-  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-  let action = arguments.length > 1 ? arguments[1] : undefined;
+const onSubKey = actionProperty => reducer => (state = {}, action) => {
   // Retrieve subkey from action. Do not track if undefined; useful for cases
   // where reducer is scoped by action shape.
   const key = action[actionProperty];
@@ -178,10 +183,7 @@ const onSubKey = actionProperty => reducer => function () {
  * @return {Object} Updated state.
  */
 
-const notices = on_sub_key('context')(function () {
-  let state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  let action = arguments.length > 1 ? arguments[1] : undefined;
-
+const notices = on_sub_key('context')((state = [], action) => {
   switch (action.type) {
     case 'CREATE_NOTICE':
       // Avoid duplicates on ID.
@@ -266,10 +268,7 @@ const DEFAULT_STATUS = 'info';
  * @return {Object} Action object.
  */
 
-function createNotice() {
-  let status = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : DEFAULT_STATUS;
-  let content = arguments.length > 1 ? arguments[1] : undefined;
-  let options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+function createNotice(status = DEFAULT_STATUS, content, options = {}) {
   const {
     speak = true,
     isDismissible = true,
@@ -374,8 +373,7 @@ function createWarningNotice(content, options) {
  * @return {Object} Action object.
  */
 
-function removeNotice(id) {
-  let context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DEFAULT_CONTEXT;
+function removeNotice(id, context = DEFAULT_CONTEXT) {
   return {
     type: 'REMOVE_NOTICE',
     id,
@@ -436,8 +434,7 @@ const DEFAULT_NOTICES = [];
  * @return {WPNotice[]} Array of notices.
  */
 
-function getNotices(state) {
-  let context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DEFAULT_CONTEXT;
+function getNotices(state, context = DEFAULT_CONTEXT) {
   return state[context] || DEFAULT_NOTICES;
 }
 // CONCATENATED MODULE: ./packages/notices/build-module/store/index.js
@@ -472,14 +469,7 @@ function getNotices(state) {
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["lodash"]; }());
-
-/***/ }),
-
-/***/ 8:
+/***/ 7:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["data"]; }());

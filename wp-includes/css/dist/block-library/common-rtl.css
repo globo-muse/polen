@@ -220,7 +220,7 @@
 /**
  * Provide baseline responsiveness for images.
  */
-html :where(img[class*="wp-image-"]) {
+html :where(img) {
   height: auto;
   max-width: 100%;
 }

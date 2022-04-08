@@ -64,10 +64,6 @@ function pol_print_schema_data_extended($talent_id, $reviews, $total_reviews, $s
   if (!$product || empty($product)) {
     return;
   }
-  $ratingAvg = 0;
-  if($total_reviews > 0) {
-    $ratingAvg = ($sum_reviews / $total_reviews);
-  }
 
 ?>
   <script type="application/ld+json">
@@ -76,7 +72,7 @@ function pol_print_schema_data_extended($talent_id, $reviews, $total_reviews, $s
       "@type": "Product",
       "aggregateRating": {
         "@type": "AggregateRating",
-        "ratingValue": "<?php echo $ratingAvg; ?>",
+        "ratingValue": "<?php echo $sum_reviews / $total_reviews; ?>",
         "reviewCount": "<?php echo $total_reviews; ?>"
       },
       "description": "<?php echo $product->get_description(); ?>",
@@ -89,8 +85,7 @@ function pol_print_schema_data_extended($talent_id, $reviews, $total_reviews, $s
         "priceCurrency": "BRL"
       },
       "review": [
-        <?php if(!empty($reviews))
-            foreach ($reviews as $key => $review) : ?>
+        <?php foreach ($reviews as $key => $review) : ?>
           <?php $name = preg_replace('/@\S*/', '', get_user_by('id', $review->user_id)->display_name); ?> {
             "@type": "Review",
             "author": "<?php echo $name; ?>",

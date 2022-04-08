@@ -65,7 +65,7 @@ select.form-control:not([size]):not([multiple]) {
 		box-sizing: border-box;
 		&.is-active {
 			border-radius: 6px;
-			border-left-color: var(--primary);
+			border-left-color: $primary;
 		}
 		a {
 			text-decoration: none;

@@ -82,17 +82,10 @@ this["wc"] = this["wc"] || {}; this["wc"]["date"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 465);
+/******/ 	return __webpack_require__(__webpack_require__.s = 447);
 /******/ })
 /************************************************************************/
 /******/ ({
-
-/***/ 11:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["moment"]; }());
-
-/***/ }),
 
 /***/ 2:
 /***/ (function(module, exports) {
@@ -101,15 +94,15 @@ this["wc"] = this["wc"] || {}; this["wc"]["date"] =
 
 /***/ }),
 
-/***/ 32:
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var stringify = __webpack_require__(62);
-var parse = __webpack_require__(63);
-var formats = __webpack_require__(39);
+var stringify = __webpack_require__(59);
+var parse = __webpack_require__(60);
+var formats = __webpack_require__(36);
 
 module.exports = {
     formats: formats,
@@ -120,7 +113,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 39:
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -151,13 +144,20 @@ module.exports = {
 
 /***/ }),
 
-/***/ 45:
+/***/ 4:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["lodash"]; }());
+
+/***/ }),
+
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var formats = __webpack_require__(39);
+var formats = __webpack_require__(36);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;
@@ -410,7 +410,7 @@ module.exports = {
 
 /***/ }),
 
-/***/ 465:
+/***/ 447:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -441,13 +441,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadLocaleData", function() { return loadLocaleData; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "dateValidationMessages", function() { return dateValidationMessages; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateDateInputForRange", function() { return validateDateInputForRange; });
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(29);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_3__);
 /**
  * External dependencies
@@ -793,8 +793,7 @@ const getDateParamsFromQueryMemoized = Object(lodash__WEBPACK_IMPORTED_MODULE_1_
  * @return {DateParams} - date parameters derived from query parameters with added defaults
  */
 
-const getDateParamsFromQuery = function (query) {
-  let defaultDateRange = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'period=month&compare=previous_year';
+const getDateParamsFromQuery = (query, defaultDateRange = 'period=month&compare=previous_year') => {
   const {
     period,
     compare,
@@ -841,8 +840,7 @@ const getCurrentDatesMemoized = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["memo
  * @return {{primary: DateValue, secondary: DateValue}} - Primary and secondary DateValue objects
  */
 
-const getCurrentDates = function (query) {
-  let defaultDateRange = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'period=month&compare=previous_year';
+const getCurrentDates = (query, defaultDateRange = 'period=month&compare=previous_year') => {
   const {
     period,
     compare,
@@ -906,8 +904,7 @@ const getPreviousDate = (date, date1, date2, compare, interval) => {
  * @return {Array} Array containing allowed intervals.
  */
 
-function getAllowedIntervalsForQuery(query) {
-  let defaultDateRange = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'period=&compare=previous_year';
+function getAllowedIntervalsForQuery(query, defaultDateRange = 'period=&compare=previous_year') {
   const {
     period
   } = getDateParamsFromQuery(query, defaultDateRange);
@@ -975,8 +972,7 @@ function getAllowedIntervalsForQuery(query) {
  * @return {string} Current interval.
  */
 
-function getIntervalForQuery(query) {
-  let defaultDateRange = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'period=&compare=previous_year';
+function getIntervalForQuery(query, defaultDateRange = 'period=&compare=previous_year') {
   const allowed = getAllowedIntervalsForQuery(query, defaultDateRange);
   const defaultInterval = allowed[0];
   let current = query.interval || defaultInterval;
@@ -995,11 +991,9 @@ function getIntervalForQuery(query) {
  * @return {string} Current chart type.
  */
 
-function getChartTypeForQuery(_ref) {
-  let {
-    chartType
-  } = _ref;
-
+function getChartTypeForQuery({
+  chartType
+}) {
   if (['line', 'bar'].includes(chartType)) {
     return chartType;
   }
@@ -1019,12 +1013,9 @@ const defaultTableDateFormat = 'm/d/Y';
  * @return {string} Current interval.
  */
 
-function getDateFormatsForInterval(interval) {
-  let ticks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-  let option = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {
-    type: 'd3'
-  };
-
+function getDateFormatsForInterval(interval, ticks = 0, option = {
+  type: 'd3'
+}) {
   switch (option.type) {
     case 'php':
       return getDateFormatsForIntervalPhp(interval, ticks);
@@ -1043,8 +1034,7 @@ function getDateFormatsForInterval(interval) {
  * @return {string} Current interval.
  */
 
-function getDateFormatsForIntervalD3(interval) {
-  let ticks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+function getDateFormatsForIntervalD3(interval, ticks = 0) {
   let screenReaderFormat = '%B %-d, %Y';
   let tooltipLabelFormat = '%B %-d, %Y';
   let xFormat = '%Y-%m-%d';
@@ -1117,8 +1107,7 @@ function getDateFormatsForIntervalD3(interval) {
  * @return {string} Current interval.
  */
 
-function getDateFormatsForIntervalPhp(interval) {
-  let ticks = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+function getDateFormatsForIntervalPhp(interval, ticks = 0) {
   let screenReaderFormat = 'F j, Y';
   let tooltipLabelFormat = 'F j, Y';
   let xFormat = 'Y-m-d';
@@ -1193,12 +1182,10 @@ function getDateFormatsForIntervalPhp(interval) {
  * @param {Array} config.weekdaysShort
  */
 
-function loadLocaleData(_ref2) {
-  let {
-    userLocale,
-    weekdaysShort
-  } = _ref2;
-
+function loadLocaleData({
+  userLocale,
+  weekdaysShort
+}) {
   // Don't update if the wp locale hasn't been set yet, like in unit tests, for instance.
   if (moment__WEBPACK_IMPORTED_MODULE_0___default.a.locale() !== 'en') {
     moment__WEBPACK_IMPORTED_MODULE_0___default.a.updateLocale(userLocale, {
@@ -1274,21 +1261,14 @@ function validateDateInputForRange(type, value, before, after, format) {
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["lodash"]; }());
-
-/***/ }),
-
-/***/ 62:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
-var formats = __webpack_require__(39);
+var utils = __webpack_require__(42);
+var formats = __webpack_require__(36);
 var has = Object.prototype.hasOwnProperty;
 
 var arrayPrefixGenerators = {
@@ -1567,13 +1547,13 @@ module.exports = function (object, opts) {
 
 /***/ }),
 
-/***/ 63:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(42);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;
@@ -1829,6 +1809,13 @@ module.exports = function (str, opts) {
     return utils.compact(obj);
 };
 
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["moment"]; }());
 
 /***/ })
 

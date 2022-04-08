@@ -55,13 +55,7 @@ class Tuna_Credit_Card extends Gateway_Tuna
     public function payment($order_id, $current_user, $data): array
     {
         $card_info = $this->card_info_body($current_user, $data);
-
-        $installments = 1;
-        if (isset($data['installments'])) {
-            $installments = (int) sanitize_text_field($data['installments']);
-        }
-
-        $body = parent::body_for_request($order_id, $current_user, $card_info, $installments);
+        $body = parent::body_for_request($order_id, $current_user, $card_info);
         $response_api_tuna = parent::request($body);
 
         $new_status = $this->get_status_response($response_api_tuna->status);

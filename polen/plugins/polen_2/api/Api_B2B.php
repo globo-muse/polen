@@ -7,8 +7,6 @@ use Polen\Api\Api_Util_Security;
 use Polen\Includes\Polen_Form_DB;
 use Polen\Includes\Polen_Product_B2B;
 use Polen\Includes\Polen_Zapier;
-use Polen\Includes\Sendgrid\Polen_Sendgrid_Emails;
-use Polen\Includes\Sendgrid\Polen_Sendgrid_Redux;
 use WC_Product;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -119,15 +117,15 @@ class Api_B2B
         $company = filter_var($request->get_param( 'company' ), FILTER_SANITIZE_SPECIAL_CHARS);
         $phone   = filter_var($request->get_param( 'phone' ), FILTER_SANITIZE_SPECIAL_CHARS);
         $product = filter_var($request->get_param( 'product_name' ), FILTER_SANITIZE_SPECIAL_CHARS);
-        $city    = filter_var($request->get_param( 'city' ), FILTER_SANITIZE_SPECIAL_CHARS);
-        $state   = filter_var($request->get_param( 'state' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $city = filter_var($request->get_param( 'city' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $state = filter_var($request->get_param( 'state' ), FILTER_SANITIZE_SPECIAL_CHARS);
 
 
-        $utm_source   = filter_var($request->get_param( 'utm_source' ), FILTER_SANITIZE_SPECIAL_CHARS);
-        $utm_medium   = filter_var($request->get_param( 'utm_medium' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $utm_source = filter_var($request->get_param( 'utm_source' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $utm_medium = filter_var($request->get_param( 'utm_medium' ), FILTER_SANITIZE_SPECIAL_CHARS);
         $utm_campaign = filter_var($request->get_param( 'utm_campaign' ), FILTER_SANITIZE_SPECIAL_CHARS);
-        $utm_term     = filter_var($request->get_param( 'utm_term' ), FILTER_SANITIZE_SPECIAL_CHARS);
-        $utm_content  = filter_var($request->get_param( 'utm_content' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $utm_term = filter_var($request->get_param( 'utm_term' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $utm_content = filter_var($request->get_param( 'utm_content' ), FILTER_SANITIZE_SPECIAL_CHARS);
 
 
         $terms   = '1';
@@ -152,34 +150,11 @@ class Api_B2B
             $url_zapier_b2b_hotspot = $Polen_Plugin_Settings['polen_url_zapier_b2b_hotspot'];
             $zapier = new Polen_Zapier();
             $zapier->send($url_zapier_b2b_hotspot, $body_zapier);
-            $this->send_email_to_client($email, $name);
 
             return api_response(true, 201);
         } catch(Exception $e) {
             return api_response($e->getMessage(), $e->getCode());
         }
-    }
-
-    /**
-     * Funcao responsavel por enviar um email para o cliente
-     * 
-     * @param string
-     * @param string
-     * @return bool
-     */
-	protected function send_email_to_client($email_customer, $name_customer) {
-
-        global $Polen_Plugin_Settings;
-        $apikeySendgrid = $Polen_Plugin_Settings[ Polen_Sendgrid_Redux::APIKEY ];
-        $send_grid = new Polen_Sendgrid_Emails( $apikeySendgrid );
-        $send_grid->set_from(
-            $Polen_Plugin_Settings['polen_smtp_from_email'],
-            $Polen_Plugin_Settings['polen_smtp_from_name']
-        );
-        $send_grid->set_to( $email_customer, $name_customer );
-        $send_grid->set_template_id( $Polen_Plugin_Settings[ Polen_Sendgrid_Redux::THEME_ID_POLEN_B2B_FORM_TO_CLIENT ] );
-
-        return $send_grid->send_email();
     }
 
 

@@ -36,7 +36,7 @@ function wp_render_elements_support( $block_content, $block ) {
 		return $block_content;
 	}
 
-	$class_name = wp_unique_id( 'wp-elements-' );
+	$class_name = 'wp-elements-' . uniqid();
 
 	if ( strpos( $link_color, 'var:preset|color|' ) !== false ) {
 		// Get the name from the string and add proper styles.

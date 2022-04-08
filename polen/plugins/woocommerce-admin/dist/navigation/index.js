@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["navigation"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 490);
+/******/ 	return __webpack_require__(__webpack_require__.s = 470);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -94,7 +94,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["navigation"] =
 
 /***/ }),
 
-/***/ 16:
+/***/ 15:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["url"]; }());
@@ -133,15 +133,15 @@ function _extends() {
 
 /***/ }),
 
-/***/ 32:
+/***/ 29:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var stringify = __webpack_require__(62);
-var parse = __webpack_require__(63);
-var formats = __webpack_require__(39);
+var stringify = __webpack_require__(59);
+var parse = __webpack_require__(60);
+var formats = __webpack_require__(36);
 
 module.exports = {
     formats: formats,
@@ -152,7 +152,14 @@ module.exports = {
 
 /***/ }),
 
-/***/ 39:
+/***/ 3:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["wp"]["components"]; }());
+
+/***/ }),
+
+/***/ 36:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -186,17 +193,17 @@ module.exports = {
 /***/ 4:
 /***/ (function(module, exports) {
 
-(function() { module.exports = window["wp"]["components"]; }());
+(function() { module.exports = window["lodash"]; }());
 
 /***/ }),
 
-/***/ 45:
+/***/ 42:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var formats = __webpack_require__(39);
+var formats = __webpack_require__(36);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;
@@ -449,11 +456,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ 47:
+/***/ 44:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return invariant; });
 var isProduction = "production" === 'production';
 var prefix = 'Invariant failed';
 function invariant(condition, message) {
@@ -463,17 +469,15 @@ function invariant(condition, message) {
     if (isProduction) {
         throw new Error(prefix);
     }
-    var provided = typeof message === 'function' ? message() : message;
-    var value = provided ? prefix + ": " + provided : prefix;
-    throw new Error(value);
+    throw new Error(prefix + ": " + (message || ''));
 }
 
-
+/* harmony default export */ __webpack_exports__["a"] = (invariant);
 
 
 /***/ }),
 
-/***/ 490:
+/***/ 470:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -506,22 +510,22 @@ __webpack_require__.d(__webpack_exports__, "WooNavigationItem", function() { ret
 var external_wp_element_ = __webpack_require__(0);
 
 // EXTERNAL MODULE: external ["wp","url"]
-var external_wp_url_ = __webpack_require__(16);
+var external_wp_url_ = __webpack_require__(15);
 
 // EXTERNAL MODULE: ./node_modules/qs/lib/index.js
-var lib = __webpack_require__(32);
+var lib = __webpack_require__(29);
 
 // EXTERNAL MODULE: external "lodash"
-var external_lodash_ = __webpack_require__(5);
+var external_lodash_ = __webpack_require__(4);
 
 // EXTERNAL MODULE: external ["wp","hooks"]
 var external_wp_hooks_ = __webpack_require__(28);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(4);
+var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: ./node_modules/history/esm/history.js + 2 modules
-var esm_history = __webpack_require__(55);
+var esm_history = __webpack_require__(54);
 
 // CONCATENATED MODULE: ./packages/navigation/build-module/history.js
 /**
@@ -570,55 +574,13 @@ function getHistory() {
         };
       },
 
-      createHref: function () {
-        for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-          args[_key] = arguments[_key];
-        }
-
-        return browserHistory.createHref.apply(browserHistory, args);
-      },
-      push: function () {
-        for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-          args[_key2] = arguments[_key2];
-        }
-
-        return browserHistory.push.apply(browserHistory, args);
-      },
-      replace: function () {
-        for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
-          args[_key3] = arguments[_key3];
-        }
-
-        return browserHistory.replace.apply(browserHistory, args);
-      },
-      go: function () {
-        for (var _len4 = arguments.length, args = new Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
-          args[_key4] = arguments[_key4];
-        }
-
-        return browserHistory.go.apply(browserHistory, args);
-      },
-      goBack: function () {
-        for (var _len5 = arguments.length, args = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
-          args[_key5] = arguments[_key5];
-        }
-
-        return browserHistory.goBack.apply(browserHistory, args);
-      },
-      goForward: function () {
-        for (var _len6 = arguments.length, args = new Array(_len6), _key6 = 0; _key6 < _len6; _key6++) {
-          args[_key6] = arguments[_key6];
-        }
-
-        return browserHistory.goForward.apply(browserHistory, args);
-      },
-      block: function () {
-        for (var _len7 = arguments.length, args = new Array(_len7), _key7 = 0; _key7 < _len7; _key7++) {
-          args[_key7] = arguments[_key7];
-        }
-
-        return browserHistory.block.apply(browserHistory, args);
-      },
+      createHref: (...args) => browserHistory.createHref.apply(browserHistory, args),
+      push: (...args) => browserHistory.push.apply(browserHistory, args),
+      replace: (...args) => browserHistory.replace.apply(browserHistory, args),
+      go: (...args) => browserHistory.go.apply(browserHistory, args),
+      goBack: (...args) => browserHistory.goBack.apply(browserHistory, args),
+      goForward: (...args) => browserHistory.goForward.apply(browserHistory, args),
+      block: (...args) => browserHistory.block.apply(browserHistory, args),
 
       listen(listener) {
         return browserHistory.listen(() => {
@@ -854,15 +816,7 @@ const getPath = () => getHistory().location.pathname;
  * @return {Object} Object containing the persisted queries.
  */
 
-const getPersistedQuery = function () {
-  let query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getQuery();
-
-  /**
-   * Filter persisted queries. These query parameters remain in the url when other parameters are updated.
-   *
-   * @filter woocommerce_admin_persisted_queries
-   * @param {Array.<string>} persistedQueries Array of persisted queries.
-   */
+const getPersistedQuery = (query = getQuery()) => {
   const params = Object(external_wp_hooks_["applyFilters"])('woocommerce_admin_persisted_queries', ['period', 'compare', 'before', 'after', 'interval', 'type']);
   return Object(external_lodash_["pick"])(query, params);
 };
@@ -889,8 +843,7 @@ const pathIsExcluded = path => getQueryExcludedScreens().includes(getScreenFromP
  * @return {string} Screen name
  */
 
-const getScreenFromPath = function () {
-  let path = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getPath();
+const getScreenFromPath = (path = getPath()) => {
   return path === '/' ? 'homescreen' : path.replace('/analytics', '').replace('/', '');
 };
 /**
@@ -900,8 +853,7 @@ const getScreenFromPath = function () {
  * @return {Array<number>} List of IDs converted to an array of unique integers.
  */
 
-function getIdsFromQuery() {
-  let queryString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+function getIdsFromQuery(queryString = '') {
   return [...getSetOfIdsFromQuery(queryString)];
 }
 /**
@@ -911,8 +863,7 @@ function getIdsFromQuery() {
  * @return {Set<number>} List of IDs converted to a set of integers.
  */
 
-function getSetOfIdsFromQuery() {
-  let queryString = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
+function getSetOfIdsFromQuery(queryString = '') {
   return new Set( // Return only unique ids.
   queryString.split(',').map(id => parseInt(id, 10)).filter(id => !isNaN(id)));
 }
@@ -923,9 +874,7 @@ function getSetOfIdsFromQuery() {
  * @return {Array} List of search words.
  */
 
-function getSearchWords() {
-  let query = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : getQuery();
-
+function getSearchWords(query = getQuery()) {
   if (typeof query !== 'object') {
     throw new Error('Invalid parameter passed to getSearchWords, it expects an object or no parameters.');
   }
@@ -954,10 +903,7 @@ function getSearchWords() {
  * @return {string}  Updated URL merging query params into existing params.
  */
 
-function getNewPath(query) {
-  let path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : getPath();
-  let currentQuery = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : getQuery();
-  let page = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'wc-admin';
+function getNewPath(query, path = getPath(), currentQuery = getQuery(), page = 'wc-admin') {
   const args = {
     page,
     ...currentQuery,
@@ -994,10 +940,7 @@ function getQuery() {
  * @return {Function} A callback which will update `param` to the passed value when called.
  */
 
-function onQueryChange(param) {
-  let path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : getPath();
-  let query = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : getQuery();
-
+function onQueryChange(param, path = getPath(), query = getQuery()) {
   switch (param) {
     case 'sort':
       return (key, dir) => updateQueryString({
@@ -1027,10 +970,7 @@ function onQueryChange(param) {
  * @param {string} page Page key (defaults to "wc-admin")
  */
 
-function updateQueryString(query) {
-  let path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : getPath();
-  let currentQuery = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : getQuery();
-  let page = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'wc-admin';
+function updateQueryString(query, path = getPath(), currentQuery = getQuery(), page = 'wc-admin') {
   const newPath = getNewPath(query, path, currentQuery, page);
   getHistory().push(newPath);
 }
@@ -1079,44 +1019,41 @@ const addHistoryListener = listener => {
   };
 };
 /**
- * A Fill for extensions to add client facing custom Navigation Items.
+ * Create a Fill for extensions to add client facing custom Navigation Items.
  *
  * @slotFill WooNavigationItem
- * @scope woocommerce-navigation
- * @param {Object} props React props.
- * @param {Array} props.children Node children.
- * @param {string} props.item Navigation item slug.
+ * @example
+ * const MyExtenstionNavItem = () => (
+ * 	<WooNavigationItem item="my-extension">My Extension</WooNavigationItem>
+ * );
+ *
+ * registerPlugin( 'my-extension', {
+ * 	render: MyExtenstionNavItem,
+ * 	scope: 'woocommerce-admin',
+ * } );
+ * @param {Object} param0
+ * @param {Array} param0.children - Node children.
+ * @param {string} param0.item - Navigation item slug.
  */
 
-const WooNavigationItem = _ref => {
-  let {
-    children,
-    item
-  } = _ref;
+const WooNavigationItem = ({
+  children,
+  item
+}) => {
   return Object(external_wp_element_["createElement"])(external_wp_components_["Fill"], {
     name: 'woocommerce_navigation_' + item
   }, children);
 };
 
-WooNavigationItem.Slot = _ref2 => {
-  let {
-    name
-  } = _ref2;
-  return Object(external_wp_element_["createElement"])(external_wp_components_["Slot"], {
-    name: 'woocommerce_navigation_' + name
-  });
-};
+WooNavigationItem.Slot = ({
+  name
+}) => Object(external_wp_element_["createElement"])(external_wp_components_["Slot"], {
+  name: 'woocommerce_navigation_' + name
+});
 
 /***/ }),
 
-/***/ 5:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["lodash"]; }());
-
-/***/ }),
-
-/***/ 55:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1249,7 +1186,7 @@ function valueEqual(a, b) {
 /* harmony default export */ var value_equal = (valueEqual);
 
 // EXTERNAL MODULE: ./node_modules/tiny-invariant/dist/tiny-invariant.esm.js
-var tiny_invariant_esm = __webpack_require__(47);
+var tiny_invariant_esm = __webpack_require__(44);
 
 // CONCATENATED MODULE: ./node_modules/history/esm/history.js
 
@@ -2175,14 +2112,14 @@ function createMemoryHistory(props) {
 
 /***/ }),
 
-/***/ 62:
+/***/ 59:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
-var formats = __webpack_require__(39);
+var utils = __webpack_require__(42);
+var formats = __webpack_require__(36);
 var has = Object.prototype.hasOwnProperty;
 
 var arrayPrefixGenerators = {
@@ -2461,13 +2398,13 @@ module.exports = function (object, opts) {
 
 /***/ }),
 
-/***/ 63:
+/***/ 60:
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__(45);
+var utils = __webpack_require__(42);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;

@@ -7,7 +7,8 @@
 
 namespace Automattic\WooCommerce\Admin\Notes;
 
-use Automattic\WooCommerce\Internal\Admin\CouponsMovedTrait;
+use Automattic\WooCommerce\Admin\Features\Features;
+use Automattic\WooCommerce\Admin\Features\CouponsMovedTrait;
 use stdClass;
 use WC_Data_Store;
 
@@ -93,13 +94,15 @@ class CouponPageMoved {
 	 * @return bool
 	 */
 	protected static function has_unactioned_note() {
-		$note = Notes::get_note_by_name( self::NOTE_NAME );
+		$notes = self::get_data_store()->get_notes(
+			[
+				'name'       => [ self::NOTE_NAME ],
+				'status'     => [ 'unactioned' ],
+				'is_deleted' => false,
+			]
+		);
 
-		if ( ! $note ) {
-			return false;
-		}
-
-		return $note->get_status() === 'unactioned';
+		return ! empty( $notes );
 	}
 
 	/**
@@ -108,13 +111,14 @@ class CouponPageMoved {
 	 * @return bool
 	 */
 	protected static function has_dismissed_note() {
-		$note = Notes::get_note_by_name( self::NOTE_NAME );
+		$notes = self::get_data_store()->get_notes(
+			[
+				'name'       => [ self::NOTE_NAME ],
+				'is_deleted' => true,
+			]
+		);
 
-		if ( ! $note ) {
-			return false;
-		}
-
-		return ! $note->get_is_deleted();
+		return ! empty( $notes );
 	}
 
 	/**

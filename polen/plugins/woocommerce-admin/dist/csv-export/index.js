@@ -82,19 +82,12 @@ this["wc"] = this["wc"] || {}; this["wc"]["csvExport"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 463);
+/******/ 	return __webpack_require__(__webpack_require__.s = 445);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 11:
-/***/ (function(module, exports) {
-
-(function() { module.exports = window["moment"]; }());
-
-/***/ }),
-
-/***/ 274:
+/***/ 267:
 /***/ (function(module, exports, __webpack_require__) {
 
 /* FileSaver.js
@@ -381,7 +374,7 @@ if ( true && module.exports) {
 
 /***/ }),
 
-/***/ 463:
+/***/ 445:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -389,9 +382,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateCSVDataFromTable", function() { return generateCSVDataFromTable; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateCSVFileName", function() { return generateCSVFileName; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "downloadCSVFile", function() { return downloadCSVFile; });
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(11);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var browser_filesaver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(274);
+/* harmony import */ var browser_filesaver__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(267);
 /* harmony import */ var browser_filesaver__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(browser_filesaver__WEBPACK_IMPORTED_MODULE_1__);
 /**
  * External dependencies
@@ -447,9 +440,7 @@ function generateCSVDataFromTable(headers, rows) {
  * @return {string}                Formatted file name
  */
 
-function generateCSVFileName() {
-  let name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-  let params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+function generateCSVFileName(name = '', params = {}) {
   const fileNameSections = [name.toLowerCase().replace(/[^a-z0-9]/g, '-'), moment__WEBPACK_IMPORTED_MODULE_0___default()().format('YYYY-MM-DD'), Object.keys(params).map(key => key.toLowerCase().replace(/[^a-z0-9]/g, '-') + '-' + decodeURIComponent(params[key]).toLowerCase().replace(/[^a-z0-9]/g, '-')).join('_')].filter(text => text.length);
   return fileNameSections.join('_') + '.csv';
 }
@@ -467,6 +458,13 @@ function downloadCSVFile(fileName, content) {
   });
   Object(browser_filesaver__WEBPACK_IMPORTED_MODULE_1__["saveAs"])(blob, fileName);
 }
+
+/***/ }),
+
+/***/ 9:
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["moment"]; }());
 
 /***/ })
 

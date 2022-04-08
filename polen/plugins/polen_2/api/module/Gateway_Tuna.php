@@ -26,7 +26,7 @@ class Gateway_Tuna
      * @param string|array $card_info // informações do cartão de crédito
      * @return array
      */
-    protected function body_for_request($order_id, $current_user = '', $card_info = null, $installments = 1)
+    protected function body_for_request($order_id, $current_user = '', $card_info = null)
     {
         $session_id = $this->get_session_id($current_user['user_object']->data);
         $order = new WC_Order($order_id);
@@ -113,7 +113,7 @@ class Gateway_Tuna
                     [
                         "PaymentMethodType" => $payment_method_type,
                         "Amount" => floatval($order->get_total()),
-                        "Installments" => $installments,
+                        "Installments" => 1,
                         "CardInfo" => $card_info,
                     ]
                 ]

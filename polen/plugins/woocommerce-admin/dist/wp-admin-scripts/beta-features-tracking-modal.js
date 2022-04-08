@@ -82,7 +82,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["betaFeaturesTrackingModal"] =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 494);
+/******/ 	return __webpack_require__(__webpack_require__.s = 474);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -94,7 +94,7 @@ this["wc"] = this["wc"] || {}; this["wc"]["betaFeaturesTrackingModal"] =
 
 /***/ }),
 
-/***/ 12:
+/***/ 11:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wc"]["data"]; }());
@@ -108,14 +108,14 @@ this["wc"] = this["wc"] || {}; this["wc"]["betaFeaturesTrackingModal"] =
 
 /***/ }),
 
-/***/ 14:
+/***/ 13:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["compose"]; }());
 
 /***/ }),
 
-/***/ 17:
+/***/ 16:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wc"]["tracks"]; }());
@@ -129,21 +129,21 @@ this["wc"] = this["wc"] || {}; this["wc"]["betaFeaturesTrackingModal"] =
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["components"]; }());
 
 /***/ }),
 
-/***/ 482:
+/***/ 462:
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
 
-/***/ 494:
+/***/ 474:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -157,19 +157,19 @@ var external_wp_element_ = __webpack_require__(0);
 var external_wp_i18n_ = __webpack_require__(2);
 
 // EXTERNAL MODULE: external ["wp","components"]
-var external_wp_components_ = __webpack_require__(4);
+var external_wp_components_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external ["wp","data"]
-var external_wp_data_ = __webpack_require__(8);
+var external_wp_data_ = __webpack_require__(7);
 
 // EXTERNAL MODULE: external ["wp","compose"]
-var external_wp_compose_ = __webpack_require__(14);
+var external_wp_compose_ = __webpack_require__(13);
 
 // EXTERNAL MODULE: external ["wc","data"]
-var external_wc_data_ = __webpack_require__(12);
+var external_wc_data_ = __webpack_require__(11);
 
 // EXTERNAL MODULE: external ["wc","tracks"]
-var external_wc_tracks_ = __webpack_require__(17);
+var external_wc_tracks_ = __webpack_require__(16);
 
 // EXTERNAL MODULE: external ["wc","explat"]
 var external_wc_explat_ = __webpack_require__(123);
@@ -189,10 +189,9 @@ var external_wc_explat_ = __webpack_require__(123);
 
 
 
-const BetaFeaturesTrackingModal = _ref => {
-  let {
-    updateOptions
-  } = _ref;
+const BetaFeaturesTrackingModal = ({
+  updateOptions
+}) => {
   const [isModalOpen, setIsModalOpen] = Object(external_wp_element_["useState"])(false);
   const [isChecked, setIsChecked] = Object(external_wp_element_["useState"])(false);
   const enableNavigationCheckbox = Object(external_wp_element_["useRef"])(document.querySelector('#woocommerce_navigation_enabled'));
@@ -280,7 +279,7 @@ const BetaFeaturesTrackingContainer = Object(external_wp_compose_["compose"])(Ob
   };
 }))(BetaFeaturesTrackingModal);
 // EXTERNAL MODULE: ./client/wp-admin-scripts/beta-features-tracking-modal/style.scss
-var style = __webpack_require__(482);
+var style = __webpack_require__(462);
 
 // CONCATENATED MODULE: ./client/wp-admin-scripts/beta-features-tracking-modal/index.js
 
@@ -301,7 +300,7 @@ Object(external_wp_element_["render"])(Object(external_wp_element_["createElemen
 
 /***/ }),
 
-/***/ 8:
+/***/ 7:
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["data"]; }());

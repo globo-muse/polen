@@ -60,10 +60,4 @@ class Polen_B2B_Only extends Polen_Product_Module
         ob_end_clean();
         return $result_html;
     }
-
-
-    public function get_price()
-    {
-        return $this->object->get_meta('polen_price_range_b2b');
-    }
 }

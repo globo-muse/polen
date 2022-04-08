@@ -23,7 +23,7 @@ function render_block_core_archives( $attributes ) {
 
 		$class .= ' wp-block-archives-dropdown';
 
-		$dropdown_id = wp_unique_id( 'wp-block-archives-' );
+		$dropdown_id = esc_attr( uniqid( 'wp-block-archives-' ) );
 		$title       = __( 'Archives' );
 
 		/** This filter is documented in wp-includes/widgets/class-wp-widget-archives.php */
