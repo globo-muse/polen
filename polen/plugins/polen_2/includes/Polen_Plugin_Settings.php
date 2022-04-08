@@ -672,13 +672,6 @@ class Polen_Plugin_Settings
                     'desc'     => 'ThemeID Polen Pedido Completo',
                     'default'  => '',
                 ),
-                array(
-                    'id'       => Polen_Sendgrid_Redux::THEME_ID_POLEN_B2B_FORM_TO_CLIENT,
-                    'type'     => 'text',
-                    'title'    => esc_html__('ThemeID Polen B2B Form', 'polen'),
-                    'desc'     => 'ThemeID Polen BB2 Form email para o Cliente',
-                    'default'  => '',
-                ),
                 // array(
                 //     'id'       => 'polen_api_rest_account',
                 //     'type'     => 'text',

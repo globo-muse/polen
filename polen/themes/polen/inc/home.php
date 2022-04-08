@@ -77,8 +77,14 @@ $inputs = new Material_Inputs();
 		</div>
 	</div> -->
 
-  <!-- Emojis -->
+  <!-- Como Funciona -->
+  <?php polen_front_get_tutorial(); ?>
+
+  <!-- Listagem de Vídeos em Destaque -->
   <?php
+    $videos = ["3492", "3806", "3554", "2930", "3898", "3168"];
+    polen_front_get_videos(polen_get_home_stories($videos));
+
     $emojis = array(
       "b2b" => TEMPLATE_URI.'/assets/img/emoji/b2b.png',
       "musica" => TEMPLATE_URI.'/assets/img/emoji/music.png',
@@ -90,7 +96,11 @@ $inputs = new Material_Inputs();
     );
   ?>
 
-  <div class="row mt-4">
+  <div class="row">
+    <div class="col-sm-12 mb-4">
+      <!-- Listagem de Talentos - B2B -->
+      <?php polen_banner_scrollable(polen_get_talents_by_product_cat("b2b-only", 10), "Para Empresas", $emojis['b2b'], '/categoria/b2b-only'); ?>
+    </div>
     <div class="col-sm-12 mb-4">
       <!-- Listagem de Talentos - Música -->
       <?php polen_banner_scrollable(polen_get_talents_by_product_cat("musica", 10), "Música", $emojis['musica'], '/categoria/musica'); ?>
@@ -119,13 +129,13 @@ $inputs = new Material_Inputs();
 
   <!-- Banners -->
 	<div class="row d-flex justify-content-center my-4">
-		<div class="col-xs-12 col-sm-6">
-      <?php $inputs->material_button_link("todos", "Ver todos os ídolos", home_url( "shop" ), false, "", array()); ?>
+		<div class="col-xs-12 col-sm-6 mb-5">
+      <?php $inputs->material_button_link_outlined("todos", "Ver todos os ídolos", home_url( "shop" ), false, "", array()); ?>
 		</div>
 	</div>
 
   <!-- Polen na Mídia -->
-  <?php //polen_get_media_news(); ?>
+  <?php polen_get_media_news(); ?>
 
 </main><!-- #main -->
 

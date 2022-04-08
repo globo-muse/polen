@@ -408,9 +408,4 @@ class Polen_Product_Module
     {
         return $this->object->get_price_html();
     }
-
-    public function get_price()
-    {
-        return $this->object->get_price();
-    }
 }

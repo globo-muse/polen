@@ -15,12 +15,10 @@
   .bus-menu-item {
     color: var(--light);
   }
-}
-
-.menu-icon {
-  cursor: pointer;
-  path {
-    stroke: var(--light)!important;
+  .menu-icon {
+    path {
+      stroke: white;
+    }
   }
 }
 

@@ -11,7 +11,7 @@
     line-height: 19px;
     letter-spacing: 0em;
     text-align: center;
-    color: var(--light)
+    color: #000;
   }
   .panel-group {
     .panel {
@@ -29,7 +29,6 @@
             top: 0;
             font-size: 30px;
             font-weight: 100;
-            color: var(--light);
             @include media-breakpoint-down(xs) {
               right: -30px;
               top: 30%;
@@ -44,7 +43,7 @@
             color: var(--primary);
           }
           a {
-            color: var(--light);
+            color: #495057;
             margin: 0px;
             font-size: 16px;
             font-style: normal;
@@ -69,7 +68,7 @@
           line-height: 150%;
           letter-spacing: 0em;
           text-align: left;
-          color: var(--light);
+          color: #495057;
           margin-top: 20px;
           a {
             font-size: 16px;

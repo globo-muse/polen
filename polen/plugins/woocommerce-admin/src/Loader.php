@@ -11,7 +11,6 @@ use Automattic\WooCommerce\Admin\API\Reports\Orders\DataStore as OrdersDataStore
 use Automattic\WooCommerce\Admin\API\Plugins;
 use Automattic\WooCommerce\Admin\Features\Features;
 use Automattic\WooCommerce\Admin\Features\Navigation\Screen;
-use Automattic\WooCommerce\Internal\Admin\WCAdminSharedSettings;
 use WC_Marketplace_Suggestions;
 
 /**
@@ -292,7 +291,7 @@ class Loader {
 		if ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) {
 			return filemtime( WC_ADMIN_ABSPATH . self::get_path( $ext ) );
 		}
-		return WC_VERSION;
+		return WC_ADMIN_VERSION_NUMBER;
 	}
 
 	/**
@@ -1020,7 +1019,7 @@ class Loader {
 			];
 		}
 
-		$preload_data_endpoints = apply_filters( 'woocommerce_component_settings_preload_endpoints', array() );
+		$preload_data_endpoints = apply_filters( 'woocommerce_component_settings_preload_endpoints', array( '/wc/v3' ) );
 		if ( class_exists( 'Jetpack' ) ) {
 			$preload_data_endpoints['jetpackStatus'] = '/jetpack/v4/connection';
 		}

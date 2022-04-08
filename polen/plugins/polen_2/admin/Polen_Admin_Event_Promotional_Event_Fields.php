@@ -198,15 +198,15 @@ class Polen_Admin_Event_Promotional_Event_Fields
             if ( $screen->base == 'post' && $screen->post_type == 'product' ) {
                 $product = wc_get_product( $product_id );
 
-                $promotional_event                = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_IS));
-                $promotional_event_campaign_slug  = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_SLUG_CAMPAIGN));
-                $promotional_event_pages_quantity = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_PAGES_QUANTITY));
-                $promotional_event_language       = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_LANGUAGE));
-                $promotional_event_publishing     = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_PUBLISHING));
-                $promotional_event_published_in   = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_PUBLISHED_IN));
-                $promotional_event_rating         = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_RATING));
-                $promotional_event_link_buy       = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_LINK_BUY));
-                $promotional_event_author         = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_AUTHOR));
+                $promotional_event = strip_tags( $_POST[ self::FIELD_NAME_IS ] );
+                $promotional_event_campaign_slug = strip_tags( $_POST[ self::FIELD_NAME_SLUG_CAMPAIGN ] );
+                $promotional_event_pages_quantity = strip_tags( $_POST[ self::FIELD_NAME_PAGES_QUANTITY ] );
+                $promotional_event_language = strip_tags( $_POST[ self::FIELD_NAME_LANGUAGE ] );
+                $promotional_event_publishing = strip_tags( $_POST[ self::FIELD_NAME_PUBLISHING ] );
+                $promotional_event_published_in = strip_tags( $_POST[ self::FIELD_NAME_PUBLISHED_IN ] );
+                $promotional_event_rating = strip_tags( $_POST[ self::FIELD_NAME_RATING ] );
+                $promotional_event_link_buy = strip_tags( $_POST[ self::FIELD_NAME_LINK_BUY ] );
+                $promotional_event_author = strip_tags( $_POST[ self::FIELD_NAME_AUTHOR ] );
 
                 $this->save_meta($product, $promotional_event, self::FIELD_NAME_IS );
                 $this->save_meta($product, $promotional_event_campaign_slug, self::FIELD_NAME_SLUG_CAMPAIGN );

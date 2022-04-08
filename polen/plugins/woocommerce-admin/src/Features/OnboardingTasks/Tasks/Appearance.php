@@ -10,14 +10,10 @@ use Automattic\WooCommerce\Admin\Features\OnboardingTasks\Tasks\Products;
  * Appearance Task
  */
 class Appearance extends Task {
-
 	/**
-	 * Constructor
-	 *
-	 * @param TaskList $task_list Parent task list.
+	 * Initialize.
 	 */
-	public function __construct( $task_list ) {
-		parent::__construct( $task_list );
+	public function __construct() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'add_media_scripts' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'possibly_add_return_notice_script' ) );
 	}
@@ -29,6 +25,15 @@ class Appearance extends Task {
 	 */
 	public function get_id() {
 		return 'appearance';
+	}
+
+	/**
+	 * Parent ID.
+	 *
+	 * @return string
+	 */
+	public function get_parent_id() {
+		return 'setup';
 	}
 
 	/**
@@ -110,7 +115,7 @@ class Appearance extends Task {
 			'onboarding-homepage-notice',
 			Loader::get_url( 'wp-admin-scripts/onboarding-homepage-notice', 'js' ),
 			array_merge( array( WC_ADMIN_APP ), $script_assets ['dependencies'] ),
-			WC_VERSION,
+			WC_ADMIN_VERSION_NUMBER,
 			true
 		);
 	}

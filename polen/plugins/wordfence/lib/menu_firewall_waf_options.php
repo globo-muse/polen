@@ -28,19 +28,14 @@ if (isset($_GET['source']) && wfPage::isValidPage($_GET['source'])) {
 			if (window.location.hash) {
 				var hashes = WFAD.parseHashes();
 				var hash = hashes[hashes.length - 1];
-				var target = $("#" + hash);
-				var block = target.parents('.wf-block');
-				if (!block.length) {
-					block = $('.wf-block[data-persistence-key="' + hash + '"]');
-					target = block;
-				}
+				var block = $('.wf-block[data-persistence-key="' + hash + '"]');
 				if (block.length) {
 					if (!block.hasClass('wf-active')) {
 						block.find('.wf-block-content').slideDown({
 							always: function() {
 								block.addClass('wf-active');
 								$('html, body').animate({
-									scrollTop: target.offset().top - 100
+									scrollTop: block.offset().top - 100
 								}, 1000);
 							}
 						});
@@ -49,7 +44,7 @@ if (isset($_GET['source']) && wfPage::isValidPage($_GET['source'])) {
 					}
 					else {
 						$('html, body').animate({
-							scrollTop: target.offset().top - 100
+							scrollTop: block.offset().top - 100
 						}, 1000);
 					}
 

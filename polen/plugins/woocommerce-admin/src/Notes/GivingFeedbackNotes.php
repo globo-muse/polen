@@ -9,7 +9,7 @@ namespace Automattic\WooCommerce\Admin\Notes;
 
 defined( 'ABSPATH' ) || exit;
 
-use Automattic\WooCommerce\Internal\Admin\Survey;
+use Automattic\WooCommerce\Admin\Survey;
 
 /**
  * Giving_Feedback_Notes

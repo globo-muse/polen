@@ -199,15 +199,8 @@ class Polen_Cart_Item
         $product_id = $this->item->get_product()->get_id();
         return $product_id;
     }
-
-    /**
-     * Retornar numero maximo de parcelas
-     */
-    public function get_installments()
-    {
-        return $this->item->get_meta('installments');
-    }
-
+    
+    
     /**
      * Get o object product
      * @return WC_Product

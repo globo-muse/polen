@@ -6,7 +6,7 @@
     </span>
     <span class="mdc-notched-outline__trailing"></span>
   </span>
-  <input pattern=".{3,}" type="<?php echo $type; ?>" name="<?php echo $name; ?>" class="mdc-text-field__input" aria-labelledby="label-<?php echo $id; ?>" <?php if (isset($helper)) : ?> aria-controls="helper-<?php echo $id; ?>" aria-describedby="helper-<?php echo $id; ?>" <?php endif; ?> <?php echo $required ? " required" : ""; ?><?php foreach ($params as $key => $value) {
+  <input pattern=".{3,}" type="<?php echo $type; ?>" name="<?php echo $name; ?>" class="mdc-text-field__input" aria-labelledby="label-<?php echo $id; ?>" <?php if ($helper) : ?> aria-controls="helper-<?php echo $id; ?>" aria-describedby="helper-<?php echo $id; ?>" <?php endif; ?> <?php echo $required ? " required" : ""; ?><?php foreach ($params as $key => $value) {
                                                                                                                                                                                                                                                                                                                         echo " {$key}='{$value}'";
                                                                                                                                                                                                                                                                                                                       } ?> />
 </label>
