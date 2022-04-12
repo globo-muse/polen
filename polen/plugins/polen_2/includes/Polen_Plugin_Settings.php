@@ -679,6 +679,13 @@ class Polen_Plugin_Settings
                     'desc'     => 'ThemeID Polen BB2 Form email para o Cliente',
                     'default'  => '',
                 ),
+                array(
+                    'id'       => Polen_Sendgrid_Redux::THEME_ID_POLEN_B2B_PAYMENT_APPROV,
+                    'type'     => 'text',
+                    'title'    => esc_html__('ThemeID Polen B2B Payment Approved', 'polen'),
+                    'desc'     => 'ThemeID Polen B2B Payment Approved',
+                    'default'  => '',
+                ),
                 // array(
                 //     'id'       => 'polen_api_rest_account',
                 //     'type'     => 'text',

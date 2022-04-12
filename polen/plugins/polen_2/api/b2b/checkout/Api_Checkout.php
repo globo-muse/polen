@@ -107,6 +107,7 @@ class Api_Checkout extends WP_REST_Controller
             $b2b_order = new Polen_B2B_Orders($request['order_id'], $request['key_order']);
 
             $response = $tuna->payment($request['order_id'], $user, $data);
+            $b2b_order->calculate_totals();
             $b2b_order->update_order($data);
 
             return api_response($response);
