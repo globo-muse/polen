@@ -17,6 +17,7 @@ class Polen_Order_B2B_Payment_Approved
         if($static) {
             WC_Emails::instance();
             add_action( 'woocommerce_order_status_'.Polen_Order::ORDER_STATUS_PAYMENT_APPROVED, [ $this, 'trigger' ] );
+            add_action( 'woocommerce_order_status_'.Polen_Order::ORDER_STATUS_COMPLETED, [ $this, 'trigger' ] );
         }
     }
 

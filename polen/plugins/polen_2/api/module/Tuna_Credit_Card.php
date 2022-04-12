@@ -3,6 +3,7 @@
 namespace Polen\Api\Module;
 
 use Exception;
+use Polen\Includes\Polen_Order;
 
 class Tuna_Credit_Card extends Gateway_Tuna
 {
@@ -69,6 +70,9 @@ class Tuna_Credit_Card extends Gateway_Tuna
             throw new Exception('Erro no pagamento, tente novamente', 422);
         }
 
+        if($new_status == 'completed') {
+            $new_status = Polen_Order::ORDER_STATUS_PAYMENT_APPROVED;
+        }
         $response_message = parent::get_response_message($new_status);
 
         $order = wc_get_order($order_id);
