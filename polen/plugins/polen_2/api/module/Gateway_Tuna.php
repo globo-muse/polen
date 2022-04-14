@@ -293,7 +293,7 @@ class Gateway_Tuna
     {
         $status_code = [
             'pending' => [ '1', '0', 'C', 'P'],
-            'completed' => [ '2', '8', '9' ],
+            'payment-approved' => [ '2', '8', '9' ],
             'failed' => [ 'A', '6', 'N', '4', 'B', -1 ],
             'cancelled' => [ 'D', 'E' ],
         ];
@@ -321,7 +321,7 @@ class Gateway_Tuna
                 'message' => 'Pagamento pendente',
                 'status_code' => 200,
             ],
-            'completed' => [
+            'payment-approved' => [
                 'message' => 'Pagamento aprovado',
                 'status_code' => 200,
             ],
