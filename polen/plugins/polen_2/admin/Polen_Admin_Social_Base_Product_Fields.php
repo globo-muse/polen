@@ -112,11 +112,11 @@ class Polen_Admin_Social_Base_Product_Fields
         if( is_admin() ) {
             $screen = get_current_screen();
             if ( $screen->base == 'post' && $screen->post_type == 'product' ) {
-                $product = wc_get_product( $product_id );
-                $is_social_base = strip_tags( $_POST[ self::FIELD_NAME_IS ]);
-                $social_base_slug_campaign = strip_tags( $_POST[ self::FIELD_NAME_SLUG_CAMPAIGN ]);
-                $social_base_video_testimonial = strip_tags( $_POST[ self::FIELD_NAME_URL_VIDEO ]);
-                $social_base_watermark = strip_tags( $_POST[ self::FIELD_NAME_URL_WATERMARK ]);
+                $product                       = wc_get_product( $product_id );
+                $is_social_base                = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_IS));
+                $social_base_slug_campaign     = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_SLUG_CAMPAIGN));
+                $social_base_video_testimonial = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_URL_VIDEO));
+                $social_base_watermark         = strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_URL_WATERMARK));
 
 
                 $this->save_meta($product, $is_social_base, self::FIELD_NAME_IS );

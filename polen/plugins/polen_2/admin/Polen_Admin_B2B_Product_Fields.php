@@ -98,9 +98,9 @@ class Polen_Admin_B2B_Product_Fields
 
         $product = wc_get_product($product_id);
         $fields_b2b = [
-            self::FIELD_NAME_IS_B2B => strip_tags($_POST[self::FIELD_NAME_IS_B2B ]),
-            self::FIELD_NAME_ENABLED_B2B => strip_tags($_POST[self::FIELD_NAME_ENABLED_B2B ]),
-            self::FIELD_NAME_PRICE_RANGE => strip_tags($_POST[self::FIELD_NAME_PRICE_RANGE ]),
+            self::FIELD_NAME_IS_B2B      => strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_IS_B2B)),
+            self::FIELD_NAME_ENABLED_B2B => strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_ENABLED_B2B)),
+            self::FIELD_NAME_PRICE_RANGE => strip_tags(filter_input(INPUT_POST, self::FIELD_NAME_PRICE_RANGE)),
         ];
 
         $this->save_to_meta($fields_b2b, $product);

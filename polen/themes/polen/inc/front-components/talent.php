@@ -272,19 +272,17 @@ function polen_get_talent_card($talent, $social = false)
 function polen_talent_deadline($deadline_medio)
 {
 ?>
-  <div class="col-md-12">
-    <div class="row">
-      <div class="col-12 col-md-6 m-md-auto">
-        <div class="row">
-          <div class="col-12 col-md-12">
-            <div class="box-round py-3 px-3 text-center text-md-center">
-              <p class="typo-double-line-height mb-0">
-                Peça hoje e receba até <br>
-                <b>
-                  <?php echo $deadline_medio; ?>
-                </b>
-              </p>
-            </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <div class="box-round py-3 px-3 text-center text-md-center">
+            <p class="typo-double-line-height mb-0">
+              Peça hoje e receba até <br>
+              <b>
+                <?php echo $deadline_medio; ?>
+              </b>
+            </p>
           </div>
         </div>
       </div>
@@ -401,10 +399,10 @@ function polen_talent_review($reviews)
 function polen_buy_buttons_b2c_b2b($inputs, Polen_Product_Module $polen_product)
 {
   ?>
-  <div class="btn-buy-personal">
+  <div class="btn-buy-personal d-none">
     <?php echo $polen_product->template_single_add_to_cart(); ?>
   </div>
-  <div class="btn-buy-b2b d-none">
+  <div class="btn-buy-b2b">
     <?php echo $polen_product->template_button_buy_b2b($inputs); ?>
   </div>
   <script>
@@ -414,12 +412,12 @@ function polen_buy_buttons_b2c_b2b($inputs, Polen_Product_Module $polen_product)
   pol_select && pol_select
     .addEventListener("polcombochange",
       function(e) {
-        if(e.detail == "b2b") {
-          btn_b2b.classList.remove("d-none");
-          btn_personal.classList.add("d-none");
-        } else {
+        if(e.detail == "pessoal") {
           btn_b2b.classList.add("d-none");
           btn_personal.classList.remove("d-none");
+        } else {
+          btn_b2b.classList.remove("d-none");
+          btn_personal.classList.add("d-none");
         }
       });
 </script>

@@ -12,7 +12,7 @@ function polen_get_search_form()
       <div class="col-12 col-md-8 m-md-auto">
         <div class="row mb-3">
           <div class="col-12 text-right">
-            <button onclick="hiddeSearchForm()" class="button-no-bg black"><?php Icon_Class::polen_icon_close(); ?></button>
+            <button onclick="hiddeSearchForm()" class="button-no-bg"><?php Icon_Class::polen_icon_close(); ?></button>
           </div>
         </div>
         <form action="/" method="get">
@@ -258,35 +258,20 @@ function polen_front_get_card($item, $size = "small", $social = false, $campanha
         <?php if ($donate == 'yes') {
           polen_donate_badge("Social", true, false, false);
         } ?>
-        <?php if (!$item['price_formatted']) : ?>
-          <span class="donate-badge<?php echo $inside_card ? "" : " alt"; ?><?php echo $yellow ? " yellow" : ""; ?>">
-            <strong>Para empresas</strong>
-          </span>
-        <?php endif; ?>
         <img loading="lazy" src="<?php echo $image_data["image"]; ?>" alt="<?php echo $image_data["alt"]; ?>" />
-        <?php if (!$social) : ?>
-          <div class="price text-right" itemprop="price">
-            <?php if ($item['in_stock']) : ?>
-              <?php if ($item['price_formatted']) : ?>
-                <span><?php echo str_replace(",00", "", $item['price_formatted']); ?></span>
-              <?php else : ?>
-                <?php if (get_post_meta($item['ID'], 'polen_price_range_b2b', true)) : ?>
-                  <?php
-                    echo 'A partir de R$';
-                    echo get_post_meta($item['ID'], 'polen_price_range_b2b', true);
-                  ?>
-                <?php else : ?>
-                  <?php echo 'Sob consulta'; ?>
-                <?php endif; ?>
-              <?php endif; ?>
-            <?php else : ?>
-              <span>Esgotado</span>
-            <?php endif; ?>
-          </div>
-        <?php endif; ?>
+        <div class="price text-right" itemprop="price">
+          <?php if (get_post_meta($item['ID'], 'polen_price_range_b2b', true)) : ?>
+            <?php
+              echo 'A partir de R$';
+              echo get_post_meta($item['ID'], 'polen_price_range_b2b', true);
+            ?>
+          <?php else : ?>
+            <?php echo 'Sob Consulta'; ?>
+          <?php endif; ?>
+        </div>
         <a href="<?= $item["talent_url"]; ?>" class="link"></a>
       </figure>
-      <?php $stock = $item['stock']; ?>
+      <?php $stock = $item['stock'] ?? 0; ?>
       <?php if($stock > 0 && $stock <= 10): ?>
         <span class="polen-card__low-stock"><?php echo $stock; ?> videos apenas</span>
       <?php endif; ?>
@@ -616,9 +601,12 @@ function polen_box_related_product_by_product_id($product_id)
   $args = polen_get_array_related_products($product_id);
   $cat_link = polen_get_url_category_by_product_id($product_id);
 ?>
-  <div class="row">
+  <div class="row idolos-relacionados">
+    <div class="col-12">
+    <h2 class="typo typo-subtitle-large mr-2">Ídolos semelhantes</h2>
+    </div>
     <div class="col-12 col-md-12">
-      <?php polen_banner_scrollable($args, "Veja também", "",$cat_link); ?>
+      <?php polen_banner_scrollable($args, "", "",$cat_link); ?>
     </div>
   </div>
 <?php
