@@ -33,12 +33,15 @@ class Polen_Order_B2B_Payment_Approved
             $email_customer = $order_module->get_billing_email();
             $name_customer  = $order_module->get_billing_name();
             $instructions   = $order_module->get_instructions_to_video();
+            $category       = $order_module->get_video_category();
             $qty            = '1';
             $total          = $order_module->get_total();
             $talent_name    = $order_module->get_talent_name();
             $address        = $order_module->get_billing_address_full();
             $company_name   = $order_module->get_company_name();
             $cnpj_cpf       = $order_module->get_billing_cnpj_cpf();
+            $order_date     = $order_module->get_date_created();
+
             $retorno = $this->send_email(
                 $email_customer,
                 $name_customer,
@@ -48,9 +51,10 @@ class Polen_Order_B2B_Payment_Approved
                 $qty,
                 $total,
                 $talent_name,
-                $address
+                $address,
+                $order_date,
+                $category
             );
-            Debug::def($retorno);
         }
     }
 
@@ -63,7 +67,9 @@ class Polen_Order_B2B_Payment_Approved
 		$qty,
         $total,
 		$talent_name,
-        $address)
+        $address,
+        $order_date,
+        $category)
 	{
 
         global $Polen_Plugin_Settings;
@@ -82,6 +88,8 @@ class Polen_Order_B2B_Payment_Approved
         $send_grid->set_template_data( 'company_name', $company_name );
         $send_grid->set_template_data( 'cnpj_cpf', $cnpj_cpf );
         $send_grid->set_template_data( 'address', $address );
+        $send_grid->set_template_data( 'order_date', $order_date );
+        $send_grid->set_template_data( 'category', $category );
 
         return $send_grid->send_email();
     }

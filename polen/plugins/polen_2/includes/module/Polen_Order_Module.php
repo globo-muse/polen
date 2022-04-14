@@ -1,7 +1,6 @@
 <?php
 namespace Polen\Includes\Module;
 
-use Exception;
 use Polen\Admin\Polen_Admin_Event_Promotional_Event_Fields;
 use Polen\Api\Api_Checkout;
 use Polen\Includes\Cart\Polen_Cart_Item;
@@ -397,6 +396,11 @@ class Polen_Order_Module
     public function calculate_totals()
     {
         return $this->object->calculate_totals();
+    }
+
+    public function get_date_created()
+    {
+        return $this->object->get_date_created();
     }
     
 }
