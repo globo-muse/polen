@@ -18,9 +18,9 @@
     "gulp": "^4.0.2",
     "gulp-iconfont": "^11.0.0",
     "gulp-iconfont-css": "^3.0.0",
-    "gulp-sass": "^4.1.0",
+    "gulp-sass": "^5.1.0",
     "gulp-svg-sprite": "^1.5.0",
     "gulp-uglify-es": "^2.0.0",
-    "node-sass": "^5.0.0"
+    "node-sass": "^7.0.1"
   }
 }

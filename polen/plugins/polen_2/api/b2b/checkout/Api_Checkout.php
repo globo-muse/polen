@@ -5,7 +5,7 @@ use Exception;
 use Polen\Api\Api_Util_Security;
 use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Api\Module\{Tuna_Credit_Card,Tuna_Pix};
-use Polen\Includes\Module\Products\Polen_B2B_Orders;
+use Polen\Includes\Module\Orders\Polen_B2B_Orders;
 use Polen\Includes\Polen_Create_Customer;
 use WP_REST_Controller;
 use WP_REST_Request;
@@ -206,6 +206,7 @@ class Api_Checkout extends WP_REST_Controller
                 'tuna_expiration_date' => 'Data de Vencimento',
                 'tuna_card_number' => 'Numero do cartão',
                 'tuna_cvv' => 'Código de segurança',
+                'installments' => 'Parcelas',
             ];
 
             $fields = array_merge($fields, $cards);

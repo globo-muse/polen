@@ -12,6 +12,7 @@ $categories = [
 ];
 
 $cnpj_cpf = '';
+$installments = '';
 $corporate_name = '';
 $company_name = '';
 $instructions_to_video = '';
@@ -23,6 +24,7 @@ if(!empty($_GET['post'])) {
         $order                 = wc_get_order($post->ID);
         $polen_order           = new Polen_Order_Module($order);
 
+        $installments          = $polen_order->get_installments();
         $cnpj_cpf              = $polen_order->get_billing_cnpj_cpf();
         $corporate_name        = $polen_order->get_corporate_name();
         $company_name          = $polen_order->get_company_name();
@@ -34,29 +36,35 @@ if(!empty($_GET['post'])) {
 ?>
 <div class="wrap">
     <div>
-    <p class="form-field form-field-wide">
-        <label for="company_name">Video para a empresa</label>
-        <input type="text" id="company_name" name="company_name" value="<?= $company_name; ?>" />
-    </p>
+        <p class="form-field form-field-wide">
+            <label for="company_name">Video para a empresa</label>
+            <input type="text" id="company_name" name="company_name" value="<?= $company_name; ?>" />
+        </p>
     </div>
     <div>
-    <p class="form-field form-field-wide">
-        <label for="corporate_name">Razão Social</label>
-        <input type="text" id="corporate_name" name="corporate_name" value="<?= $corporate_name; ?>" />
-    </p>
+        <p class="form-field form-field-wide">
+            <label for="corporate_name">Razão Social</label>
+            <input type="text" id="corporate_name" name="corporate_name" value="<?= $corporate_name; ?>" />
+        </p>
     </div>
     <div>
-    <p class="form-field form-field-wide">
-        <label for="cnpj">CNPJ da empresa ou CPF do representante</label>
-        <input type="text" id="cnpj" name="cnpj" value="<?= $cnpj_cpf; ?>" />
-    </p>
+        <p class="form-field form-field-wide">
+            <label for="cnpj">CNPJ da empresa ou CPF do representante</label>
+            <input type="text" id="cnpj" name="cnpj" value="<?= $cnpj_cpf; ?>" />
+        </p>
+    </div>
+    <div>
+        <p class="form-field form-field-wide">
+            <label for="cnpj">Número máximo de parcelamento</label>
+            <input type="text" id="installments" name="installments" value="<?= $installments; ?>" />
+        </p>
     </div>
     <div class="clear"></div>
     <div>
-    <p class="form-field form-field-wide">
-        <label for="instructions_to_video">Instruções para o video</label>
-        <textarea id="instructions_to_video" name="instructions_to_video" rows="6"><?= Polen_Utils::remove_sanitize_xss_br_escape($instructions_to_video, 'edit'); ?></textarea>
-    </p>
+        <p class="form-field form-field-wide">
+            <label for="instructions_to_video">Instruções para o video</label>
+            <textarea id="instructions_to_video" name="instructions_to_video" rows="6"><?= Polen_Utils::remove_sanitize_xss_br_escape($instructions_to_video, 'edit'); ?></textarea>
+        </p>
     </div>
     <div class="clear"></div>
     <div>
