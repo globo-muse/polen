@@ -109,71 +109,81 @@ $inputs = new Material_Inputs();
                   <div class="col-12">
                     <h2 class="mb-3 typo typo-subtitle-large">Influência por região</h2>
                   </div>
-                  <div class="col-12 mb-3">
-                    <div class="row">
-                      <div class="col-12">
-                        <h5 class="typo typo-p">Região Norte</h5>
-                      </div>
-                      <div class="col-12 d-flex align-items-center">
-                        <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['norte']; ?>%" aria-valuenow="<?= $influence_region['norte']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                  <?php if ($influence_region['norte'] > 0) : ?>
+                    <div class="col-12 mb-3">
+                      <div class="row">
+                        <div class="col-12">
+                          <h5 class="typo typo-p">Região Norte</h5>
                         </div>
-                        <h5 class="typo typo-p m-0"><?= $influence_region['norte']; ?>%</h5>
+                        <div class="col-12 d-flex align-items-center">
+                          <div class="progress w-100 mr-3">
+                            <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['norte']; ?>%" aria-valuenow="<?= $influence_region['norte']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <h5 class="typo typo-p m-0"><?= $influence_region['norte']; ?>%</h5>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12 mb-3">
-                    <div class="row">
-                      <div class="col-12">
-                        <h5 class="typo typo-p">Região Nordeste</h5>
-                      </div>
-                      <div class="col-12 d-flex align-items-center">
-                        <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['nordeste']; ?>%" aria-valuenow="<?= $influence_region['nordeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                  <?php endif; ?>
+                  <?php if ($influence_region['nordeste'] > 0) : ?>
+                    <div class="col-12 mb-3">
+                      <div class="row">
+                        <div class="col-12">
+                          <h5 class="typo typo-p">Região Nordeste</h5>
                         </div>
-                        <h5 class="typo typo-p m-0"><?= $influence_region['nordeste']; ?>%</h5>
+                        <div class="col-12 d-flex align-items-center">
+                          <div class="progress w-100 mr-3">
+                            <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['nordeste']; ?>%" aria-valuenow="<?= $influence_region['nordeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <h5 class="typo typo-p m-0"><?= $influence_region['nordeste']; ?>%</h5>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12 mb-3">
-                    <div class="row">
-                      <div class="col-12">
-                        <h5 class="typo typo-p">Região Sul</h5>
-                      </div>
-                      <div class="col-12 d-flex align-items-center">
-                        <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['sul']; ?>%" aria-valuenow="<?= $influence_region['sul']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                  <?php endif; ?>
+                  <?php if ($influence_region['sul'] > 0) : ?>
+                    <div class="col-12 mb-3">
+                      <div class="row">
+                        <div class="col-12">
+                          <h5 class="typo typo-p">Região Sul</h5>
                         </div>
-                        <h5 class="typo typo-p m-0"><?= $influence_region['sul']; ?>%</h5>
+                        <div class="col-12 d-flex align-items-center">
+                          <div class="progress w-100 mr-3">
+                            <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['sul']; ?>%" aria-valuenow="<?= $influence_region['sul']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <h5 class="typo typo-p m-0"><?= $influence_region['sul']; ?>%</h5>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12 mb-3">
-                    <div class="row">
-                      <div class="col-12">
-                        <h5 class="typo typo-p">Região Sudeste</h5>
-                      </div>
-                      <div class="col-12 d-flex align-items-center">
-                        <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['sudeste']; ?>%" aria-valuenow="<?= $influence_region['sudeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                  <?php endif; ?>
+                  <?php if ($influence_region['sudeste'] > 0) : ?>
+                    <div class="col-12 mb-3">
+                      <div class="row">
+                        <div class="col-12">
+                          <h5 class="typo typo-p">Região Sudeste</h5>
                         </div>
-                        <h5 class="typo typo-p m-0"><?= $influence_region['sudeste']; ?>%</h5>
+                        <div class="col-12 d-flex align-items-center">
+                          <div class="progress w-100 mr-3">
+                            <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['sudeste']; ?>%" aria-valuenow="<?= $influence_region['sudeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <h5 class="typo typo-p m-0"><?= $influence_region['sudeste']; ?>%</h5>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div class="col-12 mb-3">
-                    <div class="row">
-                      <div class="col-12">
-                        <h5 class="typo typo-p">Região Centro-Oeste</h5>
-                      </div>
-                      <div class="col-12 d-flex align-items-center">
-                        <div class="progress w-100 mr-3">
-                          <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['centro-oeste']; ?>%" aria-valuenow="<?= $influence_region['centro-oeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                  <?php endif; ?>
+                  <?php if ($influence_region['centro-oeste'] > 0) : ?>
+                    <div class="col-12 mb-3">
+                      <div class="row">
+                        <div class="col-12">
+                          <h5 class="typo typo-p">Região Centro-Oeste</h5>
                         </div>
-                        <h5 class="typo typo-p m-0"><?= $influence_region['centro-oeste']; ?>%</h5>
+                        <div class="col-12 d-flex align-items-center">
+                          <div class="progress w-100 mr-3">
+                            <div class="progress-bar" role="progressbar" style="width: <?= $influence_region['centro-oeste']; ?>%" aria-valuenow="<?= $influence_region['centro-oeste']; ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <h5 class="typo typo-p m-0"><?= $influence_region['centro-oeste']; ?>%</h5>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  <?php endif; ?>
                   <div class="col-12">
                     <hr></hr>
                   </div>
