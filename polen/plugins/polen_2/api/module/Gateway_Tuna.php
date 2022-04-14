@@ -113,7 +113,7 @@ class Gateway_Tuna
                     [
                         "PaymentMethodType" => $payment_method_type,
                         "Amount" => floatval($order->get_total()),
-                        "Installments" => $installments,
+                        "Installments" => (int) $installments,
                         "CardInfo" => $card_info,
                     ]
                 ]
@@ -405,9 +405,9 @@ class Gateway_Tuna
 
     protected function check_cpf_cnpj(string $value)
     {
-        $type = 'cnpj';
+        $type = 'CNPJ';
         if (strlen($value) === 11) {
-            $type = 'cpf';
+            $type = 'CPF';
         }
 
         return $type;
