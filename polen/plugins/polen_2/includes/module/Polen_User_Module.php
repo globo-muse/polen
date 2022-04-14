@@ -163,7 +163,12 @@ class Polen_User_Module
      */
     public function get_influence_by_region()
     {
-        return get_field('metrics', 'user_'. $this->user->ID);
+        $influence = get_field('metrics', 'user_'. $this->user->ID);
+        if (empty($influence)) {
+            return null;
+        }
+
+        return $influence;
     }
 
     /**
@@ -173,7 +178,12 @@ class Polen_User_Module
      */
     public function get_age_group(): ?array
     {
-        return get_field('age_group', 'user_'. $this->user->ID);
+        $age_group = get_field('age_group', 'user_'. $this->user->ID);
+        if (empty($age_group)) {
+            return null;
+        }
+
+        return $age_group;
     }
 
     /**
