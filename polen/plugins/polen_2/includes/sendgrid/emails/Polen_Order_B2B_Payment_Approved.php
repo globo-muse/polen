@@ -40,7 +40,7 @@ class Polen_Order_B2B_Payment_Approved
             $address        = $order_module->get_billing_address_full();
             $company_name   = $order_module->get_company_name();
             $cnpj_cpf       = $order_module->get_billing_cnpj_cpf();
-            $order_date     = $order_module->get_date_created();
+            $order_date     = $order_module->get_date_created()->format('d/m/Y');
 
             $retorno = $this->send_email(
                 $email_customer,
