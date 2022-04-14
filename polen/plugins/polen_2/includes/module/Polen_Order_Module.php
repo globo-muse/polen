@@ -154,6 +154,14 @@ class Polen_Order_Module
         return $this->cart_item->get_video_category();
     }
 
+    /**
+     * Pega a parte que o talento fica (0 ~ 1)
+     */
+    public function get_talent_fee()
+    {
+        return $this->cart_item->get_talent_fee();
+    }
+
 
     /**
      * Order B2B
