@@ -355,8 +355,7 @@ class Polen_Order_Module
 
     public function get_billing_address_1()
     {
-        $data = $this->object->get_data();
-        return $data['billing']['address_1'];
+        return $this->object->get_billing_address_1();
     }
 
     public function get_billing_address_2()
