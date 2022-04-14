@@ -31,6 +31,7 @@ if(!empty($_GET['post'])) {
         $instructions_to_video = $polen_order->get_instructions_to_video();
         $licence_in_days       = $polen_order->get_licence_in_days();
         $video_category        = $polen_order->get_video_category();
+        $talent_fee            = $polen_order->get_talent_fee();
     }
 }
 ?>
@@ -39,6 +40,12 @@ if(!empty($_GET['post'])) {
         <p class="form-field form-field-wide">
             <label for="company_name">Video para a empresa</label>
             <input type="text" id="company_name" name="company_name" value="<?= $company_name; ?>" />
+        </p>
+    </div>
+    <div>
+        <p class="form-field form-field-wide">
+            <label for="talent_fee">Parte do Talento (0 ~ 1)</label>
+            <input type="text" id="talent_fee" name="talent_fee" value="<?= $talent_fee; ?>" />
         </p>
     </div>
     <div>

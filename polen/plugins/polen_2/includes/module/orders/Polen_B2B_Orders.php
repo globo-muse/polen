@@ -109,4 +109,11 @@ class Polen_B2B_Orders
             'corporate_name' => 'Razão Social',
         ];
     }
+
+
+
+    public function calculate_totals()
+    {
+        return $this->order->calculate_totals();
+    }
 }

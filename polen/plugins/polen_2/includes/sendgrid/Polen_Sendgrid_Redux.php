@@ -11,4 +11,5 @@ abstract class Polen_Sendgrid_Redux
     const THEME_ID_POLEN_PAYMENT_APPROVED    = 'sendgrid_theme_polen_payment_approved';
     const THEME_ID_POLEN_ORDER_COMPLETED     = 'sendgrid_theme_polen_order_completed';
     const THEME_ID_POLEN_B2B_FORM_TO_CLIENT  = 'sendgrid_theme_polen_b2b_form_to_client';
+    const THEME_ID_POLEN_B2B_PAYMENT_APPROV  = 'sendgrid_theme_polen_b2b_payment_approved';
 }

@@ -3,6 +3,7 @@
 namespace Polen\Api\Module;
 
 use Exception;
+use Polen\Includes\Polen_Order;
 
 class Tuna_Credit_Card extends Gateway_Tuna
 {

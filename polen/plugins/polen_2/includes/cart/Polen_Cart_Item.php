@@ -77,6 +77,15 @@ class Polen_Cart_Item
     {
         return $this->item->get_meta( 'video_category' );
     }
+
+    /**
+     * Pega a quantidade de que o talento fica de venda (0 ~ 1)
+     * @return float
+     */
+    public function get_talent_fee()
+    {
+        return $this->item->get_meta('talent_fee', true);
+    }
     
     
     /**
