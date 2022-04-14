@@ -31,7 +31,7 @@ define( 'JWT_AUTH_CORS_ENABLE', true );
 /**
  * Caso o WP_DEBUG esteja ativo
  */
-if( 'WP_DEBUG' ) {
+if(defined('WP_DEBUG')) {
         // Enable Debug logging to the /wp-content/debug.log file
         define( 'WP_DEBUG_LOG', true );
         // Disable display of errors and warnings
