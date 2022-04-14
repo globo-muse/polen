@@ -8,5 +8,6 @@ use Polen\Includes\Module\Polen_Order_Module;
 
 class Polen_Module_B2B_Only extends Polen_Order_Module
 {
+    public const METAKEY_VALUE = 'b2b_only';
     
 }

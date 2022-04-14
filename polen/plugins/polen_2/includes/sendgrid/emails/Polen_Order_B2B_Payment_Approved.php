@@ -2,7 +2,9 @@
 
 namespace Polen\Includes\Sendgrid\Emails;
 
+use Polen\Includes\Debug;
 use Polen\Includes\Module\Factory\Polen_Order_Module_Factory;
+use Polen\Includes\Module\Orders\Polen_Module_B2B_Only;
 use Polen\Includes\Polen_Order;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Emails;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Redux;
@@ -15,7 +17,6 @@ class Polen_Order_B2B_Payment_Approved
     public function __construct($static = false)
     {
         if($static) {
-            WC_Emails::instance();
             add_action( 'woocommerce_order_status_'.Polen_Order::ORDER_STATUS_PAYMENT_APPROVED, [ $this, 'trigger' ] );
             add_action( 'woocommerce_order_status_'.Polen_Order::ORDER_STATUS_COMPLETED, [ $this, 'trigger' ] );
         }
@@ -28,7 +29,7 @@ class Polen_Order_B2B_Payment_Approved
             $this->object = wc_get_order( $order_id );
         }
         $order_module = Polen_Order_Module_Factory::create_order_from_campaing($this->object);
-        if('b2b' == $order_module->get_campaign_slug()) {
+        if(Polen_Module_B2B_Only::METAKEY_VALUE == $order_module->get_campaign_slug()) {
             $email_customer = $order_module->get_billing_email();
             $name_customer  = $order_module->get_billing_name();
             $instructions   = $order_module->get_instructions_to_video();
@@ -38,7 +39,7 @@ class Polen_Order_B2B_Payment_Approved
             $address        = $order_module->get_billing_address_full();
             $company_name   = $order_module->get_company_name();
             $cnpj_cpf       = $order_module->get_billing_cnpj_cpf();
-            return $this->send_email(
+            $retorno = $this->send_email(
                 $email_customer,
                 $name_customer,
                 $company_name,
@@ -49,6 +50,7 @@ class Polen_Order_B2B_Payment_Approved
                 $talent_name,
                 $address
             );
+            Debug::def($retorno);
         }
     }
 

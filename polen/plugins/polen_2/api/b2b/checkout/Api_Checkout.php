@@ -7,6 +7,7 @@ use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Api\Module\{Tuna_Credit_Card,Tuna_Pix};
 use Polen\Includes\Module\Orders\Polen_B2B_Orders;
 use Polen\Includes\Polen_Create_Customer;
+use WC_Emails;
 use WP_REST_Controller;
 use WP_REST_Request;
 use WP_REST_Server;
@@ -105,7 +106,7 @@ class Api_Checkout extends WP_REST_Controller
             $user = $create_user->create_new_user($data);
 
             $b2b_order = new Polen_B2B_Orders($request['order_id'], $request['key_order']);
-
+            WC_Emails::instance();
             $response = $tuna->payment($request['order_id'], $user, $data);
             $b2b_order->calculate_totals();
             $b2b_order->update_order($data);

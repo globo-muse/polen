@@ -136,9 +136,7 @@ class Polen {
 
         //Email Sandgrid
         //TODO: trocar esse carregamento da classe remover o add_action
-        add_action('init', function() {
-            new Polen_Order_B2B_Payment_Approved(true);
-        });
+        new Polen_Order_B2B_Payment_Approved(true);
     }
 
     /**
