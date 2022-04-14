@@ -33,8 +33,7 @@
                 <ul class="footer-menu">
                   <li><a href="/sobre-nos">Sobre nós</a></li>
                   <li><a href="https://br.linkedin.com/company/polen-me" target="_blank" rel="noreferrer">Trabalhe conosco</a></li>
-                  <li><a href="/ajuda">Ajuda</a></li>
-                  <li><a href="https://polenmais.blogspot.com/" target="_blank" rel="noreferrer">Blog</a></li>
+                  <li><a href="/polenmais" rel="noreferrer">Blog</a></li>
                 </ul>
               </div>
               <div class="col-md-2 mt-4">
@@ -151,8 +150,7 @@
                     <ul class="footer-menu">
                       <li><a href="/sobre-nos">Sobre nós</a></li>
                       <li><a href="https://br.linkedin.com/company/polen-me" target="_blank" rel="noreferrer">Trabalhe conosco</a></li>
-                      <li><a href="/ajuda">Ajuda</a></li>
-                      <li><a href="https://polenmais.blogspot.com/" target="_blank" rel="noreferrer">Blog</a></li>
+                      <li><a href="/polenmais" rel="noreferrer">Blog</a></li>
                     </ul>
                   </div>
                 </div>
