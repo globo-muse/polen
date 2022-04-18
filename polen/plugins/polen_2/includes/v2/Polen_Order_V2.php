@@ -1,6 +1,7 @@
 <?php
 namespace Polen\Includes\v2;
 
+use DateTime;
 use Polen\Includes\Polen_Order;
 use Polen\Includes\Polen_Utils;
 
@@ -76,6 +77,56 @@ class Polen_Order_V2
             os.status IN ( {$status_pattern} )";
         
         $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status ) );
+        $result = $wpdb->get_results( $sql_prepared );
+        if( !empty( $wpdb->last_error ) ) {
+            return null;
+        }
+        $total = $result;
+        return count( $total );
+    }
+
+
+    /**
+     * Pega a quantidade de Orders por Produtos_Ids, Statuses e um Mes
+     * pega o intervalo entre o dia 01 do mês passado no parametro
+     * e o ultimo dia do mês
+     * 
+     * @param array products_ids
+     * @param array statuses
+     * @param int $month
+     * 
+     * @return int
+     */
+    static public function get_qty_orders_by_products_id_status_month( array $products_id, array $status, int $month )
+    {
+        global $wpdb;
+
+        $product_ids_pattern = implode( ', ', array_fill( 0, count( $products_id ), '%s' ) );
+        $status_pattern = implode( ', ', array_fill( 0, count( $status ), '%s' ) );
+        $date_inicial = date("Y") . "-{$month}-01";
+        $last_day_of_month = new DateTime("last day of 2022-{$month}");
+        $last_day = $last_day_of_month->format('d');
+        $date_final = date("Y") . "-{$month}-{$last_day}";
+
+        $sql = "SELECT opl.*,
+            pm_b2b.meta_value AS is_b2b
+        FROM wp_wc_order_product_lookup AS opl
+        INNER JOIN wp_wc_order_stats AS os ON os.order_id = opl.order_id
+        INNER JOIN wp_woocommerce_order_items AS oi ON (
+                oi.order_item_id = opl.order_item_id 
+            AND
+                oi.order_item_type = 'line_item' )
+        INNER JOIN wp_postmeta AS pm_b2b ON (opl.order_id = pm_b2b.post_id AND pm_b2b.meta_key = 'b2b')
+        WHERE
+            opl.product_id IN ( {$product_ids_pattern} )
+        AND
+            os.status IN ( {$status_pattern} )
+        AND
+            pm_b2b.meta_value = '1'
+        AND
+            opl.date_created BETWEEN CAST(%s AS DATE) AND CAST(%s AS DATE)";
+        
+        $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status, [$date_inicial], [$date_final] ) );
         $result = $wpdb->get_results( $sql_prepared );
         if( !empty( $wpdb->last_error ) ) {
             return null;
