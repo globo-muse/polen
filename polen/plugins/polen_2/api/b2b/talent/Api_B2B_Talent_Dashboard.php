@@ -90,6 +90,7 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
         $user = wp_get_current_user();
         $user_polen = new Polen_User_Module($user->ID);
         try{
+            //TODO: Remover os hardcoded
             $this->send_email_request_history_order(
                 'Financeiro',
                 'financeiro@polen.me',
@@ -123,6 +124,7 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
         );
         $send_grid->set_to( $email, $name );
         $send_grid->set_reply_to($talent_email, $talent_name);
+        //TODO: Remover os hardcoded
         $send_grid->set_template_id('d-f709cc4917c34dd5a0a59db3d1789d86');
         $send_grid->set_template_data( 'date', $date );
         $send_grid->set_template_data( 'talent_name', $talent_name );
