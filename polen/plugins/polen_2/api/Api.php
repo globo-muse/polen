@@ -6,6 +6,7 @@ use Polen\Api\b2b\Account\Api_Recover_Password;
 use Polen\Api\Orders\Api_Orders;
 use Polen\Api\Talent\{Api_Talent_Dashboard, Api_Talent_My_Account, Api_Talent_Order, Api_Talent_Payment};
 use Polen\Api\b2b\Checkout\Api_Checkout;
+use Polen\Api\b2b\Talent\Api_B2B_Talent_Dashboard;
 
 class Api {
 
@@ -52,6 +53,9 @@ class Api {
 
             $b2b_account = new Api_Recover_Password();
             $b2b_account->register_routes();
+
+            $b2b_talent = new Api_B2B_Talent_Dashboard();
+            $b2b_talent->register_routes();
         }
     }
 
