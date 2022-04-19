@@ -28,6 +28,7 @@ class Polen_Order
     const ORDER_STATUS_TALENT_ACCEPTED     = 'talent-accepted';
     const ORDER_STATUS_ORDER_EXPIRED       = 'order-expired';
     const ORDER_STATUS_COMPLETED           = 'completed';
+    const ORDER_STATUS_VIDEO_SENDED        = 'video-sended';
 
     const ORDER_STATUS_PAYMENT_IN_REVISION_INSIDE = 'wc-payment-in-revision';
     const ORDER_STATUS_PAYMENT_REJECTED_INSIDE    = 'wc-payment-rejected';
@@ -36,6 +37,7 @@ class Polen_Order
     const ORDER_STATUS_TALENT_ACCEPTED_INSIDE     = 'wc-talent-accepted';
     const ORDER_STATUS_ORDER_EXPIRED_INSIDE       = 'wc-order-expired';
     const ORDER_STATUS_COMPLETED_INSIDE           = 'wc-completed';
+    const ORDER_STATUS_VIDEO_SENDED_INSIDE        = 'wc-video-sended';
 
     const SLUG_ORDER_COMPLETE = 'completed';
     const SLUG_ORDER_COMPLETE_INSIDE = 'wc-completed';
