@@ -7,6 +7,7 @@ use Polen\Api\Talent\Api_Talent_Check_Permission;
 use Polen\Api\Talent\Api_Talent_Dashboard;
 use Polen\Api\Talent\Api_Talent_Utils;
 use Polen\Includes\Module\Polen_User_Module;
+use Polen\Includes\Polen_Order;
 use Polen\Includes\Polen_Order_Review;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Emails;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Redux;
@@ -58,7 +59,14 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
         $month =  date('m');
 
         $response = [
-            'qty_completed_order'   => Polen_Order_V2::get_qty_orders_by_products_id_status_month($products_id, ['wc-completed'], $month),
+            'qty_completed_order'   => Polen_Order_V2::get_qty_orders_by_products_id_status_month(
+                $products_id,
+                [
+                    Polen_Order::ORDER_STATUS_VIDEO_SENDED_INSIDE,
+                    Polen_Order::ORDER_STATUS_COMPLETED_INSIDE
+                ],
+                $month
+            ),
             // 'qty_orders_accepted'   => Polen_Order_V2::get_total_orders_by_products_id_status($products_id, ['wc-talent-accepted']),
             // 'total_pending_value'   => Polen_Order_V2::get_total_orders_by_products_id_status($products_id, ['wc-pending']),
             // 'qty_orders_recorded'   => Polen_Order_V2::get_qty_orders_by_products_id_status($products_id, ['wc-completed']),
