@@ -24,7 +24,7 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
     public function __construct()
     {
         $this->namespace = 'polen/v1';
-        $this->rest_base = 'b2b/talents';
+        $this->rest_base = 'b2b/talents/dashboard';
     }
 
     /**
@@ -32,7 +32,7 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
      */
     public function register_routes()
     {
-        register_rest_route( $this->namespace, $this->rest_base . '/dashboard', [
+        register_rest_route( $this->namespace, $this->rest_base . '/', [
             [
                 'methods' => WP_REST_Server::READABLE,
                 'callback' => [ $this, 'dashboard' ],

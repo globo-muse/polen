@@ -16,15 +16,13 @@ class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
      */
     public function __construct()
     {
-        // $this->namespace = 'polen/v1';
-        // $this->rest_base = 'b2b/orders';
         parent::__construct();
     }
 
 
     public function register_routes()
     {
-        register_rest_route( $this->namespace, $this->rest_base . '/(?P<order_id>[\d]+)/history-orders', [
+        register_rest_route( $this->namespace, $this->rest_base . '/history-orders', [
             [
                 'methods' => WP_REST_Server::CREATABLE,
                 'callback' => [ $this, 'handler_request_history_order' ],
@@ -33,7 +31,7 @@ class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
             ],
         ] );
 
-        register_rest_route( $this->namespace, $this->rest_base . '/transference-order', [
+        register_rest_route( $this->namespace, $this->rest_base . '/(?P<order_id>[\d]+)/transference-order', [
             [
                 'methods' => WP_REST_Server::CREATABLE,
                 'callback' => [ $this, 'handler_request_order_receipt' ],
@@ -98,6 +96,7 @@ class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
         }
     }
 
+    
     /**
      * Enviar email Via SendGrid API
      */
