@@ -2,6 +2,8 @@
 namespace Polen\Includes\v2;
 
 use DateTime;
+use Polen\Api\Api_Checkout;
+use Polen\Includes\Module\Orders\Polen_Module_B2B_Only;
 use Polen\Includes\Polen_Order;
 use Polen\Includes\Polen_Utils;
 
@@ -103,10 +105,13 @@ class Polen_Order_V2
 
         $product_ids_pattern = implode( ', ', array_fill( 0, count( $products_id ), '%s' ) );
         $status_pattern = implode( ', ', array_fill( 0, count( $status ), '%s' ) );
-        $date_inicial = date("Y") . "-{$month}-01";
+        $date_initial = date("Y") . "-{$month}-01";
         $last_day_of_month = new DateTime("last day of 2022-{$month}");
         $last_day = $last_day_of_month->format('d');
         $date_final = date("Y") . "-{$month}-{$last_day}";
+
+        $metakey = Api_Checkout::ORDER_METAKEY;
+        $meta_value = Polen_Module_B2B_Only::METAKEY_VALUE;
 
         $sql = "SELECT opl.*,
             pm_b2b.meta_value AS is_b2b
@@ -116,17 +121,17 @@ class Polen_Order_V2
                 oi.order_item_id = opl.order_item_id 
             AND
                 oi.order_item_type = 'line_item' )
-        INNER JOIN wp_postmeta AS pm_b2b ON (opl.order_id = pm_b2b.post_id AND pm_b2b.meta_key = 'b2b')
+        INNER JOIN wp_postmeta AS pm_b2b ON (opl.order_id = pm_b2b.post_id AND pm_b2b.meta_key = '{$metakey}')
         WHERE
             opl.product_id IN ( {$product_ids_pattern} )
         AND
             os.status IN ( {$status_pattern} )
         AND
-            pm_b2b.meta_value = '1'
+            pm_b2b.meta_value = '{$meta_value}'
         AND
             opl.date_created BETWEEN CAST(%s AS DATE) AND CAST(%s AS DATE)";
         
-        $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status, [$date_inicial], [$date_final] ) );
+        $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status, [$date_initial], [$date_final] ) );
         $result = $wpdb->get_results( $sql_prepared );
         if( !empty( $wpdb->last_error ) ) {
             return null;
