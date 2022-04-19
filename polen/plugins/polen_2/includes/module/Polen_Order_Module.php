@@ -403,4 +403,19 @@ class Polen_Order_Module
         return $this->object->get_date_created();
     }
     
+    public function get_form_of_payment()
+    {
+        return $this->cart_item->get_form_of_payment();
+    }
+
+    public function get_value_payment_talent()
+    {
+        return $this->cart_item->get_value_payment_talent();
+    }
+
+    public function get_payday()
+    {
+        return $this->cart_item->get_payday();
+    }
+    
 }
