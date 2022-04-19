@@ -2,21 +2,23 @@
 namespace Polen\Api\B2B\Talent;
 
 use Exception;
+use Polen\Api\b2b\Talent\Api_B2B_Talent_Dashboard;
 use Polen\Includes\Module\Polen_User_Module;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Emails;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Redux;
 use WP_REST_Request;
 use WP_REST_Server;
 
-class Api_B2B_Talent_Orders
+class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
 {
     /**
      * Metodo construtor
      */
     public function __construct()
     {
-        $this->namespace = 'polen/v1';
-        $this->rest_base = 'b2b/orders';
+        // $this->namespace = 'polen/v1';
+        // $this->rest_base = 'b2b/orders';
+        parent::__construct();
     }
 
 
@@ -34,7 +36,7 @@ class Api_B2B_Talent_Orders
         register_rest_route( $this->namespace, $this->rest_base . '/transference-order', [
             [
                 'methods' => WP_REST_Server::CREATABLE,
-                'callback' => [ $this, 'handler_request_order_transference' ],
+                'callback' => [ $this, 'handler_request_order_receipt' ],
                 'permission_callback' => [ Api_Talent_Check_Permission::class, 'check_permission' ],
                 'args' => []
             ],
@@ -73,7 +75,7 @@ class Api_B2B_Talent_Orders
      * @param WP_REST_Request
      * @return WP_REST_Response
      */
-    public function handler_request_order_transference(WP_REST_Request $request)
+    public function handler_request_order_receipt(WP_REST_Request $request)
     {
         $user = wp_get_current_user();
         $user_polen = new Polen_User_Module($user->ID);
@@ -106,7 +108,8 @@ class Api_B2B_Talent_Orders
 		$talent_name,
         $talent_email,
         $date,
-        $order_id = null)
+        $order_id = null,
+        $payment_date = null)
 	{
 
         global $Polen_Plugin_Settings;
@@ -122,7 +125,9 @@ class Api_B2B_Talent_Orders
         $send_grid->set_template_data( 'date', $date );
         $send_grid->set_template_data( 'talent_name', $talent_name );
         $send_grid->set_template_data( 'talent_email', $talent_email );
+        $send_grid->set_template_data( 'talent_email', $talent_email );
         $send_grid->set_template_data( 'order_id', $order_id );
+        $send_grid->set_template_data( 'payment_date', $payment_date );
 
         return $send_grid->send_email();
     }
