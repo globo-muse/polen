@@ -5,7 +5,6 @@ use Polen\Includes\Module\Polen_Order_Module;
 $payments = [
     "Transferência",
     "Pix",
-    "Cartão de crédito",
 ];
 
 $form_of_payment = $payday = $value_payment_talent = '';
