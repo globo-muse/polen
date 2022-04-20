@@ -226,6 +226,9 @@ class Polen_Order_V2
         $product_ids_pattern = implode( ', ', array_fill( 0, count( $products_id ), '%s' ) );
         $status_pattern = implode( ', ', array_fill( 0, count( $status ), '%s' ) );
 
+        $metakey = Api_Checkout::ORDER_METAKEY;
+        $meta_value = Polen_Module_B2B_Only::METAKEY_VALUE;
+
         $sql = "SELECT opl.*,
             pm_b2b.meta_value AS is_b2b
         FROM wp_wc_order_product_lookup AS opl
@@ -234,13 +237,13 @@ class Polen_Order_V2
                 oi.order_item_id = opl.order_item_id 
             AND
                 oi.order_item_type = 'line_item' )
-        INNER JOIN wp_postmeta AS pm_b2b ON (opl.order_id = pm_b2b.post_id AND pm_b2b.meta_key = 'b2b')
+        INNER JOIN wp_postmeta AS pm_b2b ON (opl.order_id = pm_b2b.post_id AND pm_b2b.meta_key = {$metakey})
         WHERE
             opl.product_id IN ( {$product_ids_pattern} )
         AND
             os.status IN ( {$status_pattern} )
         AND
-            pm_b2b.meta_value = '1'
+            pm_b2b.meta_value = {$meta_value}
         ORDER BY opl.order_id DESC;";
 
         $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status ) );
