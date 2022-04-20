@@ -240,7 +240,8 @@ class Polen_Order_V2
         AND
             os.status IN ( {$status_pattern} )
         AND
-            pm_b2b.meta_value = '1'";
+            pm_b2b.meta_value = '1'
+        ORDER BY opl.order_id DESC;";
 
         $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status ) );
 
