@@ -3,6 +3,7 @@ namespace Polen\Api\B2B\Talent;
 
 use Exception;
 use Polen\Api\b2b\Talent\Api_B2B_Talent_Dashboard;
+use Polen\Api\Talent\Api_Talent_Check_Permission;
 use Polen\Includes\Module\Polen_User_Module;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Emails;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Redux;
