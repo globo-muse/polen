@@ -133,6 +133,7 @@ class Polen {
 
         // Iniciar Polen Campaign
         new Polen_Campaign( true );
+        new Polen_Uses_Case( true );
 
         //Email Sandgrid
         //TODO: trocar esse carregamento da classe remover o add_action
