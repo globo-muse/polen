@@ -392,6 +392,7 @@ class Polen_Order_Module
     {
         return $this->object->get_billing_state();
     }
+
     
     public function calculate_totals()
     {

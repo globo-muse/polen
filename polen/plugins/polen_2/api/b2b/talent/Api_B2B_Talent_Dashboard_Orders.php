@@ -98,23 +98,27 @@ class Api_B2B_Talent_Dashboard_Orders extends Api_B2B_Talent_Dashboard
 
             $product_name = $product_order->get_title();
             $date = $date_created->date('Y-m-d h:i:s');
-            $company = $polen_order->get_company_name();
+            $company_name = $polen_order->get_company_name();
             $cnpj_cpf = $polen_order->get_billing_cnpj_cpf();
             $cep = $polen_order->get_billing_postcode();
             $address = $polen_order->get_billing_address_1();
+            $address_2 = $polen_order->get_billing_address_2();
             $category_video = $polen_order->get_video_category();
             $status = $polen_order->get_status();
             $total_talent = !empty($total_for_talent) ? $total_for_talent : $polen_order->get_total_for_talent();
+            $total_order = $polen_order->get_total();
 
             $data = compact('product_name',
                 'date',
-                'company',
+                'company_name',
                 'cnpj_cpf',
                 'cep',
                 'address',
+                'address_2',
                 'category_video',
                 'status',
                 'total_talent',
+                'total_order'
             );
 
             return api_response($data);
