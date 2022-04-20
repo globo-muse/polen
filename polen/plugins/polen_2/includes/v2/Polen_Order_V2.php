@@ -237,13 +237,13 @@ class Polen_Order_V2
                 oi.order_item_id = opl.order_item_id 
             AND
                 oi.order_item_type = 'line_item' )
-        INNER JOIN wp_postmeta AS pm_b2b ON (opl.order_id = pm_b2b.post_id AND pm_b2b.meta_key = {$metakey})
+        INNER JOIN wp_postmeta AS pm_b2b ON (opl.order_id = pm_b2b.post_id AND pm_b2b.meta_key = '{$metakey}')
         WHERE
             opl.product_id IN ( {$product_ids_pattern} )
         AND
             os.status IN ( {$status_pattern} )
         AND
-            pm_b2b.meta_value = {$meta_value}
+            pm_b2b.meta_value = '{$meta_value}'
         ORDER BY opl.order_id DESC;";
 
         $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status ) );
