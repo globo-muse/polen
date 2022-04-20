@@ -5,7 +5,7 @@ use Exception;
 use Polen\Api\Api_Util_Security;
 use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Api\Module\{Tuna_Credit_Card,Tuna_Pix};
-use Polen\Includes\Module\Orders\Polen_B2B_Orders;
+use Polen\Includes\Module\Resource\Polen_B2B_Orders;
 use Polen\Includes\Polen_Create_Customer;
 use WC_Emails;
 use WP_REST_Controller;
