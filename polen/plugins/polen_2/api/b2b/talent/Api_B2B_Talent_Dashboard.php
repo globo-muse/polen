@@ -67,7 +67,7 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
                 ],
                 $month
             ),
-            // 'qty_orders_accepted'   => Polen_Order_V2::get_total_orders_by_products_id_status($products_id, ['wc-talent-accepted']),
+            'total_will_recive'   => 0,
             // 'total_pending_value'   => Polen_Order_V2::get_total_orders_by_products_id_status($products_id, ['wc-pending']),
             // 'qty_orders_recorded'   => Polen_Order_V2::get_qty_orders_by_products_id_status($products_id, ['wc-completed']),
             // 'qty_orders_expired'    => Polen_Order_V2::get_qty_orders_by_products_id_status($products_id, ['wc-order-expired']),
