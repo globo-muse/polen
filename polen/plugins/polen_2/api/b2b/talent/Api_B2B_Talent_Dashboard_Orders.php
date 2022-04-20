@@ -61,16 +61,20 @@ class Api_B2B_Talent_Dashboard_Orders extends Api_B2B_Talent_Dashboard
                 $order = wc_get_order($b2b_order->order_id);
                 $polen_order = new Polen_Order_Module($order);
                 $date_created = $polen_order->get_date_created();
-                $total_for_talent = $polen_order->get_value_payment_talent();
+                $total_for_talent = !empty($polen_order->get_value_payment_talent())
+                    ? $polen_order->get_value_payment_talent()
+                    : $polen_order->get_total_for_talent();
 
                 $data[] = [
-                    'order_id' => $polen_order->get_id(),
-                    'total_talent' => !empty($total_for_talent) ? $total_for_talent : $polen_order->get_total_for_talent(),
-                    'total_order' => (int) $polen_order->get_total(),
+                    'order_id' => $polen_order->get_id()    ,
                     'corporate_name' => $polen_order->get_corporate_name(),
                     'video_category' => $polen_order->get_video_category(),
                     'status' => $polen_order->get_status(),
                     'date' => $date_created->date('Y-m-d h:i:s'),
+                    'total_order' => (int) $polen_order->get_total(),
+                    'total_talent' => $polen_order->get_value_payment_talent() ?? $total_for_talent,
+                    'payment' => $polen_order->get_form_of_payment() ?? '',
+                    'payday' => $polen_order->get_payday() ?? '',
                 ];
             }
 
