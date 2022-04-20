@@ -77,7 +77,7 @@ class Polen_Uses_Case
                     'taxonomy' => self::TAXONOMY_TERM,
                     'field' => 'slug',
                     'terms' => $slug,
-                    'operator' => '=',
+                    'operator' => 'IN',
                     )
                 ),
         ));

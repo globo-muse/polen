@@ -2,16 +2,13 @@
 
 namespace Polen\Api\b2b\Talent;
 
-use Exception;
 use Polen\Api\Talent\Api_Talent_Check_Permission;
 use Polen\Api\Talent\Api_Talent_Dashboard;
 use Polen\Api\Talent\Api_Talent_Utils;
-use Polen\Includes\Module\Polen_User_Module;
+use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Includes\Polen_Order;
-use Polen\Includes\Polen_Order_Review;
-use Polen\Includes\Sendgrid\Polen_Sendgrid_Emails;
-use Polen\Includes\Sendgrid\Polen_Sendgrid_Redux;
 use Polen\Includes\v2\Polen_Order_V2;
+use WC_Order;
 use WP_REST_Request;
 use WP_REST_Response;
 use WP_REST_Server;
@@ -53,7 +50,6 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
         $product_id   = implode($products_id);
         $product      = wc_get_product($product_id);
         $product_post = get_post($product->get_id());
-        $talent       = get_user_by('id', $product_post->post_author);
 
         // $reviews = Polen_Order_Review::get_order_reviews_by_talent_id($talent->ID);
         $month =  date('m');
@@ -67,7 +63,7 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
                 ],
                 $month
             ),
-            'total_will_recive'   => 0,
+            'total_will_recive'        => $this->calculate_to_receive_orders($products_id),
             // 'total_pending_value'   => Polen_Order_V2::get_total_orders_by_products_id_status($products_id, ['wc-pending']),
             // 'qty_orders_recorded'   => Polen_Order_V2::get_qty_orders_by_products_id_status($products_id, ['wc-completed']),
             // 'qty_orders_expired'    => Polen_Order_V2::get_qty_orders_by_products_id_status($products_id, ['wc-order-expired']),
@@ -77,5 +73,21 @@ class Api_B2B_Talent_Dashboard extends Api_Talent_Dashboard
         ];
 
         return api_response($response);
+    }
+
+
+    /**
+     * 
+     */
+    protected function calculate_to_receive_orders($products_id)
+    {
+        $orders_raw = Polen_Order_V2::get_orders_by_products_id_status($products_id, [Polen_Order::ORDER_STATUS_VIDEO_SENDED_INSIDE]);
+        $total = 0;
+        foreach($orders_raw as $order) {
+            $order_obj = new WC_Order($order->order_id);
+            $order_polen = new Polen_Order_Module($order_obj);
+            $total += $order_polen->get_total_for_talent();
+        }
+        return $total;
     }
 }
