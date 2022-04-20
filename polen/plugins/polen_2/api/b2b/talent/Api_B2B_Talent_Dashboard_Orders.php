@@ -66,8 +66,8 @@ class Api_B2B_Talent_Dashboard_Orders extends Api_B2B_Talent_Dashboard
                     : $polen_order->get_total_for_talent();
 
                 $data[] = [
-                    'order_id' => $polen_order->get_id()    ,
-                    'corporate_name' => $polen_order->get_corporate_name(),
+                    'order_id' => $polen_order->get_id(),
+                    'company_name' => $polen_order->get_company_name(),
                     'video_category' => $polen_order->get_video_category(),
                     'status' => $polen_order->get_status(),
                     'date' => $date_created->date('Y-m-d h:i:s'),
