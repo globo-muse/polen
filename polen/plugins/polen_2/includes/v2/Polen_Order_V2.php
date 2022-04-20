@@ -212,4 +212,38 @@ class Polen_Order_V2
 
         return $wpdb->get_results($sql_prepared, ARRAY_A);
     }
+
+    /**
+     * Retornar todas as orders B2B do talento de acordo com o status informado
+     *
+     * @param array products_ids
+     * @param array statuses
+     */
+    static public function get_b2b_orders_id_by_products_id_status(array $products_id, array $status): array
+    {
+        global $wpdb;
+
+        $product_ids_pattern = implode( ', ', array_fill( 0, count( $products_id ), '%s' ) );
+        $status_pattern = implode( ', ', array_fill( 0, count( $status ), '%s' ) );
+
+        $sql = "SELECT opl.*,
+            pm_b2b.meta_value AS is_b2b
+        FROM wp_wc_order_product_lookup AS opl
+        INNER JOIN wp_wc_order_stats AS os ON os.order_id = opl.order_id
+        INNER JOIN wp_woocommerce_order_items AS oi ON (
+                oi.order_item_id = opl.order_item_id 
+            AND
+                oi.order_item_type = 'line_item' )
+        INNER JOIN wp_postmeta AS pm_b2b ON (opl.order_id = pm_b2b.post_id AND pm_b2b.meta_key = 'b2b')
+        WHERE
+            opl.product_id IN ( {$product_ids_pattern} )
+        AND
+            os.status IN ( {$status_pattern} )
+        AND
+            pm_b2b.meta_value = '1'";
+
+        $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status ) );
+
+        return $wpdb->get_results($sql_prepared);
+    }
 }
