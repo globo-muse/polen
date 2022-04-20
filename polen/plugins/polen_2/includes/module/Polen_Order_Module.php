@@ -293,7 +293,12 @@ class Polen_Order_Module
 
     public function get_total_for_talent()
     {
-        return $this->object->get_total() * 0.75;
+        $fee = $this->get_talent_fee();
+        if($fee === "") {
+            $fee = 0.75;
+        }
+        $fee = floatval($fee);
+        return $this->object->get_total() * $fee;
     }
 
 

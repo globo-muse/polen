@@ -174,6 +174,40 @@ class Polen_Order_V2
         return floatval( $result );
     }
 
+
+    /**
+     * Pega o total em R$ das Orders por Produtos_Ids e Statuses
+     * 
+     * @param array products_ids
+     * @param array statuses
+     * 
+     * @return array
+     */
+    static public function get_orders_by_products_id_status( array $products_id, array $status )
+    {
+        global $wpdb;
+
+        $product_ids_pattern = Polen_Utils::pattern_array( $products_id );
+        $status_pattern = Polen_Utils::pattern_array( $status );
+        
+        $sql = "SELECT
+            opl.*
+        FROM
+            wp_wc_order_product_lookup AS opl
+        INNER JOIN wp_wc_order_stats AS os ON ( os.order_id = opl.order_id )
+        WHERE
+            opl.product_id IN ( $product_ids_pattern )
+        AND
+            os.status IN ( $status_pattern );";
+
+        $sql_prepared = Polen_Utils::esc_arr( $sql, array_merge( $products_id, $status ) );
+        $result = $wpdb->get_results( $sql_prepared );
+        if( !empty( $wpdb->last_error ) ) {
+            return null;
+        }
+        return $result;
+    }
+
     /**
      * Pegar a quantidade de Orders por Produtos_Id e Deadline
      *
