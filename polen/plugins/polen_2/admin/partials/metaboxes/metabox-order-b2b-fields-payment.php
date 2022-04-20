@@ -31,7 +31,12 @@ if(!empty($_GET['post'])) {
     <div>
         <p class="form-field form-field-wide">
             <label for="value_payment_talent">Valor pago para o talento</label>
-            <input type="text" id="value_payment_talent" name="value_payment_talent" value="<?= $value_payment_talent; ?>" />
+            <input type="text"
+                   placeholder="Ex: 2000 (dois mil, sem pontos)"
+                   id="value_payment_talent"
+                   name="value_payment_talent"
+                   value="<?= $value_payment_talent; ?>"
+            />
         </p>
     </div>
     <div>
