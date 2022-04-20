@@ -403,19 +403,31 @@ class Polen_Order_Module
     {
         return $this->object->get_date_created();
     }
-    
+
     public function get_form_of_payment()
     {
+        if (!$this->object->has_status('completed')) {
+            return null;
+        }
+
         return $this->cart_item->get_form_of_payment();
     }
 
     public function get_value_payment_talent()
     {
+        if (!$this->object->has_status('completed')) {
+            return null;
+        }
+
         return $this->cart_item->get_value_payment_talent();
     }
 
     public function get_payday()
     {
+        if (!$this->object->has_status('completed')) {
+            return null;
+        }
+
         return $this->cart_item->get_payday();
     }
     
