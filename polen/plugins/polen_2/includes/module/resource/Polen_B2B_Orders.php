@@ -1,5 +1,5 @@
 <?php
-namespace Polen\Includes\Module\Orders;
+namespace Polen\Includes\Module\Resource;
 
 use Exception;
 use Polen\Includes\Module\Polen_Order_Module;
