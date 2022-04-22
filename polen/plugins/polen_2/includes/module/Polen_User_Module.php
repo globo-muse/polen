@@ -5,6 +5,7 @@ defined('ABSPATH') || die;
 
 use Exception;
 use Polen\Includes\Polen_SignInUser_Strong_Password;
+use Polen\Includes\Polen_Talent;
 
 class Polen_User_Module
 {
@@ -197,5 +198,41 @@ class Polen_User_Module
             'man' => get_field('man', 'user_'. $this->user->ID),
             'woman' => get_field('woman', 'user_'. $this->user->ID),
         ];
+    }
+
+
+
+    public function get_nome_fantasia()
+    {
+        $user_id = $this->get_id();
+        $polen_talent = new Polen_Talent();
+        $products = $polen_talent->get_product_id_by_talent_id($user_id);
+        var_dump($products);die;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Compartamento Padrao do WC
+     */
+    public function get_id()
+    {
+        return $this->user->ID;
+    }
+
+    /**
+     * Compartamento Padrao do WC
+     */
+    public function get_email()
+    {
+        return $this->user->user_email;
     }
 }

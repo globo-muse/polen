@@ -272,6 +272,21 @@ class Polen_Order_Module
         return $is_first_order == '1' ? true : false;
     }
 
+    
+    /**
+     * Pegar o total a ser pago ao talento
+     * @return float
+     */
+    public function get_total_for_talent()
+    {
+        $fee = $this->get_talent_fee();
+        if($fee === "") {
+            $fee = 0.75;
+        }
+        $fee = floatval($fee);
+        return $this->object->get_total() * $fee;
+    }
+
 
     /**
      * Comportamento Padrão do WC_Order
@@ -290,17 +305,6 @@ class Polen_Order_Module
     {
         return $this->object->get_status();
     }
-
-    public function get_total_for_talent()
-    {
-        $fee = $this->get_talent_fee();
-        if($fee === "") {
-            $fee = 0.75;
-        }
-        $fee = floatval($fee);
-        return $this->object->get_total() * $fee;
-    }
-
 
     public function get_total()
     {
