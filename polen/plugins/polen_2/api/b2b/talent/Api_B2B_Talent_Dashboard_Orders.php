@@ -96,9 +96,6 @@ class Api_B2B_Talent_Dashboard_Orders extends Api_B2B_Talent_Dashboard
             }
 
             $polen_order = new Polen_Order_Module($order);
-
-            $total_for_talent = $polen_order->get_value_payment_talent();
-
             $product_order = $polen_order->get_product_from_order();
             $date_created = $polen_order->get_date_created();
 
@@ -112,7 +109,9 @@ class Api_B2B_Talent_Dashboard_Orders extends Api_B2B_Talent_Dashboard
             $address_2 = $polen_order->get_billing_address_2();
             $category_video = $polen_order->get_video_category();
             $status = $polen_order->get_status();
-            $total_talent = !empty($total_for_talent) ? $total_for_talent : $polen_order->get_total_for_talent();
+            $total_talent = !empty($polen_order->get_value_payment_talent())
+                ? $polen_order->get_value_payment_talent()
+                : $polen_order->get_total_for_talent();
             $total_order = $polen_order->get_total();
 
             $data = compact(

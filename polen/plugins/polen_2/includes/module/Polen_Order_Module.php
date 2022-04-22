@@ -424,11 +424,12 @@ class Polen_Order_Module
 
     public function get_value_payment_talent()
     {
-        if (!$this->object->has_status('completed')) {
-            return null;
+        $value_payment = $this->cart_item->get_value_payment_talent();
+        if (empty($value_payment)) {
+            return $this->get_talent_fee();
         }
 
-        return $this->cart_item->get_value_payment_talent();
+        return $value_payment;
     }
 
     public function get_payday()
