@@ -53,18 +53,19 @@ class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
         $user = wp_get_current_user();
         $user_polen = new Polen_User_Module($user->ID);
         try{
-            //TODO: Remover os hardcoded
-            $this->send_email_request_history_order(
+            global $Polen_Plugin_Settings;
+            $email_recipe = $Polen_Plugin_Settings['recipient_email_polen_finance'];
+            $response_sendgrid = $this->send_email(
                 'd-f709cc4917c34dd5a0a59db3d1789d86',
                 'Financeiro',
-                'financeiro@polen.me',
+                $email_recipe,
                 $user->user_firstname,
                 $user_polen->get_receiving_email(),
                 date('d/m/Y')
             );
             return api_response('success');
         } catch(Exception $e) {
-            return api_response('error', $e->getCode());
+            return api_response(json_decode($e->getMessage()), $e->getCode());
         }
     }
 
@@ -81,11 +82,12 @@ class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
         $order_id = $request['order_id'];
 
         try{
-            //TODO: Remover os hardcoded
-            $this->send_email_request_history_order(
+            global $Polen_Plugin_Settings;
+            $email_recipe = $Polen_Plugin_Settings['recipient_email_polen_finance'];
+            $response_sendgrid = $this->send_email(
                 'd-6e9dd8828d924f1196fba70bb66d37e3',
                 'Financeiro',
-                'financeiro@polen.me',
+                $email_recipe,
                 $user->user_firstname,
                 $user_polen->get_receiving_email(),
                 date('d/m/Y'),
@@ -101,7 +103,7 @@ class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
     /**
      * Enviar email Via SendGrid API
      */
-	public function send_email_request_history_order(
+	public function send_email(
         $template_id,
 		$name,
 		$email,
@@ -111,7 +113,6 @@ class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
         $order_id = null,
         $payment_date = null)
 	{
-
         global $Polen_Plugin_Settings;
         $apikeySendgrid = $Polen_Plugin_Settings[ Polen_Sendgrid_Redux::APIKEY ];
         $send_grid = new Polen_Sendgrid_Emails( $apikeySendgrid );
@@ -128,7 +129,12 @@ class Api_B2B_Talent_Orders_Receipt extends Api_B2B_Talent_Dashboard
         $send_grid->set_template_data( 'talent_email', $talent_email );
         $send_grid->set_template_data( 'order_id', $order_id );
         $send_grid->set_template_data( 'payment_date', $payment_date );
-
-        return $send_grid->send_email();
+        
+        $sendgrid_response = $send_grid->send_email();
+        $success_http_codes = [200,201,202];
+        if(!in_array($sendgrid_response->statusCode(), $success_http_codes)) {
+            throw new Exception($sendgrid_response->body(), $sendgrid_response->statusCode());
+        }
+        return $sendgrid_response;
     }
 }

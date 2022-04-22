@@ -563,6 +563,13 @@ class Polen_Plugin_Settings
                     'desc'     => 'Emails serarados por Virgura',
                     'default'  => '',
                 ),
+                array(
+                    'id'       => 'recipient_email_polen_finance',
+                    'type'     => 'text',
+                    'title'    => esc_html__('Configurar email de destinatário polen financeiro', 'polen'),
+                    'desc'     => 'Email do Financeiro(apenas 1 email)',
+                    'default'  => '',
+                ),
             )
         ) );
 
