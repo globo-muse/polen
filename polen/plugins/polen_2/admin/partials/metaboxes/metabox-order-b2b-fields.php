@@ -34,6 +34,9 @@ if(!empty($_GET['post'])) {
         $talent_fee            = $polen_order->get_talent_fee();
     }
 }
+if(!isset($talent_fee) || $talent_fee === "") {
+    $talent_fee = 0.75;
+}
 ?>
 <div class="wrap">
     <div>
