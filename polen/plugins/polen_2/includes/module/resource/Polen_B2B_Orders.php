@@ -1,5 +1,5 @@
 <?php
-namespace Polen\Includes\Module\Orders;
+namespace Polen\Includes\Module\Resource;
 
 use Exception;
 use Polen\Includes\Module\Polen_Order_Module;
@@ -108,5 +108,12 @@ class Polen_B2B_Orders
             'cnpj' => 'CNPJ',
             'corporate_name' => 'Razão Social',
         ];
+    }
+
+
+
+    public function calculate_totals()
+    {
+        return $this->order->calculate_totals();
     }
 }

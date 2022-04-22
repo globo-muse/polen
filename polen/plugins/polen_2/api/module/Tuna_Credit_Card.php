@@ -3,6 +3,7 @@
 namespace Polen\Api\Module;
 
 use Exception;
+use Polen\Includes\Polen_Order;
 
 class Tuna_Credit_Card extends Gateway_Tuna
 {
@@ -72,6 +73,7 @@ class Tuna_Credit_Card extends Gateway_Tuna
         $response_message = parent::get_response_message($new_status);
 
         $order = wc_get_order($order_id);
+        $order->set_customer_id($current_user['user_object']->data->ID);
         $order->update_status($new_status);
 
         $response_payment = [

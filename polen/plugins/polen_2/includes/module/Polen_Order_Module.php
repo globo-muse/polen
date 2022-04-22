@@ -1,7 +1,6 @@
 <?php
 namespace Polen\Includes\Module;
 
-use Exception;
 use Polen\Admin\Polen_Admin_Event_Promotional_Event_Fields;
 use Polen\Api\Api_Checkout;
 use Polen\Includes\Cart\Polen_Cart_Item;
@@ -50,6 +49,15 @@ class Polen_Order_Module
     public function get_product_from_order()
     {
         return $this->cart_item->get_product();
+    }
+
+    public function get_talent_name()
+    {
+        $product = $this->get_product_from_order();
+        if(!empty($product)) {
+            return $product->get_title();
+        }
+        return '-';
     }
 
 
@@ -145,6 +153,14 @@ class Polen_Order_Module
         return $this->cart_item->get_video_category();
     }
 
+    /**
+     * Pega a parte que o talento fica (0 ~ 1)
+     */
+    public function get_talent_fee()
+    {
+        return $this->cart_item->get_talent_fee();
+    }
+
 
     /**
      * Order B2B
@@ -219,6 +235,31 @@ class Polen_Order_Module
         HTML;
     }
 
+    /**
+     * Retorna o nome cadastrado de cobrança
+     * @return string
+     */
+    public function get_billing_name()
+    {
+        return $this->get_billing_first_name() . ' ' . $this->get_billing_last_name();
+    }
+
+
+    /**
+     * Retorna o endereço completo cadastrado na cobrança
+     * @return string
+     */
+    public function get_billing_address_full()
+    {
+        return  '' . 
+                $this->get_billing_address_1() . ' ' .
+                $this->get_billing_address_2() . ', ' .
+                $this->get_billing_city() . ' - ' .
+                $this->get_billing_state() . ' ' .
+                $this->get_billing_postcode();
+    }
+
+
 
     /**
      * Verifica se é a FirstOrder
@@ -231,7 +272,25 @@ class Polen_Order_Module
         return $is_first_order == '1' ? true : false;
     }
 
+    
+    /**
+     * Pegar o total a ser pago ao talento
+     * @return float
+     */
+    public function get_total_for_talent()
+    {
+        $fee = $this->get_talent_fee();
+        if($fee === "") {
+            $fee = 0.75;
+        }
+        $fee = floatval($fee);
+        return $this->object->get_total() * $fee;
+    }
 
+
+    /**
+     * Comportamento Padrão do WC_Order
+     */
     public function get_id()
     {
         return $this->object->get_id();
@@ -246,12 +305,6 @@ class Polen_Order_Module
     {
         return $this->object->get_status();
     }
-
-    public function get_total_for_talent()
-    {
-        return $this->object->get_total() * 0.75;
-    }
-
 
     public function get_total()
     {
@@ -293,4 +346,99 @@ class Polen_Order_Module
     {
         return $this->cart_item->get_installments();
     }
+
+    public function get_billing_email()
+    {
+        return $this->object->get_billing_email();
+    }
+
+    public function get_billing_first_name()
+    {
+        return $this->object->get_billing_first_name();
+    }
+
+    public function get_billing_last_name()
+    {
+        return $this->object->get_billing_last_name();
+    }
+
+    public function get_billing_address_1()
+    {
+        return $this->object->get_billing_address_1();
+    }
+
+    public function get_billing_address_2()
+    {
+        return $this->object->get_billing_address_2();
+    }
+
+    public function get_billing_city()
+    {
+        return $this->object->get_billing_city();
+    }
+    
+    public function get_billing_company()
+    {
+        return $this->object->get_billing_company();
+    }
+    
+    public function get_billing_country()
+    {
+        return $this->object->get_billing_country();
+    }
+    
+    public function get_billing_phone()
+    {
+        return $this->object->get_billing_phone();
+    }
+    
+    public function get_billing_postcode()
+    {
+        return $this->object->get_billing_postcode();
+    }
+    
+    public function get_billing_state()
+    {
+        return $this->object->get_billing_state();
+    }
+
+    
+    public function calculate_totals()
+    {
+        return $this->object->calculate_totals();
+    }
+
+    public function get_date_created()
+    {
+        return $this->object->get_date_created();
+    }
+
+    public function get_form_of_payment()
+    {
+        if (!$this->object->has_status('completed')) {
+            return null;
+        }
+
+        return $this->cart_item->get_form_of_payment();
+    }
+
+    public function get_value_payment_talent()
+    {
+        $value_payment = $this->cart_item->get_value_payment_talent();
+        if (empty($value_payment)) {
+            return $this->get_talent_fee();
+        }
+
+        return $value_payment;
+    }
+
+    public function get_payday()
+    {
+        if (!$this->object->has_status('completed')) {
+            return null;
+        }
+
+        return $this->cart_item->get_payday();
+    }
+    
 }

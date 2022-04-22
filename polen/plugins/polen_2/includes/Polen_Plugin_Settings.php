@@ -563,6 +563,13 @@ class Polen_Plugin_Settings
                     'desc'     => 'Emails serarados por Virgura',
                     'default'  => '',
                 ),
+                array(
+                    'id'       => 'recipient_email_polen_finance',
+                    'type'     => 'text',
+                    'title'    => esc_html__('Configurar email de destinatário polen financeiro', 'polen'),
+                    'desc'     => 'Email do Financeiro(apenas 1 email)',
+                    'default'  => '',
+                ),
             )
         ) );
 
@@ -677,6 +684,13 @@ class Polen_Plugin_Settings
                     'type'     => 'text',
                     'title'    => esc_html__('ThemeID Polen B2B Form', 'polen'),
                     'desc'     => 'ThemeID Polen BB2 Form email para o Cliente',
+                    'default'  => '',
+                ),
+                array(
+                    'id'       => Polen_Sendgrid_Redux::THEME_ID_POLEN_B2B_PAYMENT_APPROV,
+                    'type'     => 'text',
+                    'title'    => esc_html__('ThemeID Polen B2B Payment Approved', 'polen'),
+                    'desc'     => 'ThemeID Polen B2B Payment Approved',
                     'default'  => '',
                 ),
                 // array(

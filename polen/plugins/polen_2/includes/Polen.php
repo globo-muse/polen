@@ -20,6 +20,7 @@ use Polen\Includes\Polen_Order;
 use Polen\Includes\Order_Review\{Polen_Order_Review_Controller, Polen_Order_Review_Router};
 use Polen\Includes\Polen_Signin_Newsletter;
 use Polen\Includes\Polen_Cupom_Create_Admin_Menu;
+use Polen\Includes\Sendgrid\Emails\Polen_Order_B2B_Payment_Approved;
 use Polen\Social_Base\Social_Base;
 use Polen\Tributes\Tributes;
 
@@ -132,7 +133,11 @@ class Polen {
 
         // Iniciar Polen Campaign
         new Polen_Campaign( true );
+        new Polen_Uses_Case( true );
 
+        //Email Sandgrid
+        //TODO: trocar esse carregamento da classe remover o add_action
+        new Polen_Order_B2B_Payment_Approved(true);
     }
 
     /**

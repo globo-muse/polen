@@ -14,6 +14,7 @@ class Polen_WooCommerce
     const ORDER_STATUS_TALENT_REJECTED     = 'talent-rejected';
     const ORDER_STATUS_TALENT_ACCEPTED     = 'talent-accepted';
     const ORDER_STATUS_ORDER_EXPIRED       = 'order-expired';
+    const ORDER_STATUS_VIDEO_SENDED        = 'video-sended';
 
     public $order_statuses = [];
     
@@ -67,6 +68,14 @@ class Polen_WooCommerce
                 'show_in_admin_all_list'    => true,
                 'show_in_admin_status_list' => true,
                 'label_count'               => _n_noop( 'Pedido expirado <span class="count">(%s)</span>', 'Pedido expirado <span class="count">(%s)</span>', 'polen' ),
+            ),
+            'wc-video-sended' => array(
+                'label'                     => __( 'Video enviado', 'polen' ),
+                'public'                    => false,
+                'exclude_from_search'       => false,
+                'show_in_admin_all_list'    => true,
+                'show_in_admin_status_list' => true,
+                'label_count'               => _n_noop( 'Pedido enviado <span class="count">(%s)</span>', 'Pedido enviado <span class="count">(%s)</span>', 'polen' ),
             ),
         );
 

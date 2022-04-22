@@ -399,6 +399,16 @@ class Polen_Product_Module
         return $this->object->get_id();
     }
 
+    public function get_sku()
+    {
+        return $this->object->get_sku();
+    }
+
+    public function get_permalink()
+    {
+        return $this->object->get_permalink();
+    }
+
     public function get_description()
     {
         return $this->object->get_description();

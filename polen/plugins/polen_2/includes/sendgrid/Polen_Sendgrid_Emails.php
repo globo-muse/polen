@@ -49,4 +49,9 @@ class Polen_Sendgrid_Emails
         $this->mail->addDynamicTemplateData( $key, $value );
     }
 
+    public function set_reply_to($email, $name = null)
+    {
+        $this->mail->setReplyTo($email, $name);
+    }
+
 }
