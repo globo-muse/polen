@@ -81,7 +81,6 @@ class Polen_Uses_Case
                     )
                 ),
         ));
-        // var_dump($all_ids);die;
         $response_products = [];
         foreach ( $all_ids as $id ) {
             $product = new WC_Product($id);
