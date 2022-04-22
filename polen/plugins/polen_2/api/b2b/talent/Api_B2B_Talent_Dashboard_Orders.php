@@ -72,7 +72,7 @@ class Api_B2B_Talent_Dashboard_Orders extends Api_B2B_Talent_Dashboard
                     'status' => $polen_order->get_status(),
                     'date' => $date_created->date('Y-m-d h:i:s'),
                     'total_order' => (int) $polen_order->get_total(),
-                    'total_talent' => $polen_order->get_value_payment_talent() ?? $total_for_talent,
+                    'total_talent' => $total_for_talent,
                     'payment' => $polen_order->get_form_of_payment() ?? '',
                     'payday' => $polen_order->get_payday() ?? '',
                 ];
@@ -97,9 +97,12 @@ class Api_B2B_Talent_Dashboard_Orders extends Api_B2B_Talent_Dashboard
 
             $polen_order = new Polen_Order_Module($order);
 
+            $total_for_talent = $polen_order->get_value_payment_talent();
+
             $product_order = $polen_order->get_product_from_order();
             $date_created = $polen_order->get_date_created();
 
+            $order_id = $request['order_id'];
             $product_name = $product_order->get_title();
             $date = $date_created->date('Y-m-d h:i:s');
             $company_name = $polen_order->get_company_name();
@@ -112,7 +115,9 @@ class Api_B2B_Talent_Dashboard_Orders extends Api_B2B_Talent_Dashboard
             $total_talent = !empty($total_for_talent) ? $total_for_talent : $polen_order->get_total_for_talent();
             $total_order = $polen_order->get_total();
 
-            $data = compact('product_name',
+            $data = compact(
+                'order_id',
+                'product_name',
                 'date',
                 'company_name',
                 'cnpj_cpf',
