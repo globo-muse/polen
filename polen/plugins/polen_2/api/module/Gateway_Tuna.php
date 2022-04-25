@@ -43,7 +43,7 @@ class Gateway_Tuna
 
         $purchased_items = [
             [
-                "Amount" => floatval($product->get_sale_price()),
+                "Amount" => floatval($product->get_total()),
                 "ProductDescription" => $product->get_name(),
                 "ItemQuantity" => 1,
                 "CategoryName" => 'b2b',
@@ -113,7 +113,7 @@ class Gateway_Tuna
                     [
                         "PaymentMethodType" => $payment_method_type,
                         "Amount" => floatval($order->get_total()),
-                        "Installments" => (int) $installments,
+                        "Installments" => 1,
                         "CardInfo" => $card_info,
                     ]
                 ]
