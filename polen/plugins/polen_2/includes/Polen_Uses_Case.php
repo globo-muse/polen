@@ -49,12 +49,12 @@ class Polen_Uses_Case
             'taxonomy'   => self::TAXONOMY_TERM,
             'hide_empty' => true,
         ]);
-        $reponse_taxonomies = [];
-        foreach($taxonomies_raw as $taxonomy_raw) {
-            $taxonomy_raw = self::prepare_taxonomi_to_response($taxonomy_raw);
-            $reponse_taxonomies[] = $taxonomy_raw;
-        }
-        return $reponse_taxonomies;
+        // $reponse_taxonomies = [];
+        // foreach($taxonomies_raw as $taxonomy_raw) {
+        //     // $taxonomy_raw = self::prepare_taxonomi_to_response($taxonomy_raw);
+        //     $reponse_taxonomies[] = $taxonomy_raw;
+        // }
+        return $taxonomies_raw;
     }
 
 
@@ -85,34 +85,22 @@ class Polen_Uses_Case
         foreach ( $all_ids as $id ) {
             $product = new WC_Product($id);
             $product_polen = new Polen_Product_Module($product);
-            $respose_product = self::prepare_product_to_response($product_polen);
-            $response_products[] = $respose_product;
+            // $respose_product = self::prepare_product_to_response($product_polen);
+            $response_products[] = $product_polen;
         }
         return $response_products;
     }
 
 
-    public static function prepare_product_to_response(Polen_Product_Module $product_polen)
-    {
-        return [
-            'id' => $product_polen->get_id(),
-            'slug' => $product_polen->get_sku(),
-            'title' => $product_polen->get_title(),
-            'name' => $product_polen->get_title(),
-            'url' => $product_polen->get_permalink,
-        ];
-    }
-
-
-    public static function prepare_taxonomi_to_response(WP_Term $taxonomy)
-    {
-        return  [
-            'id' => $taxonomy->term_id,
-            'name' => $taxonomy->name,
-            'slug' => $taxonomy->slug,
-            'qty_products' => $taxonomy->count,
-        ];
-    }
-
+    // public static function prepare_product_to_response(Polen_Product_Module $product_polen)
+    // {
+    //     return [
+    //         'id' => $product_polen->get_id(),
+    //         'slug' => $product_polen->get_sku(),
+    //         'title' => $product_polen->get_title(),
+    //         'name' => $product_polen->get_title(),
+    //         'url' => $product_polen->get_permalink,
+    //     ];
+    // }
 
 }
