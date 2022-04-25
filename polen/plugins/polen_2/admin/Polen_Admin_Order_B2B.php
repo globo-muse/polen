@@ -137,9 +137,9 @@ class Polen_Admin_Order_B2B
             wc_update_order_item_meta($item_order->get_id(), 'talent_fee', $talent_fee);
 
             # ADD
-            wc_update_order_item_meta($item_order->get_id(), 'form_of_payment', $form_of_payment, true);
-            wc_update_order_item_meta($item_order->get_id(), 'value_payment_talent', $value_payment_talent, true);
-            wc_update_order_item_meta($item_order->get_id(), 'payday', $payday, true);
+            wc_update_order_item_meta($item_order->get_id(), 'form_of_payment', $form_of_payment);
+            wc_update_order_item_meta($item_order->get_id(), 'value_payment_talent', $value_payment_talent);
+            wc_update_order_item_meta($item_order->get_id(), 'payday', $payday);
             
             remove_action('woocommerce_new_order',    [$this, 'new_order_handler'], 10);
             remove_action('woocommerce_update_order', [$this, 'new_order_handler'], 10);
