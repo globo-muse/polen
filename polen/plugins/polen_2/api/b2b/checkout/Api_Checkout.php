@@ -154,8 +154,11 @@ class Api_Checkout extends WP_REST_Controller
             $product_order = $order_module->get_product_from_order();
 
             $response = [
+                'cnpj_cpf' => $product_order->get_billing_cnpj_cpf(),
+                'company_name' => $product_order->get_company_name(),
                 'product' => $product_order->get_title(),
-                'total' => $order_module->get_total()
+                'total' => $order_module->get_total(),
+                'date' => $product_order->get_date_created(),
             ];
 
             return api_response($response);
