@@ -6,6 +6,7 @@ use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Includes\Polen_Campaign;
 use Polen\Includes\Polen_Emails;
 use Polen\Includes\Polen_Order;
+use Polen\Includes\Polen_Utils;
 use Polen\Includes\Polen_Video_Info;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Emails;
 use Polen\Includes\Sendgrid\Polen_Sendgrid_Redux;
@@ -59,6 +60,40 @@ class Polen_WC_Completed_Order extends \WC_Email_Customer_Completed_Order
         } else {
             return;
         }
+        global $Polen_Plugin_Settings;
+        //Pegando detalhes do orders para os emails do Sendgrid
+        $order_module = new Polen_Order_Module( $this->object );
+        $customer_name = $order_module->get_offered_by();
+        $item  = Polen_Cart_Item_Factory::polen_cart_item_from_order( $this->object );
+        $product = $item->get_product();
+        $total = $this->object->get_total();
+        $address = $order_module->get_billing_address_full();
+        $cnpj_cpf = $order_module->get_billing_cnpj_cpf();
+        $category = $item->get_video_category();
+        $order_date = $order_module->get_date_created()->format('d/m/Y');
+        $company_name = $order_module->get_billing_name();
+        $talent_name = !empty($product) ? $product->get_title() : '';
+        $qty = "1";
+        $instructions = Polen_Utils::remove_sanitize_xss_br_escape($item->get_instructions_to_video());
+
+        global $Polen_Plugin_Settings;
+        $email_polen = $Polen_Plugin_Settings['recipient_email_polen_finance'];
+        if(!empty($email_polen)) {
+            $this->send_email_finance(
+                'd-5f16b3d295da40e5be8855190a58eab2',
+                'Financeiro Polen',
+                $email_polen,
+                $address,
+                $cnpj_cpf,
+                $category,
+                $order_date,
+                $company_name,
+                $talent_name,
+                $total,
+                $qty,
+                $instructions
+            );
+        }
 
         if( !Polen_Emails::is_to_send_admin_edit_order() ){
             return;
@@ -77,6 +112,7 @@ class Polen_WC_Completed_Order extends \WC_Email_Customer_Completed_Order
             $customer_name = $order_module->get_offered_by();
             $order_url = $order_module->get_view_order_url();
             $this->send_email(
+                $Polen_Plugin_Settings[ Polen_Sendgrid_Redux::THEME_ID_POLEN_ORDER_COMPLETED ],
                 $customer_name,
                 $this->get_recipient(),
                 $order_id,
@@ -92,6 +128,7 @@ class Polen_WC_Completed_Order extends \WC_Email_Customer_Completed_Order
      * Enviar email Via SendGrid API
      */
 	public function send_email(
+        $template_id,
 		$name_customer,
 		$email_customer,
 		$order_id,
@@ -106,10 +143,60 @@ class Polen_WC_Completed_Order extends \WC_Email_Customer_Completed_Order
             $Polen_Plugin_Settings['polen_smtp_from_name']
         );
         $send_grid->set_to( $email_customer, $name_customer );
-        $send_grid->set_template_id( $Polen_Plugin_Settings[ Polen_Sendgrid_Redux::THEME_ID_POLEN_ORDER_COMPLETED ] );
+        $send_grid->set_template_id( $template_id );
         $send_grid->set_template_data( 'customer_name', $name_customer );
         $send_grid->set_template_data( 'order_id', $order_id );
         $send_grid->set_template_data( 'order_url', $order_url );
+
+        return $send_grid->send_email();
+    }
+
+
+    // {
+    //     "instructions":"asdasdasd",
+    //     "qty":"1",
+    //     "total":"700.00",
+    //     "talent_name":"adadasdadasd",
+    //     "company_name":"asdasdasdadasd",
+    //     "cnpj_cpf":"234234234234243",
+    //     "address":"kjsdhfkajdfhakdjfhakdjfhakdfhakjdhf",
+    //     "order_date":"10/10/1000",
+    //     "category": "dasdasd"
+        
+    // }
+	public function send_email_finance(
+		$template_id,
+		$name,
+		$email,
+        $address,
+		$cnpj_cpf,
+        $category,
+        $order_date,
+		$company_name,
+		$talent_name,
+		$total,
+		$qty,
+		$instructions )
+	{
+
+        global $Polen_Plugin_Settings;
+        $apikeySendgrid = $Polen_Plugin_Settings[ Polen_Sendgrid_Redux::APIKEY ];
+        $send_grid = new Polen_Sendgrid_Emails( $apikeySendgrid );
+        $send_grid->set_from(
+            $Polen_Plugin_Settings['polen_smtp_from_email'],
+            $Polen_Plugin_Settings['polen_smtp_from_name']
+        );
+        $send_grid->set_to( $email, $name );
+        $send_grid->set_template_id( $template_id );
+        $send_grid->set_template_data( 'address', $address );
+        $send_grid->set_template_data( 'cnpj_cpf', $cnpj_cpf );
+        $send_grid->set_template_data( 'category', $category );
+        $send_grid->set_template_data( 'order_date', $order_date );
+        $send_grid->set_template_data( 'company_name', $company_name );
+        $send_grid->set_template_data( 'talent_name', $talent_name );
+        $send_grid->set_template_data( 'total', $total );
+        $send_grid->set_template_data( 'qty', $qty );
+        $send_grid->set_template_data( 'instructions', $instructions );
 
         return $send_grid->send_email();
     }
