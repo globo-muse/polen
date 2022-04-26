@@ -173,10 +173,11 @@ class Api_Checkout extends WP_REST_Controller
         $tuna = new Tuna_Pix();
 
         $current_status = $tuna->get_status($order_id);
+        $status_payment = ['payment-approved', 'video-sended', 'completed'];
 
         return api_response(
             [
-                'paid' => $current_status == 'completed',
+                'paid' => in_array($current_status, $status_payment),
                 'payment_status' => $current_status
             ]
         );
