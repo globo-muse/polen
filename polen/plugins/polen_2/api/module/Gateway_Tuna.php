@@ -43,7 +43,7 @@ class Gateway_Tuna
 
         $purchased_items = [
             [
-                "Amount" => floatval($product->get_total()),
+                "Amount" => floatval($costumer_order->get_total()),
                 "ProductDescription" => $product->get_name(),
                 "ItemQuantity" => 1,
                 "CategoryName" => 'b2b',
