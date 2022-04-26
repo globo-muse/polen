@@ -7,6 +7,7 @@ use Polen\Api\Orders\Api_Orders;
 use Polen\Api\Talent\{Api_Talent_Dashboard, Api_Talent_My_Account, Api_Talent_Order, Api_Talent_Payment};
 use Polen\Api\b2b\Checkout\Api_Checkout;
 use Polen\Api\b2b\Talent\{Api_B2B_Talent_Dashboard, Api_B2B_Talent_Dashboard_Orders, Api_B2B_Talent_Orders_Receipt};
+use Polen\Api\v2\Api_Polen_Home;
 
 class Api {
 
@@ -62,6 +63,12 @@ class Api {
             
             $b2b_talent_orders = new Api_B2B_Talent_Dashboard_Orders();
             $b2b_talent_orders->register_routes();
+
+            
+            
+            //V2
+            $a = new Api_Polen_Home();
+            $a->register_routes();
         }
     }
 
