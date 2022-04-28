@@ -40,6 +40,7 @@ class Polen_Admin_Order_B2B
             
             if(!empty($_GET['post']) && 'edit' == $_GET['action']) {
                 if($post->b2b == '1') {
+                    add_meta_box('add_other_fields_for_payment', 'Informações do pagamento', [$this, 'add_other_fields_for_payment'], 'shop_order', 'normal', 'default');
                     add_meta_box('Polen_order_b2b_link', 'Link da Order B2B', [$this, 'show_link_order_b2b'], 'shop_order', 'normal', 'default');
                     add_meta_box('Polen_order_b2b_fields', 'Campos B2B', [$this, 'add_other_fields_for'], 'shop_order', 'normal', 'default');
                 }
@@ -58,6 +59,16 @@ class Polen_Admin_Order_B2B
         echo "https://pagar.polen.me?order={$post->ID}&code={$post->post_password}";
     }
 
+    /**
+     * Informações de pagamento
+     */
+    public function add_other_fields_for_payment()
+    {
+        $file = plugin_dir_path(__FILE__) . 'partials/metaboxes/metabox-order-b2b-fields-payment.php';
+        if(file_exists($file)) {
+            require_once $file;
+        }
+    }
 
     /**
      * 
@@ -105,6 +116,10 @@ class Polen_Admin_Order_B2B
             $video_category        = sanitize_text_field(filter_input(INPUT_POST, 'video_category'));
             $licence_in_days       = sanitize_text_field(filter_input(INPUT_POST, 'licence_in_days'));
             $talent_fee            = sanitize_text_field(filter_input(INPUT_POST, 'talent_fee'));
+
+            $form_of_payment       = sanitize_text_field($_POST['form_of_payment']); // forma de pagamento escolhida
+            $value_payment_talent  = sanitize_text_field($_POST['value_payment_talent']);
+            $payday                = sanitize_text_field($_POST['payday']);
             
             update_post_meta($order_id, 'b2b', '1');
             update_post_meta($order_id, Api_Checkout::ORDER_METAKEY, Polen_Module_B2B_Only::METAKEY_VALUE);
@@ -120,6 +135,11 @@ class Polen_Admin_Order_B2B
             wc_update_order_item_meta($item_order->get_id(), 'video_category', $video_category);
             wc_update_order_item_meta($item_order->get_id(), 'licence_in_days', $licence_in_days);
             wc_update_order_item_meta($item_order->get_id(), 'talent_fee', $talent_fee);
+
+            # ADD
+            wc_update_order_item_meta($item_order->get_id(), 'form_of_payment', $form_of_payment);
+            wc_update_order_item_meta($item_order->get_id(), 'value_payment_talent', $value_payment_talent);
+            wc_update_order_item_meta($item_order->get_id(), 'payday', $payday);
             
             remove_action('woocommerce_new_order',    [$this, 'new_order_handler'], 10);
             remove_action('woocommerce_update_order', [$this, 'new_order_handler'], 10);

@@ -5,6 +5,7 @@ defined('ABSPATH') || die;
 
 use Exception;
 use Polen\Includes\Polen_SignInUser_Strong_Password;
+use Polen\Includes\v2\Polen_Talent_DB;
 
 class Polen_User_Module
 {
@@ -21,11 +22,17 @@ class Polen_User_Module
      */
     public string $table;
 
+    /**
+     * Database para uso dessa classe
+     */
+    public Polen_Talent_DB $polen_talent_db;
+
     public function __construct(int $user_id)
     {
         global $wpdb;
         $this->table = $wpdb->base_prefix . 'polen_talents';
         $this->user = get_user_by('ID', $user_id);
+        $this->polen_talent_db = new Polen_Talent_DB();
     }
 
     public static function create_from_product_id($product_id)
@@ -33,6 +40,24 @@ class Polen_User_Module
         $user = self::get_talent_from_product($product_id);
 
         return new self($user->ID);
+    }
+
+    /**
+     * Pega o produto pelo User_ID
+     */
+    public function get_product_by_user_id($user_id)
+    {
+        $args = array(
+            'post_type' => 'product',
+            'post_status' => 'any',
+            'author' => $user_id,
+        );
+        $posts = get_posts($args);
+        if (empty($posts)) {
+            return null;
+        }
+
+        return wc_get_product($posts[0]);
     }
 
     /**
@@ -50,22 +75,6 @@ class Polen_User_Module
             WHERE P.`ID`=" . $product_id;
 
         return $wpdb->get_results($sql)[0];
-    }
-
-    /**
-     * Retornar informações básicas do talento
-     *
-     * @return array
-     */
-    public function get_info_talent(): array
-    {
-        global $wpdb;
-        $sql = "
-            SELECT `user_id`, `email`, `celular`, `telefone`, `whatsapp`, `email`, `nome_fantasia`, `nascimento`
-            FROM `" . $this->table . "`
-            WHERE `user_id`=" . $this->user->ID;
-
-        return $wpdb->get_results($sql);
     }
 
     /**
@@ -197,5 +206,45 @@ class Polen_User_Module
             'man' => get_field('man', 'user_'. $this->user->ID),
             'woman' => get_field('woman', 'user_'. $this->user->ID),
         ];
+    }
+
+    public function get_id()
+    {
+        return $this->user->ID;
+    }
+
+    public function get_email()
+    {
+        return $this->user->user_email;
+    }
+
+    public function get_fantasy_name()
+    {
+        $product = $this->get_product_by_user_id($this->get_id());
+        return $product->get_title();
+    }
+
+    public function get_birthday()
+    {
+        $name_column_db = 'nascimento';
+        return $this->polen_talent_db->get_column($name_column_db, $this->get_id());
+    }
+
+    public function get_phone()
+    {
+        $name_column_db = 'celular';
+        return $this->polen_talent_db->get_column($name_column_db, $this->get_id());
+    }
+
+    public function get_telephone()
+    {
+        $name_column_db = 'telefone';
+        return $this->polen_talent_db->get_column($name_column_db, $this->get_id());
+    }
+
+    public function get_whatsapp()
+    {
+        $name_column_db = 'whatsapp';
+        return $this->polen_talent_db->get_column($name_column_db, $this->get_id());
     }
 }

@@ -1,7 +1,6 @@
 <?php
 namespace Polen\Includes\Module;
 
-use Exception;
 use Polen\Admin\Polen_Admin_Event_Promotional_Event_Fields;
 use Polen\Api\Api_Checkout;
 use Polen\Includes\Cart\Polen_Cart_Item;
@@ -273,6 +272,21 @@ class Polen_Order_Module
         return $is_first_order == '1' ? true : false;
     }
 
+    
+    /**
+     * Pegar o total a ser pago ao talento
+     * @return float
+     */
+    public function get_total_for_talent()
+    {
+        $fee = $this->get_talent_fee();
+        if($fee === "") {
+            $fee = 0.75;
+        }
+        $fee = floatval($fee);
+        return $this->object->get_total() * $fee;
+    }
+
 
     /**
      * Comportamento Padrão do WC_Order
@@ -291,12 +305,6 @@ class Polen_Order_Module
     {
         return $this->object->get_status();
     }
-
-    public function get_total_for_talent()
-    {
-        return $this->object->get_total() * 0.75;
-    }
-
 
     public function get_total()
     {
@@ -393,10 +401,44 @@ class Polen_Order_Module
     {
         return $this->object->get_billing_state();
     }
+
     
     public function calculate_totals()
     {
         return $this->object->calculate_totals();
+    }
+
+    public function get_date_created()
+    {
+        return $this->object->get_date_created();
+    }
+
+    public function get_form_of_payment()
+    {
+        if (!$this->object->has_status('completed')) {
+            return null;
+        }
+
+        return $this->cart_item->get_form_of_payment();
+    }
+
+    public function get_value_payment_talent()
+    {
+        $value_payment = $this->cart_item->get_value_payment_talent();
+        if (empty($value_payment)) {
+            return $this->get_talent_fee();
+        }
+
+        return $value_payment;
+    }
+
+    public function get_payday()
+    {
+        if (!$this->object->has_status('completed')) {
+            return null;
+        }
+
+        return $this->cart_item->get_payday();
     }
     
 }

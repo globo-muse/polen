@@ -5,7 +5,7 @@ use Exception;
 use Polen\Api\Api_Util_Security;
 use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Api\Module\{Tuna_Credit_Card,Tuna_Pix};
-use Polen\Includes\Module\Orders\Polen_B2B_Orders;
+use Polen\Includes\Module\Resource\Polen_B2B_Orders;
 use Polen\Includes\Polen_Create_Customer;
 use WC_Emails;
 use WP_REST_Controller;
@@ -154,8 +154,11 @@ class Api_Checkout extends WP_REST_Controller
             $product_order = $order_module->get_product_from_order();
 
             $response = [
+                'cnpj_cpf' => $order_module->get_billing_cnpj_cpf(),
+                'company_name' => $order_module->get_company_name(),
                 'product' => $product_order->get_title(),
-                'total' => $order_module->get_total()
+                'total' => $order_module->get_total(),
+                'date' => $product_order->get_date_created()->date('d/m/Y'),
             ];
 
             return api_response($response);
@@ -170,10 +173,11 @@ class Api_Checkout extends WP_REST_Controller
         $tuna = new Tuna_Pix();
 
         $current_status = $tuna->get_status($order_id);
+        $status_payment = ['payment-approved', 'video-sended', 'completed'];
 
         return api_response(
             [
-                'paid' => $current_status == 'completed',
+                'paid' => in_array($current_status, $status_payment),
                 'payment_status' => $current_status
             ]
         );

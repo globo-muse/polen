@@ -381,6 +381,21 @@ class Polen_Product_Module
         return false;
     }
 
+    /**
+     * Retorna a URL da imagem principal do produto
+     * 
+     * @return string URL || ''
+     */
+    public function get_image_url()
+    {
+        $image_id = $this->object->get_image_id();
+        $image_data = wp_get_attachment_image_src($image_id);
+        if(empty($image_data)) {
+            return '';
+        }
+        return $image_data[0];
+    }
+
 
 
     /** ***********************
@@ -399,6 +414,16 @@ class Polen_Product_Module
         return $this->object->get_id();
     }
 
+    public function get_sku()
+    {
+        return $this->object->get_sku();
+    }
+
+    public function get_permalink()
+    {
+        return $this->object->get_permalink();
+    }
+
     public function get_description()
     {
         return $this->object->get_description();
@@ -412,5 +437,15 @@ class Polen_Product_Module
     public function get_price()
     {
         return $this->object->get_price();
+    }
+
+    public function get_image($size = 'woocommerce_thumbnail', $attr = array(), $placeholder = true)
+    {
+        return $this->object->get_image($size, $attr, $placeholder);
+    }
+
+    public function get_image_id()
+    {
+        return $this->object->get_image_id();
     }
 }

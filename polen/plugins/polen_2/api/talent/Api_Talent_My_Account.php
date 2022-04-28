@@ -40,7 +40,7 @@ class Api_Talent_My_Account extends WP_REST_Controller
         ] );
 
         /**
-         * 
+         *
          */
         register_rest_route($this->namespace, $this->rest_base . '/me', [
             [
@@ -52,7 +52,7 @@ class Api_Talent_My_Account extends WP_REST_Controller
         ] );
 
         /**
-         * 
+         *
          */
         register_rest_route($this->namespace, $this->rest_base . '/password', [
             [
@@ -75,7 +75,7 @@ class Api_Talent_My_Account extends WP_REST_Controller
             ]
         ] );
 
-        
+
     }
 
     /**
@@ -85,18 +85,14 @@ class Api_Talent_My_Account extends WP_REST_Controller
     {
         $products_id  = Api_Talent_Utils::get_globals_product_id();
         $user_module = Polen_User_Module::create_from_product_id($products_id[0]);
-
-        $talent_object = $user_module->get_info_talent();
-        foreach ($talent_object as $talent) {
-            $data['user_id'] = $talent->user_id;
-            $data['name'] = $user_module->get_display_name();
-            $data['email'] = $talent->email;
-            $data['birthday'] = $talent->nascimento;
-            $data['fantasy_name'] = $talent->nome_fantasia;
-            $data['phone'] = $talent->celular;
-            $data['telephone'] = $talent->telefone;
-            $data['whatsapp'] = $talent->whatsapp;
-        }
+        $data['user_id']       = $user_module->get_id();
+        $data['name']          = $user_module->get_display_name();
+        $data['email']         = $user_module->get_email();
+        $data['birthday']      = $user_module->get_birthday();
+        $data['fantasy_name']  = $user_module->get_fantasy_name();
+        $data['phone']         = $user_module->get_phone();
+        $data['telephone']     = $user_module->get_telephone();
+        $data['whatsapp']      = $user_module->get_whatsapp();
 
         return api_response($data);
     }
