@@ -92,10 +92,14 @@ class Api_Checkout extends WP_REST_Controller
             $fields_checkout = $request->get_params();
 
             foreach ($required_fields as $key => $field) {
-                if (!isset($fields_checkout[$key]) && !empty($field)) {
+                if (!isset($fields_checkout[$key]) || empty($fields_checkout[$key])) {
                     $errors[] = "O campo {$field} é obrigatório";
                 }
                 $data[$key] = sanitize_text_field($fields_checkout[$key]);
+            }
+
+            if(!empty($errors)) {
+                throw new Exception($errors[0], 403);
             }
 
             if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
@@ -190,7 +194,6 @@ class Api_Checkout extends WP_REST_Controller
     private function required_fields($card = false): array
     {
         $fields = [
-            'name' => 'Nome do representante',
             'company' => 'Nome empresa',
             'address_1' => 'Endereço',
             'address_2' => 'Complemento',
@@ -203,6 +206,7 @@ class Api_Checkout extends WP_REST_Controller
             'phone' => 'Celular',
             'cnpj' => 'CNPJ',
             'corporate_name' => 'Razão Social',
+            'terms' => 'Concordar com os termos'
         ];
 
         if ($card === true) {
