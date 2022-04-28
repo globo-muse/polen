@@ -49,7 +49,7 @@
               <div class="col-md-3 mt-4">
                 <h5 class="title typo typo-title typo-small">Transparência</h5>
                 <ul class="footer-menu">
-                  <li><a href="/termos-de-uso">Termos de uso</a></li>
+                  <li><a href="//polen.me/polen/uploads/2022/04/termos-de-uso-polen.pdf" target="_blank" rel="noreferrer">Termos de uso</a></li>
                   <li><a href="/politica-de-privacidade">Política de privacidade</a></li>
                 </ul>
               </div>
