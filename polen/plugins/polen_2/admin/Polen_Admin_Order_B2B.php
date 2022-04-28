@@ -154,6 +154,10 @@ class Polen_Admin_Order_B2B
             if(Polen_Order::ORDER_STATUS_PAYMENT_APPROVED_INSIDE == filter_input(INPUT_POST,'order_status')) {
                 $email = WC()->mailer()->get_emails()['Polen_WC_Payment_Approved'];
             }
+
+            if(Polen_Order::ORDER_STATUS_VIDEO_SENDED_INSIDE == filter_input(INPUT_POST,'order_status')) {
+                $email = WC()->mailer()->get_emails()['Polen_WC_Payment_Approved'];
+            }
         }
     }
 }

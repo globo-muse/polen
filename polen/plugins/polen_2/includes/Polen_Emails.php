@@ -6,6 +6,7 @@ use Polen\Includes\Emails\Polen_WC_Completed_Order;
 use Polen\Includes\Emails\Polen_WC_Customer_New_Account;
 use Polen\Includes\Emails\Polen_WC_Pending;
 use Polen\Includes\Emails\Polen_WC_Processing;
+use Polen\Includes\Emails\Polen_WC_Video_Sended;
 
 if( ! defined( 'ABSPATH' ) ) {
     die( 'Silence is golden.' );
@@ -72,6 +73,9 @@ class Polen_Emails {
 
         require_once PLUGIN_POLEN_DIR . '/includes/emails/Polen_WC_Order_Expired.php';
 		$emails['Polen_WC_Order_Expired'] = new Polen_WC_Order_Expired();
+
+        require_once PLUGIN_POLEN_DIR . '/includes/emails/Polen_WC_Video_Sended.php';
+		$emails['Polen_WC_Video_Sended'] = new Polen_WC_Video_Sended();
 
 		return $emails;
 	}

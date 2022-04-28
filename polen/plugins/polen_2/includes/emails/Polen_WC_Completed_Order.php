@@ -76,24 +76,23 @@ class Polen_WC_Completed_Order extends \WC_Email_Customer_Completed_Order
         $qty = "1";
         $instructions = Polen_Utils::remove_sanitize_xss_br_escape($item->get_instructions_to_video());
 
-        global $Polen_Plugin_Settings;
-        $email_polen = $Polen_Plugin_Settings['recipient_email_polen_finance'];
-        if(!empty($email_polen)) {
-            $this->send_email_finance(
-                'd-5f16b3d295da40e5be8855190a58eab2',
-                'Financeiro Polen',
-                $email_polen,
-                $address,
-                $cnpj_cpf,
-                $category,
-                $order_date,
-                $company_name,
-                $talent_name,
-                $total,
-                $qty,
-                $instructions
-            );
-        }
+        // $email_polen = $Polen_Plugin_Settings['recipient_email_polen_finance'];
+        // if(!empty($email_polen)) {
+        //     $this->send_email_finance(
+        //         'd-5f16b3d295da40e5be8855190a58eab2',
+        //         'Financeiro Polen',
+        //         $email_polen,
+        //         $address,
+        //         $cnpj_cpf,
+        //         $category,
+        //         $order_date,
+        //         $company_name,
+        //         $talent_name,
+        //         $total,
+        //         $qty,
+        //         $instructions
+        //     );
+        // }
 
         if( !Polen_Emails::is_to_send_admin_edit_order() ){
             return;
