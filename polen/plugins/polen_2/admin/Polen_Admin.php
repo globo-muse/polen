@@ -6,6 +6,7 @@ use Polen\Admin\Polen_Admin_Export_Order_Campaign;
 use Polen\Includes\Ajax\Polen_Cupom_Create_Controller;
 use Polen\Tributes\Tributes_Admin;
 use Polen\Tributes\Tributes_Details_Admin;
+use WC_Emails;
 
 class Polen_Admin {
 
