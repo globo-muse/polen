@@ -196,13 +196,12 @@ class Api_Checkout extends WP_REST_Controller
         $fields = [
             'company_name' => 'Nome empresa',
             'address_1' => 'Endereço',
-            'city' => 'Cidade',
             'postcode' => 'CEP',
             'neighborhood' => 'Bairro',
             'country' => 'País',
             'state' => 'Estado',
+            'city' => 'Cidade',
             'email' => 'Email',
-            'phone' => 'Celular',
             'cnpj' => 'CNPJ',
             'corporate_name' => 'Razão Social',
             'terms' => 'Concordar com os termos'
