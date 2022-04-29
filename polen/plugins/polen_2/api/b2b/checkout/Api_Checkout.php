@@ -194,7 +194,7 @@ class Api_Checkout extends WP_REST_Controller
     private function required_fields($card = false): array
     {
         $fields = [
-            'company' => 'Nome empresa',
+            'company_name' => 'Nome empresa',
             'address_1' => 'Endereço',
             'address_2' => 'Complemento',
             'city' => 'Cidade',
