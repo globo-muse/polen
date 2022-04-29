@@ -196,7 +196,6 @@ class Api_Checkout extends WP_REST_Controller
         $fields = [
             'company_name' => 'Nome empresa',
             'address_1' => 'Endereço',
-            'address_2' => 'Complemento',
             'city' => 'Cidade',
             'postcode' => 'CEP',
             'neighborhood' => 'Bairro',
