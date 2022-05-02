@@ -440,5 +440,20 @@ class Polen_Order_Module
 
         return $this->cart_item->get_payday();
     }
+
+    public function get_video_url_b2b()
+    {
+        return $this->cart_item->get_video_url_b2b();
+    }
+
+    public function get_qty_employees()
+    {
+        return $this->cart_item->get_qty_employees();
+    }
+
+    public function get_company_size()
+    {
+        return $this->cart_item->get_company_size();
+    }
     
 }
