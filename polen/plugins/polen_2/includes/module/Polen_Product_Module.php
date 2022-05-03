@@ -111,6 +111,21 @@ class Polen_Product_Module
         return $category->name;
     }
 
+
+    /**
+     * Pega o slug da primeira Categoria do produto
+     */
+    public function get_category_slug()
+    {
+        $categories_ids = $this->object->get_category_ids();
+        $category_id = $categories_ids[ 0 ];
+        $category = get_term_by( 'id', $category_id, 'product_cat' );
+        if( empty( $category ) ) {
+            return '';
+        }
+        return $category->slug;
+    }
+
     /**
      * 
      */
@@ -386,15 +401,40 @@ class Polen_Product_Module
      * 
      * @return string URL || ''
      */
-    public function get_image_url()
+    public function get_image_url($thub_size = 'polen-thumb-lg')
     {
         $image_id = $this->object->get_image_id();
-        $image_data = wp_get_attachment_image_src($image_id);
+        $image_data = wp_get_attachment_image_src($image_id, $thub_size);
         if(empty($image_data)) {
             return '';
         }
         return $image_data[0];
     }
+
+
+    /**
+     * Pega o WP_Term de todas as tags de um produtos
+     * 
+     * @return array
+     */
+    public function get_terms_tags()
+    {
+        $tags = wp_get_object_terms($this->get_id(), 'product_tag');
+        return $tags;
+    }
+
+
+    /**
+     * Pega o preço apartir de a aba B2B
+     * 
+     * @return currency
+     */
+    public function get_price_from_b2b()
+    {
+        return $this->object->get_meta('polen_price_range_b2b');
+    }
+
+
 
 
 

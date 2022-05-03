@@ -41,7 +41,7 @@ function polen_b2b_influence_by_region($product_id): ?array
     }
 
     foreach ($influence as $value) {
-        $metrics_talent->set_percentage_by_regions($value['state_and_city']['state_id'], $value['percentage']);
+        $metrics_talent->set_percentage_by_regions($value['state_and_city']['state_id'], (int)$value['percentage']);
     }
 
     return $metrics_talent->get_percentage_by_regions();
