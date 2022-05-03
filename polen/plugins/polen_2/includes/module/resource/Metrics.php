@@ -2,7 +2,8 @@
 
 namespace Polen\Includes\Module\Resource;
 
-class Metrics{
+class Metrics
+{
 
     protected array $percentage_by_regions;
 
