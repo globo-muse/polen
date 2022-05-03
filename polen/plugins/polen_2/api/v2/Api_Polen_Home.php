@@ -19,9 +19,7 @@ class Api_Polen_Home
     public function __construct()
     {
         $this->namespace = 'polen/v2';
-        $this->rest_base = 'home';
-
-        add_action('rest_api_init', [$this, 'register_routes']);
+        $this->rest_base = 'site/home';
     }
 
 

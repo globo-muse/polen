@@ -6,6 +6,7 @@ use Polen\Admin\Polen_Admin_Export_Order_Campaign;
 use Polen\Includes\Ajax\Polen_Cupom_Create_Controller;
 use Polen\Tributes\Tributes_Admin;
 use Polen\Tributes\Tributes_Details_Admin;
+use WC_Emails;
 
 class Polen_Admin {
 
@@ -44,7 +45,10 @@ class Polen_Admin {
           new Polen_Admin_Order_Custom_Fields_Deadline_BulkActions( $static );
           new Polen_Admin_Event_Promotional_Event_Fields( $static );
           new Polen_Admin_Export_Order_Campaign( $static );
-          new Polen_Admin_Order_B2B($static);
+
+          new Polen_Admin_Metabox();
+          new Polen_Admin_Metabox_B2C();
+          new Polen_Admin_Metabox_B2B($static);
   }
 
 	/**
