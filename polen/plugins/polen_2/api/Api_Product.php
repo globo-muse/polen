@@ -21,6 +21,7 @@ class Api_Product
         $paged = $params['paged'] ?? 1;
         $orderby = $params['orderby'] ?? 'popularity';
         $orderby = explode('-', $orderby);
+        $category = $params['category'] ?? '';
 
         $order = $orderby[1] ?? 'DESC';
 
@@ -39,6 +40,12 @@ class Api_Product
                 'field' => 'slug',
                 'terms' => $campaingn,
             );
+        }
+
+        if (!empty($category)) {
+            $category = explode('&', $category);
+            $args['category'] = $category;
+
         }
 
         if (isset($params['s'])) {

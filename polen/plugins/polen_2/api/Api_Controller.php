@@ -39,13 +39,7 @@ class Api_Controller{
                 $slug = $params['campaign_category'] ?? $params['campaign'];
             }
 
-            if( empty( $slug ) ) {
-                $slug = 'galo_idolos';
-            }
-
             $products = $api_product->polen_get_products_by_campagins($params, $slug);
-
-            
 
             $items = array();
             foreach ($products->products as $product) {
