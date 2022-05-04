@@ -919,7 +919,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 									continue;
 								}
 
-								if ( in_array( $field['type'], array( 'ace_editor' ), true ) && isset( $field['options'] ) ) {
+								if ( 'ace_editor' === $field['type'] && isset( $field['options'] ) ) {
 									$this->boxes[ $key ]['sections'][ $sk ]['fields'][ $k ]['args'] = $field['options'];
 									unset( $this->boxes[ $key ]['sections'][ $sk ]['fields'][ $k ]['options'] );
 								}
@@ -931,7 +931,15 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 									$this->boxes[ $key ]['sections'][ $sk ]['fields'][ $k ] = $field;
 								}
 
-								$this->parent->field_default_values( $field );
+								$this->parent->options_defaults_class->field_default_values( $this->parent->args['opt_name'], $field );
+
+								if ( 'repeater' === $field['type'] ) {
+									foreach ( $field['fields'] as $f ) {
+										$this->parent->options_defaults_class->field_default_values( $this->parent->args['opt_name'], $f, null, true );
+									}
+								}
+
+								$this->parent->options_defaults = $this->parent->options_defaults_class->options_defaults;
 							}
 						}
 					}
@@ -1425,7 +1433,7 @@ if ( ! class_exists( 'Redux_Extension_Metaboxes', false ) ) {
 			// phpcs:ignore WordPress.NamingConventions.ValidHookName
 			$to_save = apply_filters( 'redux/metaboxes/save/before_validate', $to_save, $to_compare, $this->sections );
 
-			$validate = $this->parent->_validate_values( $to_save, $to_compare, $this->sections );
+			$validate = $this->parent->validate_class->validate( $to_save, $to_compare, $this->sections );
 
 			// Validate fields (if needed).
 			foreach ( $to_save as $key => $value ) {

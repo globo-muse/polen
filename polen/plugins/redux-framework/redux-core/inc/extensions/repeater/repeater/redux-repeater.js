@@ -9,6 +9,22 @@
 	redux.field_objects          = redux.field_objects || {};
 	redux.field_objects.repeater = redux.field_objects.repeater || {};
 
+	redux.field_objects.repeater.getOptName = function( el ) {
+		var optName;
+
+		optName = el.parents().find( '.redux-ajax-security' ).data( 'opt-name' );
+
+		if ( undefined === optName ) {
+			optName = el.parents( '.redux-container' ).data( 'opt-name' );
+		}
+
+		if ( undefined === optName ) {
+			return redux;
+		} else {
+			return redux.optName;
+		}
+	};
+
 	redux.field_objects.repeater.init = function( selector ) {
 		if ( ! selector ) {
 			selector = $( document ).find( '.redux-group-tab:visible' ).find( '.redux-container-repeater:visible' );
@@ -16,7 +32,6 @@
 
 		$( selector ).each(
 			function() {
-				var optName;
 				var gid;
 				var blank;
 
@@ -41,13 +56,7 @@
 					parent = el.parents( '.redux-field-container:first' );
 				}
 
-				optName = el.parents( '.redux-ajax-security' ).data( 'opt-name' );
-
-				if ( undefined === optName ) {
-					reduxObject = redux;
-				} else {
-					reduxObject = redux.optName;
-				}
+				reduxObject = redux.field_objects.repeater.getOptName( el );
 
 				gid   = parent.attr( 'data-id' );
 				blank = el.find( '.redux-repeater-accordion-repeater:last-child' );
@@ -276,7 +285,7 @@
 		if ( true === panelsClosed ) {
 			active = Boolean( false );
 		} else {
-			active = parseInt( 0 );
+			active = 0;
 		}
 
 		accordion = el.find( '.redux-repeater-accordion' ).accordion(
@@ -285,7 +294,7 @@
 				collapsible: true,
 				active: active,
 
-				beforeActivate: function( event, ui ) {
+				beforeActivate: function( event ) {
 					var a;
 					var relName;
 					var optName;
@@ -296,10 +305,10 @@
 
 					bracket = relName.indexOf( '[' );
 
-					optName = relName.substr( 0, bracket );
+					optName = relName.substring( 0, bracket );
 
 					if ( 'function' === typeof reduxRepeaterAccordionBeforeActivate ) {
-						reduxRepeaterAccordionBeforeActivate( $( this ), el, event, ui.optName );
+						reduxRepeaterAccordionBeforeActivate( $( this ), el, event, optName );
 					}
 				},
 				activate: function( event, ui ) {
@@ -315,7 +324,7 @@
 						relName = a.attr( 'data-name' );
 						bracket = relName.indexOf( '[' );
 
-						optName = relName.substr( 0, bracket );
+						optName = relName.substring( 0, bracket );
 
 						reduxRepeaterAccordionActivate( $( this ), el, event, ui, optName );
 					}
@@ -417,18 +426,27 @@
 				function( i, parentData ) {
 					var parentValue;
 					var value;
+					var idx;
+					var x;
 
-					i = null;
+					i   = null;
+					idx = $( '#' + reduxObject.args.opt_name + '-' + parentData.parent + '-' + index );
 
-					if ( $( '#' + reduxObject.args.opt_name + '-' + parentData.parent + '-' + index ).hasClass( 'hide' ) ) {
+					if ( idx.hasClass( 'hide' ) ) {
 						show = false;
 						return false;
 					} else {
 						if ( false !== show ) {
-							value = $( '#' + reduxObject.args.opt_name + '-' + parentData.parent + '-' + index ).serializeForm();
+							value = idx.serializeForm();
 
 							if ( null !== value && 'object' === typeof value && value.hasOwnProperty( reduxObject.args.opt_name ) ) {
-								value = value[reduxObject.args.opt_name][parentData.parent][index];
+								if ( undefined === value[reduxObject.args.opt_name][parentData.parent] ) {
+									x = Object.values( value[reduxObject.args.opt_name] )[0][parentData.parent];
+								} else {
+									x = value[reduxObject.args.opt_name][parentData.parent];
+								}
+
+								value = x[index];
 							}
 
 							if ( $( '#' + reduxObject.args.opt_name + '-' + id ).hasClass( 'redux-container-media' ) ) {
@@ -457,9 +475,14 @@
 		$.redux,
 		'required',
 		function( returnValue, originalFunction ) {
+			var reduxObj;
+
+			reduxObj = redux.field_objects.repeater.getOptName( $( '.redux-container-repeater' ) );
+
 			$.each(
-				redux.folds,
+				reduxObj.folds,
 				function( i, v ) {
+
 					var fieldset;
 					var div;
 					var rawTable;
@@ -468,12 +491,13 @@
 						i = i.replace( '-99999', '' );
 					}
 
-					fieldset = $( '[id^=' + redux.args.opt_name + '-' + i + ']' );
+					fieldset = $( '[id^=' + reduxObj.args.opt_name + '-' + i + ']' );
 
 					fieldset.addClass( 'fold' );
 
 					if ( 'hide' === v ) {
 						fieldset.addClass( 'hide' );
+						fieldset.prevUntil( 'fieldset' ).addClass( 'hide' );
 
 						if ( fieldset.hasClass( 'redux-container-section' ) ) {
 							div = $( '#section-' + i );
@@ -514,7 +538,7 @@
 			var idNoIndex;
 			var index;
 
-			if ( $( variable ).hasClass( 'repeater' ) ) {
+			if ( $( variable ).hasClass( 'in-repeater' ) ) {
 				current   = $( variable );
 				id        = current.parents( '.redux-field:first' ).data( 'id' );
 				container = current.parents( '.redux-field-container:first' );
@@ -524,7 +548,7 @@
 				index     = id.substring( dash + 1 );
 
 				$.each(
-					reduxObject.optName.required[idNoIndex],
+					reduxObject.required[idNoIndex],
 					function( child, dependents ) {
 						var current;
 						var show;
@@ -547,6 +571,8 @@
 								300,
 								function() {
 									$( this ).removeClass( 'hide' );
+									$( this ).prevUntil( 'fieldset' ).removeClass( 'hide' );
+
 									if ( reduxObject.required.hasOwnProperty( child ) ) {
 										$.redux.check_dependencies( $( '#' + reduxObject.args.opt_name + '-' + child ).children().first() );
 									}
@@ -559,6 +585,8 @@
 								100,
 								function() {
 									$( this ).addClass( 'hide' );
+									$( this ).prevUntil( 'fieldset' ).addClass( 'hide' );
+
 									if ( reduxObject.required.hasOwnProperty( child ) ) {
 										$.redux.required_recursive_hide( child );
 									}
