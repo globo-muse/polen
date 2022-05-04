@@ -12,11 +12,11 @@ defined( 'ABSPATH' ) || exit;
 Redux::set_section(
 	$opt_name,
 	array(
-		'title'      => __( 'Repeater', 'your-textdomain-here' ),
-		'desc'       => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/premium/repeater.html" target="_blank">https://devs.redux.io/premium/repeater.html</a>',
-		'fields'     => array(
+		'title'  => __( 'Repeater', 'your-textdomain-here' ),
+		'desc'   => esc_html__( 'For full documentation on this field, visit: ', 'your-textdomain-here' ) . '<a href="https://devs.redux.io/premium/repeater.html" target="_blank">https://devs.redux.io/premium/repeater.html</a>',
+		'fields' => array(
 			array(
-				'id'          => 'repeater-field-id2',
+				'id'          => 'repeater-field-id',
 				'type'        => 'repeater',
 				'title'       => esc_html__( 'Repeater Demo', 'your-textdomain-here' ),
 				'full_width'  => true,
@@ -36,6 +36,7 @@ Redux::set_section(
 						'type'        => 'textarea',
 						'placeholder' => esc_html__( 'Text Field', 'your-textdomain-here' ),
 						'default'     => 'Text Field here',
+						'title'       => esc_html__( 'Title', 'your-domain-here' ),
 					),
 					array(
 						'id'          => 'select_field',
@@ -57,6 +58,7 @@ Redux::set_section(
 					),
 					array(
 						'id'          => 'text_field',
+						'title'       => esc_html__( 'Text Field', 'your-textdomain-here' ),
 						'type'        => 'text',
 						'placeholder' => esc_html__( 'Text Field', 'your-textdomain-here' ),
 						'required'    => array( 'switch_field', '=', false ),
