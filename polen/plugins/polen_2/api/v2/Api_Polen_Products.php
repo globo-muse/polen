@@ -94,15 +94,7 @@ class Api_Polen_Products
                         $arr_obj[] = $id;
 
                         if( 'publish' === $product->get_status() ) {
-                            $args[] = array(
-                                "ID" => $id,
-                                "sku" => $product_module->get_sku(),
-                                "name" => $product_module->get_title(),
-                                "price" => $product_module->get_price(),
-                                "category_slug" => $product_module->get_category_slug(),
-                                "category_title" => $product_module->get_category_name(),
-                                "in_stock" => true,
-                            );
+                            $args[] = $this->prepare_product_to_response($product_module);
                         }
                     }
                 }
