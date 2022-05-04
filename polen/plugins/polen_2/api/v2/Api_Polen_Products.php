@@ -37,6 +37,16 @@ class Api_Polen_Products
             ]
         ] );
 
+        register_rest_route( $this->namespace, $this->rest_base . '/(?P<slug>[a-zA-Z0-9-]+)/related', [
+            [
+                'methods' => WP_REST_Server::READABLE,
+                'callback' => [ $this, 'get_related_products' ],
+                'permission_callback' => "__return_true",
+                'args' => []
+            ]
+        ] );
+
+
         register_rest_route( $this->namespace, $this->rest_base . '/(?P<slug>[a-zA-Z0-9-]+)', [
             [
                 'methods' => WP_REST_Server::READABLE,
@@ -45,6 +55,61 @@ class Api_Polen_Products
                 'args' => []
             ]
         ] );
+    }
+
+
+    /**
+     * Pega os produtos relacionados (na mesma cat) a retorna um array para a func polen_banner_scrollable
+     * @param WP_REST_Request
+     * @return array [['ID'=>xx,'talent_url'=>'...','name'=>'...','price'=>'...','category_url'=>'...','category'=>'...']]
+     */
+    public function get_related_products(WP_REST_Request $request)
+    {
+        $product_slug = $request->get_param('slug');
+        $product_id = wc_get_product_id_by_sku($product_slug);
+        if(empty($product_id)) {
+            return api_response('Produto não encontrado', 404);
+        }
+        $cat_terms = wp_get_object_terms( $product_id, 'product_cat');
+        $terms_ids = array();
+        if (count($cat_terms) > 0) {
+            foreach ($cat_terms as $k => $term) {
+                $terms_ids[] = $term->term_id;
+            }
+        }
+        if (count($terms_ids) > 0) {
+            $others = get_objects_in_term($terms_ids, 'product_cat');
+            $arr_obj = array();
+            $arr_obj[] = get_the_ID();
+            shuffle($others);
+            if (count($others)) {
+                $args = array();
+                foreach ($others as $k => $id) {
+                    if (!in_array($id, $arr_obj)) {
+                        if (count($arr_obj) > 6) {
+                            return $args;
+                        }
+                        $product = wc_get_product($id);
+                        $product_module = Polen_Product_Module_Factory::create_product_from_campaing($product);
+                        $arr_obj[] = $id;
+
+                        if( 'publish' === $product->get_status() ) {
+                            $args[] = array(
+                                "ID" => $id,
+                                "sku" => $product_module->get_sku(),
+                                "name" => $product_module->get_title(),
+                                "price" => $product_module->get_price(),
+                                "category_slug" => $product_module->get_category_slug(),
+                                "category_title" => $product_module->get_category_name(),
+                                "in_stock" => true,
+                            );
+                        }
+                    }
+                }
+                return api_response($args);
+            }
+        }
+        return api_response([]);
     }
 
 
