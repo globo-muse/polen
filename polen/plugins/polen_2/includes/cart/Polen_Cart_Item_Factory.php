@@ -30,7 +30,7 @@ class Polen_Cart_Item_Factory
      * @return \Polen\Includes\Cart\Polen_Cart_Item
      * @throws Exception
      */
-    public static function polen_cart_item_from_order( $order ) : Polen_Cart_Item
+    public static function polen_cart_item_from_order( $order )
     {
         $data = $order->get_items();
         if(empty($data)) {
