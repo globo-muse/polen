@@ -117,7 +117,7 @@ class Polen_WC_Payment_Approved extends \WC_Email {
 							$talent_name,
 							$total,
 							$qty,
-							$instructions
+							$instructions,
 						);
 					}
 				}
@@ -148,6 +148,7 @@ class Polen_WC_Payment_Approved extends \WC_Email {
 				$deadline_date = \WC_DateTime::createFromFormat('U', $deadline);
 				$deadline = !empty($deadline_date) ? $deadline_date->format('d/m/Y') : '';
 				$instructions = Polen_Utils::remove_sanitize_xss_br_escape($item->get_instructions_to_video());
+				$term_use_date = $order_module->get_date_accepted_term();
 				$this->send_email(
 					$Polen_Plugin_Settings[ Polen_Sendgrid_Redux::THEME_ID_POLEN_PAYMENT_APPROVED ],
 					$customer_name,
@@ -157,7 +158,8 @@ class Polen_WC_Payment_Approved extends \WC_Email {
 					$deadline,
 					$to_name,
 					$item->get_video_category(),
-					$instructions
+					$instructions,
+					$term_use_date,
 				);
 			}
 
@@ -190,7 +192,8 @@ class Polen_WC_Payment_Approved extends \WC_Email {
 		$deadline,
 		$to_name,
 		$occasion,
-		$instructions )
+		$instructions,
+		$term_use_date )
 	{
 
         global $Polen_Plugin_Settings;
