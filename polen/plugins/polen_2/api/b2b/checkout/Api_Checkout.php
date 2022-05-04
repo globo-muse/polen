@@ -114,6 +114,7 @@ class Api_Checkout extends WP_REST_Controller
             $response = $tuna->payment($request['order_id'], $user, $data);
             $b2b_order->calculate_totals();
             $b2b_order->update_order($data);
+            update_post_meta($request['order_id'], '_accepted_term', date("Y-m-d H:i:s"));
 
             return api_response($response);
 

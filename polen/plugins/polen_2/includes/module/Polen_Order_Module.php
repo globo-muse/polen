@@ -455,5 +455,9 @@ class Polen_Order_Module
     {
         return $this->cart_item->get_company_size();
     }
-    
+
+    public function get_date_accepted_term()
+    {
+        return $this->object->get_meta('_accepted_term');
+    }
 }
