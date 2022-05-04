@@ -163,7 +163,7 @@ class Api_Checkout extends WP_REST_Controller
                 'company_name' => $order_module->get_company_name(),
                 'product' => $product_order->get_title(),
                 'total' => $order_module->get_total(),
-                'date' => $product_order->get_date_created()->date('d/m/Y'),
+                'date' => $order_module->get_date_created(),
             ];
 
             return api_response($response);
