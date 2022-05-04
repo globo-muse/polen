@@ -420,7 +420,7 @@ class Polen_Order_Module
 
     public function get_date_created()
     {
-        return $this->object->get_date_created()->date('d/m/Y');
+        return $this->object->get_date_created();
     }
 
     public function get_form_of_payment()
