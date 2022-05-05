@@ -94,15 +94,7 @@ class Api_Polen_Products
                         $arr_obj[] = $id;
 
                         if( 'publish' === $product->get_status() ) {
-                            $args[] = array(
-                                "ID" => $id,
-                                "sku" => $product_module->get_sku(),
-                                "name" => $product_module->get_title(),
-                                "price" => $product_module->get_price(),
-                                "category_slug" => $product_module->get_category_slug(),
-                                "category_title" => $product_module->get_category_name(),
-                                "in_stock" => true,
-                            );
+                            $args[] = $this->prepare_product_to_response($product_module);
                         }
                     }
                 }
@@ -190,7 +182,6 @@ class Api_Polen_Products
      */
     public function prepare_product_to_response(Polen_Product_Module $product_module)
     {
-
         $product_response = [
             'id' => $product_module->get_id(),
             'description' => $product_module->get_description(),
@@ -199,7 +190,7 @@ class Api_Polen_Products
             'category_name' => $product_module->get_category_name(),
             'category_slug' => $product_module->get_category_slug(),
             'price_from_to' => $product_module->get_price_from_b2b(),
-            'image_url' => $product_module->get_image_url('polen-thumb-lg'),
+            'image' => $product_module->get_image_url('polen-thumb-lg'),
         ];
         return $product_response;
     }
