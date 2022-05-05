@@ -166,6 +166,7 @@ class Polen_Vimeo_Response
         $url_removed_size = Polen_Vimeo_String_Url::get_image_url_custom_size( $size, $thumb_url_vimeo );
         return $url_removed_size;
     }
+
     
     /**
      * Pega a duração do video
@@ -242,8 +243,6 @@ class Polen_Vimeo_Response
     }
 
 
-
-
     /**
      * Pegar o array com todas as qualidades possiveis para play
      */
@@ -276,5 +275,38 @@ class Polen_Vimeo_Response
             }
         }
         return $result[ 'link' ];
+    }
+
+
+    public function is_landscape():bool
+    {
+        $is_landscape = true;
+
+        if($this->get_height() > $this->get_width()) {
+            $is_landscape = false;
+        }
+        return $is_landscape;
+    }
+
+    
+    public function is_portrait():bool
+    {
+        $is_portrait = true;
+
+        if($this->get_width() > $this->get_height()) {
+            $is_portrait = false;
+        }
+        return $is_portrait;
+    }
+
+
+    public function get_width()
+    {
+        return $this->response['body']['width'];
+    }
+
+    public function get_height()
+    {
+        return $this->response['body']['height'];
     }
 }
