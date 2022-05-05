@@ -191,6 +191,7 @@ class Api_Polen_Products
             'category_slug' => $product_module->get_category_slug(),
             'price_from_to' => $product_module->get_price_from_b2b(),
             'image' => $product_module->get_image_url('polen-thumb-lg'),
+            'videos' => $product_module->get_vimeo_videos_page_details(),
         ];
         return $product_response;
     }

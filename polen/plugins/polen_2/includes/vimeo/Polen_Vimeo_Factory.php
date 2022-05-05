@@ -46,7 +46,7 @@ class Polen_Vimeo_Factory
      * Criar uma instancia da API do Vimeo para Triutos
      * @return \Vimeo\Vimeo
      */
-    static public function create_vimeo_colab_instance_with_redux()
+    static public function create_vimeo_colab_instance_with_redux(): \Vimeo\Vimeo
     {
         global $Polen_Plugin_Settings;
 

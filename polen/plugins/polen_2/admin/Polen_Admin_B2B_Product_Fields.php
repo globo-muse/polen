@@ -1,6 +1,10 @@
 <?php
 namespace Polen\Admin;
 
+use Polen\Includes\Debug;
+use Polen\Includes\Vimeo\Polen_Vimeo_Factory;
+use Polen\Includes\Vimeo\Polen_Vimeo_Response;
+
 class Polen_Admin_B2B_Product_Fields
 {
     const ACTION_NAME = 'polen_custom_fields_b2b';
@@ -106,7 +110,28 @@ class Polen_Admin_B2B_Product_Fields
         $this->save_to_meta($fields_b2b, $product);
 
         remove_action(self::ACTION_NAME, array($this, 'on_product_save'));
+        
+        $vimeo_api = Polen_Vimeo_Factory::create_vimeo_instance_with_redux();
+        $videos = [];
+        foreach($_POST['vimeo_id'] as $vimeo_id) {
+            if(!empty($vimeo_id)){
+                $response = new Polen_Vimeo_Response($vimeo_api->request($vimeo_id));
+                
+                if(!empty($vimeo_id) && $response->is_landscape() && !$response->is_error()) {
+                    $videos[] = [
+                        'vimeo_id' => $vimeo_id,
+                        'thumb' => $response->get_image_url_640(),
+                        'link_play' => $response->get_play_link(),
+                        'is_landscape' => $response->is_landscape(),
+                    ];
+                }
+            }
+        }
+        if(!empty($videos)) {
+            $this->save_to_meta(['vimeo_videos' => serialize($videos)], $product);
+        }
         $product->save();
+
         add_action(self::ACTION_NAME, array($this, 'on_product_save'));
     }
 
