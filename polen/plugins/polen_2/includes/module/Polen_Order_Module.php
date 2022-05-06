@@ -51,6 +51,16 @@ class Polen_Order_Module
         return $this->cart_item->get_product();
     }
 
+
+    /**
+     * Retornar produto_ID da order
+     *
+     */
+    public function get_product_id_from_order()
+    {
+        return $this->cart_item->get_product()->get_id();
+    }
+
     public function get_talent_name()
     {
         $product = $this->get_product_from_order();
@@ -455,5 +465,9 @@ class Polen_Order_Module
     {
         return $this->cart_item->get_company_size();
     }
-    
+
+    public function get_date_accepted_term()
+    {
+        return $this->object->get_meta('_accepted_term');
+    }
 }

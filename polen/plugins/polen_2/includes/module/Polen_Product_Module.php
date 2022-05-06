@@ -435,6 +435,25 @@ class Polen_Product_Module
     }
 
 
+    /**
+     * Pega os videos que serão apresentados na pagina de detalhes do produto
+     * 
+     * @return array
+     */
+    public function get_vimeo_videos_page_details()
+    {
+        $videos_vimeo_meta = $this->object->get_meta('vimeo_videos', true);
+        if(empty($videos_vimeo_meta)) {
+            return '';
+        }
+        $videos = unserialize($videos_vimeo_meta);
+        if(!is_array($videos)) {
+            return '';
+        }
+        return $videos;
+    }
+
+
 
 
 

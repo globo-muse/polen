@@ -2,6 +2,7 @@
 
 namespace Polen\Api\v2;
 
+use Polen\Api\Api_Product;
 use Polen\Includes\Module\Factory\Polen_Product_Module_Factory;
 use Polen\Includes\Module\{Polen_Product_Module,Polen_User_Module};
 use Polen\Includes\Module\Resource\Metrics;
@@ -37,6 +38,16 @@ class Api_Polen_Products
             ]
         ] );
 
+        register_rest_route( $this->namespace, $this->rest_base . '/(?P<slug>[a-zA-Z0-9-]+)/related', [
+            [
+                'methods' => WP_REST_Server::READABLE,
+                'callback' => [ $this, 'get_related_products' ],
+                'permission_callback' => "__return_true",
+                'args' => []
+            ]
+        ] );
+
+
         register_rest_route( $this->namespace, $this->rest_base . '/(?P<slug>[a-zA-Z0-9-]+)', [
             [
                 'methods' => WP_REST_Server::READABLE,
@@ -45,6 +56,105 @@ class Api_Polen_Products
                 'args' => []
             ]
         ] );
+    }
+
+
+    /**
+     * Pega os produtos relacionados (na mesma cat) a retorna um array para a func polen_banner_scrollable
+     * @param WP_REST_Request
+     * @return array [['ID'=>xx,'talent_url'=>'...','name'=>'...','price'=>'...','category_url'=>'...','category'=>'...']]
+     */
+    public function get_related_products(WP_REST_Request $request)
+    {
+        $product_slug = $request->get_param('slug');
+        $product_id = wc_get_product_id_by_sku($product_slug);
+        if(empty($product_id)) {
+            return api_response('Produto não encontrado', 404);
+        }
+        $cat_terms = wp_get_object_terms( $product_id, 'product_cat');
+        $terms_ids = array();
+        if (count($cat_terms) > 0) {
+            foreach ($cat_terms as $k => $term) {
+                $terms_ids[] = $term->term_id;
+            }
+        }
+        if (count($terms_ids) > 0) {
+            $others = get_objects_in_term($terms_ids, 'product_cat');
+            $arr_obj = array();
+            $arr_obj[] = get_the_ID();
+            shuffle($others);
+            if (count($others)) {
+                $args = array();
+                foreach ($others as $k => $id) {
+                    if (!in_array($id, $arr_obj)) {
+                        if (count($arr_obj) > 6) {
+                            return $args;
+                        }
+                        $product = wc_get_product($id);
+                        $product_module = Polen_Product_Module_Factory::create_product_from_campaing($product);
+                        $arr_obj[] = $id;
+
+                        if( 'publish' === $product->get_status() ) {
+                            $args[] = $this->prepare_product_to_response($product_module);
+                        }
+                    }
+                }
+                return api_response($args);
+            }
+        }
+        return api_response([]);
+    }
+
+    /**
+     * Retornar todos os talentos
+     * @param WP_REST_Request $request
+     * @return \WP_REST_Response
+     */
+    public function get_products(WP_REST_Request $request): \WP_REST_Response
+    {
+        try{
+            $api_product = new Api_Product();
+            $params = $request->get_params();
+
+            $slug = '';
+            if (isset($params['campaign']) || isset($params['campaign_category'])) {
+                $slug = $params['campaign_category'] ?? $params['campaign'];
+            }
+
+            $products = $api_product->polen_get_products_by_campagins($params, $slug);
+
+            $items = array();
+            foreach ($products->products as $product) {
+                $image_object = $api_product->get_object_image($product->get_id());
+                $items[] = array(
+                    'id' => $product->get_id(),
+                    'name' => $product->get_name(),
+                    'slug' => $product->get_slug(),
+                    'image' => $image_object,
+                    'categories' => wp_get_object_terms($product->get_id() , 'product_cat'),
+                    'stock' => $product->is_in_stock() ? $api_product->check_stock($product) : 0,
+                    'price' => $product->get_price(),
+                    'regular_price' => $product->get_regular_price(),
+                    'sale_price' => $product->get_sale_price(),
+                    'createdAt' => get_the_date('Y-m-d H:i:s', $product->get_id()),
+                );
+            }
+
+            $data = array(
+                'items' => $items,
+                'total' => $products->total,//$api_product->get_products_count($params, $slug),
+                'current_page' => $request->get_param('paged') ?? 1,
+                'per_page' => count($items),
+            );
+
+            return api_response($data, 200);
+
+        } catch (\Exception $e) {
+            return api_response(
+                array('message' => $e->getMessage()),
+                $e->getCode()
+            );
+        }
     }
 
 
@@ -125,7 +235,6 @@ class Api_Polen_Products
      */
     public function prepare_product_to_response(Polen_Product_Module $product_module)
     {
-
         $product_response = [
             'id' => $product_module->get_id(),
             'description' => $product_module->get_description(),
@@ -134,7 +243,8 @@ class Api_Polen_Products
             'category_name' => $product_module->get_category_name(),
             'category_slug' => $product_module->get_category_slug(),
             'price_from_to' => $product_module->get_price_from_b2b(),
-            'image_url' => $product_module->get_image_url('polen-thumb-lg'),
+            'image' => $product_module->get_image_url('polen-thumb-lg'),
+            'videos' => $product_module->get_vimeo_videos_page_details(),
         ];
         return $product_response;
     }
