@@ -2,6 +2,7 @@
 
 namespace Polen\Api\v2;
 
+use Polen\Api\Api_Product;
 use Polen\Includes\Module\Factory\Polen_Product_Module_Factory;
 use Polen\Includes\Module\{Polen_Product_Module,Polen_User_Module};
 use Polen\Includes\Module\Resource\Metrics;
@@ -102,6 +103,58 @@ class Api_Polen_Products
             }
         }
         return api_response([]);
+    }
+
+    /**
+     * Retornar todos os talentos
+     * @param WP_REST_Request $request
+     * @return \WP_REST_Response
+     */
+    public function get_products(WP_REST_Request $request): \WP_REST_Response
+    {
+        try{
+            $api_product = new Api_Product();
+            $params = $request->get_params();
+
+            $slug = '';
+            if (isset($params['campaign']) || isset($params['campaign_category'])) {
+                $slug = $params['campaign_category'] ?? $params['campaign'];
+            }
+
+            $products = $api_product->polen_get_products_by_campagins($params, $slug);
+
+            $items = array();
+            foreach ($products->products as $product) {
+                $image_object = $api_product->get_object_image($product->get_id());
+                $items[] = array(
+                    'id' => $product->get_id(),
+                    'name' => $product->get_name(),
+                    'slug' => $product->get_slug(),
+                    'image' => $image_object,
+                    'categories' => wp_get_object_terms($product->get_id() , 'product_cat'),
+                    'stock' => $product->is_in_stock() ? $api_product->check_stock($product) : 0,
+                    'price' => $product->get_price(),
+                    'regular_price' => $product->get_regular_price(),
+                    'sale_price' => $product->get_sale_price(),
+                    'createdAt' => get_the_date('Y-m-d H:i:s', $product->get_id()),
+                );
+            }
+
+            $data = array(
+                'items' => $items,
+                'total' => $products->total,//$api_product->get_products_count($params, $slug),
+                'current_page' => $request->get_param('paged') ?? 1,
+                'per_page' => count($items),
+            );
+
+            return api_response($data, 200);
+
+        } catch (\Exception $e) {
+            return api_response(
+                array('message' => $e->getMessage()),
+                $e->getCode()
+            );
+        }
     }
 
 
