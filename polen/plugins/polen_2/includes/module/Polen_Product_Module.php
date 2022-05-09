@@ -126,6 +126,24 @@ class Polen_Product_Module
         return $category->slug;
     }
 
+
+    /**
+     * Pega o slug da primeira Categoria do produto
+     */
+    public function get_categories()
+    {
+        $categories_ids = $this->object->get_category_ids();
+        if( empty( $categories_ids ) ) {
+            return [];
+        }
+        $categories = [];
+        foreach( $categories_ids as $category_id) {
+            $category = get_term_by( 'id', $category_id, 'product_cat' );
+            $categories[] = $category;
+        }
+        return $categories;
+    }
+
     /**
      * 
      */
