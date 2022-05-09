@@ -5,7 +5,7 @@ namespace Polen\Includes;
 use Polen\Admin\Polen_Admin_Custom_Post_Types;
 use WP_Query;
 
-class Polen_Quiz {
+class Polen_Faq {
 
     /**
      * Salvar slug do cpt para uso na classe
@@ -15,15 +15,15 @@ class Polen_Quiz {
 
     public function __construct()
     {
-        $this->slug_cpt = 'post_' . Polen_Admin_Custom_Post_Types::POLEN_QUIZ;
+        $this->slug_cpt = 'post_' . Polen_Admin_Custom_Post_Types::POLEN_FAQ;
     }
 
     /**
-     * Retornar perguntas e respostas do Custom Post Type Quiz
+     * Retornar perguntas e respostas do Custom Post Type FAQ
      *
      * @return array
      */
-    public function get_quiz(): array
+    public function get_faq(): array
     {
         $args = [
             'post_type' => $this->slug_cpt,
