@@ -89,4 +89,39 @@ class Api_Product
 
         return $query->found_posts;
     }
+
+    /**
+     * Retornar meta dados da imagem
+     *
+     * @param int $talent_id
+     * @return array
+     */
+    public function get_object_image(int $talent_id): array
+    {
+        $attachment = get_post(get_post_thumbnail_id($talent_id));
+        if( empty( $attachment ) ) {
+            return [];
+        }
+        return array(
+            'id' => $attachment->ID,
+            'alt' => get_post_meta($attachment->ID, '_wp_attachment_image_alt', true),
+            'caption' => $attachment->post_excerpt,
+            'description' => $attachment->post_content,
+            'src' => wp_get_attachment_image_src($attachment->ID, 'polen-thumb-lg')[0],
+            'title' => $attachment->post_title,
+        );
+    }
+
+    /**
+     * Verificar se o produto contem estoque e retornar a quantidade
+     */
+    public function check_stock($product)
+    {
+        $stock = $product->get_stock_quantity();
+        if ($stock === null && $product->is_in_stock()) {
+            $stock = true;
+        }
+
+        return $stock;
+    }
 }
