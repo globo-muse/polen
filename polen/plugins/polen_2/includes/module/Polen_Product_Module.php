@@ -516,6 +516,16 @@ class Polen_Product_Module
         return $this->object->get_price();
     }
 
+    public function get_sale_price()
+    {
+        return $this->object->get_sale_price();
+    }
+
+    public function get_regular_price()
+    {
+        return $this->object->get_regular_price();
+    }
+
     public function get_image($size = 'woocommerce_thumbnail', $attr = array(), $placeholder = true)
     {
         return $this->object->get_image($size, $attr, $placeholder);
