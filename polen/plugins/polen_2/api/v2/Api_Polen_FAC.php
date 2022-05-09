@@ -2,7 +2,7 @@
 
 namespace Polen\Api\v2;
 
-use WP_Post;
+use Polen\Includes\Polen_Faq;
 use WP_REST_Request;
 use WP_REST_Server;
 
@@ -34,27 +34,9 @@ class Api_Polen_FAC
 
     public function get_objects(WP_REST_Request $request)
     {
-        $facs = get_posts([
-            'paginate' => false,
-            'type' => 'fac',
-            'status' => 'publish',
-        ]);
-        return api_response($this->prepare_facs_to_response($facs));
-    }
+        $faq = new Polen_Faq();
+        $facs = $faq->get_faq();
 
-
-    public function prepare_facs_to_response(array $posts)
-    {
-        $result = [];
-
-        foreach($posts as $fac) {
-            $result = [
-                'id' => $fac->ID,
-                'url' => $fac->permalink,
-                'title' => $fac->title,
-                'description' => $fac->description,
-            ];
-        }
-        return $result;
+        return api_response($facs);
     }
 }
