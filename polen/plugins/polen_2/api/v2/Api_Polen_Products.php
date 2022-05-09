@@ -95,7 +95,7 @@ class Api_Polen_Products
                         $arr_obj[] = $id;
 
                         if( 'publish' === $product->get_status() ) {
-                            $args[] = $this->prepare_product_to_response($product_module);
+                            $args[] = Api_Polen_Prepare_Responses::prepare_product_to_response($product_module);
                         }
                     }
                 }
@@ -170,7 +170,7 @@ class Api_Polen_Products
         }
         $product_module = Polen_Product_Module_Factory::create_product_from_campaing($product);
 
-        $result = $this->prepare_product_to_response($product_module);
+        $result = Api_Polen_Prepare_Responses::prepare_product_to_response($product_module);
         $result['region_metrics'] = $this->influence_by_region($product_module->get_id());
         $result['age_group'] = $this->age_group($product_module->get_id());
         $result['audience'] = $this->audience($product_module->get_id());
@@ -229,25 +229,6 @@ class Api_Polen_Products
         return $user->get_audience();
     }
 
-
-    /**
-     * 
-     */
-    public function prepare_product_to_response(Polen_Product_Module $product_module)
-    {
-        $product_response = [
-            'id' => $product_module->get_id(),
-            'description' => $product_module->get_description(),
-            'slug' => $product_module->get_sku(),
-            'title' => $product_module->get_title(),
-            'category_name' => $product_module->get_category_name(),
-            'category_slug' => $product_module->get_category_slug(),
-            'price_from_to' => $product_module->get_price_from_b2b(),
-            'image' => $product_module->get_image_url('polen-thumb-lg'),
-            'videos' => $product_module->get_vimeo_videos_page_details(),
-        ];
-        return $product_response;
-    }
 
     /**
      * 
