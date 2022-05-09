@@ -8,7 +8,7 @@ use WP_REST_Server;
 
 defined('ABSPATH') || die;
 
-class Api_Polen_FAC
+class Api_Polen_FAQ
 {
     /**
      * Metodo construtor
@@ -21,7 +21,7 @@ class Api_Polen_FAC
 
     public function register_route()
     {
-        register_rest_route( $this->namespace, $this->rest_base . '/fac', [
+        register_rest_route( $this->namespace, $this->rest_base . '/faq', [
             [
                 'methods' => WP_REST_Server::READABLE,
                 'callback' => [ $this, 'get_objects' ],
