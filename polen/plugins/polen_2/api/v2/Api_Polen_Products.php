@@ -125,19 +125,9 @@ class Api_Polen_Products
 
             $items = array();
             foreach ($products->products as $product) {
-                $image_object = $api_product->get_object_image($product->get_id());
-                $items[] = array(
-                    'id' => $product->get_id(),
-                    'name' => $product->get_name(),
-                    'slug' => $product->get_slug(),
-                    'image' => $image_object,
-                    'categories' => wp_get_object_terms($product->get_id() , 'product_cat'),
-                    'stock' => $product->is_in_stock() ? $api_product->check_stock($product) : 0,
-                    'price' => $product->get_price(),
-                    'regular_price' => $product->get_regular_price(),
-                    'sale_price' => $product->get_sale_price(),
-                    'createdAt' => get_the_date('Y-m-d H:i:s', $product->get_id()),
-                );
+                $product = wc_get_product($product->get_id());
+                $module_product = new Polen_Product_Module($product);
+                $items[] = Api_Polen_Prepare_Responses::prepare_product_to_response($module_product);
             }
 
             $data = array(
