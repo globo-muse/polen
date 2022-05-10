@@ -88,7 +88,7 @@ class Api_Polen_Products
                 foreach ($others as $k => $id) {
                     if (!in_array($id, $arr_obj)) {
                         if (count($arr_obj) > 6) {
-                            return $args;
+                            return api_response($args);
                         }
                         $product = wc_get_product($id);
                         $product_module = Polen_Product_Module_Factory::create_product_from_campaing($product);
