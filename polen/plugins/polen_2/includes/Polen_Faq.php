@@ -29,6 +29,8 @@ class Polen_Faq {
             'post_type' => $this->slug_cpt,
             'posts_per_page' => -1,
             'status' => 'publish',
+            'orderby' => 'ID',
+            'order' => 'DESC',
         ];
 
         $query = new WP_Query($args);
