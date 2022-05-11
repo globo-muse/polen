@@ -50,6 +50,7 @@ class Api_Routers
                     'orderby' => [],
                     'campaign' => [],
                     'campaign_category' => [],
+                    'category' => []
                 ],
             ),
         ));

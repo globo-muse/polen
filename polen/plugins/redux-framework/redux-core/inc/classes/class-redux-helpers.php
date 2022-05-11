@@ -704,6 +704,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @since      3.1.7
 		 */
 		public static function cleanFilePath( string $path ): string { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+			// TODO: Uncomment this after Redux Pro is discontinued.
 			// phpcs:ignore Squiz.PHP.CommentedOutCode
 			// _deprecated_function( __CLASS__ . '::' . __FUNCTION__, 'Redux 4.0', 'Redux_Functions_Ex::wp_normalize_path( $path )' );
 			return Redux_Functions_Ex::wp_normalize_path( $path );
@@ -851,7 +852,13 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 		 * @since ReduxFramework 3.0.4
 		 */
 		public static function hex2rgba( string $hex, string $alpha = '' ): string {
-			$hex = str_replace( '#', '', $hex );
+			$hex = ltrim( $hex, '#' );
+			$hex = sanitize_hex_color_no_hash( $hex );
+
+			if ( '' === $hex ) {
+				return '';
+			}
+
 			if ( 3 === strlen( $hex ) ) {
 				$r = hexdec( substr( $hex, 0, 1 ) . substr( $hex, 0, 1 ) );
 				$g = hexdec( substr( $hex, 1, 1 ) . substr( $hex, 1, 1 ) );
@@ -861,6 +868,7 @@ if ( ! class_exists( 'Redux_Helpers', false ) ) {
 				$g = hexdec( substr( $hex, 2, 2 ) );
 				$b = hexdec( substr( $hex, 4, 2 ) );
 			}
+
 			$rgb = $r . ',' . $g . ',' . $b;
 
 			if ( '' === $alpha ) {

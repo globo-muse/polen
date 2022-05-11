@@ -92,10 +92,14 @@ class Api_Checkout extends WP_REST_Controller
             $fields_checkout = $request->get_params();
 
             foreach ($required_fields as $key => $field) {
-                if (!isset($fields_checkout[$key]) && !empty($field)) {
+                if (!isset($fields_checkout[$key]) || empty($fields_checkout[$key])) {
                     $errors[] = "O campo {$field} é obrigatório";
                 }
                 $data[$key] = sanitize_text_field($fields_checkout[$key]);
+            }
+
+            if(!empty($errors)) {
+                throw new Exception($errors[0], 403);
             }
 
             if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
@@ -110,6 +114,7 @@ class Api_Checkout extends WP_REST_Controller
             $response = $tuna->payment($request['order_id'], $user, $data);
             $b2b_order->calculate_totals();
             $b2b_order->update_order($data);
+            update_post_meta($request['order_id'], '_accepted_term', date("Y-m-d H:i:s"));
 
             return api_response($response);
 
@@ -158,7 +163,7 @@ class Api_Checkout extends WP_REST_Controller
                 'company_name' => $order_module->get_company_name(),
                 'product' => $product_order->get_title(),
                 'total' => $order_module->get_total(),
-                'date' => $product_order->get_date_created()->date('d/m/Y'),
+                'date' => $order_module->get_date_created()->date('d/m/Y'),
             ];
 
             return api_response($response);
@@ -190,19 +195,17 @@ class Api_Checkout extends WP_REST_Controller
     private function required_fields($card = false): array
     {
         $fields = [
-            'name' => 'Nome do representante',
-            'company' => 'Nome empresa',
+            'company_name' => 'Nome empresa',
             'address_1' => 'Endereço',
-            'address_2' => 'Complemento',
-            'city' => 'Cidade',
             'postcode' => 'CEP',
             'neighborhood' => 'Bairro',
             'country' => 'País',
             'state' => 'Estado',
+            'city' => 'Cidade',
             'email' => 'Email',
-            'phone' => 'Celular',
             'cnpj' => 'CNPJ',
             'corporate_name' => 'Razão Social',
+            'terms' => 'Concordar com os termos'
         ];
 
         if ($card === true) {

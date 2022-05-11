@@ -111,6 +111,39 @@ class Polen_Product_Module
         return $category->name;
     }
 
+
+    /**
+     * Pega o slug da primeira Categoria do produto
+     */
+    public function get_category_slug()
+    {
+        $categories_ids = $this->object->get_category_ids();
+        $category_id = $categories_ids[ 0 ];
+        $category = get_term_by( 'id', $category_id, 'product_cat' );
+        if( empty( $category ) ) {
+            return '';
+        }
+        return $category->slug;
+    }
+
+
+    /**
+     * Pega o slug da primeira Categoria do produto
+     */
+    public function get_categories()
+    {
+        $categories_ids = $this->object->get_category_ids();
+        if( empty( $categories_ids ) ) {
+            return [];
+        }
+        $categories = [];
+        foreach( $categories_ids as $category_id) {
+            $category = get_term_by( 'id', $category_id, 'product_cat' );
+            $categories[] = $category;
+        }
+        return $categories;
+    }
+
     /**
      * 
      */
@@ -386,15 +419,59 @@ class Polen_Product_Module
      * 
      * @return string URL || ''
      */
-    public function get_image_url()
+    public function get_image_url($thub_size = 'polen-thumb-lg')
     {
         $image_id = $this->object->get_image_id();
-        $image_data = wp_get_attachment_image_src($image_id);
+        $image_data = wp_get_attachment_image_src($image_id, $thub_size);
         if(empty($image_data)) {
             return '';
         }
         return $image_data[0];
     }
+
+
+    /**
+     * Pega o WP_Term de todas as tags de um produtos
+     * 
+     * @return array
+     */
+    public function get_terms_tags()
+    {
+        $tags = wp_get_object_terms($this->get_id(), 'product_tag');
+        return $tags;
+    }
+
+
+    /**
+     * Pega o preço apartir de a aba B2B
+     * 
+     * @return currency
+     */
+    public function get_price_from_b2b()
+    {
+        return $this->object->get_meta('polen_price_range_b2b');
+    }
+
+
+    /**
+     * Pega os videos que serão apresentados na pagina de detalhes do produto
+     * 
+     * @return array
+     */
+    public function get_vimeo_videos_page_details()
+    {
+        $videos_vimeo_meta = $this->object->get_meta('vimeo_videos', true);
+        if(empty($videos_vimeo_meta)) {
+            return '';
+        }
+        $videos = unserialize($videos_vimeo_meta);
+        if(!is_array($videos)) {
+            return '';
+        }
+        return $videos;
+    }
+
+
 
 
 
@@ -437,6 +514,16 @@ class Polen_Product_Module
     public function get_price()
     {
         return $this->object->get_price();
+    }
+
+    public function get_sale_price()
+    {
+        return $this->object->get_sale_price();
+    }
+
+    public function get_regular_price()
+    {
+        return $this->object->get_regular_price();
     }
 
     public function get_image($size = 'woocommerce_thumbnail', $attr = array(), $placeholder = true)
