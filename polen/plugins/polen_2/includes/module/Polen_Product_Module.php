@@ -126,6 +126,24 @@ class Polen_Product_Module
         return $category->slug;
     }
 
+
+    /**
+     * Pega o slug da primeira Categoria do produto
+     */
+    public function get_categories()
+    {
+        $categories_ids = $this->object->get_category_ids();
+        if( empty( $categories_ids ) ) {
+            return [];
+        }
+        $categories = [];
+        foreach( $categories_ids as $category_id) {
+            $category = get_term_by( 'id', $category_id, 'product_cat' );
+            $categories[] = $category;
+        }
+        return $categories;
+    }
+
     /**
      * 
      */
@@ -496,6 +514,16 @@ class Polen_Product_Module
     public function get_price()
     {
         return $this->object->get_price();
+    }
+
+    public function get_sale_price()
+    {
+        return $this->object->get_sale_price();
+    }
+
+    public function get_regular_price()
+    {
+        return $this->object->get_regular_price();
     }
 
     public function get_image($size = 'woocommerce_thumbnail', $attr = array(), $placeholder = true)

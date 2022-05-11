@@ -5,7 +5,7 @@ namespace Polen\Admin;
 class Polen_Admin_Custom_Post_Types
 {
     const POLEN_MEDIA = 'polen_media';
-    const POLEN_QUIZ = 'polen_quiz';
+    const POLEN_FAQ = 'polen_faq';
 
     /**
      * Salvar todos os Custom Post Type
@@ -38,7 +38,7 @@ class Polen_Admin_Custom_Post_Types
         $quiz = [
             'name' => 'Perguntas Frequentes',
             'singular_name'=> 'Pergunta',
-            'slug' => self::POLEN_QUIZ,
+            'slug' => self::POLEN_FAQ,
             'dashicon' => 'dashicons-format-chat',
             'taxonomy' => [],
         ];

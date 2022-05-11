@@ -85,22 +85,8 @@ class Polen_Uses_Case
         foreach ( $all_ids as $id ) {
             $product = new WC_Product($id);
             $product_polen = new Polen_Product_Module($product);
-            // $respose_product = self::prepare_product_to_response($product_polen);
             $response_products[] = $product_polen;
         }
         return $response_products;
     }
-
-
-    // public static function prepare_product_to_response(Polen_Product_Module $product_polen)
-    // {
-    //     return [
-    //         'id' => $product_polen->get_id(),
-    //         'slug' => $product_polen->get_sku(),
-    //         'title' => $product_polen->get_title(),
-    //         'name' => $product_polen->get_title(),
-    //         'url' => $product_polen->get_permalink,
-    //     ];
-    // }
-
 }
