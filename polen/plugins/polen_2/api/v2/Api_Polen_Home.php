@@ -77,7 +77,7 @@ class Api_Polen_Home
             $products = Polen_Uses_Case::get_products_by_slug($use_case_slug);
             $products_response = [];
             if(empty($products)) {
-                return [];
+                return api_response([]);
             }
             foreach($products as $product) {
                 // $products_response = array_map([$this, 'prepare_products_to_response'], $products);
