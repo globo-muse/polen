@@ -6,7 +6,11 @@ defined( 'ABSPATH' ) || exit;
 
 use Polen\Api\Api_Checkout;
 use Polen\Includes\Cart\Polen_Cart_Item_Factory;
+use Polen\Includes\Module\Polen_Order_Module;
+use Polen\Includes\Polen_Order;
 use Polen\Includes\Polen_Utils;
+use Polen\Includes\Sendgrid\Emails\Polen_Order_B2B_Payment_Approved_Finance_Email;
+use Polen\Includes\Sendgrid\Emails\Polen_Order_B2B_Payment_Approved_Finence_Email;
 use WC_Order;
 use WP_Error;
 
@@ -134,6 +138,15 @@ class Polen_Admin_Metabox_B2B
             $post = get_post($order_id);
             if(empty($post->post_password)) {
                 wp_update_post(['id'=>$order_id,'post_password'=>wc_generate_order_key()]);
+            }
+
+            if(Polen_Order::ORDER_STATUS_PAYMENT_APPROVED_INSIDE == filter_input(INPUT_POST,'order_status')) {
+                $email = WC()->mailer()->get_emails()['Polen_WC_Payment_Approved'];
+            }
+
+            if(Polen_Order::ORDER_STATUS_VIDEO_SENDED_INSIDE == filter_input(INPUT_POST,'order_status')) {
+                $email = WC()->mailer()->get_emails()['Polen_WC_Payment_Approved'];
+                (new Polen_Order_B2B_Payment_Approved_Finance_Email(new Polen_Order_Module($order)))->send_email();
             }
         }
     }
