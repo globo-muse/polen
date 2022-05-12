@@ -46,15 +46,6 @@ class Api_Polen_Home
                 'args' => []
             ]
         ] );
-
-        register_rest_route( $this->namespace, $this->rest_base . '/nonce', [
-            [
-                'methods' => WP_REST_Server::READABLE,
-                'callback' => [ $this, 'generate_none' ],
-                'permission_callback' => "__return_true",
-                'args' => []
-            ]
-        ] );
     }
 
 
@@ -119,10 +110,5 @@ class Api_Polen_Home
     protected function prepare_products_to_response(Polen_Product_Module $product)
     {
         return Api_Polen_Prepare_Responses::prepare_product_to_response($product);
-    }
-
-    public function generate_none(WP_REST_Request $request)
-    {
-        return api_response([wp_create_nonce('NAO'), $_SERVER['HTTP_USER_AGENT'], $_SERVER['REMOTE_ADDR']]);
     }
 }
