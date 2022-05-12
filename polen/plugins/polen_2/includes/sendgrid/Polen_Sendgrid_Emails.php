@@ -3,6 +3,7 @@ namespace Polen\Includes\Sendgrid;
 
 use SendGrid;
 use SendGrid\Mail\Mail;
+use SendGrid\Response;
 
 class Polen_Sendgrid_Emails
 {
@@ -19,7 +20,7 @@ class Polen_Sendgrid_Emails
     }
 
 
-    public function send_email()
+    public function send_email():Response
     {
         $response = $this->sg->send( $this->mail );
         return $response;

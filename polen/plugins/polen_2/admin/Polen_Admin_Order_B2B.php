@@ -8,9 +8,11 @@ use Polen\Api\Api_Checkout;
 use Polen\Includes\Cart\Polen_Cart_Item_Factory;
 use Polen\Includes\Debug;
 use Polen\Includes\Module\Orders\Polen_Module_B2B_Only;
+use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Includes\Polen_Order;
 use Polen\Includes\Polen_Utils;
 use Polen\Includes\Polen_WC_Payment_Approved;
+use Polen\Includes\Sendgrid\Emails\Polen_Order_B2B_Payment_Approved_Finance_Email;
 use WC_Order;
 use WP_Error;
 
@@ -157,6 +159,7 @@ class Polen_Admin_Order_B2B
 
             if(Polen_Order::ORDER_STATUS_VIDEO_SENDED_INSIDE == filter_input(INPUT_POST,'order_status')) {
                 $email = WC()->mailer()->get_emails()['Polen_WC_Payment_Approved'];
+                (new Polen_Order_B2B_Payment_Approved_Finance_Email(new Polen_Order_Module($order)))->send_email();
             }
         }
     }
