@@ -56,7 +56,7 @@
               <div class="col-md-3 mt-4">
                 <h5 class="title typo typo-title typo-small">Para Empresas</h5>
                 <ul class="footer-menu">
-                  <li><a href="/empresas">Polen para empresas</a></li>
+                  <li><a href="https://polen.me/">Polen para empresas</a></li>
                   <li><a href="https://www.instagram.com/polenparaempresas/" target="_blank" rel="noreferrer"><?php Icon_Class::polen_icon_social("instagram"); ?>Instagram</a></li>
                   <li><a href="/empresas#faleconosco">Fale conosco</a></li>
                 </ul>
@@ -166,7 +166,7 @@
                 <div id="collapse-para-empresas" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-para-empresas">
                   <div class="panel-body">
                     <ul class="footer-menu">
-                      <li><a href="/empresas">Polen para empresas</a></li>
+                      <li><a href="https://polen.me/">Polen para empresas</a></li>
                       <li><a href="https://www.instagram.com/polenparaempresas/" target="_blank" rel="noreferrer"><?php Icon_Class::polen_icon_social("instagram"); ?>Instagram</a></li>
                       <li><a href="/empresas#faleconosco">Fale conosco</a></li>
                     </ul>
