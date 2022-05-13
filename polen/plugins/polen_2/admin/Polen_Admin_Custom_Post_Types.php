@@ -33,7 +33,6 @@ class Polen_Admin_Custom_Post_Types
             'slug' => self::POLEN_MEDIA,
             'dashicon' => 'dashicons-admin-site',
             'taxonomy' => [],
-            'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author', 'revisions')
         ];
 
         $quiz = [
@@ -42,7 +41,7 @@ class Polen_Admin_Custom_Post_Types
             'slug' => self::POLEN_FAQ,
             'dashicon' => 'dashicons-format-chat',
             'taxonomy' => [],
-            'supports' => array('title', 'editor', 'page-attributes')
+            'supports' => array('title', 'editor', 'page-attributes'),
         ];
 
         $this->cpt = [$media, $quiz];
