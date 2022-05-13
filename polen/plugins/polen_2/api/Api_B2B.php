@@ -121,6 +121,8 @@ class Api_B2B
         $product = filter_var($request->get_param( 'product_name' ), FILTER_SANITIZE_SPECIAL_CHARS);
         $city    = filter_var($request->get_param( 'city' ), FILTER_SANITIZE_SPECIAL_CHARS);
         $state   = filter_var($request->get_param( 'state' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $investiment_amount      = filter_var($request->get_param( 'investiment_amount' ), FILTER_SANITIZE_SPECIAL_CHARS);
+        $investiment_marketing   = filter_var($request->get_param( 'investiment_marketing' ), FILTER_SANITIZE_SPECIAL_CHARS);
 
 
         $utm_source   = filter_var($request->get_param( 'utm_source' ), FILTER_SANITIZE_SPECIAL_CHARS);
@@ -144,6 +146,8 @@ class Api_B2B
             $form_db->insert($body);
 
             $body['product'] = $product;
+            $body['investiment_marketing'] = $investiment_marketing;
+            $body['investiment_amount'] = $investiment_amount;
             $form_service = new Polen_Forms();
             $form_service->mailSend($body);
 
