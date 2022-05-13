@@ -41,6 +41,7 @@ class Polen_Admin_Custom_Post_Types
             'slug' => self::POLEN_FAQ,
             'dashicon' => 'dashicons-format-chat',
             'taxonomy' => [],
+            'supports' => array('title', 'editor', 'page-attributes', 'thumbnail'),
         ];
 
         $this->cpt = [$media, $quiz];
@@ -87,7 +88,7 @@ class Polen_Admin_Custom_Post_Types
             'public' => true,
             'has_archive' => false,
             'rewrite' => array('slug' => $parameter['slug']),
-            'supports' => array('title', 'editor', 'thumbnail', 'excerpt', 'author', 'revisions')
+            'supports' => $parameter['supports'] ?? array('title', 'editor', 'thumbnail', 'excerpt', 'author', 'revisions'),
         ));
 
         if (!empty($parameter['taxonomy']) && count($parameter['taxonomy'])) {
