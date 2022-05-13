@@ -4,6 +4,7 @@ namespace Polen\Api\Module;
 
 use Exception;
 use Polen\Includes\Module\Polen_Order_Module;
+use Polen\Includes\Module\Polen_User_Module;
 use Polen\Includes\Polen_Campaign;
 use WC_Order;
 
@@ -26,9 +27,12 @@ class Gateway_Tuna
      * @param string|array $card_info // informações do cartão de crédito
      * @return array
      */
-    protected function body_for_request($order_id, $current_user = '', $card_info = null, $installments = 1)
+    protected function body_for_request($order_id, $current_user = '', $card_info = null, $installments = 1, $session_id = null)
     {
-        $session_id = $this->get_session_id($current_user['user_object']->data);
+        if ($session_id === null) {
+            $session_id = $this->get_session_id($current_user['user_object']->data);
+        }
+
         $order = new WC_Order($order_id);
 
         $costumer_order = new Polen_Order_Module($order);
@@ -39,8 +43,6 @@ class Gateway_Tuna
             $name = $costumer_order->get_corporate_name();
         }
 
-        // $product_campaign_slug = Polen_Campaign::get_product_campaign_slug( $product );
-
         $purchased_items = [
             [
                 "Amount" => floatval($costumer_order->get_total()),
@@ -49,9 +51,15 @@ class Gateway_Tuna
                 "CategoryName" => 'b2b',
                 "AntiFraud" => [
                     "Ean" => $product->get_sku()
-                ]
+                ],
             ]
         ];
+
+        // $split = $this->split($costumer_order->get_item_cart_id(), $order->get_total());
+
+//        if ($split !== null) {
+//            $purchased_items[0]['Split'] = $split;
+//        }
 
         $method = $card_info ? 'cc' : 'pix';
 
@@ -70,58 +78,87 @@ class Gateway_Tuna
             'Customer' => [
                 'Email' => $order->get_billing_email(),
                 'Name' => $name,
-                'ID' => $current_user['user_object']->data->ID,
-                'Document' => $document_value,
-                'DocumentType' => $document_type
-            ],
-            "AntiFraud" => [
-                "DeliveryAddressee" => $name
-            ],
-            "DeliveryAddress" => [
-                "Street" =>  $order->get_shipping_address_1(),
-                "Number" => '2577',
-                "Complement" => '',
-                "Neighborhood" => '',
-                "City" => $order->get_shipping_city(),
-                "State" => 'CE',
-                "Country" => 'BR',
-                "PostalCode" => $order->get_shipping_postcode(),
-                "Phone" => '85999999999',
+                'ID' => (string) $current_user['user_object']->data->ID,
+                'Document' => (string) $document_value,
+                'DocumentType' => (string) $document_type,
             ],
             "FrontData" => [
-                "SessionID" => wp_get_session_token(),
+                "SessionID" => session_create_id(),
                 "Origin" => 'WEBSITE',
-                "IpAddress" => $_SERVER['REMOTE_ADDR'],
+                "IpAddress" => $_SERVER['HTTP_CLIENT_IP'],
                 "CookiesAccepted" => true
             ],
-            "ShippingItems" => [
-                "Items" => [
-                    [
-                        "Type" => $order->get_shipping_method(),
-                        "Amount" => floatval($order->get_shipping_total()),
-                        "Code" => '',
-                    ]
-                ]
-            ],
+//            "ShippingItems" => [
+//                "Items" => [
+//                    [
+//                        "Type" => $order->get_shipping_method(),
+//                        "Amount" => floatval($order->get_shipping_total()),
+//                        "Code" => '',
+//                    ]
+//                ]
+//            ],
             "PaymentItems" => [
                 "Items" => $purchased_items,
             ],
             "PaymentData" => [
-                'Countrycode' => 'BR',
+                "Countrycode" => 'BR',
                 "SalesChannel" => 'ECOMMERCE',
                 "PaymentMethods" => [
                     [
                         "PaymentMethodType" => $payment_method_type,
                         "Amount" => floatval($order->get_total()),
-                        "Installments" => 1,
+                        "Installments" => $installments,
                         "CardInfo" => $card_info,
-                    ]
+                        "BoletoInfo" => null
+                    ],
+                ],
+                "AntiFraud" => [
+                    "DeliveryAddressee" => "Antonia",
+                ],
+                "DeliveryAddress" => [
+                    "Street" => "Ses Av. Das Nações",
+                    "Number" => "Q811",
+                    "Complement" => "Bloco H",
+                    "Neighborhood" => "Brasilia",
+                    "City" => "Brasilia",
+                    "State" => "DF",
+                    "Country" => "BR",
+                    "PostalCode" => "70429900",
+                    "Phone" => "6132442121"
                 ]
             ]
         ];
 
         return $body;
     }
+
+//    protected function split(int $product_id, float $price_order)
+//    {
+//        global $Polen_Plugin_Settings;
+//        $enable_split = $Polen_Plugin_Settings['polen_split'];
+//
+//        if (empty($enable_split)) {
+//            return null;
+//        }
+//
+//        $talent = Polen_User_Module::create_from_product_id($product_id);
+//        $split_db = $talent->get_split_setup();
+//
+//        $merchantDocument = $split_db[0]->cnpj;
+//        $merchantDocumentType = 'CNPJ';
+//
+//        if ($split_db[0]->natureza_juridica == 'PF') {
+//            $merchantDocument = $split_db[0]->cpf;
+//            $merchantDocumentType = 'CPF';
+//        }
+//
+//        return [
+//            "merchantID" => $split_db[0]->subordinate_merchant_id,
+//            "merchantDocument" => preg_replace('/[^0-9]/', '', $merchantDocument),
+//            "merchantDocumentType" => $merchantDocumentType,
+//            "amount" => $price_order * 0.75, // substituir valor quando for implementado valor subtotal
+//        ];
+//    }
 
     /**
      * Fazer request para API do TUNA
@@ -137,7 +174,9 @@ class Gateway_Tuna
         $api_response = wp_remote_post($url, array(
             'headers' => array(
                 'Content-Type'  => 'application/json',
-                'Accept' => '*/*',
+                'x-tuna-apptoken' => $this->partner_key,
+                'x-tuna-account' => $this->partner_account,
+//                'Accept' => '*/*',
             ),
             'body' => json_encode($body),
             'timeout' => 120,
@@ -162,38 +201,41 @@ class Gateway_Tuna
      */
     protected function get_session_id($current_user)
     {
-        try {
-            $url = $this->get_endpoint_url('Token/NewSession', true);
+//        try {
+        $url = $this->get_endpoint_url('Token/NewSession', true);
 
-            $body = [
-                "AppToken" => $this->partner_key,
-                "Customer" => [
-                    "Email" => $current_user->user_email,
-                    "ID" => $current_user->ID,
-                ]
-            ];
+        $body = [
+            "AppToken" => $this->partner_key,
+            "Customer" => [
+                "Email" => $current_user->user_email,
+                "ID" => $current_user->ID,
+            ]
+        ];
 
-            $api_response = wp_remote_post(
-                $url,
-                array(
-                    'headers' => array(
-                        'Content-Type'  => 'application/json'
-                    ),
-                    'body' => json_encode($body)
-                )
-            );
+        $api_response = wp_remote_post(
+            $url,
+            array(
+                'headers' => array(
+                    'Content-Type'  => 'application/json',
+                    'x-tuna-apptoken' => $this->partner_key,
+                    'x-tuna-account' => $this->partner_account,
 
-            if (is_wp_error($api_response)) {
-                throw new Exception(__('Problemas com o processo de pagamento', 'tuna-payment'));
-            }
+                ),
+                'body' => json_encode($body)
+            )
+        );
 
-            $response = json_decode($api_response['body']);
-
-            return $response->sessionId;
-        } catch (\Exception $e) {
-            wp_send_json_error($e->getMessage(), 422);
-            wp_die();
+        if (is_wp_error($api_response)) {
+            throw new Exception(__('Problemas com o processo de pagamento', 'tuna-payment'));
         }
+
+        $response = json_decode($api_response['body']);
+
+        return $response->sessionId;
+//        } catch (\Exception $e) {
+//            wp_send_json_error($e->getMessage(), 422);
+//            wp_die();
+//        }
     }
 
     /**
@@ -205,48 +247,72 @@ class Gateway_Tuna
      */
     protected function generate_token_card(string $session_id, array $card)
     {
-        try {
-            $url = $this->get_endpoint_url('Token/Generate', true);
+//        try {
+        $url = $this->get_endpoint_url('Token/Generate', true);
 
-            $tuna_expiration_date = $this->separate_month_year($card['tuna_expiration_date']);
+        $tuna_expiration_date = $this->separate_month_year($card['tuna_expiration_date']);
 
-            $body = [
-                "SessionId" => $session_id,
-                "Card" => [
-                    "CardNumber" => preg_replace("/[^0-9]/", '', $card['tuna_card_number']),
-                    "CardHolderName" => $card['tuna_card_holder_name'],
-                    "ExpirationMonth" => (int) $tuna_expiration_date[0],
-                    "ExpirationYear" => (int) $tuna_expiration_date[1],
-                    "CVV" => $card['tuna_cvv'],
-                    "SingleUse" => false,
-                ]
-            ];
+        $body = [
+            "SessionId" => $session_id,
+            "Card" => [
+                "CardNumber" => preg_replace("/[^0-9]/", '', $card['tuna_card_number']),
+                "CardHolderName" => $card['tuna_card_holder_name'],
+                "ExpirationMonth" => (int) $tuna_expiration_date[0],
+                "ExpirationYear" => (int) $tuna_expiration_date[1],
+                "CVV" => $card['tuna_cvv'],
+                "SingleUse" => true,
+            ]
+        ];
 
-            $api_response = wp_remote_post(
-                $url,
-                array(
-                    'headers' => array(
-                        'Content-Type'  => 'application/json'
-                    ),
-                    'body' => json_encode($body)
-                )
-            );
+        $api_response = wp_remote_post(
+            $url,
+            array(
+                'headers' => array(
+                    'Content-Type'  => 'application/json',
+                    'x-tuna-apptoken' => $this->partner_key,
+                    'x-tuna-account' => $this->partner_account,
+                ),
+                'body' => json_encode($body)
+            )
+        );
 
-            if (is_wp_error($api_response)) {
-                throw new Exception(__('Problemas com o processo de pagamento', 'tuna-payment'));
-            }
-
-            if ( empty( $api_response['body'] ) ) {
-                throw new Exception(__('Problemas com o processo de pagamento, recarregue a página.', 'tuna-payment'));
-            }
-
-            $response = json_decode($api_response['body']);
-
-            return $response->token;
-
-        } catch (\Exception $e) {
-            return api_response( $e->getMessage(), 422 );
+        if (is_wp_error($api_response)) {
+            throw new Exception(__('Problemas com o processo de pagamento', 'tuna-payment'));
         }
+
+        if ( empty( $api_response['body'] ) ) {
+            throw new Exception(__('Problemas com o processo de pagamento, recarregue a página.', 'tuna-payment'));
+        }
+
+        $response = json_decode($api_response['body']);
+//
+//            $bind = 'https://token.tunagateway.com/api/Token/Bind';
+//
+//            $body_bind = [
+//                "Token" => $response->token,
+//                "CVV" => $card['tuna_cvv'],
+//                "SessionId" => $session_id
+//            ];
+//
+//            $bind_response = wp_remote_post(
+//                $bind,
+//                array(
+//                    'headers' => array(
+//                        'Content-Type'  => 'application/json',
+//                        'x-tuna-apptoken' => $this->partner_key,
+//                        'x-tuna-account' => $this->partner_account,
+//                    ),
+//                    'body' => json_encode($body_bind)
+//                )
+//            );
+
+        // print_r($bind_response); die();
+
+        return $response->token;
+
+//        } catch (\Exception $e) {
+//            return api_response( $e->getMessage(), 422 );
+//        }
     }
 
 
@@ -355,7 +421,9 @@ class Gateway_Tuna
             $url,
             array(
                 'headers' => array(
-                    'Content-Type'  => 'application/json'
+                    'Content-Type'  => 'application/json',
+                    'x-tuna-apptoken' => $this->partner_key,
+                    'x-tuna-account' => $this->partner_account,
                 ),
                 'body' => json_encode($item)
             )

@@ -73,7 +73,7 @@ class Api_Polen_Prepare_Responses
             'alt' => get_post_meta($attachment->ID, '_wp_attachment_image_alt', true),
             'caption' => $attachment->post_excerpt,
             'description' => $attachment->post_content,
-            'src' => wp_get_attachment_image_src($attachment->ID, 'polen-thumb-lg')[0],
+            'src' => wp_get_attachment_image_src($attachment->ID, 'polen-thumb-xl')[0],
             'title' => $attachment->post_title,
         );
     }

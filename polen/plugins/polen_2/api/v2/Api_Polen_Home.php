@@ -77,7 +77,7 @@ class Api_Polen_Home
             $products = Polen_Uses_Case::get_products_by_slug($use_case_slug);
             $products_response = [];
             if(empty($products)) {
-                return [];
+                return api_response([]);
             }
             foreach($products as $product) {
                 // $products_response = array_map([$this, 'prepare_products_to_response'], $products);
@@ -109,12 +109,6 @@ class Api_Polen_Home
      */
     protected function prepare_products_to_response(Polen_Product_Module $product)
     {
-        // return  [
-        //     'id' => $product->get_id(),
-        //     'name' => $product->get_title(),
-        //     'slug' => $product->get_sku(),
-        //     'image' => $product->get_image_url(),
-        // ];
         return Api_Polen_Prepare_Responses::prepare_product_to_response($product);
     }
 }

@@ -3,10 +3,10 @@
 namespace Polen\Api\Module;
 
 use Exception;
-use Polen\Includes\Polen_Order;
 
 class Tuna_Credit_Card extends Gateway_Tuna
 {
+    protected $session_id;
     /**
      * Montar array para card_info no body da requisição com a API
      *
@@ -16,36 +16,39 @@ class Tuna_Credit_Card extends Gateway_Tuna
      */
     private function card_info_body($current_user, array $data): array
     {
-        $session_id = parent::get_session_id($current_user['user_object']->data);
-        $token = parent::generate_token_card($session_id, $data);
+        $this->session_id = parent::get_session_id($current_user['user_object']->data);
+        // print_r($session_id); die('aki');
+        $token = parent::generate_token_card($this->session_id, $data);
+
         $tuna_expiration_date = $this->separate_month_year($data['tuna_expiration_date']);
 
         $value_document = preg_replace( '/[^0-9]/', '', $data['cnpj']);
         $type_document = parent::check_cpf_cnpj($value_document);
 
         return [
-            "Token" => $token,  
+            "Token" => $token,
             "TokenProvider" => 'Tuna',
             "CardHolderName" => sanitize_text_field($data["tuna_card_holder_name"]),
-            "BrandName" => sanitize_text_field($data["tuna_card_brand"]),
+            "BrandName" => strtoupper(sanitize_text_field($data["tuna_card_brand"])),
             "ExpirationMonth" => (int) $tuna_expiration_date[0],
             "ExpirationYear" => (int) $tuna_expiration_date[1],
             "TokenSingleUse" => 1,
             "SaveCard" => false,
             "BillingInfo" => [
-                "Document" => $type_document,
-                "DocumentType" => $value_document,
-                "Address" => [
-                    "Street" => '',
-                    "Number" => '',
-                    "Complement" => '',
-                    "Neighborhood" => '',
-                    "City" => '',
-                    "State" => '',
-                    "Country" => '',
-                    "PostalCode" => '',
-                    "Phone" => '',
-                ]
+                "Document" => $value_document,
+                "DocumentType" => $type_document,
+//                "Name" => 'Glaydson rodrigues',
+//                "Address" => [
+//                    "Street" => 'Rua Dona Lucia',
+//                    "Number" => "2577",
+//                    "Complement" => "altos",
+//                    "Neighborhood" => "Bairro",
+//                    "City" => 'Fortaleza',
+//                    "State" => 'CE',
+//                    "Country" => "BR",
+//                    "PostalCode" => 80250080,
+//                    "Phone" => "85997785361"
+//                ]
             ]
         ];
     }
@@ -62,10 +65,14 @@ class Tuna_Credit_Card extends Gateway_Tuna
             $installments = (int) sanitize_text_field($data['installments']);
         }
 
-        $body = parent::body_for_request($order_id, $current_user, $card_info, $installments);
+        $body = parent::body_for_request($order_id, $current_user, $card_info, $installments, $this->get_session_id_card());
+
+//        print_r(json_encode($body)); die('aki');
         $response_api_tuna = parent::request($body);
 
         $new_status = $this->get_status_response($response_api_tuna->status);
+
+        // print_r($response_api_tuna->status); die('aki');
         if('failed' === $new_status || 'cancelled' === $new_status) {
             throw new Exception('Erro no pagamento, tente novamente', 422);
         }
@@ -86,6 +93,10 @@ class Tuna_Credit_Card extends Gateway_Tuna
         return $response_payment;
     }
 
+    public function get_session_id_card()
+    {
+        return $this->session_id;
+    }
     /**
      * Quebrar data em formato de stirng para array, separando Mes e Ano
      *
