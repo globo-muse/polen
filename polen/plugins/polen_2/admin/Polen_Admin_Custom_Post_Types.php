@@ -89,7 +89,7 @@ class Polen_Admin_Custom_Post_Types
             'public' => true,
             'has_archive' => false,
             'rewrite' => array('slug' => $parameter['slug']),
-            'supports' => $parameter['supports'],
+            'supports' => $parameter['supports'] ?? array('title', 'editor', 'thumbnail', 'excerpt', 'author', 'revisions'),
         ));
 
         if (!empty($parameter['taxonomy']) && count($parameter['taxonomy'])) {
