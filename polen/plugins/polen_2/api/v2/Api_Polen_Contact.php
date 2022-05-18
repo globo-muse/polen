@@ -21,7 +21,7 @@ class Api_Polen_Contact
     public function register_route()
     {
         register_rest_route($this->namespace, $this->rest_base . '/contact', [
-            'methods' => WP_REST_Server::READABLE,
+            'methods' => WP_REST_Server::CREATABLE,
             'callback' => [ $this, 'send_contact' ],
             'permission_callback' => "__return_true",
             'args' => []
