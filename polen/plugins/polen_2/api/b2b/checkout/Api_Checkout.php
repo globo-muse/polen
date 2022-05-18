@@ -295,7 +295,6 @@ class Api_Checkout extends WP_REST_Controller
             'country' => 'País',
             'state' => 'Estado',
             'email' => 'Email',
-            'phone' => 'Celular',
             'cnpj' => 'CNPJ',
             'corporate_name' => 'Razão Social',
             'method_payment' => 'Metodo de pagamento',
