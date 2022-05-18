@@ -470,4 +470,9 @@ class Polen_Order_Module
     {
         return $this->object->get_meta('_accepted_term');
     }
+
+    public function get_customer_id()
+    {
+        return $this->object->get_customer_id();
+    }
 }
