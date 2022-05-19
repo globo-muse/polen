@@ -22,7 +22,7 @@ class Polen_Admin_Metabox
         if( $current_screen && ! is_null( $current_screen ) && isset( $current_screen->id ) && $current_screen->id == 'product' && isset( $_REQUEST['action'] ) && $_REQUEST['action'] == 'edit' )  {
             $product_id = $post->ID;
             add_meta_box( 'Polen_Product_First_Order', 'Primeira Order', array( $this, 'metabox_create_first_order' ), 'product', 'side', 'default' );
-            add_meta_box( 'Polen_Product_SEO', 'SEO', array( $this, 'metabox_SEO' ), 'product', 'normal', 'default' );
+            // add_meta_box( 'Polen_Product_SEO', 'SEO', array( $this, 'metabox_SEO' ), 'product', 'normal', 'default' );
         }
     }
 
