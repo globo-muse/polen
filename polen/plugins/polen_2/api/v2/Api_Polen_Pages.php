@@ -31,8 +31,9 @@ class Api_Polen_Pages
         ] );
     }
 
-
-
+    /**
+     * Pegar info de uma Page
+     */
     public function get_object(WP_REST_Request $request)
     {
         $slug_page = $request['slug'];
@@ -45,5 +46,5 @@ class Api_Polen_Pages
         }
         $page_module = new Polen_Page_Module($page);
         return api_response(Api_Polen_Prepare_Responses::prepare_page_to_response($page_module));
-    }//jfhlakdfjhlaj
+    }
 }
