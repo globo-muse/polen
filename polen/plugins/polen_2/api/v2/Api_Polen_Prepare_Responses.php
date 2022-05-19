@@ -55,7 +55,7 @@ class Api_Polen_Prepare_Responses
         return [
             'id' => $page->get_id(),
             'title' => $page->get_title(),
-            'slug' => $page->get_slug,
+            'slug' => $page->get_slug(),
             'image' => self::prepare_image_to_response(get_post_thumbnail_id($page->get_id())),
             'excerpt' => $page->get_excerpt(),
             'content' => $page->get_content(),
