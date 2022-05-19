@@ -2,7 +2,7 @@
 
 namespace Polen\Api\v2;
 
-use Polen\Includes\Module\Polen_Product_Module;
+use Polen\Includes\Module\{Polen_Page_Module, Polen_Product_Module};
 use WP_Term;
 
 class Api_Polen_Prepare_Responses
@@ -25,6 +25,7 @@ class Api_Polen_Prepare_Responses
             'image' => self::get_object_image($product_module->get_id()),
             'videos' => $product_module->get_vimeo_videos_page_details(),
             'createdAt' => get_the_date('Y-m-d H:i:s', $product_module->get_id()),
+            'seo' => self::prepare_seo_to_response($product_module),
         ];
         return $product_response;
     }
@@ -40,6 +41,43 @@ class Api_Polen_Prepare_Responses
             'slug' => $category->name,
             'name' => $category->slug,
             'count' => $category->count,
+        ];
+    }
+
+
+    /**
+     * Preparando uma Page para a saida de em um RESPONSE
+     * @param WP_POST
+     * @return array
+     */
+    static public function prepare_page_to_response(Polen_Page_Module $page)
+    {
+        return [
+            'id' => $page->get_id(),
+            'title' => $page->get_title(),
+            'slug' => $page->get_slug,
+            'image' => self::prepare_image_to_response(get_post_thumbnail_id($page->get_id())),
+            'excerpt' => $page->get_excerpt(),
+            'content' => $page->get_content(),
+            'seo' => self::prepare_seo_to_response($page)
+        ];
+    }
+
+
+    /**
+     * Preparando o objecto SEO para response esse methodo deve receber qualquer module
+     * @param Module
+     * @return array [title,description,meta_description,image]
+     */
+    static public function prepare_seo_to_response($object)
+    {
+        $image = $object->get_seo_image();
+        $image_response = self::prepare_image_to_response($image['ID'] ?? 0);
+        return [
+            'title' => $object->get_seo_title(),
+            'meta_title' => $object->get_seo_meta_title(),
+            'description' => $object->get_seo_meta_description() ,
+            'image' => $image_response,
         ];
     }
 
@@ -64,10 +102,18 @@ class Api_Polen_Prepare_Responses
      */
     static public function get_object_image(int $talent_id): array
     {
-        $attachment = get_post(get_post_thumbnail_id($talent_id));
-        if( empty( $attachment ) ) {
-            return [];
+        $thumbnail_id = get_post_thumbnail_id($talent_id);
+        // $attachment = get_post();
+        if( empty( $thumbnail_id ) ) {
+            return self::prepare_image_to_response($thumbnail_id);
         }
+        return [];
+    }
+
+
+    static public function prepare_image_to_response($attachment_id = '')
+    {
+        $attachment = get_post($attachment_id);
         return array(
             'id' => $attachment->ID,
             'alt' => get_post_meta($attachment->ID, '_wp_attachment_image_alt', true),

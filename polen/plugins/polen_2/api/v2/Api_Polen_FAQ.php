@@ -16,12 +16,12 @@ class Api_Polen_FAQ
     public function __construct()
     {
         $this->namespace = 'polen/v2';
-        $this->rest_base = 'site';
+        $this->rest_base = 'site/faq';
     }
 
     public function register_route()
     {
-        register_rest_route( $this->namespace, $this->rest_base . '/faq', [
+        register_rest_route( $this->namespace, $this->rest_base, [
             [
                 'methods' => WP_REST_Server::READABLE,
                 'callback' => [ $this, 'get_objects' ],
