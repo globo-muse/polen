@@ -52,25 +52,34 @@ class Polen_Page_Module
         return $this->object->post_content;
     }
 
-
+    
+    /**
+     * Pegar o SEO info
+     */
     public function get_seo_title()
     {
         return get_field('seo_title', $this->get_id());
     }
 
-
+    /**
+     * Pegar o SEO info
+     */
     public function get_seo_meta_title()
     {
         return get_field('meta_title', $this->get_id());
     }
 
-
+    /**
+     * Pegar o SEO info
+     */
     public function get_seo_meta_description()
     {
         return get_field('meta_description', $this->get_id());
     }
 
-
+    /**
+     * Pegar o SEO info
+     */
     public function get_seo_image()
     {
         return get_field('seo_image', $this->get_id());

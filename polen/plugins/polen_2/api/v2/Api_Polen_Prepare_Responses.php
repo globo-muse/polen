@@ -25,6 +25,7 @@ class Api_Polen_Prepare_Responses
             'image' => self::get_object_image($product_module->get_id()),
             'videos' => $product_module->get_vimeo_videos_page_details(),
             'createdAt' => get_the_date('Y-m-d H:i:s', $product_module->get_id()),
+            'seo' => self::prepare_seo_to_response($product_module),
         ];
         return $product_response;
     }
@@ -101,15 +102,16 @@ class Api_Polen_Prepare_Responses
      */
     static public function get_object_image(int $talent_id): array
     {
-        $attachment = get_post(get_post_thumbnail_id($talent_id));
-        if( empty( $attachment ) ) {
-            return [];
+        $thumbnail_id = get_post_thumbnail_id($talent_id);
+        // $attachment = get_post();
+        if( empty( $thumbnail_id ) ) {
+            return self::prepare_image_to_response($thumbnail_id);
         }
-
+        return [];
     }
 
 
-    static public function prepare_image_to_response($attachment_id)
+    static public function prepare_image_to_response($attachment_id = '')
     {
         $attachment = get_post($attachment_id);
         return array(
