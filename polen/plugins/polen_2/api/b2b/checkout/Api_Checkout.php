@@ -4,7 +4,8 @@ namespace Polen\Api\b2b\Checkout;
 use Exception;
 use Polen\Api\Api_Util_Security;
 use Polen\Includes\Module\Polen_Order_Module;
-use Polen\Api\Module\{Tuna_Credit_Card,Tuna_Pix};
+use Polen\Includes\Module\Polen_User_Module;
+use Polen\Api\Module\Tuna;
 use Polen\Includes\Module\Resource\Polen_B2B_Orders;
 use Polen\Includes\Polen_Create_Customer;
 use WC_Emails;
@@ -80,13 +81,7 @@ class Api_Checkout extends WP_REST_Controller
 //            }
 
             $method_payment = $request->get_param('method_payment');
-            $card = false;
-            $tuna = new Tuna_Pix();
-
-            if ($method_payment == 'cc') {
-                $card = true;
-                $tuna = new Tuna_Credit_Card();
-            }
+            $card = $method_payment == 'cc';
 
             $required_fields = $this->required_fields($card);
             $fields_checkout = $request->get_params();
@@ -98,11 +93,11 @@ class Api_Checkout extends WP_REST_Controller
                 $data[$key] = sanitize_text_field($fields_checkout[$key]);
             }
 
-            if(!empty($errors)) {
+            if (!empty($errors)) {
                 throw new Exception($errors[0], 403);
             }
 
-            if(!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+            if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 throw new Exception('Email inválido', 403);
             }
 
@@ -110,17 +105,100 @@ class Api_Checkout extends WP_REST_Controller
             $user = $create_user->create_new_user($data);
 
             $b2b_order = new Polen_B2B_Orders($request['order_id'], $request['key_order']);
-            WC_Emails::instance();
-            $response = $tuna->payment($request['order_id'], $user, $data);
-            $b2b_order->calculate_totals();
+            $order = wc_get_order($request['order_id']);
+            $order_module = new Polen_Order_Module($order);
+
+            $tuna = new Tuna($order_module, $data);
+            $tuna->set_costumer();
+            if ($method_payment == 'cc') {
+                $tuna->set_credit_card();
+            }
+            $payment = $tuna->pay_request();
+            $new_status = $this->get_status_response($payment->status);
+
+            if('failed' === $new_status || 'cancelled' === $new_status) {
+                throw new Exception('Erro no pagamento, tente novamente', 422);
+            }
+
             $b2b_order->update_order($data);
+            $b2b_order->calculate_totals();
+            WC_Emails::instance();
+            $order->set_customer_id($user['user_object']->data->ID);
+            $order->update_status($new_status);
+            $response_message = $this->get_response_message($new_status);
+
+            $response_payment = [
+                'message' => $response_message['message'],
+                'order_status' => $response_message['status_code'],
+            ];
+
+            if ($method_payment == 'pix') {
+                $response_payment['pix_code'] = $payment->methods[0]->pixInfo->qrContent;
+                $response_payment['pix_qrcode'] = $payment->methods[0]->pixInfo->qrImage;
+            }
+
             update_post_meta($request['order_id'], '_accepted_term', date("Y-m-d H:i:s"));
 
-            return api_response($response);
+            return api_response($response_payment);
 
         } catch(Exception $e) {
             return api_response($e->getMessage(), $e->getCode());
         }
+    }
+
+    /**
+     * Tratar response do TUNA
+     *
+     * @param $status_response
+     * @return string
+     */
+    protected function get_status_response($status_response): string
+    {
+        $status_code = [
+            'pending' => [ '1', '0', 'C', 'P'],
+            'payment-approved' => [ '2', '8', '9' ],
+            'failed' => [ 'A', '6', 'N', '4', 'B', -1 ],
+            'cancelled' => [ 'D', 'E' ],
+        ];
+
+        $new_status = '';
+        foreach ($status_code as $status_woocommerce => $code_tuna) {
+            if (in_array($status_response, $code_tuna)) {
+                $new_status = $status_woocommerce;
+            }
+        }
+
+        return $new_status;
+    }
+
+    /**
+     * Retornar mensagem conforme o status
+     *
+     * @param $status_response
+     * @return array
+     */
+    protected function get_response_message($status_response)
+    {
+        $status_order = [
+            'pending' => [
+                'message' => 'Pagamento pendente',
+                'status_code' => 200,
+            ],
+            'payment-approved' => [
+                'message' => 'Pagamento aprovado',
+                'status_code' => 200,
+            ],
+            'failed' => [
+                'message' => 'Erro ao processar pagamento',
+                'status_code' => 422,
+            ],
+            'cancelled' => [
+                'message' => 'Pagamento cancelado',
+                'status_code' => 422,
+            ]
+        ];
+
+        return $status_order[$status_response];
     }
 
     /**
@@ -172,22 +250,35 @@ class Api_Checkout extends WP_REST_Controller
         }
     }
 
-    public function check_status($request)
+    /**
+     * Verificar status
+     *
+     * @param $request
+     * @return \WP_REST_Response
+     * @throws Exception
+     */
+    public function check_status($request): \WP_REST_Response
     {
-        $order_id = $request['order_id'];
-        $tuna = new Tuna_Pix();
+        $order = wc_get_order($request['order_id']);
+        $order_module = new Polen_Order_Module($order);
 
-        $current_status = $tuna->get_status($order_id);
+        $tuna = new Tuna($order_module);
+
+        $status_tuna = $tuna->get_status();
+        $current_status_tuna = $this->get_status_response($status_tuna);
+
         $status_payment = ['payment-approved', 'video-sended', 'completed'];
+        if ($order->get_status() != $current_status_tuna) {
+            $order->update_status($current_status_tuna);
+        }
 
         return api_response(
             [
-                'paid' => in_array($current_status, $status_payment),
-                'payment_status' => $current_status
+                'paid' => in_array($order->get_status(), $status_payment),
+                'payment_status' => $order->get_status()
             ]
         );
     }
-
 
     /**
      * Retorna todos os campos do formulário que são obrigatórios
@@ -195,26 +286,27 @@ class Api_Checkout extends WP_REST_Controller
     private function required_fields($card = false): array
     {
         $fields = [
+            'terms' => 'Concordar com os termos',
             'company_name' => 'Nome empresa',
             'address_1' => 'Endereço',
+            'city' => 'Cidade',
             'postcode' => 'CEP',
             'neighborhood' => 'Bairro',
             'country' => 'País',
             'state' => 'Estado',
-            'city' => 'Cidade',
             'email' => 'Email',
             'cnpj' => 'CNPJ',
             'corporate_name' => 'Razão Social',
-            'terms' => 'Concordar com os termos'
+            'method_payment' => 'Metodo de pagamento',
         ];
 
         if ($card === true) {
             $cards = [
-                'tuna_card_holder_name' => 'Nome do cartão',
-                'tuna_card_brand' => 'Bandeira',
-                'tuna_expiration_date' => 'Data de Vencimento',
-                'tuna_card_number' => 'Numero do cartão',
-                'tuna_cvv' => 'Código de segurança',
+                'card_holder_name' => 'Nome do cartão',
+                'card_brand' => 'Bandeira',
+                'card_expiration_date' => 'Data de Vencimento',
+                'card_number' => 'Numero do cartão',
+                'card_cvv' => 'CVV',
                 'installments' => 'Parcelas',
             ];
 
