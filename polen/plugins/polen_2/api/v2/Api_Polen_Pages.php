@@ -21,7 +21,7 @@ class Api_Polen_Pages
 
     public function register_route()
     {
-        register_rest_route( $this->namespace, $this->rest_base . '/(?P<slug>[a-zA-Z0-9-]+)', [
+        register_rest_route( $this->namespace, $this->rest_base . '/', [
             [
                 'methods' => WP_REST_Server::READABLE,
                 'callback' => [ $this, 'get_object' ],
@@ -36,7 +36,7 @@ class Api_Polen_Pages
      */
     public function get_object(WP_REST_Request $request)
     {
-        $slug_page = $request['slug'];
+        $slug_page = filter_input(INPUT_GET, 'path');
         if(empty($slug_page)) {
             return api_response('page not founded', 404);
         }
