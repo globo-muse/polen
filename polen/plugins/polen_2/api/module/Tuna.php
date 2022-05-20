@@ -4,6 +4,7 @@ namespace  Polen\Api\Module;
 
 use Exception;
 use Polen\Includes\Module\Polen_Order_Module;
+use Polen\Includes\Module\Polen_User_Module;
 
 class Tuna implements Payments
 {
@@ -196,6 +197,7 @@ class Tuna implements Payments
                 "AntiFraud" => [
                     "Ean" => $product->get_sku()
                 ],
+                "Split" => $this->split(),
             ]
         ];
 
@@ -256,6 +258,7 @@ class Tuna implements Payments
                 ]
             ];
 
+            // return json_encode($body);
             return $this->request($url, $body);
         } catch (\Exception $e) {
             return api_response( $e->getMessage(), 422 );
@@ -374,6 +377,40 @@ class Tuna implements Payments
         $api_response = $this->request($url, $body);
 
         return $api_response->status;
+    }
+
+    /**
+     * Adicionar Configuração Split
+     * @return array|null
+     */
+    protected function split(): ?array
+    {
+        global $Polen_Plugin_Settings;
+        $enable_split = $Polen_Plugin_Settings['polen_split'];
+
+        if (empty($enable_split)) {
+            return null;
+        }
+
+        $product = $this->order->get_product_from_order();
+        $talent = Polen_User_Module::create_from_product_id($product->get_id());
+        $documents = $talent->get_document();
+        $merchant_id = $talent->get_merchant_id();
+
+        if ($merchant_id === null) {
+            return null;
+        }
+
+        if (empty($documents)) {
+            return null;
+        }
+
+        return [
+            "merchantID" => $merchant_id,
+            "merchantDocument" => $documents['document'],
+            "merchantDocumentType" => $documents['document_type'],
+            "amount" => $this->order->get_total_for_talent(),
+        ];
     }
 
     /**
