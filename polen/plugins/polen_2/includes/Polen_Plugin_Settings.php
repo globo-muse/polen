@@ -624,6 +624,13 @@ class Polen_Plugin_Settings
                     'desc'     => 'Cole aqui chave partner key do TUNA',
                     'default'  => '',
                 ),
+                array(
+                    'id'       => 'polen_split',
+                    'type'     => 'switch',
+                    'title'    => esc_html__('Habilitar Split', 'polen'),
+                    'desc'     => 'Habilitar ou Desabilitar split no método de pagamento na API',
+                    'default'  => '',
+                ),
             )
         ) );
 
