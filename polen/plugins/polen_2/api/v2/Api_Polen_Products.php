@@ -116,10 +116,8 @@ class Api_Polen_Products
             $api_product = new Api_Product();
             $params = $request->get_params();
 
-            $slug = '';
-            if (isset($params['campaign']) || isset($params['campaign_category'])) {
-                $slug = $params['campaign_category'] ?? $params['campaign'];
-            }
+            $slug = $params['campaign'] ?? '';
+            $slug = !empty($params['campaign_category']) ? $params['campaign_category'] : $slug;
 
             $products = $api_product->polen_get_products_by_campagins($params, $slug);
 
