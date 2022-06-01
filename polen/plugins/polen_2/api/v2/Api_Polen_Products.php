@@ -2,10 +2,13 @@
 
 namespace Polen\Api\v2;
 
+use Exception;
 use Polen\Api\Api_Product;
 use Polen\Includes\Module\Factory\Polen_Product_Module_Factory;
+use Polen\Includes\Polen_Campaign;
 use Polen\Includes\Module\{Polen_Product_Module,Polen_User_Module};
 use Polen\Includes\Module\Resource\Metrics;
+use WC_Product_Query;
 use WP_REST_Request;
 use WP_REST_Server;
 use WP_Term;
@@ -52,6 +55,15 @@ class Api_Polen_Products
             [
                 'methods' => WP_REST_Server::READABLE,
                 'callback' => [ $this, 'get_product' ],
+                'permission_callback' => "__return_true",
+                'args' => []
+            ]
+        ] );
+
+        register_rest_route( $this->namespace, $this->rest_base . '/(?P<s>[a-zA-Z0-9-]+)/search', [
+            [
+                'methods' => WP_REST_Server::READABLE,
+                'callback' => [ $this, 'search' ],
                 'permission_callback' => "__return_true",
                 'args' => []
             ]
@@ -116,7 +128,7 @@ class Api_Polen_Products
             $api_product = new Api_Product();
             $params = $request->get_params();
 
-            $slug = $params['campaign'] ?? '';
+            $slug = $params['campaign'] ?? null;
             $slug = !empty($params['campaign_category']) ? $params['campaign_category'] : $slug;
 
             $products = $api_product->polen_get_products_by_campagins($params, $slug);
@@ -147,7 +159,41 @@ class Api_Polen_Products
 
 
     /**
-     * 
+     * Retornar produtos de acordo com pesquisa
+     *
+     * @param WP_REST_Request $request
+     * @return \WP_REST_Response
+     */
+    public function search(WP_REST_Request $request): \WP_REST_Response
+    {
+        try{
+            $params = $request->get_params();
+            $api_product = new Api_Product();
+
+            $products = $api_product->polen_get_products_by_campagins($params);
+
+            $items = array();
+            foreach ($products->products as $product) {
+                $product = wc_get_product($product->get_id());
+                $module_product = new Polen_Product_Module($product);
+                $module['title'] = $module_product->get_title();
+                $module['slug'] = $module_product->get_sku();
+                $module['image'] = $module_product->get_image_url('polen-square-crop-sm');
+
+                $items[] = $module;
+            }
+
+            return api_response($items, 200);
+        } catch (\Exception $e) {
+            return api_response(
+                array('message' => $e->getMessage()),
+                $e->getCode()
+            );
+        }
+    }
+
+    /**
+     *
      */
     public function get_product(WP_REST_Request $request)
     {
