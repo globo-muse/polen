@@ -16,7 +16,7 @@ class Api_Product
      * @param string $campaingn
      * @return stdClass
      */
-    public function polen_get_products_by_campagins(array $params, string $campaingn = 'galo_idolos'): stdClass
+    public function polen_get_products_by_campagins(array $params, string $campaingn = null): stdClass
     {
         $per_page = $params['per_page'] ?? get_option('posts_per_page');
         $paged = $params['paged'] ?? 1;
@@ -37,13 +37,13 @@ class Api_Product
                 [
                     'taxonomy' => Polen_Campaign::KEY_CAMPAIGN,
                     'field' => 'slug',
-                    'terms' => $campaingn,
+                    'terms' => 'galo_idolos',
                     'operator' => 'NOT IN',
                 ]
             ]
         );
 
-        if (!empty($campaingn)) {
+        if (null !== $campaingn) {
             $args['tax_query'][0]['operator'] = 'IN';
             $args['tax_query'][0]['terms'] = $campaingn;
         }
