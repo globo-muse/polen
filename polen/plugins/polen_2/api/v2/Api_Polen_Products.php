@@ -6,6 +6,7 @@ use Exception;
 use Polen\Api\Api_Product;
 use Polen\Includes\Module\Factory\Polen_Product_Module_Factory;
 use Polen\Includes\Polen_Campaign;
+use Polen\Includes\Polen_Talents_Rules;
 use Polen\Includes\Module\{Polen_Product_Module,Polen_User_Module};
 use Polen\Includes\Module\Resource\Metrics;
 use WC_Product_Query;
@@ -203,11 +204,13 @@ class Api_Polen_Products
             return api_response('Produto não encontrado', 404);
         }
         $product_module = Polen_Product_Module_Factory::create_product_from_campaing($product);
+        $polen_rules = new Polen_Talents_Rules();
 
         $result = Api_Polen_Prepare_Responses::prepare_product_to_response($product_module);
         $result['region_metrics'] = $this->influence_by_region($product_module->get_id());
         $result['age_group'] = $this->age_group($product_module->get_id());
         $result['audience'] = $this->audience($product_module->get_id());
+        $result['rules'] = $polen_rules->get_terms_by_product($product_module->get_id());
 
         if($term_tags = $product_module->get_terms_tags()) {
             $result['tags'] = [];
