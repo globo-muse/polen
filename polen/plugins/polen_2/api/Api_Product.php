@@ -43,6 +43,11 @@ class Api_Product
             ]
         );
 
+        if (!empty($params['tags'])) {
+            $tags = explode(',', $params['tags']);
+            $args['tag'] = $tags;
+        }
+
         if (null !== $campaingn) {
             $args['tax_query'][0]['operator'] = 'IN';
             $args['tax_query'][0]['terms'] = $campaingn;
