@@ -16,6 +16,6 @@
         "automattic/woocommerce": "^3.0",
         "sendgrid/sendgrid": "~7",
         "vlucas/phpdotenv": "^5.4",
-        "hubspot/api-client": "^8.1"
+        "hubspot/api-client": "^8.2"
     }
 }
