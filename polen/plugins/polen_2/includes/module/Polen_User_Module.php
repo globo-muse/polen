@@ -247,4 +247,26 @@ class Polen_User_Module
         $name_column_db = 'whatsapp';
         return $this->polen_talent_db->get_column($name_column_db, $this->get_id());
     }
+
+    public function get_document()
+    {
+        $fields = ['document_type', 'document'];
+        $data = [];
+        foreach ($fields as $field) {
+            $data[$field] = get_field($field, 'user_'. $this->user->ID);
+        }
+
+        return $data;
+    }
+
+    public function get_merchant_id()
+    {
+        $config = get_field('config_split', 'user_'. $this->user->ID);
+        $merchant_id = get_field('mechant_id', 'user_'. $this->user->ID);
+        if ($config == 'disable' || !$merchant_id) {
+            return null;
+        }
+
+        return $merchant_id;
+    }
 }

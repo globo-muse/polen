@@ -131,9 +131,10 @@ class Polen {
         // Startar API de campanhas
         new Api();
 
-        // Iniciar Polen Campaign
+        // Iniciar Polen taxonomys
         new Polen_Campaign( true );
         new Polen_Uses_Case( true );
+        new Polen_Talents_Rules(true);
 
         //Email Sandgrid
         //TODO: trocar esse carregamento da classe remover o add_action
