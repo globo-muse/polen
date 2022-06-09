@@ -2,6 +2,7 @@
 
 namespace Polen\Api;
 
+use Polen\Includes\Polen_Campaign;
 use stdClass;
 use WC_Product_Query;
 use WP_Query;
@@ -15,7 +16,7 @@ class Api_Product
      * @param string $campaingn
      * @return stdClass
      */
-    public function polen_get_products_by_campagins(array $params, string $campaingn = ''): stdClass
+    public function polen_get_products_by_campagins(array $params, string $campaingn = null): stdClass
     {
         $per_page = $params['per_page'] ?? get_option('posts_per_page');
         $paged = $params['paged'] ?? 1;
@@ -32,20 +33,29 @@ class Api_Product
             'status' => 'publish',
             'orderby' => $orderby[0],
             'order' => $order,
+            'tax_query' => [
+                [
+                    'taxonomy' => Polen_Campaign::KEY_CAMPAIGN,
+                    'field' => 'slug',
+                    'terms' => 'galo_idolos',
+                    'operator' => 'NOT IN',
+                ]
+            ]
         );
 
-        if (!empty($campaingn)) {
-            $args['tax_query'][] = array(
-                'taxonomy' => 'campaigns',
-                'field' => 'slug',
-                'terms' => $campaingn,
-            );
+        if (!empty($params['tags'])) {
+            $tags = explode(',', $params['tags']);
+            $args['tag'] = $tags;
+        }
+
+        if (null !== $campaingn) {
+            $args['tax_query'][0]['operator'] = 'IN';
+            $args['tax_query'][0]['terms'] = $campaingn;
         }
 
         if (!empty($category)) {
             $category = explode('&', $category);
             $args['category'] = $category;
-
         }
 
         if (isset($params['s'])) {
