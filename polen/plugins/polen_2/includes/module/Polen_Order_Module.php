@@ -298,6 +298,22 @@ class Polen_Order_Module
     }
 
 
+    /** ***********************
+     * Funcoes do Hubspot
+     ************************************ */
+
+    /**
+     * Pega o Id que o usuário cadastrou quando criou o Deal no Hubspot
+     */
+    public function hubspot_deal_id()
+    {
+        return $this->object->get_meta('hobspot_id');
+    }
+
+
+
+
+
     /**
      * Comportamento Padrão do WC_Order
      */
