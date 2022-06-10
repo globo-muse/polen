@@ -211,6 +211,7 @@ class Api_Polen_Products
         $result['age_group'] = $this->age_group($product_module->get_id());
         $result['audience'] = $this->audience($product_module->get_id());
         $result['rules'] = $polen_rules->get_terms_by_product($product_module->get_id());
+        $result['blog_posts'] = $product_module->get_posts_blogs_ids();
 
         if($term_tags = $product_module->get_terms_tags()) {
             $result['tags'] = [];
