@@ -168,7 +168,12 @@ class Polen_Order_Module
      */
     public function get_talent_fee()
     {
-        return $this->cart_item->get_talent_fee();
+        $fee = $this->cart_item->get_talent_fee();
+        if ($fee === '') {
+            $fee = 0.75;
+        }
+
+        return $fee;
     }
 
 
@@ -289,13 +294,26 @@ class Polen_Order_Module
      */
     public function get_total_for_talent()
     {
-        $fee = $this->get_talent_fee();
-        if($fee === "") {
-            $fee = 0.75;
-        }
-        $fee = floatval($fee);
+        $fee = (float) $this->get_talent_fee();
+
         return $this->object->get_total() * $fee;
     }
+
+
+    /** ***********************
+     * Funcoes do Hubspot
+     ************************************ */
+
+    /**
+     * Pega o Id que o usuário cadastrou quando criou o Deal no Hubspot
+     */
+    public function hubspot_deal_id()
+    {
+        return $this->object->get_meta('hobspot_id');
+    }
+
+
+
 
 
     /**

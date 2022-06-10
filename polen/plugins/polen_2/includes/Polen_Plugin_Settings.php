@@ -709,6 +709,23 @@ class Polen_Plugin_Settings
                 // ),
             )
         ) );
+
+        // Configurar HOME
+        \Redux::set_section( $opt_name, array(
+            'title'            => esc_html__( 'Configuração Hubspot', 'polen' ),
+            'id'               => 'hubspot',
+            'icon'             => 'el el-home',
+            'subsection'       => false,
+            'fields'           => array(
+                array(
+                    'id'       => 'hubspot_api_key',
+                    'type'     => 'text',
+                    'title'    => esc_html__('API Key da API do Hubspot', 'polen'),
+                    'desc'     => 'API Key da API do Hubspot',
+                    'default'  => '',
+                ),
+            )
+        ) );
     }
 
     public function save( $args ) {
