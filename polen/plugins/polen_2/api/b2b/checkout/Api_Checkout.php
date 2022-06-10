@@ -116,7 +116,9 @@ class Api_Checkout extends WP_REST_Controller
                 $tuna->set_credit_card();
                 $hubspot_method_payment = Polen_Hubspot::PAYMENT_TYPE_CC;
             }
+
             $payment = $tuna->pay_request();
+            $tuna->meta_info_required($payment->paymentKey, $ip, $client);
             $new_status = $this->get_status_response($payment->status);
 
             if('failed' === $new_status || 'cancelled' === $new_status) {

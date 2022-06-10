@@ -466,3 +466,23 @@ add_action('woocommerce_account_content', function(){
 		polen_alert('Para melhorar a experiencia dos nossos ídolos, criamos um novo Dashboard. Para acessar <a href="https://idolo.polen.me" target="_blank">clique aqui</a>');
 	}
 }, 9);
+
+
+add_action('template_redirect', 'redirect_to_polen');
+function redirect_to_polen()
+{
+    $path = $_SERVER['REQUEST_URI'];
+    if (stripos($path, 'my-account') && is_page()) {
+        return null;
+    }
+
+    exit(wp_redirect('https://polen.me'));
+}
+
+function redirect_by_roles($user_login, $user)
+{
+    if (in_array( 'customer', $user->roles)) {
+        exit(wp_redirect('https://polen.me'));
+    }
+}
+add_action('wp_login', 'redirect_by_roles', 10, 2);

@@ -33,4 +33,9 @@ interface Payments {
      */
     public function pay_request();
 
+    /**
+     * Informações default para request
+     */
+    public function meta_info_required($transaction_id, $client_ip, $client_agent);
+
 }
