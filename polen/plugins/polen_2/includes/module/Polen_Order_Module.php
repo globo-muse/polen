@@ -194,7 +194,7 @@ class Polen_Order_Module
 
 
     /**
-     * 
+     *
      * Retorna Orders_ids por alguma campanha e por um status especifico
      */
     public static function get_orders_ids_by_campaign_and_status( string $campaign_name, string $order_status )
@@ -208,7 +208,7 @@ class Polen_Order_Module
             'meta_value' => $campaign_name,
             'orderby' => 'rand'
         ]);
-        
+
         $result = $orders_query->get_orders();
         return $result->orders;
     }
@@ -216,7 +216,7 @@ class Polen_Order_Module
 
     /**
      * Retorna a Oriem do Pedido se foi Polen ou se for
-     * 
+     *
      * @return string
      */
     public function get_origin_to_list_orders_talent()
@@ -232,7 +232,7 @@ class Polen_Order_Module
     /**
      * Cria uma linha na lista de Orders do Talento com a origem de onde veio o pedido,
      * se da Polen ou de algum WhiteLabel
-     * 
+     *
      * @return HTML
      */
     public function get_html_origin_to_list_orders_talent()
@@ -261,12 +261,12 @@ class Polen_Order_Module
      */
     public function get_billing_address_full()
     {
-        return  '' . 
-                $this->get_billing_address_1() . ' ' .
-                $this->get_billing_address_2() . ', ' .
-                $this->get_billing_city() . ' - ' .
-                $this->get_billing_state() . ' ' .
-                $this->get_billing_postcode();
+        return  '' .
+            $this->get_billing_address_1() . ' ' .
+            $this->get_billing_address_2() . ', ' .
+            $this->get_billing_city() . ' - ' .
+            $this->get_billing_state() . ' ' .
+            $this->get_billing_postcode();
     }
 
 
@@ -282,7 +282,7 @@ class Polen_Order_Module
         return $is_first_order == '1' ? true : false;
     }
 
-    
+
     /**
      * Pegar o total a ser pago ao talento
      * @return float
@@ -474,5 +474,30 @@ class Polen_Order_Module
     public function get_customer_id()
     {
         return $this->object->get_customer_id();
+    }
+
+    public function set_transaction_id($transaction_id)
+    {
+        $this->object->set_transaction_id($transaction_id);
+        $this->object->save();
+    }
+
+    public function set_ip_address($ip_client)
+    {
+        $this->object->set_customer_ip_address($ip_client);
+        $this->object->save();
+    }
+
+    public function set_user_agent($agent)
+    {
+        $this->object->set_customer_user_agent($agent);
+        $this->object->save();
+    }
+
+    public function set_payment_method($method, $title)
+    {
+        $this->object->set_payment_method($method);
+        $this->object->set_payment_method_title($title);
+        $this->object->save();
     }
 }

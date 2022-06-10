@@ -8,6 +8,7 @@ use Polen\Includes\Module\Polen_User_Module;
 
 class Tuna implements Payments
 {
+    private string $method;
     private string $partner_key;
     private string $partner_account;
     private string $operation_mode;
@@ -19,6 +20,7 @@ class Tuna implements Payments
 
     public function __construct(Polen_Order_Module $order_module, array $data = [])
     {
+        $this->method = 'tuna';
         $this->credentials();
         $this->order = $order_module;
         $this->data = $data;
@@ -47,7 +49,6 @@ class Tuna implements Payments
     {
         return 1;
     }
-
     /**
      * Mtodo para retornar o usuario atual
      *
@@ -411,6 +412,14 @@ class Tuna implements Payments
             "merchantDocumentType" => $documents['document_type'],
             "amount" => $this->order->get_total_for_talent(),
         ];
+    }
+
+    public function meta_info_required($transaction_id, $client_ip, $agent_client)
+    {
+        $this->order->set_transaction_id($transaction_id);
+        $this->order->set_ip_address($client_ip);
+        $this->order->set_user_agent($agent_client);
+        $this->order->set_payment_method($this->method, $this->data['method_payment']);
     }
 
     /**
