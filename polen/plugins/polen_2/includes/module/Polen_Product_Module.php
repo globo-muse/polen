@@ -567,4 +567,14 @@ class Polen_Product_Module
     {
         return $this->object->get_image_id();
     }
+
+    public function get_posts_blogs_ids()
+    {
+        $posts_blog = get_field('posts_blog', $this->get_id());
+        if (empty($posts_blog)) {
+            return [];
+        }
+
+        return $posts_blog;
+    }
 }
