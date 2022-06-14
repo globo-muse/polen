@@ -6,6 +6,8 @@ use Polen\Api\Api_Util_Security;
 use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Includes\Module\Polen_User_Module;
 use Polen\Api\Module\Tuna;
+use Polen\Includes\Hubspot\Polen_Hubspot;
+use Polen\Includes\Hubspot\Polen_Hubspot_Factory;
 use Polen\Includes\Module\Resource\Polen_B2B_Orders;
 use Polen\Includes\Polen_Create_Customer;
 use WC_Emails;
@@ -106,24 +108,27 @@ class Api_Checkout extends WP_REST_Controller
 
             $b2b_order = new Polen_B2B_Orders($request['order_id'], $request['key_order']);
             $order = wc_get_order($request['order_id']);
+            $order->set_customer_id($user['user_object']->data->ID);
             $order_module = new Polen_Order_Module($order);
 
             $tuna = new Tuna($order_module, $data);
             $tuna->set_costumer();
             if ($method_payment == 'cc') {
                 $tuna->set_credit_card();
+                $hubspot_method_payment = Polen_Hubspot::PAYMENT_TYPE_CC;
             }
+
             $payment = $tuna->pay_request();
+            $tuna->meta_info_required($payment->paymentKey, $ip, $client);
             $new_status = $this->get_status_response($payment->status);
 
             if('failed' === $new_status || 'cancelled' === $new_status) {
                 throw new Exception('Erro no pagamento, tente novamente', 422);
             }
-
+            
             $b2b_order->update_order($data);
             $b2b_order->calculate_totals();
             WC_Emails::instance();
-            $order->set_customer_id($user['user_object']->data->ID);
             $order->update_status($new_status);
             $response_message = $this->get_response_message($new_status);
 
@@ -135,9 +140,15 @@ class Api_Checkout extends WP_REST_Controller
             if ($method_payment == 'pix') {
                 $response_payment['pix_code'] = $payment->methods[0]->pixInfo->qrContent;
                 $response_payment['pix_qrcode'] = $payment->methods[0]->pixInfo->qrImage;
+                $hubspot_method_payment = Polen_Hubspot::PAYMENT_TYPE_PIX;
             }
 
             update_post_meta($request['order_id'], '_accepted_term', date("Y-m-d H:i:s"));
+
+            $client_hubspot = Polen_Hubspot_Factory::create_client_with_redux();
+            $hubspot = new Polen_Hubspot($client_hubspot);
+            
+            $hubspot->update_ticket_payment_by_order_module($order_module, true, $hubspot_method_payment);
 
             return api_response($response_payment);
 

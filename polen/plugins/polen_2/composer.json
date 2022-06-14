@@ -8,14 +8,14 @@
             "email": "rodolfoneto@gmail.com"
         }
     ],
-    "minimum-stability": "beta",
+    "minimum-stability": "stable",
     "require": {
         "mobiledetect/mobiledetectlib": "^2.8",
         "vimeo/vimeo-api": "^3.0",
         "google/recaptcha": "^1.2",
         "automattic/woocommerce": "^3.0",
         "sendgrid/sendgrid": "~7",
-        "hubspot/api-client": "^8.1",
-        "vlucas/phpdotenv": "^5.4"
+        "vlucas/phpdotenv": "^5.4",
+        "hubspot/api-client": "^8.1"
     }
 }

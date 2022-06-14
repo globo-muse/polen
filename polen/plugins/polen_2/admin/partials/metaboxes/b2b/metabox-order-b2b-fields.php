@@ -18,6 +18,7 @@ $company_name = '';
 $instructions_to_video = '';
 $licence_in_days = '';
 $video_category = '';
+$talent_fee = '';
 if(!empty($_GET['post'])) {
     global $post;
     if(!empty($post)) {
@@ -31,6 +32,7 @@ if(!empty($_GET['post'])) {
         $instructions_to_video = $polen_order->get_instructions_to_video();
         $licence_in_days       = $polen_order->get_licence_in_days();
         $video_category        = $polen_order->get_video_category();
+        $talent_fee            = $polen_order->get_talent_fee();
     }
 }
 ?>
@@ -43,29 +45,41 @@ if(!empty($_GET['post'])) {
     </div>
     <div>
         <p class="form-field form-field-wide">
+            <label for="talent_fee">Parte do Talento (0 ~ 1)</label>
+            <input type="text" id="talent_fee" name="talent_fee" value="<?= $talent_fee; ?>" />
+        </p>
+    </div>
+
+    <div>
+        <p class="form-field form-field-wide">
             <label for="corporate_name">Razão Social</label>
             <input type="text" id="corporate_name" name="corporate_name" value="<?= $corporate_name; ?>" />
         </p>
     </div>
+
     <div>
         <p class="form-field form-field-wide">
             <label for="cnpj">CNPJ da empresa ou CPF do representante</label>
             <input type="text" id="cnpj" name="cnpj" value="<?= $cnpj_cpf; ?>" />
         </p>
     </div>
+
     <div>
         <p class="form-field form-field-wide">
             <label for="cnpj">Número máximo de parcelamento</label>
             <input type="text" id="installments" name="installments" value="<?= $installments; ?>" />
         </p>
     </div>
+
     <div class="clear"></div>
+
     <div>
         <p class="form-field form-field-wide">
             <label for="instructions_to_video">Instruções para o video</label>
             <textarea id="instructions_to_video" name="instructions_to_video" rows="6"><?= Polen_Utils::remove_sanitize_xss_br_escape($instructions_to_video, 'edit'); ?></textarea>
         </p>
     </div>
+
     <div class="clear"></div>
     <div>
         <p class="form-field form-field-wide">
