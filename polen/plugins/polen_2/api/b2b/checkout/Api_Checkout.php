@@ -108,6 +108,7 @@ class Api_Checkout extends WP_REST_Controller
 
             $b2b_order = new Polen_B2B_Orders($request['order_id'], $request['key_order']);
             $order = wc_get_order($request['order_id']);
+            $order->set_customer_id($user['user_object']->data->ID);
             $order_module = new Polen_Order_Module($order);
 
             $tuna = new Tuna($order_module, $data);
@@ -128,7 +129,6 @@ class Api_Checkout extends WP_REST_Controller
             $b2b_order->update_order($data);
             $b2b_order->calculate_totals();
             WC_Emails::instance();
-            $order->set_customer_id($user['user_object']->data->ID);
             $order->update_status($new_status);
             $response_message = $this->get_response_message($new_status);
 
