@@ -135,15 +135,15 @@ class Api_Polen_Products
             $products = $api_product->polen_get_products_by_campagins($params, $slug);
 
             $items = array();
-            foreach ($products->products as $product) {
-                $product = wc_get_product($product->get_id());
+            foreach ($products['products'] as $product) {
+                $product = wc_get_product($product->ID);
                 $module_product = new Polen_Product_Module($product);
                 $items[] = Api_Polen_Prepare_Responses::prepare_product_to_response($module_product);
             }
 
             $data = array(
                 'items' => $items,
-                'total' => $products->total,//$api_product->get_products_count($params, $slug),
+                'total' => $products['total'],//$api_product->get_products_count($params, $slug),
                 'current_page' => $request->get_param('paged') ?? 1,
                 'per_page' => count($items),
             );
@@ -174,8 +174,8 @@ class Api_Polen_Products
             $products = $api_product->polen_get_products_by_campagins($params);
 
             $items = array();
-            foreach ($products->products as $product) {
-                $product = wc_get_product($product->get_id());
+            foreach ($products['products'] as $product) {
+                $product = wc_get_product($product->ID);
                 $module_product = new Polen_Product_Module($product);
                 $module['title'] = $module_product->get_title();
                 $module['slug'] = $module_product->get_sku();
