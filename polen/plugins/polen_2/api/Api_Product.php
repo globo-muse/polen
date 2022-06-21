@@ -86,7 +86,7 @@ class Api_Product
                 array(
                     'key' => 'age_group_$_range',
                     'value' => $params['faixa'],
-                    'compare' => '='
+                    'compare' => 'IN'
                 ),
             );
         }
