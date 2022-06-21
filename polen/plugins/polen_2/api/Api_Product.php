@@ -13,23 +13,22 @@ class Api_Product
      * Retornar talentos de acordo com a campanha
      *
      * @param array $params
-     * @param string $campaingn
-     * @return stdClass
+     * @param string|null $campaingn
      */
-    public function polen_get_products_by_campagins(array $params, string $campaingn = null): stdClass
+    public function polen_get_products_by_campagins(array $params, string $campaingn = null)
     {
         $per_page = $params['per_page'] ?? get_option('posts_per_page');
         $paged = $params['paged'] ?? 1;
-        $orderby = $params['orderby'] ?? 'popularity';
+        $orderby = $params['orderby'] ?? 'DESC';
         $orderby = explode('-', $orderby);
         $category = $params['category'] ?? '';
 
         $order = $orderby[1] ?? 'DESC';
 
         $args = array(
-            'limit'    => $per_page,
-            'page'     => $paged,
-            'paginate' => true,
+            'posts_per_page'    => $per_page,
+            'post_type' => 'product',
+            'paged'     => $paged,
             'status' => 'publish',
             'orderby' => $orderby[0],
             'order' => $order,
@@ -40,6 +39,9 @@ class Api_Product
                     'terms' => 'galo_idolos',
                     'operator' => 'NOT IN',
                 ]
+            ],
+            'meta_query' => [
+                'relation' => 'AND',
             ]
         );
 
@@ -48,7 +50,7 @@ class Api_Product
             $args['tag'] = $tags;
         }
 
-        if (null !== $campaingn) {
+        if ($campaingn !== null) {
             $args['tax_query'][0]['operator'] = 'IN';
             $args['tax_query'][0]['terms'] = $campaingn;
         }
@@ -62,9 +64,39 @@ class Api_Product
             $args['s'] = $params['s'];
         }
 
-        $query = new WC_Product_Query($args);
+        if (isset($params['audience'])) {
+            $args['meta_query'][] = array(
+                array(
+                    'key' => 'main_genre',
+                    'value' => $params['audience'],
+                    'compare' => 'LIKE',
+                ),
+            );
+        }
 
-        return $query->get_products(); // wc_products_array_orderby($query->get_products(), $orderby[0], $order);
+        if (isset($params['faixa'])) {
+            $args['meta_query'][] = array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'age_group_$_porcentage',
+                    'value' => 1,
+                    'compare' => '>',
+                    'type' => 'NUMERIC',
+                ),
+                array(
+                    'key' => 'age_group_$_range',
+                    'value' => $params['faixa'],
+                    'compare' => '='
+                ),
+            );
+        }
+        // return $query->get_products(); // wc_products_array_orderby($query->get_products(), $orderby[0], $order);
+        $query = new WP_Query($args);
+
+        return [
+            'products' => $query->get_posts(),
+            'total' => $query->found_posts,
+        ];
     }
 
     /**
