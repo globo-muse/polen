@@ -85,11 +85,12 @@ class Api_Product
                 ),
                 array(
                     'key' => 'age_group_$_range',
-                    'value' => $params['faixa'],
+                    'value' => explode('&', $params['faixa']),
                     'compare' => 'IN'
                 ),
             );
         }
+
         // return $query->get_products(); // wc_products_array_orderby($query->get_products(), $orderby[0], $order);
         $query = new WP_Query($args);
 
