@@ -19,16 +19,16 @@ class Api_Product
     {
         $per_page = $params['per_page'] ?? get_option('posts_per_page');
         $paged = $params['paged'] ?? 1;
-        $orderby = $params['orderby'] ?? 'DESC';
+        $orderby = $params['orderby'] ?? 'menu_order';
         $orderby = explode('-', $orderby);
         $category = $params['category'] ?? '';
 
-        $order = $orderby[1] ?? 'DESC';
+        $order = $orderby[1] ?? 'ASC';
 
         $args = array(
-            'posts_per_page'    => $per_page,
+            'posts_per_page' => $per_page,
             'post_type' => 'product',
-            'paged'     => $paged,
+            'paged' => $paged,
             'status' => 'publish',
             'orderby' => $orderby[0],
             'order' => $order,
