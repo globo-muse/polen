@@ -221,6 +221,12 @@ class Api_Checkout extends WP_REST_Controller
     {
         try {
             $b2b_order = new Polen_B2B_Orders($request['order_id'], $request['key_order']);
+            $order = wc_get_order($request['order_id']);
+
+            $status_payment = ['payment-approved', 'video-sended', 'completed'];
+            if (in_array($order->get_status(), $status_payment)) {
+                throw new Exception('Esse pedido já foi pago', 406);
+            }
 
             return api_response($b2b_order->get_order_info_step_one());
         } catch(Exception $e) {
@@ -242,6 +248,11 @@ class Api_Checkout extends WP_REST_Controller
             $order = wc_get_order($request['order_id']);
             if (empty($order)) {
                 throw new Exception('Não existe pedido com esse ID', 403);
+            }
+
+            $status_payment = ['payment-approved', 'video-sended', 'completed'];
+            if (!in_array($order->get_status(), $status_payment)) {
+                throw new Exception('Pedido não encontrado', 404);
             }
 
             $order_module = new Polen_Order_Module($order);
