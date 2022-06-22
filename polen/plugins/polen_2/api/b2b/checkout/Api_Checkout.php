@@ -250,6 +250,11 @@ class Api_Checkout extends WP_REST_Controller
                 throw new Exception('Não existe pedido com esse ID', 403);
             }
 
+            $status_payment = ['payment-approved', 'video-sended', 'completed'];
+            if (!in_array($order->get_status(), $status_payment)) {
+                throw new Exception('Pedido não encontrado', 404);
+            }
+
             $order_module = new Polen_Order_Module($order);
             $product_order = $order_module->get_product_from_order();
 
