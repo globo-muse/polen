@@ -3,8 +3,6 @@
 namespace Polen\Api;
 
 use Polen\Includes\Polen_Campaign;
-use stdClass;
-use WC_Product_Query;
 use WP_Query;
 
 class Api_Product
@@ -87,6 +85,16 @@ class Api_Product
                     'key' => 'age_group_$_range',
                     'value' => explode('&', $params['faixa']),
                     'compare' => 'IN'
+                ),
+            );
+        }
+
+        if (isset($params['region'])) {
+            $args['meta_query'][] = array(
+                array(
+                    'key' => 'main_region',
+                    'value' => $params['region'],
+                    'compare' => 'LIKE',
                 ),
             );
         }
