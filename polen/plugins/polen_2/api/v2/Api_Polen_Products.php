@@ -222,8 +222,6 @@ class Api_Polen_Products
         return api_response($result, 200);
     }
 
-
-
     /**
      * Retornar porcentagem de influencia por região
      *
@@ -232,9 +230,10 @@ class Api_Polen_Products
      */
     public function influence_by_region($product_id): ?array
     {
-        $user = Polen_User_Module::create_from_product_id($product_id);
+        $product = wc_get_product($product_id);
+        $product_module = new Polen_Product_Module($product);
         $metrics_talent = new Metrics();
-        $influence = $user->get_influence_by_region();
+        $influence = $product_module->get_influence_by_region();
 
         if (empty($influence)) {
             return null;
@@ -248,25 +247,26 @@ class Api_Polen_Products
     }
 
     /**
-     * 
+     *
      */
     public function age_group($product_id)
     {
-        $user = Polen_User_Module::create_from_product_id($product_id);
+        $product = wc_get_product($product_id);
+        $product_module = new Polen_Product_Module($product);
 
-        return $user->get_age_group();
+        return $product_module->get_age_group();
     }
 
     /**
-     * 
+     *
      */
     public function audience($product_id)
     {
-        $user = Polen_User_Module::create_from_product_id($product_id);
+        $product = wc_get_product($product_id);
+        $product_module = new Polen_Product_Module($product);
 
-        return $user->get_audience();
+        return $product_module->get_audience();
     }
-
 
     /**
      * 
