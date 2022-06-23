@@ -226,37 +226,6 @@ class Polen_Cart_Item
         return $this->item->get_product();
     }
 
-    public function get_form_of_payment()
-    {
-        return $this->item->get_meta('form_of_payment');
-    }
-
-    public function get_value_payment_talent()
-    {
-        return $this->item->get_meta('value_payment_talent');
-    }
-
-    public function get_payday()
-    {
-        return $this->item->get_meta('payday');
-    }
-
-    public function get_video_url_b2b()
-    {
-        return $this->item->get_meta('video_url_b2b');
-    }
-
-    public function get_qty_employees()
-    {
-        return $this->item->get_meta('qty_employees');
-    }
-
-    public function get_company_size()
-    {
-        return $this->item->get_meta('company_size');
-    }
-
-
     /**
      * Adiciona um Meta data AO Item_Cart
      * Igual as Instrucoes do Video ou Para quem é
