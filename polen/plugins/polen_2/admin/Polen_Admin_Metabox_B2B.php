@@ -55,7 +55,6 @@ class Polen_Admin_Metabox_B2B
         $files = array(
             'metabox-order-b2b-link.php',
             'metabox-order-b2b-fields.php',
-            'metabox-order-b2b-fields-payment.php',
         );
 
         foreach ($files as $file) {
