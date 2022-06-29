@@ -447,12 +447,12 @@ class Polen_Order_Module
             return null;
         }
 
-        return $this->cart_item->get_form_of_payment();
+        return get_field('payment_to_talent', $this->get_id());
     }
 
     public function get_value_payment_talent()
     {
-        $value_payment = $this->cart_item->get_value_payment_talent();
+        $value_payment = get_field('value_payment', $this->get_id());
         if (empty($value_payment)) {
             return $this->get_talent_fee();
         }
@@ -466,22 +466,22 @@ class Polen_Order_Module
             return null;
         }
 
-        return $this->cart_item->get_payday();
+        return get_field('payday', $this->get_id());
     }
 
     public function get_video_url_b2b()
     {
-        return $this->cart_item->get_video_url_b2b();
+        return get_field('url_video', $this->get_id());
     }
 
     public function get_qty_employees()
     {
-        return $this->cart_item->get_qty_employees();
+        return get_field('employees', $this->get_id());
     }
 
     public function get_company_size()
     {
-        return $this->cart_item->get_company_size();
+        return get_field('company_size', $this->get_id());
     }
 
     public function get_date_accepted_term()

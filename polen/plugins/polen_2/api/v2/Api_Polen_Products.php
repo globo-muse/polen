@@ -135,15 +135,15 @@ class Api_Polen_Products
             $products = $api_product->polen_get_products_by_campagins($params, $slug);
 
             $items = array();
-            foreach ($products->products as $product) {
-                $product = wc_get_product($product->get_id());
+            foreach ($products['products'] as $product) {
+                $product = wc_get_product($product->ID);
                 $module_product = new Polen_Product_Module($product);
                 $items[] = Api_Polen_Prepare_Responses::prepare_product_to_response($module_product);
             }
 
             $data = array(
                 'items' => $items,
-                'total' => $products->total,//$api_product->get_products_count($params, $slug),
+                'total' => $products['total'],//$api_product->get_products_count($params, $slug),
                 'current_page' => $request->get_param('paged') ?? 1,
                 'per_page' => count($items),
             );
@@ -174,8 +174,8 @@ class Api_Polen_Products
             $products = $api_product->polen_get_products_by_campagins($params);
 
             $items = array();
-            foreach ($products->products as $product) {
-                $product = wc_get_product($product->get_id());
+            foreach ($products['products'] as $product) {
+                $product = wc_get_product($product->ID);
                 $module_product = new Polen_Product_Module($product);
                 $module['title'] = $module_product->get_title();
                 $module['slug'] = $module_product->get_sku();
@@ -211,6 +211,7 @@ class Api_Polen_Products
         $result['age_group'] = $this->age_group($product_module->get_id());
         $result['audience'] = $this->audience($product_module->get_id());
         $result['rules'] = $polen_rules->get_terms_by_product($product_module->get_id());
+        $result['blog_posts'] = $product_module->get_posts_blogs_ids();
 
         if($term_tags = $product_module->get_terms_tags()) {
             $result['tags'] = [];
@@ -221,8 +222,6 @@ class Api_Polen_Products
         return api_response($result, 200);
     }
 
-
-
     /**
      * Retornar porcentagem de influencia por região
      *
@@ -231,9 +230,10 @@ class Api_Polen_Products
      */
     public function influence_by_region($product_id): ?array
     {
-        $user = Polen_User_Module::create_from_product_id($product_id);
+        $product = wc_get_product($product_id);
+        $product_module = new Polen_Product_Module($product);
         $metrics_talent = new Metrics();
-        $influence = $user->get_influence_by_region();
+        $influence = $product_module->get_influence_by_region();
 
         if (empty($influence)) {
             return null;
@@ -247,25 +247,26 @@ class Api_Polen_Products
     }
 
     /**
-     * 
+     *
      */
     public function age_group($product_id)
     {
-        $user = Polen_User_Module::create_from_product_id($product_id);
+        $product = wc_get_product($product_id);
+        $product_module = new Polen_Product_Module($product);
 
-        return $user->get_age_group();
+        return $product_module->get_age_group();
     }
 
     /**
-     * 
+     *
      */
     public function audience($product_id)
     {
-        $user = Polen_User_Module::create_from_product_id($product_id);
+        $product = wc_get_product($product_id);
+        $product_module = new Polen_Product_Module($product);
 
-        return $user->get_audience();
+        return $product_module->get_audience();
     }
-
 
     /**
      * 

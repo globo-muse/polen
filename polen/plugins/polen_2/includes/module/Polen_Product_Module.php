@@ -567,4 +567,57 @@ class Polen_Product_Module
     {
         return $this->object->get_image_id();
     }
+
+    public function get_posts_blogs_ids()
+    {
+        $posts_blog = get_field('posts_blog', $this->get_id());
+        if (empty($posts_blog)) {
+            return [];
+        }
+
+        return $posts_blog;
+    }
+
+    /**
+     * retornar influencia por estado e cidade
+     *
+     * @return mixed|null
+     */
+    public function get_influence_by_region()
+    {
+        $influence = get_field('metrics', $this->get_id());
+        if (empty($influence)) {
+            return null;
+        }
+
+        return $influence;
+    }
+
+    /**
+     * Retornar listagem de faixa etária
+     *
+     * @return array|null
+     */
+    public function get_age_group(): ?array
+    {
+        $age_group = get_field('age_group', $this->get_id());
+        if (empty($age_group)) {
+            return null;
+        }
+
+        return $age_group;
+    }
+
+    /**
+     * Retonar audiência por gênero
+     *
+     * @return array
+     */
+    public function get_audience(): array
+    {
+        return [
+            'man' => get_field('man', $this->get_id()),
+            'woman' => get_field('woman', $this->get_id()),
+        ];
+    }
 }

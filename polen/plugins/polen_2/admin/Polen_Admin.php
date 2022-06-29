@@ -50,6 +50,7 @@ class Polen_Admin {
           new Polen_Admin_Metabox_B2C();
           new Polen_Admin_Metabox_B2B($static);
           new Polen_Admin_Vimeo_Info($static);
+          new Polen_Admin_Config_ACF($static);
   }
 
 	/**
