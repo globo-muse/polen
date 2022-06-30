@@ -61,7 +61,6 @@ class Api_Product
                 'taxonomy' => 'product_cat',
                 'field' => 'slug',
                 'terms' => $category,
-                'operator' => 'IN'
             ];
         }
 
