@@ -40,11 +40,11 @@ class Api_Controller{
             $products = $api_product->polen_get_products_by_campagins($params, $slug);
 
             $items = array();
-            foreach ($products->products as $product) {
+            foreach ($products['products'] as $product) {
                 $image_object = $this->get_object_image($product->get_id());
                 $items[] = array(
                     'id' => $product->get_id(),
-                    'name' => $product->get_name(),
+                    'name' => $product->get_title(),
                     'slug' => $product->get_slug(),
                     'image' => $image_object,
                     'categories' => wp_get_object_terms($product->get_id() , 'product_cat'),
@@ -58,7 +58,7 @@ class Api_Controller{
 
             $data = array(
                 'items' => $items,
-                'total' => $products->total,//$api_product->get_products_count($params, $slug),
+                'total' => $products['total'],//$api_product->get_products_count($params, $slug),
                 'current_page' => $request->get_param('paged') ?? 1,
                 'per_page' => count($items),
             );

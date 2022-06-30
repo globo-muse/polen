@@ -136,7 +136,6 @@ class Api_Polen_Products
 
             $items = array();
             foreach ($products['products'] as $product) {
-                $product = wc_get_product($product->ID);
                 $module_product = new Polen_Product_Module($product);
                 $items[] = Api_Polen_Prepare_Responses::prepare_product_to_response($module_product);
             }
