@@ -2,6 +2,7 @@
 
 namespace Polen\Api;
 
+use Polen\Includes\Module\Polen_Product_Module;
 use Polen\Includes\Polen_Campaign;
 use WP_Query;
 
@@ -25,6 +26,7 @@ class Api_Product
 
         $args = array(
             'posts_per_page' => $per_page,
+            'fields' => 'ids',
             'post_type' => 'product',
             'paged' => $paged,
             'status' => 'publish',
@@ -48,7 +50,7 @@ class Api_Product
             $args['tag'] = $tags;
         }
 
-        if ($campaingn !== null) {
+        if (!empty($campaingn)) {
             $args['tax_query'][0]['operator'] = 'IN';
             $args['tax_query'][0]['terms'] = $campaingn;
         }
@@ -99,11 +101,20 @@ class Api_Product
             );
         }
 
-        // return $query->get_products(); // wc_products_array_orderby($query->get_products(), $orderby[0], $order);
         $query = new WP_Query($args);
 
+        $ids_result_query = $query->get_posts();
+
+        $products_result = [];
+        foreach($ids_result_query as $id) {
+            $product = wc_get_product($id);
+            if(!empty($product)) {
+                $products_result[] = $product;
+            }
+        }
+
         return [
-            'products' => $query->get_posts(),
+            'products' => $products_result,
             'total' => $query->found_posts,
         ];
     }
