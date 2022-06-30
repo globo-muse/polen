@@ -56,12 +56,14 @@ class Api_Product
         }
 
         if (!empty($category)) {
+            $args['tax_query'] = $args['tax_query'] ?? [];
             $category = explode(',', $category);
             $args['tax_query'][] = [
                 'taxonomy' => 'product_cat',
                 'field' => 'slug',
                 'terms' => $category,
             ];
+            $args['tax_query']['relation'] = 'AND';
         }
 
         if (isset($params['s'])) {
@@ -106,8 +108,7 @@ class Api_Product
         }
    
         $query = new WP_Query($args);
-
-        $ids_result_query = $query->get_posts();
+        $ids_result_query = $query->posts;
 
         $products_result = [];
         foreach($ids_result_query as $id) {
