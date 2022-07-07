@@ -21,6 +21,7 @@ class Api_Product
         $orderby = $params['orderby'] ?? 'menu_order';
         $orderby = explode('-', $orderby);
         $category = $params['category'] ?? '';
+        $gender = $params['gender'] ?? '';
 
         $order = $orderby[1] ?? 'ASC';
 
@@ -103,6 +104,16 @@ class Api_Product
                     'key' => 'main_region',
                     'value' => $params['region'],
                     'compare' => 'LIKE',
+                ),
+            );
+        }
+
+        if (!empty($params['gender'])) {
+            $args['meta_query'][] = array(
+                array(
+                    'key' => 'product_gender',
+                    'value' => $params['gender'],
+                    'compare' => '=',
                 ),
             );
         }
