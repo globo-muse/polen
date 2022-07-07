@@ -544,6 +544,7 @@ class Polen_Talent {
     public function polen_include_tags_categories_in_search( $where, $query ) {
         if( $query->is_search() ) {
           global $wpdb;
+          $term = $_REQUEST['s'] ?? '';
           $sql_terms = "
               SELECT DISTINCT( P.ID )
               FROM " . $wpdb->posts . " P
@@ -554,7 +555,7 @@ class Polen_Talent {
                 P.post_status = 'publish'
                 AND P.post_type = 'product'
                 AND TT.taxonomy IN ( 'product_tag', 'product_cat' )
-                AND UPPER( T.name ) LIKE UPPER( '" . esc_sql( $_REQUEST['s'] ) . "' )
+                AND UPPER( T.name ) LIKE UPPER( '" . esc_sql($term) . "' )
                 ";
           $res = $wpdb->get_results( $sql_terms, ARRAY_A );
           if( $res && ! is_null( $res ) && ! is_wp_error( $res ) && is_array( $res ) && count( $res ) > 0 ) {

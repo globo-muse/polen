@@ -192,7 +192,7 @@ class Api_Polen_Products
 
             $items = array();
             foreach ($products['products'] as $product) {
-                $product = wc_get_product($product->ID);
+                // $product = wc_get_product($product->ID);
                 $module_product = new Polen_Product_Module($product);
                 $module['title'] = $module_product->get_title();
                 $module['slug'] = $module_product->get_sku();
