@@ -38,6 +38,7 @@ polen/plugins/polen_2/composer.lock
 polen/uploads/*
 polen/plugins/kinsta-mu-plugins/*
 polen/plugins/wp-graphql/*
+polen/plugins/woo-graphql-api/*
 
 # Ignorar temas específicos
 wp-content/themes/twenty*/

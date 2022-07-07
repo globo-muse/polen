@@ -3,6 +3,7 @@
 namespace Polen\Api\v2;
 
 use Exception;
+use Polen\Api\Api_Check_Permission;
 use Polen\Api\Api_Product;
 use Polen\Includes\Module\Factory\Polen_Product_Module_Factory;
 use Polen\Includes\Polen_Campaign;
@@ -41,6 +42,23 @@ class Api_Polen_Products
                 'args' => []
             ]
         ] );
+
+
+        register_rest_route( $this->namespace, $this->rest_base . '/gender', [
+            [
+                'methods' => WP_REST_Server::READABLE,
+                'callback' => [ $this, 'get_gender' ],
+                'permission_callback' => [Api_Check_Permission::class, 'check_permission'],
+                'args' => []
+            ],
+            [
+                'methods' => WP_REST_Server::CREATABLE,
+                'callback' => [ $this, 'set_gender' ],
+                'permission_callback' => [Api_Check_Permission::class, 'check_permission'],
+                'args' => []
+            ]
+        ] );
+
 
         register_rest_route( $this->namespace, $this->rest_base . '/(?P<slug>[a-zA-Z0-9-]+)/related', [
             [
@@ -191,6 +209,50 @@ class Api_Polen_Products
             );
         }
     }
+
+
+
+    /**
+     * Pegar a lista de todos os produtos com gender
+     */
+    public function get_gender(WP_REST_Request $request)
+    {
+        $products = wc_get_products([
+            'status' => ['publish', 'private'],
+            'orderby' => 'date',
+            'order' => 'DESC',
+            'limit' => 1000000,
+        ]);
+
+        $result = [];
+        foreach($products as $product) {
+            $result[] = [
+                'id' => $product->get_id(),
+                'name' => $product->get_title(),
+                'gender' => get_field('product_gender', $product->get_id()),
+            ];
+        }
+        return api_response($result);
+    }
+
+
+    /**
+     * Setar numa lista de produtos o Gender
+     */
+    public function set_gender(WP_REST_Request $request)
+    {
+        $data_input = $request->get_params();
+        foreach($data_input as $data) {
+            if(!$product = wc_get_product($data['id'])) {
+                return api_response("Produto #{$data['id']} não encontrado (update parado a partir desse ID).", 404);
+            }
+            update_field('product_gender', $data['gender'], $product->get_id());
+        }
+        return api_response('done');
+    }
+
+
+
 
     /**
      *
