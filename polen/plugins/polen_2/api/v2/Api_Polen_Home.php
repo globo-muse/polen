@@ -2,13 +2,13 @@
 
 namespace Polen\Api\v2;
 
+defined('ABSPATH') || die;
+
 use Exception;
 use Polen\Includes\Module\Polen_Product_Module;
 use Polen\Includes\Polen_Uses_Case;
 use WP_REST_Request;
 use WP_REST_Server;
-
-defined('ABSPATH') || die;
 
 class Api_Polen_Home
 {
