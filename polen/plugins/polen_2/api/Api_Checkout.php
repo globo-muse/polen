@@ -4,6 +4,7 @@ namespace Polen\Api;
 
 use Automattic\WooCommerce\Client;
 use Exception;
+use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Includes\Polen_Campaign;
 use Polen\Includes\Polen_Checkout_Create_User;
 use Polen\Includes\Polen_Create_Customer;
@@ -256,8 +257,8 @@ class Api_Checkout
         wc_add_order_item_meta($order_item_id, '_line_total'   , $order->get_total(), true );
 
         wc_add_order_item_meta($order_item_id, '_qty'                 , $quantity, true);
-        wc_add_order_item_meta($order_item_id, 'offered_by'           , $data['name'], true);
-        wc_add_order_item_meta($order_item_id, 'video_to'             , $data['video_to'], true);
+        wc_add_order_item_meta($order_item_id, 'offered_by'           , '', true);
+        wc_add_order_item_meta($order_item_id, 'video_to'             , Polen_Order_Module::VIDEO_TO_TO_MYSELF, true);
         wc_add_order_item_meta($order_item_id, 'name_to_video'        , $data['name_to_video'], true);
         wc_add_order_item_meta($order_item_id, 'email_to_video'       , $email, true);
         wc_add_order_item_meta($order_item_id, 'video_category'       , $data['video_category'], true);
