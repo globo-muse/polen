@@ -4,6 +4,7 @@ namespace Polen\Api;
 use Exception;
 use Polen\Includes\Emails\Polen_WC_Customer_New_Account;
 use Polen\Includes\Polen_Campaign;
+use Polen\Includes\Polen_Create_Customer;
 use Polen\Includes\Polen_Order_Review;
 use Polen\Includes\Polen_SignInUser_Strong_Password;
 use WP_Error;
@@ -34,7 +35,8 @@ class Api_User
         }
 
         try {
-            $this->create_user_custumer( $email, $user_name, $password, [ 'campaign' => $campaing ] );
+            $polen_create_customer = new Polen_Create_Customer();
+            $polen_create_customer->create_user_custumer( $email, $user_name, $password, [ 'campaign' => $campaing ] );
         } catch ( Exception $e ) {
             return api_response( $e->getMessage(), $e->getCode() );
         }
@@ -70,7 +72,7 @@ class Api_User
 
         $user = get_user_by('email', $email);
         if(empty($user)) {
-            return api_response(['message' => 'Não existe nenhum usuario com esse email'], 403);
+            return api_response(['message' => 'Não existe nenhum usuario com esse email'], 404);
         }
 
         $response = [
