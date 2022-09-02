@@ -468,6 +468,8 @@ add_action('woocommerce_account_content', function(){
 }, 9);
 
 // Redirect polen
+//REMOVENDO O REDIRECT
+/*
 add_action('template_redirect', 'redirect_to_polen');
 function redirect_to_polen()
 {
@@ -487,3 +489,4 @@ function redirect_users_by_role()
     }
 }
 add_action('init', 'redirect_users_by_role');
+*/

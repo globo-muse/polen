@@ -4,6 +4,7 @@ namespace Polen\Api;
 
 use Automattic\WooCommerce\Client;
 use Exception;
+use Polen\Includes\Module\Polen_Order_Module;
 use Polen\Includes\Polen_Campaign;
 use Polen\Includes\Polen_Checkout_Create_User;
 use Polen\Includes\Polen_Create_Customer;
@@ -58,17 +59,17 @@ class Api_Checkout
                 return api_response( $errors, 422 );
             }
 
-            if (!$this->CPF_validate($fields['cpf'])) {
-                throw new Exception( 'CPF Inválido', 422 );
-            }
+            // if (!$this->CPF_validate($fields['cpf'])) {
+            //     throw new Exception( 'CPF Inválido', 422 );
+            // }
 
             $product = wc_get_product( $fields['product_id'] );
             if( empty( $product ) ) {
                 throw new Exception( 'Produto inválido', 422 );
             }
-            if (!$product->is_in_stock()) {
-                throw new Exception( 'Produto sem estoque', 422 );
-            }
+            // if (!$product->is_in_stock()) {
+            //     throw new Exception( 'Produto sem estoque', 422 );
+            // }
 
             $create_user = new Polen_Create_Customer();
             $product = wc_get_product( $fields[ 'product_id' ] );
@@ -95,7 +96,6 @@ class Api_Checkout
             }
 
             $order_woo = $this->order_payment_woocommerce($user['user_object']->data, $fields['product_id'], $coupon);
-            $order_woo->set_payment_method_title($this->method_payment_name($data['method_payment']));
             $this->add_meta_to_order($order_woo, $data);
 
             if (WC()->cart->get_cart_contents_total() == 0) {
@@ -109,6 +109,8 @@ class Api_Checkout
                 $order_woo->update_status('payment-approved');
 
                 return api_response( $order_without_payment, 201 );
+            } else {
+                $order_woo->set_payment_method_title($this->method_payment_name($data['method_payment']) ?? 'NONE');
             }
 
             $payment = $tuna->process_payment($order_woo->get_id(), $user, $fields);
@@ -213,15 +215,15 @@ class Api_Checkout
         return [
             'name' => 'Nome',
             'email' => 'E-mail',
-            'phone' => 'Celular/Telefone',
-            'cpf' => 'CPF',
+            // 'phone' => 'Celular/Telefone',
+            // 'cpf' => 'CPF',
             'instruction' => 'Instrução',
-            'video_to' =>  'Endereçamento do vídeo',
+            // 'video_to' =>  'Endereçamento do vídeo',
             'video_category' => 'Categoria do vídeo',
-            'name_to_video' => 'Nome de quem receberá o vídeo',
+            // 'name_to_video' => 'Nome de quem receberá o vídeo',
             'allow_video_on_page' => 'Configuração de exibição',
             'product_id' => 'ID do Produto',
-            'method_payment' => 'Método de pagamento',
+            // 'method_payment' => 'Método de pagamento',
         ];
     }
 
@@ -256,9 +258,9 @@ class Api_Checkout
         wc_add_order_item_meta($order_item_id, '_line_total'   , $order->get_total(), true );
 
         wc_add_order_item_meta($order_item_id, '_qty'                 , $quantity, true);
-        wc_add_order_item_meta($order_item_id, 'offered_by'           , $data['name'], true);
-        wc_add_order_item_meta($order_item_id, 'video_to'             , $data['video_to'], true);
-        wc_add_order_item_meta($order_item_id, 'name_to_video'        , $data['name_to_video'], true);
+        wc_add_order_item_meta($order_item_id, 'offered_by'           , '', true);
+        wc_add_order_item_meta($order_item_id, 'video_to'             , Polen_Order_Module::VIDEO_TO_OTHER_ONE, true);
+        wc_add_order_item_meta($order_item_id, 'name_to_video'        , $data['name'], true);
         wc_add_order_item_meta($order_item_id, 'email_to_video'       , $email, true);
         wc_add_order_item_meta($order_item_id, 'video_category'       , $data['video_category'], true);
         wc_add_order_item_meta($order_item_id, 'instructions_to_video', $instructions, true);
