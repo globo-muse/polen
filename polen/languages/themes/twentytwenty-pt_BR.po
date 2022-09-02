@@ -7,7 +7,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: GlotPress/3.0.0-rc.2\n"
+"X-Generator: GlotPress/4.0.0-alpha.1\n"
 "Language: pt_BR\n"
 "Project-Id-Version: Themes - Twenty Twenty\n"
 
@@ -23,80 +23,65 @@ msgid "Twenty Twenty"
 msgstr "Twenty Twenty"
 
 #: header.php:53 header.php:157
-#, gp-priority: normal
 msgctxt "toggle text"
 msgid "Search"
 msgstr "Pesquisar"
 
 #: index.php:51
-#, gp-priority: normal
 msgid "Nothing Found"
 msgstr "Nada encontrado"
 
 #: classes/class-twentytwenty-customize.php:251
-#, gp-priority: normal
 msgid "Show author bio"
 msgstr "Mostrar biografia do autor"
 
 #: template-parts/entry-author-bio.php:29
-#, gp-priority: normal
 msgid "View Archive <span aria-hidden=\"true\">&rarr;</span>"
 msgstr "Ver arquivo <span aria-hidden=\"true\">&rarr;</span>"
 
 #: inc/starter-content.php:39
-#, gp-priority: normal
 msgctxt "Theme starter content"
 msgid "The New UMoMA Opens its Doors"
 msgstr "O novo UMoMA abre suas portas"
 
 #: inc/template-tags.php:414
-#, gp-priority: normal
 msgctxt "A string that is output before one or more categories"
 msgid "In"
 msgstr "Em"
 
 #: inc/starter-content.php:151
-#, gp-priority: normal
 msgid "Join the Club"
 msgstr "Participe"
 
 #: inc/block-patterns.php:45 inc/starter-content.php:148
-#, gp-priority: normal
 msgid "Members get access to exclusive exhibits and sales. Our memberships cost $99.99 and are billed annually."
 msgstr "Os membros têm acesso a exibições e vendas exclusivas. Nossa assinatura custa $99,99 e é cobrada anualmente."
 
 #: inc/starter-content.php:145
-#, gp-priority: normal
 msgid "Become a Member and Get Exclusive Offers!"
 msgstr "Torne-se um membro e receba ofertas exclusivas!"
 
 #: inc/starter-content.php:137
-#, gp-priority: normal
 msgid "The exhibitions are produced by UMoMA in collaboration with artists and museums around the world and they often attract international attention. UMoMA has received a Special Commendation from the European Museum of the Year, and was among the top candidates for the Swedish Museum of the Year Award as well as for the Council of Europe Museum Prize."
 msgstr "As exibições são produzidas pelo UMoMA em colaboração com artistas e museus por todo o mundo, atraindo com frequência atenção internacional. O UMoMA recebeu uma comenda especial de Museu europeu do ano e esteve entre os principais candidatos ao Prêmio de museu sueco do ano, e ao Prêmio do conselho de museus da Europa."
 
 #: inc/starter-content.php:130
-#, gp-priority: normal
 msgid "&#8220;Cyborgs, as the philosopher Donna Haraway established, are not reverent. They do not remember the cosmos.&#8221;"
 msgstr "\"Ciborgues, como a filósofa Donna Haraway estabeleceu, não são reverentes. Eles não lembram o cosmos\"."
 
 #: inc/starter-content.php:114
-#, gp-priority: normal
 msgid "From Signac to Matisse"
 msgstr "De Signac para Matisse"
 
 #: inc/block-patterns.php:168 inc/starter-content.php:99
-#, gp-priority: normal
 msgid "The Life I Deserve"
 msgstr "A vida que eu mereço"
 
 #: inc/starter-content.php:85 inc/starter-content.php:117
-#, gp-priority: normal
 msgid "October 1 -- December 1"
 msgstr "1º de outubro - 1º de dezembro"
 
 #: inc/starter-content.php:82
-#, gp-priority: normal
 msgid "Theatre of Operations"
 msgstr "Teatro de operações"
 
@@ -104,101 +89,82 @@ msgstr "Teatro de operações"
 #: inc/block-patterns.php:174 inc/starter-content.php:73
 #: inc/starter-content.php:88 inc/starter-content.php:105
 #: inc/starter-content.php:120
-#, gp-priority: normal
 msgid "Read More"
 msgstr "Leia mais"
 
 #: inc/starter-content.php:70 inc/starter-content.php:102
-#, gp-priority: normal
 msgid "August 1 -- December 1"
 msgstr "1º de agosto - 1º de dezembro"
 
 #: inc/block-patterns.php:154 inc/starter-content.php:67
-#, gp-priority: normal
 msgid "Works and Days"
 msgstr "Trabalhos e dias"
 
 #: inc/starter-content.php:134
-#, gp-priority: normal
 msgid "With seven floors of striking architecture, UMoMA shows exhibitions of international contemporary art, sometimes along with art historical retrospectives. Existential, political and philosophical issues are intrinsic to our programme. As visitor you are invited to guided tours artist talks, lectures, film screenings and other events with free admission"
 msgstr "Com sete andares de arquitetura impressionante, o UMoMA têm exibições de arte contemporânea internacional, algumas vezes com retrospectivas de história da arte. Questões existenciais, políticas e filosóficas são intrínsecas ao nosso programa. Como visitante, você será convidado para passeios guiados com palestras, exibições de filmes e outros eventos livres."
 
 #: inc/starter-content.php:56
-#, gp-priority: normal
 msgid "The premier destination for modern art in Northern Sweden. Open from 10 AM to 6 PM every day during the summer months."
 msgstr "O principal destino da arte moderna no norte da Suécia. Funciona todos os dias, das 10:00 às 18:00, durante os meses de verão."
 
 #: inc/starter-content.php:48
-#, gp-priority: normal
 msgid "The New UMoMA Opens its Doors"
 msgstr "O novo UMoMA abre suas portas"
 
 #: classes/class-twentytwenty-customize.php:400
-#, gp-priority: normal
 msgid "Overlay Opacity"
 msgstr "Transparência da camada de sobreposição"
 
 #: classes/class-twentytwenty-customize.php:380
-#, gp-priority: normal
 msgid "The color used for the text in the overlay."
 msgstr "A cor usada no texto da camada de sobreposição."
 
 #: classes/class-twentytwenty-customize.php:379
-#, gp-priority: normal
 msgid "Overlay Text Color"
 msgstr "Cor do texto da camada de sobreposição"
 
 #: classes/class-twentytwenty-customize.php:358
-#, gp-priority: normal
 msgid "The color used for the overlay. Defaults to the accent color."
 msgstr "A cor usada na camada de sobreposição. Padrão para a cor de destaque."
 
 #: classes/class-twentytwenty-customize.php:357
-#, gp-priority: normal
 msgid "Overlay Background Color"
 msgstr "Cor de fundo da camada de sobreposição"
 
 #: classes/class-twentytwenty-customize.php:288
-#, gp-priority: normal
 msgid "Settings for the \"Cover Template\" page template. Add a featured image to use as background."
 msgstr "Configurações para o modelo de página \"Cobertura\". Adicione uma imagem destacada para usá-la como fundo."
 
 #: classes/class-twentytwenty-customize.php:188
-#, gp-priority: normal
 msgid "Apply a custom color for links, buttons, featured images."
 msgstr "Aplique uma cor personalizada nos links, botões e imagens destacadas."
 
 #: classes/class-twentytwenty-customize.php:128
-#, gp-priority: normal
 msgid "Primary Color"
 msgstr "Cor primária"
 
 #: searchform.php:28 template-parts/modal-search.php:20
-#, gp-priority: normal
 msgid "Search for:"
 msgstr "Pesquisar por:"
 
 #: index.php:101
-#, gp-priority: normal
 msgid "search again"
 msgstr "pesquisar novamente"
 
 #: 404.php:24
-#, gp-priority: normal
 msgid "404 not found"
 msgstr "404 não encontrada"
 
 #. translators: Copyright date format, see
 #. https://www.php.net/manual/datetime.format.php
 #: footer.php:25
-#, gp-priority: normal
 msgctxt "copyright date format"
 msgid "Y"
 msgstr "Y"
 
 #. translators: %s: Number of search results.
 #: index.php:39
-#, gp-priority: normal
 msgid "We found %s result for your search."
 msgid_plural "We found %s results for your search."
 msgstr[0] "Foi encontrado %s resultado para a sua pesquisa."
@@ -206,47 +172,39 @@ msgstr[1] "Foram encontrados %s resultados para a sua pesquisa."
 
 #. translators: %s: HTML character for up arrow.
 #: footer.php:55
-#, gp-priority: normal
 msgid "Up %s"
 msgstr "Subir %s"
 
 #. translators: %s: HTML character for up arrow.
 #: footer.php:49
-#, gp-priority: normal
 msgid "To the top %s"
 msgstr "Ir para o topo %s"
 
 #. translators: 1: Comment date, 2: Comment time.
 #: classes/class-twentytwenty-walker-comment.php:72
-#, gp-priority: normal
 msgid "%1$s at %2$s"
 msgstr "%1$s às %2$s"
 
 #: classes/class-twentytwenty-walker-comment.php:86
-#, gp-priority: normal
 msgid "Edit"
 msgstr "Editar"
 
 #: classes/class-twentytwenty-walker-comment.php:102
-#, gp-priority: normal
 msgid "Your comment is awaiting moderation."
 msgstr "O seu comentário está aguardando moderação."
 
 #: comments.php:34
-#, gp-priority: normal
 msgid "Leave a comment"
 msgstr "Deixe um comentário"
 
 #. translators: %s: Post title.
 #: comments.php:37
-#, gp-priority: normal
 msgctxt "comments title"
 msgid "One reply on &ldquo;%s&rdquo;"
 msgstr "Uma resposta em &ldquo;%s&rdquo;"
 
 #. translators: 1: Number of comments, 2: Post title.
 #: comments.php:41
-#, gp-priority: normal
 msgctxt "comments title"
 msgid "%1$s reply on &ldquo;%2$s&rdquo;"
 msgid_plural "%1$s replies on &ldquo;%2$s&rdquo;"
@@ -254,53 +212,43 @@ msgstr[0] "%1$s resposta em &ldquo;%2$s&rdquo;"
 msgstr[1] "%1$s respostas em &ldquo;%2$s&rdquo;"
 
 #: comments.php:88
-#, gp-priority: normal
 msgid "Comments"
 msgstr "Comentários"
 
 #: comments.php:127
-#, gp-priority: normal
 msgid "Comments are closed."
 msgstr "Os comentários estão desativados."
 
 #: inc/starter-content.php:177 inc/starter-content.php:187
-#, gp-priority: normal
 msgid "Primary"
 msgstr "Primário"
 
 #: inc/starter-content.php:197
-#, gp-priority: normal
 msgid "Social Links Menu"
 msgstr "Menu de links sociais"
 
 #. translators: %s: Post title. Only visible to screen readers.
 #: inc/template-tags.php:223
-#, gp-priority: normal
 msgid "Edit <span class=\"screen-reader-text\">%s</span>"
 msgstr "Editar <span class=\"screen-reader-text\">%s</span>"
 
 #: functions.php:276
-#, gp-priority: normal
 msgid "Footer Menu"
 msgstr "Menu do rodapé"
 
 #: template-parts/content-cover.php:138 template-parts/content.php:48
-#, gp-priority: normal
 msgid "Pages:"
 msgstr "Páginas"
 
 #: template-parts/footer-menus-widgets.php:37
-#, gp-priority: normal
 msgid "Footer"
 msgstr "Rodapé"
 
 #: template-parts/content-cover.php:138 template-parts/content.php:48
-#, gp-priority: normal
 msgid "Page"
 msgstr "Página"
 
 #: template-parts/modal-menu.php:21
-#, gp-priority: normal
 msgid "Close Menu"
 msgstr "Fechar menu"
 
@@ -308,7 +256,6 @@ msgstr "Fechar menu"
 #. small screens. The text inside the span with the class nav-short will be
 #. hidden on small screens.
 #: template-parts/pagination.php:27
-#, gp-priority: normal
 msgid "Older <span class=\"nav-short\">Posts</span>"
 msgstr "<span class=\"nav-short\">Posts</span> mais antigos"
 
@@ -316,316 +263,260 @@ msgstr "<span class=\"nav-short\">Posts</span> mais antigos"
 #. small screens. The text inside the span with the class nav-short will be
 #. hidden on small screens.
 #: template-parts/pagination.php:19
-#, gp-priority: normal
 msgid "Newer <span class=\"nav-short\">Posts</span>"
 msgstr "<span class=\"nav-short\">Posts</span> mais recentes"
 
 #. Template Name of the theme
-#, gp-priority: normal
 msgid "Full Width Template"
 msgstr "Modelo com largura total"
 
 #. translators: %s: Author name.
 #: inc/template-tags.php:375 template-parts/entry-author-bio.php:20
-#, gp-priority: normal
 msgid "By %s"
 msgstr "Por %s"
 
 #: template-parts/footer-menus-widgets.php:57
-#, gp-priority: normal
 msgid "Social links"
 msgstr "Links de redes sociais"
 
 #: searchform.php:31
-#, gp-priority: normal
 msgctxt "submit button"
 msgid "Search"
 msgstr "Pesquisar"
 
 #: template-parts/content-cover.php:88
-#, gp-priority: normal
 msgid "Scroll Down"
 msgstr "Deslizar para baixo"
 
 #: index.php:32
-#, gp-priority: normal
 msgid "Search:"
 msgstr "Pesquisa:"
 
 #: index.php:48
-#, gp-priority: normal
 msgid "We could not find any results for your search. You can give it another try through the search form below."
 msgstr "Não foi possível encontrar nenhum resultado para a sua pesquisa. Você pode tentar novamente através do formulário de pesquisa abaixo."
 
 #: searchform.php:29
-#, gp-priority: normal
 msgctxt "placeholder"
 msgid "Search &hellip;"
 msgstr "Pesquisar &hellip;"
 
 #: inc/template-tags.php:428
-#, gp-priority: normal
 msgid "Tags"
 msgstr "Tags"
 
 #: inc/template-tags.php:410 template-parts/content-cover.php:70
 #: template-parts/entry-header.php:36
-#, gp-priority: normal
 msgid "Categories"
 msgstr "Categorias"
 
 #: inc/template-tags.php:392
-#, gp-priority: normal
 msgid "Post date"
 msgstr "Data de publicação"
 
 #: inc/template-tags.php:368
-#, gp-priority: normal
 msgid "Post author"
 msgstr "Autor do post"
 
 #: header.php:76 header.php:137
-#, gp-priority: normal
 msgid "Menu"
 msgstr "Menu"
 
+#: template-parts/modal-search.php:11
+msgid "Search"
+msgstr "Pesquisar"
+
 #: template-parts/content.php:36
-#, gp-priority: normal
 msgid "Continue reading"
 msgstr "Continuar lendo"
 
 #: functions.php:571
-#, gp-priority: normal
 msgctxt "Name of the large font size in the block editor"
 msgid "Large"
 msgstr "Grande"
 
 #: template-parts/navigation.php:25
-#, gp-priority: normal
 msgid "Post"
 msgstr "Post"
 
 #: template-parts/modal-search.php:26
-#, gp-priority: normal
 msgid "Close search"
 msgstr "Fechar pesquisa"
 
 #: template-parts/modal-menu.php:117
-#, gp-priority: normal
 msgid "Expanded Social links"
 msgstr "Links de redes sociais"
 
 #: inc/template-tags.php:466
-#, gp-priority: normal
 msgid "Sticky post"
 msgstr "Post fixo"
 
 #: functions.php:578
-#, gp-priority: normal
 msgctxt "Short name of the larger font size in the block editor."
 msgid "XL"
 msgstr "GG"
 
 #: functions.php:577
-#, gp-priority: normal
 msgctxt "Name of the larger font size in the block editor"
 msgid "Larger"
 msgstr "Maior"
 
 #: functions.php:572
-#, gp-priority: normal
 msgctxt "Short name of the large font size in the block editor."
 msgid "L"
 msgstr "G"
 
 #: functions.php:566
-#, gp-priority: normal
 msgctxt "Short name of the regular font size in the block editor."
 msgid "M"
 msgstr "M"
 
 #: functions.php:565
-#, gp-priority: normal
 msgctxt "Name of the regular font size in the block editor"
 msgid "Regular"
 msgstr "Normal"
 
 #: functions.php:560
-#, gp-priority: normal
 msgctxt "Short name of the small font size in the block editor."
 msgid "S"
 msgstr "P"
 
 #: functions.php:559
-#, gp-priority: normal
 msgctxt "Name of the small font size in the block editor"
 msgid "Small"
 msgstr "Pequeno"
 
 #: functions.php:544
-#, gp-priority: normal
 msgid "Background Color"
 msgstr "Cor de fundo"
 
 #: functions.php:531
-#, gp-priority: normal
 msgid "Subtle Background"
 msgstr "Fundo sutil"
 
 #: functions.php:516
-#, gp-priority: normal
 msgid "Accent Color"
 msgstr "Cor de destaque"
 
 #: functions.php:403
-#, gp-priority: normal
 msgid "Widgets in this area will be displayed in the second column in the footer."
 msgstr "Widgets nessa área serão exibidos na segunda coluna do rodapé."
 
 #: functions.php:401
-#, gp-priority: normal
 msgid "Footer #2"
 msgstr "Rodapé 2"
 
 #: functions.php:391
-#, gp-priority: normal
 msgid "Widgets in this area will be displayed in the first column in the footer."
 msgstr "Widgets nessa área serão exibidos na primeira coluna do rodapé."
 
 #: functions.php:389
-#, gp-priority: normal
 msgid "Footer #1"
 msgstr "Rodapé 1"
 
 #: functions.php:362
-#, gp-priority: normal
 msgid "Skip to the content"
 msgstr "Pular para o conteúdo"
 
 #: functions.php:277
-#, gp-priority: normal
 msgid "Social Menu"
 msgstr "Menu social"
 
 #: functions.php:275
-#, gp-priority: normal
 msgid "Mobile Menu"
 msgstr "Menu para dispositivos móveis"
 
 #: functions.php:274
-#, gp-priority: normal
 msgid "Desktop Expanded Menu"
 msgstr "Menu expandido para desktop"
 
 #: functions.php:273
-#, gp-priority: normal
 msgid "Desktop Horizontal Menu"
 msgstr "Menu horizontal para desktop"
 
 #: footer.php:39
-#, gp-priority: normal
 msgid "Powered by WordPress"
 msgstr "Distribuído por WordPress"
 
 #: comments.php:75
-#, gp-priority: normal
 msgid "Older Comments"
 msgstr "Comentários mais antigos"
 
 #: comments.php:74
-#, gp-priority: normal
 msgid "Newer Comments"
 msgstr "Comentários mais recentes"
 
 #: classes/class-twentytwenty-walker-page.php:115 inc/template-tags.php:580
-#, gp-priority: normal
 msgid "Show sub menu"
 msgstr "Mostrar submenu"
 
 #. translators: %d: ID of a post.
 #: classes/class-twentytwenty-walker-page.php:78
-#, gp-priority: normal
 msgid "#%d (no title)"
 msgstr "#%d (sem título)"
 
 #: classes/class-twentytwenty-walker-comment.php:137
-#, gp-priority: normal
 msgid "By Post Author"
 msgstr "Por autor do post"
 
 #: classes/class-twentytwenty-walker-comment.php:60
-#, gp-priority: normal
 msgid "says:"
 msgstr "diz:"
 
 #: classes/class-twentytwenty-customize.php:401
-#, gp-priority: normal
 msgid "Make sure that the contrast is high enough so that the text is readable."
 msgstr "Tenha certeza de que há contraste o suficiente para que o texto seja legível."
 
 #: classes/class-twentytwenty-customize.php:311
-#, gp-priority: normal
 msgid "Creates a parallax effect when the visitor scrolls."
 msgstr "Cria um efeito parallax durante a rolagem de tela."
 
 #: classes/class-twentytwenty-customize.php:310
-#, gp-priority: normal
 msgid "Fixed Background Image"
 msgstr "Imagem de fundo fixa"
 
 #. Template Name of the theme
 #: classes/class-twentytwenty-customize.php:286
-#, gp-priority: normal
 msgid "Cover Template"
 msgstr "Modelo de cobertura"
 
 #: classes/class-twentytwenty-customize.php:275
-#, gp-priority: normal
 msgid "Summary"
 msgstr "Resumo"
 
 #: classes/class-twentytwenty-customize.php:274
-#, gp-priority: normal
 msgid "Full text"
 msgstr "Texto completo"
 
 #: classes/class-twentytwenty-customize.php:272
-#, gp-priority: normal
 msgid "On archive pages, posts show:"
 msgstr "Em páginas de arquivo, mostrar dos posts:"
 
 #: classes/class-twentytwenty-customize.php:230
-#, gp-priority: normal
 msgid "Show search in header"
 msgstr "Mostrar pesquisa no cabeçalho"
 
 #: classes/class-twentytwenty-customize.php:207
-#, gp-priority: normal
 msgid "Theme Options"
 msgstr "Opções do tema"
 
 #: classes/class-twentytwenty-customize.php:106
-#, gp-priority: normal
 msgid "Header &amp; Footer Background Color"
 msgstr "Cor de fundo do cabeçalho e rodapé"
 
 #: classes/class-twentytwenty-customize.php:87
-#, gp-priority: normal
 msgid "Scales the logo to half its uploaded size, making it sharp on high-res screens."
 msgstr "Aumenta o tamanho do logo enviado pela metade, tornando-o mais nítido em telas com alta resolução."
 
 #: classes/class-twentytwenty-customize.php:86
-#, gp-priority: normal
 msgid "Retina logo"
 msgstr "Logo para telas retina"
 
 #: 404.php:19
-#, gp-priority: normal
 msgid "The page you were looking for could not be found. It might have been removed, renamed, or did not exist in the first place."
 msgstr "Não foi possível encontrar a página que você estava procurando. Ela pode ter sido removida, renomeada ou até mesmo nunca ter existido."
 
 #: 404.php:17
-#, gp-priority: normal
 msgid "Page Not Found"
 msgstr "Página não encontrada"
 

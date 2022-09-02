@@ -1,0 +1,29 @@
+#adminmenu ul > li:not(:last-child) a[href$="page=ppress-config"]:after,
+#adminmenu ul > li:not(:last-child) a[href$="page=ppress-content-protection"]:after,
+#adminmenu ul > li:not(:last-child) a[href$="page=ppress-customers"]:after,
+#adminmenu ul > li:not(:last-child) a[href$="page=ppress-directories"]:after {
+    border-bottom: 1px solid hsla(0, 0%, 100%, .2);
+    display: block;
+    float: left;
+    margin: 13px -15px 8px;
+    content: "";
+    width: calc(100% + 30px)
+}
+
+@media screen and (max-width: 782px) {
+    #adminmenu ul > li:not(:last-child) a[href$="page=ppress-config"]:after,
+    #adminmenu ul > li:not(:last-child) a[href$="page=ppress-content-protection"]:after,
+    #adminmenu ul > li:not(:last-child) a[href$="page=ppress-customers"]:after,
+    #adminmenu ul > li:not(:last-child) a[href$="page=ppress-directories"]:after {
+        margin: 20px -20px 8px;
+        width: calc(100% + 40px)
+    }
+}
+
+#adminmenu li[class*="ppress-"] ul > li:nth-last-child(2):after {
+    margin-left: 0
+}
+
+#adminmenu li[class*="ppress-"] ul.wp-submenu-wrap li {
+    clear: both
+}

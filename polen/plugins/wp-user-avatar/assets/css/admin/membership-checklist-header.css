@@ -1,0 +1,123 @@
+.ppress-admin .ppress-checklist {
+    background-color: #fbfbfd;
+    margin-top: -10px;
+    margin-bottom: 20px;
+    position: relative;
+    box-sizing: border-box;
+    padding: 30px;
+}
+
+.ppress-admin .ppress-checklist div {
+    text-align: center !important;
+}
+
+.ppress-admin .ppress-checklist h2 {
+    font-size: 32px;
+    line-height: 40px;
+    padding-bottom: 10px;
+    margin: 0;
+}
+
+.ppress-admin .ppress-checklist-teaser {
+    font-size: 18px;
+    color: #97a3b4;
+    margin: 10px 0;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps {
+    text-align: center;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 0;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li {
+    width: 185px;
+    height: 210px;
+    margin: 0 15px 30px;
+}
+
+.ppress-admin .ppress-checklist a {
+    background-color: transparent;
+    color: #326ee0;
+    text-decoration: none;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li a {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+    border: 1px solid #c6cbd0;
+    border-radius: 3px;
+    text-decoration: none;
+    position: relative;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li.ppress-checklist-done a {
+    border-color: #0175ff;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li a svg {
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+    width: 60px;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li a span {
+    margin: 0 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li.ppress-checklist-done a span {
+    color: #001f4d;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li.ppress-checklist-done a:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background-color: #06d478;
+    background-image: url(../../assets/images/icon-checkmark.svg);
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 50%;
+    position: absolute;
+    right: 3px;
+    top: 3px;
+    border-radius: 100%
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li.ppress-checklist-done a span {
+    color: #001f4d
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li.ppress-checklist-done a .svg-color {
+    fill: #0175ff
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li a:hover {
+    border-color: #001f4d
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li a:hover .svg-color {
+    fill: #001f4d
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li {
+    opacity: .85;
+}
+
+.ppress-admin .ppress-checklist-dashboard-steps ul li.ppress-checklist-done {
+    pointer-events: none;
+}
