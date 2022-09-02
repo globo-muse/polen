@@ -29,7 +29,7 @@
 </head>
 <?php $is_single = is_singular() && is_product(); ?>
 
-<body <?php body_class("theme-dark"); ?>>
+<body <?php body_class(); ?>>
 	<?php wp_body_open(); ?>
     <?php include_once TEMPLATE_DIR . '/inc/analitics_init_body.php'; ?>
   <?php /*

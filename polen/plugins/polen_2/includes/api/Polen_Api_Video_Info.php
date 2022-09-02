@@ -360,8 +360,8 @@ class Polen_Api_Video_Info
         if(empty($order)) {
             return $post_data;
         }
-        $polen_order = new Polen_Order_Module( $order );
-        $post_data[ 'campaign' ] = $polen_order->get_campaign_slug();
+        // $polen_order = new Polen_Order_Module( $order );
+        $post_data[ 'campaign' ] = '';//$polen_order->get_campaign_slug();
         
         return $post_data;
     }
