@@ -106,7 +106,9 @@ class Api_Checkout
                     'order_status' => 200,
                     'order_code' => $order_woo->get_order_key()
                 ];
+                $order_woo->payment_complete();
                 $order_woo->update_status('payment-approved');
+                WC()->cart->empty_cart();
 
                 return api_response( $order_without_payment, 201 );
             } else {
