@@ -1,0 +1,226 @@
+.profilepress-myaccount-orders-subs, .profilepress-myaccount-orders-subs * {
+    font-family: Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+.profilepress-myaccount-orders-subs .ppress-my-account-order-sub-wrap {
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    border-radius: 8px;
+    border: 1px solid rgb(229 231 235);
+    margin-top: 16px;
+}
+
+.profilepress-myaccount-orders-subs .ppress-my-account-order-sub-wrap:first-child {
+    margin-top: 0;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-body-content-header p {
+    margin-bottom: 8px
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header-wrap {
+    padding: 16px;
+    border-color: rgb(229 231 235);
+    display: grid;
+    column-gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    border-bottom: 1px solid rgb(229 231 235);
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details {
+    display: grid;
+    column-gap: 16px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    grid-template-columns: auto auto auto;
+    grid-column: span 2/span 2;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details dt {
+    margin: 0;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details dd {
+    margin: 0;
+    margin-top: 4px;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--actions {
+    justify-content: flex-end;
+    display: flex;
+    grid-column: span 2/span 2;
+    align-items: center;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--actions a,
+.profilepress-myaccount-orders-subs a.ppress-myac-action {
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    font-weight: 500;
+    font-size: 14px;
+    padding: 6px 8px;
+    border: 1px solid rgb(209 213 219);
+    border-radius: 6px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-decoration: inherit;
+}
+
+.profilepress-myaccount-orders-subs a.ppress-myac-action {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-body-content {
+    padding: 16px;
+    align-items: flex-start;
+    flex: 1 1 0%;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-body-content-header {
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-product-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap p.ppress-my-account-order-sub-product-price {
+    margin-top: 0 !important;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-body-content p {
+    margin: 0;
+    margin-top: 8px;
+    display: block;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-body-wrap {
+    display: flex;
+    align-items: flex-start;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details dd span {
+    border-radius: 6px;
+    color: rgb(31 41 55);
+    background-color: rgb(243 244 246);
+    padding: 4px 8px;
+    margin: 0;
+    font-weight: 500;
+    font-size: 12px;
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details .active span,
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details .trialling span,
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details .completed span {
+    background-color: rgb(220 252 231);
+    color: rgb(22 101 52);
+}
+
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details .refunded span,
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details .expired span,
+.profilepress-myaccount-orders-subs .profilepress-myaccount-orders-subs-wrap .ppress-my-account-order-sub-header--details .cancelled span {
+    background-color: rgb(254 226 226);
+    color: rgb(153 27 27);
+}
+
+.profilepress-myaccount-orders-subs .ppress-myac-pagination-wrap {
+    padding: 10px 0;
+    text-align: right;
+}
+
+.profilepress-myaccount-orders-subs .ppress-myac-pagination-wrap .page-numbers {
+    border: 1px solid rgb(209 213 219);
+    padding: 8px 16px;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.profilepress-myaccount-orders-subs .ppress-myac-pagination-wrap .page-numbers.current {
+    background-color: #eeeeec;
+    color: rgb(107 114 128);
+}
+
+.profilepress-myaccount-orders-subs .ppress-myac-pagination-wrap .ppress-material-icons {
+    vertical-align: middle;
+    margin: 0;
+}
+
+table.ppress-details-table {
+    text-indent: 0;
+    border-color: inherit;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    table-layout: fixed;
+    box-shadow: transparent 0 0 0 0, transparent 0 0 0 0, rgba(0, 0, 0, .05) 0 1px 2px 0;
+}
+
+.ppress-details-table thead {
+    background-color: rgb(249 250 251);
+}
+
+.ppress-details-table thead tr th {
+    padding: 14px 12px;
+    text-align: left;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    background-color: rgb(249 250 251);
+}
+
+.ppress-details-table thead th,
+.ppress-details-table tr td {
+    padding: 16px;
+    border: 1px solid rgb(229 231 235);
+}
+
+.ppress-details-table thead th {
+    text-align: left;
+    background: rgb(229 231 235);
+}
+
+.ppress-details-table thead th {
+    vertical-align: bottom;
+}
+
+.ppress-details-table-wrap .ppress-details-table tr:nth-of-type(odd) {
+    background-color: rgb(249 250 251);
+}
+
+.ppress-details-table tr td:first-child {
+    font-weight: bold;
+}
+
+.ppress-details-table td:last-child {
+    width: 70%;
+}
+
+.ppress-details-table p {
+    margin: 0;
+    margin-top: 5px;
+}
+
+.ppress-details-table p:first-child {
+    margin-top: 0;
+}
+
+.ppress-details-table .ppress-billing-title {
+    font-weight: 500;
+}
+
+.ppress-details-table .ppress-sub-info {
+    color: #4b5563;
+    background-color: #e5e7eb;
+    margin-left: 5px;
+    border-radius: 9999px;
+    padding: 4px 8px;
+    font-size: 14px;
+}

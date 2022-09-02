@@ -51,6 +51,7 @@ class BlockTemplatesController {
 		add_action( 'template_redirect', array( $this, 'render_block_template' ) );
 		add_filter( 'pre_get_block_file_template', array( $this, 'get_block_file_template' ), 10, 3 );
 		add_filter( 'get_block_templates', array( $this, 'add_block_templates' ), 10, 3 );
+		add_filter( 'current_theme_supports-block-templates', array( $this, 'remove_block_template_support_for_shop_page' ) );
 	}
 
 	/**
@@ -159,8 +160,9 @@ class BlockTemplatesController {
 			if ( 'custom' !== $template_file->source ) {
 				$template = BlockTemplateUtils::build_template_result_from_file( $template_file, $template_type );
 			} else {
-				$template_file->title = BlockTemplateUtils::convert_slug_to_title( $template_file->slug );
-				$query_result[]       = $template_file;
+				$template_file->title       = BlockTemplateUtils::get_block_template_title( $template_file->slug );
+				$template_file->description = BlockTemplateUtils::get_block_template_description( $template_file->slug );
+				$query_result[]             = $template_file;
 				continue;
 			}
 
@@ -179,48 +181,32 @@ class BlockTemplatesController {
 			}
 		}
 
-		$query_result = $this->remove_theme_templates_with_custom_alternative( $query_result );
-		return $query_result;
-	}
+		// We need to remove theme (i.e. filesystem) templates that have the same slug as a customised one.
+		// This only affects saved templates that were saved BEFORE a theme template with the same slug was added.
+		$query_result = BlockTemplateUtils::remove_theme_templates_with_custom_alternative( $query_result );
 
-	/**
-	 * Removes templates that were added to a theme's block-templates directory, but already had a customised version saved in the database.
-	 *
-	 * @param \WP_Block_Template[]|\stdClass[] $templates List of templates to run the filter on.
-	 *
-	 * @return array List of templates with duplicates removed. The customised alternative is preferred over the theme default.
-	 */
-	public function remove_theme_templates_with_custom_alternative( $templates ) {
-
-		// Get the slugs of all templates that have been customised and saved in the database.
-		$customised_template_slugs = array_map(
+		/**
+		 * WC templates from theme aren't included in `$this->get_block_templates()` but are handled by Gutenberg.
+		 * We need to do additional search through all templates file to update title and description for WC
+		 * templates that aren't listed in theme.json.
+		 */
+		$query_result = array_map(
 			function( $template ) {
-				return $template->slug;
+				if ( 'theme' === $template->origin ) {
+					return $template;
+				}
+				if ( $template->title === $template->slug ) {
+					$template->title = BlockTemplateUtils::get_block_template_title( $template->slug );
+				}
+				if ( ! $template->description ) {
+					$template->description = BlockTemplateUtils::get_block_template_description( $template->slug );
+				}
+				return $template;
 			},
-			array_values(
-				array_filter(
-					$templates,
-					function( $template ) {
-						// This template has been customised and saved as a post.
-						return 'custom' === $template->source;
-					}
-				)
-			)
+			$query_result
 		);
 
-		// Remove theme (i.e. filesystem) templates that have the same slug as a customised one. We don't need to check
-		// for `woocommerce` in $template->source here because woocommerce templates won't have been added to $templates
-		// if a saved version was found in the db. This only affects saved templates that were saved BEFORE a theme
-		// template with the same slug was added.
-		return array_values(
-			array_filter(
-				$templates,
-				function( $template ) use ( $customised_template_slugs ) {
-					// This template has been customised and saved as a post, so return it.
-					return ! ( 'theme' === $template->source && in_array( $template->slug, $customised_template_slugs, true ) );
-				}
-			)
-		);
+		return $query_result;
 	}
 
 	/**
@@ -254,7 +240,7 @@ class BlockTemplatesController {
 
 		return array_map(
 			function( $saved_woo_template ) {
-				return BlockTemplateUtils::gutenberg_build_template_result_from_post( $saved_woo_template );
+				return BlockTemplateUtils::build_template_result_from_post( $saved_woo_template );
 			},
 			$saved_woo_templates
 		);
@@ -272,7 +258,7 @@ class BlockTemplatesController {
 	 */
 	public function get_block_templates_from_woocommerce( $slugs, $already_found_templates, $template_type = 'wp_template' ) {
 		$directory      = $this->get_templates_directory( $template_type );
-		$template_files = BlockTemplateUtils::gutenberg_get_template_paths( $directory );
+		$template_files = BlockTemplateUtils::get_template_paths( $directory );
 		$templates      = array();
 
 		foreach ( $template_files as $template_file ) {
@@ -398,4 +384,29 @@ class BlockTemplatesController {
 		}
 	}
 
+	/**
+	 * Remove the template panel from the Sidebar of the Shop page because
+	 * the Site Editor handles it.
+	 *
+	 * @see https://github.com/woocommerce/woocommerce-gutenberg-products-block/issues/6278
+	 *
+	 * @param bool $is_support Whether the active theme supports block templates.
+	 *
+	 * @return bool
+	 */
+	public function remove_block_template_support_for_shop_page( $is_support ) {
+		global $pagenow, $post;
+
+		if (
+			is_admin() &&
+			'post.php' === $pagenow &&
+			function_exists( 'wc_get_page_id' ) &&
+			is_a( $post, 'WP_Post' ) &&
+			wc_get_page_id( 'shop' ) === $post->ID
+		) {
+			return false;
+		}
+
+		return $is_support;
+	}
 }

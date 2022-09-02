@@ -5,6 +5,10 @@
  * @package WooCommerce\Emails
  */
 
+use Pelago\Emogrifier\CssInliner;
+use Pelago\Emogrifier\HtmlProcessor\CssToAttributeConverter;
+use Pelago\Emogrifier\HtmlProcessor\HtmlPruner;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -314,7 +318,18 @@ class WC_Email extends WC_Settings_API {
 	 * Set the locale to the store locale for customer emails to make sure emails are in the store language.
 	 */
 	public function setup_locale() {
-		if ( $this->is_customer_email() && apply_filters( 'woocommerce_email_setup_locale', true ) ) {
+
+		/**
+		 * Filter the ability to switch email locale.
+		 *
+		 * @since 6.8.0
+		 *
+		 * @param bool $default_value The default returned value.
+		 * @param WC_Email $this The WC_Email object.
+		 */
+		$switch_email_locale = apply_filters( 'woocommerce_allow_switching_email_locale', true, $this );
+
+		if ( $switch_email_locale && $this->is_customer_email() && apply_filters( 'woocommerce_email_setup_locale', true ) ) {
 			wc_switch_to_site_locale();
 		}
 	}
@@ -323,7 +338,18 @@ class WC_Email extends WC_Settings_API {
 	 * Restore the locale to the default locale. Use after finished with setup_locale.
 	 */
 	public function restore_locale() {
-		if ( $this->is_customer_email() && apply_filters( 'woocommerce_email_restore_locale', true ) ) {
+
+		/**
+		 * Filter the ability to restore email locale.
+		 *
+		 * @since 6.8.0
+		 *
+		 * @param bool $default_value The default returned value.
+		 * @param WC_Email $this The WC_Email object.
+		 */
+		$restore_email_locale = apply_filters( 'woocommerce_allow_restoring_email_locale', true, $this );
+
+		if ( $restore_email_locale && $this->is_customer_email() && apply_filters( 'woocommerce_email_restore_locale', true ) ) {
 			wc_restore_locale();
 		}
 	}
@@ -559,18 +585,20 @@ class WC_Email extends WC_Settings_API {
 			wc_get_template( 'emails/email-styles.php' );
 			$css = apply_filters( 'woocommerce_email_styles', ob_get_clean(), $this );
 
-			$emogrifier_class = 'Pelago\\Emogrifier';
+			$css_inliner_class = CssInliner::class;
 
-			if ( $this->supports_emogrifier() && class_exists( $emogrifier_class ) ) {
+			if ( $this->supports_emogrifier() && class_exists( $css_inliner_class ) ) {
 				try {
-					$emogrifier = new $emogrifier_class( $content, $css );
+					$css_inliner = CssInliner::fromHtml( $content )->inlineCss( $css );
 
-					do_action( 'woocommerce_emogrifier', $emogrifier, $this );
+					do_action( 'woocommerce_emogrifier', $css_inliner, $this );
 
-					$content    = $emogrifier->emogrify();
-					$html_prune = \Pelago\Emogrifier\HtmlProcessor\HtmlPruner::fromHtml( $content );
-					$html_prune->removeElementsWithDisplayNone();
-					$content    = $html_prune->render();
+					$dom_document = $css_inliner->getDomDocument();
+
+					HtmlPruner::fromDomDocument( $dom_document )->removeElementsWithDisplayNone();
+					$content = CssToAttributeConverter::fromDomDocument( $dom_document )
+						->convertCssToVisualAttributes()
+						->render();
 				} catch ( Exception $e ) {
 					$logger = wc_get_logger();
 					$logger->error( $e->getMessage(), array( 'source' => 'emogrifier' ) );

@@ -45,7 +45,7 @@ export const useShippingDataContext = () => {
 /**
  * The shipping data provider exposes the interface for shipping in the checkout/cart.
  *
- * @param {Object} props Incoming props for provider
+ * @param {Object}             props          Incoming props for provider
  * @param {React.ReactElement} props.children
  */
 export const ShippingDataProvider = ( { children } ) => {
@@ -61,13 +61,13 @@ export const ShippingDataProvider = ( { children } ) => {
 	const currentObservers = useRef( observers );
 	const eventObservers = useMemo(
 		() => ( {
-			onShippingRateSuccess: emitterObservers( observerDispatch )
-				.onSuccess,
+			onShippingRateSuccess:
+				emitterObservers( observerDispatch ).onSuccess,
 			onShippingRateFail: emitterObservers( observerDispatch ).onFail,
-			onShippingRateSelectSuccess: emitterObservers( observerDispatch )
-				.onSelectSuccess,
-			onShippingRateSelectFail: emitterObservers( observerDispatch )
-				.onSelectFail,
+			onShippingRateSelectSuccess:
+				emitterObservers( observerDispatch ).onSelectSuccess,
+			onShippingRateSelectFail:
+				emitterObservers( observerDispatch ).onSelectFail,
 		} ),
 		[ observerDispatch ]
 	);

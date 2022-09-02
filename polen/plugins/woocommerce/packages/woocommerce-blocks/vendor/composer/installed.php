@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '82534a66fd27668db1853c76d3f49713d381ecea',
+    'reference' => '5cc9182a7c1e8991839ea1600607c242e6738991',
     'name' => 'woocommerce/woocommerce-blocks',
   ),
   'versions' => 
@@ -50,7 +50,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '82534a66fd27668db1853c76d3f49713d381ecea',
+      'reference' => '5cc9182a7c1e8991839ea1600607c242e6738991',
     ),
   ),
 );
