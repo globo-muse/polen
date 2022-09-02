@@ -95,7 +95,7 @@ class Polen_Create_Customer
 					'user_login' => $email,
 					'user_pass'  => $password,
 					'user_email' => $email,
-					'role'       => 'customer',
+					'role'       => 'user_talent',
 				)
 			)
 		);
