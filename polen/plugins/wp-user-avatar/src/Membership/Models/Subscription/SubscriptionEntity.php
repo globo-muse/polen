@@ -172,6 +172,7 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
 
         $active_statuses = [
             SubscriptionStatus::ACTIVE,
+            SubscriptionStatus::CANCELLED, // Cancelled is an active state because it just means it won't renew, but is also not yet expired.
             SubscriptionStatus::COMPLETED,
             SubscriptionStatus::TRIALLING,
         ];
@@ -195,7 +196,10 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
 
             $ret = false;
 
-            if (CarbonImmutable::parse($this->expiration_date, wp_timezone())->diffInDays() >= 2) {
+            $expiration_date = CarbonImmutable::parse($this->expiration_date, wp_timezone());
+            $now             = CarbonImmutable::now(wp_timezone());
+
+            if ($now->greaterThan($expiration_date) && $expiration_date->diffInDays($now) >= 2) {
 
                 $ret = true;
 
@@ -562,11 +566,16 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
      *
      * @return false|void
      */
-    public function expire($check_expiration = false)
+    public function expire($check_expiration = false, $addBuffer = false)
     {
         if ($this->is_lifetime()) return false;
 
-        if ($check_expiration && time() < ppress_strtotime_utc($this->expiration_date)) {
+        $expiration_date_timestamp = ppress_strtotime_utc($this->expiration_date);
+
+        if ($addBuffer) $expiration_date_timestamp += DAY_IN_SECONDS;
+
+        // added a day buffer to expiration date to give time for gateway to renew the sub
+        if ($check_expiration && time() <= $expiration_date_timestamp) {
             return false; // Do not mark as expired since real expiration date is in the future
         }
 
@@ -581,7 +590,7 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
             $expiration = CarbonImmutable::createFromTimestampUTC($expiration_date);
         } else {
 
-            $old_expiry_date = ppress_date_to_utc_timestamp($this->expiration_date);
+            $old_expiry_date = ppress_strtotime_utc($this->expiration_date);
 
             // Determine what date to use as the start for the new expiration calculation
             if ($old_expiry_date > time() && $this->is_active()) {

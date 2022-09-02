@@ -65,6 +65,11 @@ class PaymentMethods
                 sanitize_text_field($_GET['method'])
             );
 
+            if ( ! $method) {
+                wp_safe_redirect(add_query_arg(['view' => 'payments', 'section' => 'payment-methods'], PPRESS_SETTINGS_SETTING_PAGE));
+                exit;
+            }
+
             $instance->page_header($method->get_method_title());
 
             add_action('wp_cspa_after_header', function () use ($method) {
@@ -93,7 +98,7 @@ class PaymentMethods
                     ],
                     'test_mode_reconnection_notice' => [
                         'label' => '',
-                        'data'  => '<style>#test_mode_reconnection_notice_row {display:none}</style><div class="pp-alert-notice pp-alert-notice-info"><p>' . __('Switching test/live modes requires Stripe account reconnection.', 'wp-user-avatar') . '</p></div>',
+                        'data'  => '<style>#test_mode_reconnection_notice_row {display:none}</style><div class="pp-alert-notice pp-alert-notice-info"><p>' . __('Switching test/live modes might require payment methods reconnection or setup.', 'wp-user-avatar') . '</p></div>',
                         'type'  => 'custom_field_block'
                     ],
                     'default_payment_method'        => [

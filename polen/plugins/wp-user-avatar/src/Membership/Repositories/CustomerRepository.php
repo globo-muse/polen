@@ -32,13 +32,15 @@ class CustomerRepository extends BaseRepository
                 'user_id'        => $data->user_id,
                 'private_note'   => $data->private_note,
                 'total_spend'    => $data->total_spend,
-                'purchase_count' => $data->purchase_count
+                'purchase_count' => $data->purchase_count,
+                'date_created'   => empty($data->date_created) ? current_time('mysql', true) : $data->date_created,
             ),
             array(
                 '%d',
                 '%s',
                 '%s',
-                '%d'
+                '%d',
+                '%s'
             )
         );
 
@@ -197,8 +199,8 @@ class CustomerRepository extends BaseRepository
         }
 
         if ( ! empty($args['date_created'])) {
-            $sql           .= " AND DATE(date_created) $date_compare %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($args['date_created']));
+            $sql           .= " AND date_created $date_compare %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($args['date_created']));
         }
 
         $start_date  = $args['start_date'];
@@ -206,13 +208,13 @@ class CustomerRepository extends BaseRepository
         $date_column = esc_sql($args['date_column']);
 
         if ( ! empty($start_date)) {
-            $sql           .= " AND DATE($date_column) >= %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($start_date), new \DateTimeZone('UTC'));
+            $sql           .= " AND $date_column >= %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($start_date));
         }
 
         if ( ! empty($end_date)) {
-            $sql           .= " AND DATE($date_column) <= %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($end_date), new \DateTimeZone('UTC'));
+            $sql           .= " AND $date_column <= %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($end_date));
         }
 
         if ( ! empty($search)) {

@@ -2,6 +2,7 @@
 
 namespace ProfilePress\Core\Membership\PaymentMethods;
 
+use ProfilePress\Core\Membership\Models\Order\OrderEntity;
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionEntity;
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionStatus;
 
@@ -335,32 +336,15 @@ abstract class AbstractPaymentMethod implements PaymentMethodInterface
     abstract function process_payment($order_id, $subscription_id, $customer_id);
 
     /**
-     * Can the order be refunded via this gateway?
+     * Process refund.
      *
-     * Should be extended by gateways to do their own checks.
+     * If the p declares 'refunds' support, this will allow it to refund a passed in amount.
      *
-     * @param mixed $order Order object.
-     *
-     * @return bool If false, the automatic refund button is hidden in the UI.
-     *
-     */
-    public function can_refund_order($order)
-    {
-        return $order && $this->supports(self::REFUNDS);
-    }
-
-    /**
      * @param int $order_id Order ID.
      * @param string $amount Refund amount.
      * @param string $reason Refund reason.
      *
-     * @return boolean True or false based on success, or a WP_Error object.
-     * @todo
-     * Process refund.
-     *
-     * If the gateway declares 'refunds' support, this will allow it to refund.
-     * a passed in amount.
-     *
+     * @return boolean
      */
     public function process_refund($order_id, $amount = null, $reason = '')
     {
@@ -371,10 +355,11 @@ abstract class AbstractPaymentMethod implements PaymentMethodInterface
      * Get a link to the transaction on the 3rd party gateway site (if applicable).
      *
      * @param string $transaction_id
+     * @param OrderEntity $order
      *
      * @return string transaction URL, or empty string.
      */
-    public function link_transaction_id($transaction_id)
+    public function link_transaction_id($transaction_id, $order)
     {
         return $transaction_id;
     }
@@ -383,10 +368,11 @@ abstract class AbstractPaymentMethod implements PaymentMethodInterface
      * Get subscription profile Link.
      *
      * @param string $profile_id The profile id.
+     * @param SubscriptionEntity $subscription
      *
      * @return string $profile_link The profile link link.
      */
-    public function link_profile_id($profile_id)
+    public function link_profile_id($profile_id, $subscription)
     {
         return $profile_id;
     }

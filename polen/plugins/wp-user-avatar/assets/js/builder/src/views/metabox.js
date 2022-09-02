@@ -26,7 +26,7 @@ export default Backbone.View.extend({
     },
 
     tabify() {
-        $('ul.pp-tabs li a', this.$el).click(function (e) {
+        $('ul.pp-tabs li a', this.$el).on('click', function (e) {
             e.preventDefault();
             $('.pp-form-builder_options_panel').hide();
             $('#pp-form-builder-metabox ul.pp-tabs li').removeClass('active');

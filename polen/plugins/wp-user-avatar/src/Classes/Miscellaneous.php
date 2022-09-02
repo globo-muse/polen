@@ -96,6 +96,8 @@ class Miscellaneous
             return;
         }
 
+        if ( ! ppress_is_any_enabled_payment_method()) return;
+
         $text = ! ppress_is_test_mode() ? __('Live', 'wp-user-avatar') : __('Test Mode', 'wp-user-avatar');
 
         $mode = ! ppress_is_test_mode() ? 'live' : 'test';

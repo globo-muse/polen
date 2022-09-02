@@ -172,7 +172,7 @@ class RegistrationFormBuilder
                         pp_checkPasswordStrength(password1, password2, strengthMeterId, submitButton, []);
                     }, 500);
 
-                    submitButton.click(function () {
+                    submitButton.on('click', function () {
                         $('input[name=pp_enforce_password_meter]').val(pass_strength);
                     });
                 });

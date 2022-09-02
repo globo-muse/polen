@@ -47,20 +47,18 @@ export const SuggestedPlugins = () => {
     }, [suggestedPlugins, add, nothingToRecommend, hasGoal, remove])
 
     return (
-        <div className="w-full">
-            <div className="xl:grid grid-cols-3-minmax-300px-1fr max-w-4xl gap-x-4 gap-y-3">
-                {suggestedPlugins?.filter(hasGoal)?.map((plugin) => (
-                    <div className="pb-3" key={plugin.id}>
-                        <CheckboxInput
-                            label={plugin.name}
-                            slug={plugin.wordpressSlug}
-                            description={plugin.description}
-                            checked={!nothingToRecommend}
-                            onClick={() => toggle('plugins', plugin)}
-                        />
-                    </div>
-                ))}
-            </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {suggestedPlugins?.filter(hasGoal)?.map((plugin) => (
+                <div key={plugin.id}>
+                    <CheckboxInput
+                        label={plugin.name}
+                        slug={plugin.wordpressSlug}
+                        description={plugin.description}
+                        checked={!nothingToRecommend}
+                        onChange={() => toggle('plugins', plugin)}
+                    />
+                </div>
+            ))}
         </div>
     )
 }

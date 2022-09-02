@@ -52,13 +52,15 @@ class OrderRepository extends BaseRepository
                 'billing_phone'    => $data->billing_phone,
                 'mode'             => $data->mode,
                 'currency'         => $data->currency,
-                'ip_address'       => $data->ip_address
+                'ip_address'       => $data->ip_address,
+                'date_created'     => empty($data->date_created) ? current_time('mysql', true) : $data->date_created
             ],
             [
                 '%s',
                 '%d',
                 '%d',
                 '%d',
+                '%s',
                 '%s',
                 '%s',
                 '%s',
@@ -329,13 +331,13 @@ class OrderRepository extends BaseRepository
         }
 
         if ( ! empty($args['date_created'])) {
-            $sql           .= " AND DATE(date_created) $date_compare %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($args['date_created']));
+            $sql           .= " AND date_created $date_compare %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($args['date_created']));
         }
 
         if ( ! empty($args['date_completed'])) {
-            $sql           .= " AND DATE(date_created) = %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($args['date_completed']));
+            $sql           .= " AND date_created = %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($args['date_completed']));
         }
 
         $start_date  = $args['start_date'];
@@ -343,13 +345,13 @@ class OrderRepository extends BaseRepository
         $date_column = esc_sql($args['date_column']);
 
         if ( ! empty($start_date)) {
-            $sql           .= " AND DATE($date_column) >= %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($start_date), new \DateTimeZone('UTC'));
+            $sql           .= " AND $date_column >= %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($start_date));
         }
 
         if ( ! empty($end_date)) {
-            $sql           .= " AND DATE($date_column) <= %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($end_date), new \DateTimeZone('UTC'));
+            $sql           .= " AND $date_column <= %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($end_date));
         }
 
         if ( ! empty($search)) {

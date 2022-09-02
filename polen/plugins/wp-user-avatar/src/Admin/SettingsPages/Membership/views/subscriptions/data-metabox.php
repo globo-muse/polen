@@ -4,11 +4,9 @@ use ProfilePress\Core\Admin\SettingsPages\Membership\CustomersPage\CustomerWPLis
 use ProfilePress\Core\Membership\Models\Customer\CustomerFactory;
 use ProfilePress\Core\Membership\Models\Order\OrderFactory;
 use ProfilePress\Core\Membership\Models\Plan\PlanFactory;
-use ProfilePress\Core\Membership\Models\Subscription\SubscriptionBillingFrequency;
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionEntity;
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionStatus;
 use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods;
-use ProfilePress\Core\Membership\Services\Calculator;
 use ProfilePress\Core\Membership\Services\TaxService;
 
 /** @global SubscriptionEntity $subscription_data */
@@ -24,7 +22,7 @@ $profile_id           = $subscription_data->profile_id;
 
 if ( ! empty($parent_order_data->payment_method)) {
     $payment_method_instance = PaymentMethods::get_instance()->get_by_id($parent_order_data->payment_method);
-    $profile_id              = $payment_method_instance->link_profile_id($profile_id);
+    $profile_id              = $payment_method_instance->link_profile_id($profile_id, $subscription_data);
     $payment_method_title    = $payment_method_instance->get_method_title();
 }
 

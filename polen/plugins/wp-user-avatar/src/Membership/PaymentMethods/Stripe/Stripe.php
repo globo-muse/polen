@@ -13,7 +13,8 @@ use ProfilePress\Core\Membership\Models\Subscription\SubscriptionBillingFrequenc
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionEntity;
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionFactory;
 use ProfilePress\Core\Membership\PaymentMethods\AbstractPaymentMethod;
-use ProfilePress\Core\Membership\PaymentMethods\Stripe\WebhookHandlers\WebhookHandlerInterface;
+use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods;
+use ProfilePress\Core\Membership\PaymentMethods\WebhookHandlerInterface;
 use ProfilePress\Core\Membership\Services\Calculator;
 use ProfilePress\Core\RegisterScripts;
 use ProfilePressVendor\Stripe\Webhook as StripeWebhook;
@@ -27,7 +28,7 @@ class Stripe extends AbstractPaymentMethod
 
         $this->id          = 'stripe';
         $this->title       = 'Credit Card (Stripe)';
-        $this->description = esc_html__('Accept credit card payment via Stripe', 'wp-user-avatar');
+        $this->description = esc_html__('Pay with your credit card via Stripe', 'wp-user-avatar');
 
         $this->method_title       = 'Stripe';
         $this->method_description = esc_html__('Credit card payment method that integrates with your Stripe account.', 'wp-user-avatar');
@@ -37,6 +38,8 @@ class Stripe extends AbstractPaymentMethod
                 '<a target="_blank" href="https://profilepress.com/pricing/?utm_source=wp_dashboard&utm_medium=upgrade&utm_campaign=stripe-gateway-method">', '</a>'
             )
             : '';
+
+        $this->icon = PPRESS_ASSETS_URL . '/images/cards-icon.svg';
 
         $this->supports = [
             self::SUBSCRIPTIONS,
@@ -224,8 +227,7 @@ class Stripe extends AbstractPaymentMethod
                     '<code>' . esc_url($this->get_webhook_url()) . '</code>',
                     '<a target="_blank" href="' . esc_url($stripe_webhook_url) . '">',
                     '</a>',
-                    /** @todo add doc link */
-                    '<a target="_blank" href="#">'
+                    '<a target="_blank" href="https://profilepress.com/article/setting-up-stripe/">'
                 ),
             ];
         }
@@ -339,7 +341,7 @@ class Stripe extends AbstractPaymentMethod
         return substr($statement_descriptor, 0, 22);
     }
 
-    public function link_transaction_id($transaction_id)
+    public function link_transaction_id($transaction_id, $order)
     {
         if ( ! empty($transaction_id)) {
             return sprintf('<a target="_blank" href="https://dashboard.stripe.com/payments/%1$s">%1$s</a>', $transaction_id);
@@ -348,7 +350,7 @@ class Stripe extends AbstractPaymentMethod
         return $transaction_id;
     }
 
-    public function link_profile_id($profile_id)
+    public function link_profile_id($profile_id, $subscription)
     {
         if ( ! empty($profile_id)) {
             return sprintf('<a target="_blank" href="https://dashboard.stripe.com/subscriptions/%1$s">%1$s</a>', $profile_id);
@@ -457,6 +459,15 @@ class Stripe extends AbstractPaymentMethod
 
     public function enqueue_frontend_assets()
     {
+        if ( ! PaymentMethods::get_instance()->get_by_id('stripe')->is_enabled()) return;
+
+        wp_register_script(
+            'ppress-stripe-v3',
+            'https://js.stripe.com/v3/',
+            [],
+            null
+        );
+
         if ('false' === $this->get_value('restrict_assets', 'false')) {
             wp_enqueue_script('ppress-stripe-v3');
         }
@@ -468,13 +479,6 @@ class Stripe extends AbstractPaymentMethod
         $publishable_key = Helpers::get_publishable_key();
 
         $suffix = RegisterScripts::asset_suffix();
-
-        wp_register_script(
-            'ppress-stripe-v3',
-            'https://js.stripe.com/v3/',
-            [],
-            null
-        );
 
         wp_register_script(
             'ppress-stripe-js',
@@ -799,6 +803,39 @@ class Stripe extends AbstractPaymentMethod
             return (new CheckoutResponse())
                 ->set_is_success(false)
                 ->set_error_message($e->getMessage());
+        }
+    }
+
+    public function process_refund($order_id, $amount = null, $reason = '')
+    {
+        try {
+
+            $order = OrderFactory::fromId($order_id);
+
+            $response = APIClass::stripeClient()->refunds->create([
+                'payment_intent' => $order->transaction_id,
+            ]);
+
+            switch ($response->status) {
+                case 'succeeded':
+                    return true;
+                case 'pending':
+                    $order->add_note(esc_html__('Refund request is pending', 'profilepress-pro'));
+                    break;
+                case 'failed':
+                    $order->add_note(esc_html__('Refund request failed', 'profilepress-pro'));
+                    break;
+                default:
+                    $order->add_note(sprintf(esc_html__('Refund request failed. Status: %s', 'profilepress-pro'), $response->status));
+                    break;
+            }
+
+            return false;
+
+        } catch (\Exception $e) {
+            ppress_log_error($e->getMessage() . '; OrderID:' . $order_id);
+
+            return false;
         }
     }
 

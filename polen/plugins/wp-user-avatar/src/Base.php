@@ -236,7 +236,7 @@ class Base extends DBTables
         if (current_user_can('activate_plugins') && get_option('ppress_new_v4_install') != 'true') {
             CreateDBTables::membership_db_make();
             RegisterActivation\Base::membership_default_settings();
-            RegisterActivation\Base::create_membership_pages();
+            //RegisterActivation\Base::create_membership_pages();
             RegisterActivation\Base::clear_wpengine_cache();
             add_option('ppress_new_v4_install', 'true');
         }

@@ -14,6 +14,7 @@ use ProfilePress\Core\Membership\Models\Plan\PlanFactory;
 use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods;
 use ProfilePress\Core\Membership\Repositories\OrderRepository;
 use ProfilePress\Core\Membership\Services\OrderService;
+use ProfilePressVendor\Carbon\CarbonImmutable;
 
 class OrderWPListTable extends \WP_List_Table
 {
@@ -206,10 +207,16 @@ class OrderWPListTable extends \WP_List_Table
             'search'         => $search,
             'status'         => [$status],
             'mode'           => $mode,
-            'payment_method' => $payment_method,
-            'start_date'     => $start_date,
-            'end_date'       => $end_date
+            'payment_method' => $payment_method
         ];
+
+        if ( ! empty($start_date)) {
+            $query_args['start_date'] = CarbonImmutable::parse($start_date, wp_timezone())->startOfDay()->utc()->toDateTimeString();
+        }
+
+        if ( ! empty($end_date)) {
+            $query_args['end_date'] = CarbonImmutable::parse($end_date, wp_timezone())->endOfDay()->utc()->toDateTimeString();
+        }
 
         if (ppressGET_var('by_ci')) {
             $query_args['customer_id'] = absint($_GET['by_ci']);

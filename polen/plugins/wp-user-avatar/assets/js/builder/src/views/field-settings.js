@@ -50,7 +50,7 @@ export default Backbone.View.extend({
                     cache.find('.pp-form-material-icon-wrap[data-material-icon="' + hidden_input_val + '"]').addClass('pp-active');
                 }
 
-                $('.pp-form-material-icon-wrap').click(function () {
+                $('.pp-form-material-icon-wrap').on('click', function () {
                     let icon = $(this).data('material-icon');
                     origin_button.html(_this.iconPickerTemplate({icon}));
                     hidden_input.val(icon);

@@ -28,6 +28,7 @@ use Countable;
 use DateInterval;
 use DatePeriod;
 use DateTime;
+use DateTimeImmutable;
 use DateTimeInterface;
 use DateTimeZone;
 use InvalidArgumentException;
@@ -1268,7 +1269,7 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
     {
         if (!\method_exists($className, 'instance')) {
             if (\is_a($className, DatePeriod::class, \true)) {
-                return new $className($this->getStartDate(), $this->getDateInterval(), $this->getEndDate() ? $this->getIncludedEndDate() : $this->getRecurrences(), $this->isStartExcluded() ? DatePeriod::EXCLUDE_START_DATE : 0);
+                return new $className($this->rawDate($this->getStartDate()), $this->getDateInterval(), $this->getEndDate() ? $this->rawDate($this->getIncludedEndDate()) : $this->getRecurrences(), $this->isStartExcluded() ? DatePeriod::EXCLUDE_START_DATE : 0);
             }
             throw new InvalidCastException("{$className} has not the instance() method needed to cast the date.");
         }
@@ -2190,5 +2191,19 @@ class CarbonPeriod implements Iterator, Countable, JsonSerializable
     private function isInfiniteDate($date) : bool
     {
         return $date instanceof CarbonInterface && ($date->isEndOfTime() || $date->isStartOfTime());
+    }
+    private function rawDate($date) : ?DateTimeInterface
+    {
+        if ($date === \false || $date === null) {
+            return null;
+        }
+        if ($date instanceof CarbonInterface) {
+            return $date->isMutable() ? $date->toDateTime() : $date->toDateTimeImmutable();
+        }
+        if (\in_array(\get_class($date), [DateTime::class, DateTimeImmutable::class], \true)) {
+            return $date;
+        }
+        $class = $date instanceof DateTime ? DateTime::class : DateTimeImmutable::class;
+        return new $class($date->format('Y-m-d H:i:s.u'), $date->getTimezone());
     }
 }

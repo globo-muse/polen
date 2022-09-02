@@ -51,41 +51,43 @@ class ProfileCustomFields
 
     public function display_billing_details_fields($user)
     {
-        $billing_fields = CheckoutFields::standard_billing_fields();
+        if (apply_filters('ppress_display_billing_details_fields', true)) {
 
-        echo '<h3>' . apply_filters('ppress_billing_details_wp_profile_header', esc_html__('Billing Address (ProfilePress)', 'profilepress-pro')) . '</h3>';
+            $billing_fields = CheckoutFields::standard_billing_fields();
 
-        echo '<table class="form-table">';
+            echo '<h3>' . apply_filters('ppress_billing_details_wp_profile_header', esc_html__('Billing Address (ProfilePress)', 'profilepress-pro')) . '</h3>';
 
-        foreach ($billing_fields as $field_key => $field) {
+            echo '<table class="form-table">';
 
-            $field_data = PROFILEPRESS_sql::get_profile_custom_field_by_key($field_key);
+            foreach ($billing_fields as $field_key => $field) {
 
-            $label_name  = $field['label'];
-            $field_type  = $field['field_type'];
-            $options     = ppress_var($field_data, 'options', []);
-            $description = ppress_var($field_data, 'description', '');
+                $field_data = PROFILEPRESS_sql::get_profile_custom_field_by_key($field_key);
 
-            // skip woocommerce core billing / shipping fields added to wordpress profile admin page.
-            if (in_array($field_key, ppress_woocommerce_billing_shipping_fields())) continue;
+                $label_name  = $field['label'];
+                $field_type  = $field['field_type'];
+                $options     = ppress_var($field_data, 'options', []);
+                $description = ppress_var($field_data, 'description', '');
 
-            if (in_array($field_key, $this->core_user_fields())) continue;
+                // skip woocommerce core billing / shipping fields added to wordpress profile admin page.
+                if (in_array($field_key, ppress_woocommerce_billing_shipping_fields())) continue;
 
-            if ($field_key == CheckoutFields::BILLING_STATE) {
+                if (in_array($field_key, $this->core_user_fields())) continue;
 
-                $billing_country        = get_user_meta($user->ID, CheckoutFields::BILLING_COUNTRY, true);
-                $billing_country_states = ppress_array_of_world_states($billing_country);
+                if ($field_key == CheckoutFields::BILLING_STATE) {
 
-                if ( ! empty($billing_country_states)) {
-                    $field_type = 'select';
-                    $options    = ['' => '&mdash;&mdash;&mdash;&mdash;'] + $billing_country_states;
+                    $billing_country        = get_user_meta($user->ID, CheckoutFields::BILLING_COUNTRY, true);
+                    $billing_country_states = empty($billing_country) ? [] : ppress_array_of_world_states($billing_country);
+
+                    if ( ! empty($billing_country_states)) {
+                        $field_type = 'select';
+                        $options    = ['' => '&mdash;&mdash;&mdash;&mdash;'] + $billing_country_states;
+                    }
                 }
+
+                $this->parse_custom_field($user, $label_name, $field_key, $field_type, $options, $description);
             }
-
-
-            $this->parse_custom_field($user, $label_name, $field_key, $field_type, $options, $description);
+            echo '</table>';
         }
-        echo '</table>';
     }
 
 

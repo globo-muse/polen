@@ -42,7 +42,7 @@ echo '<div class="ppress-membership-customer-details">';
                         <span class="customer-email"><?php echo $customer_data->get_email() ?></span>
 
                         <span class="customer-since">
-						<?php printf('Customer since %s', ppress_format_date($customer_data->get_date_created())) ?>
+						<?php printf('Customer since %s', $customer_data->get_date_created()) ?>
                     </span>
 
                         <?php if ( ! empty($customer_data->get_last_login())) : ?>
@@ -98,7 +98,7 @@ echo '<div class="ppress-membership-customer-details">';
                         }
 
                         if ($field_id == CF::BILLING_STATE) {
-                            $state  = ppress_array_of_world_states($billing_country);
+                            $state  = ! empty($billing_country) ? ppress_array_of_world_states($billing_country) : [];
                             $detail = ppress_var($state, $detail, $detail, true);
                         }
 

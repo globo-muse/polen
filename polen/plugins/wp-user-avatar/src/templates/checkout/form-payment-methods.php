@@ -41,12 +41,14 @@ if (empty($methods)) : ?>
 
                         $supporting_methods++;
 
+                        $nonce_key = 'ppress_checkout_' . $method->get_id() . '_nonce';
+
                         ?>
 
                         <div class="ppress-checkout-form__payment_method <?= $method->get_id() ?><?= $active_payment_method == $method->get_id() ? ' ppress-active' : '' ?>">
-
+                            <?php wp_nonce_field($nonce_key, $nonce_key); ?>
                             <div class="ppress-checkout-form__payment_method__title_wrap">
-                                <input id="ppress_payment_method_stripe" type="radio" class="ppress-checkout-field__radio" name="ppress_payment_method" value="<?= $id ?>" <?= checked($active_payment_method, $method->get_id()) ?>>
+                                <input id="ppress_payment_method_<?= $id ?>" type="radio" class="ppress-checkout-field__radio" name="ppress_payment_method" value="<?= $id ?>" <?= checked($active_payment_method, $method->get_id()) ?>>
                                 <label class="ppress-checkout-form__payment_method__label" for="ppress_payment_method_<?= $id ?>">
                                     <?= $method->get_title() ?>
                                     <?php if ( ! empty($method->get_icon())) : ?>
@@ -59,7 +61,9 @@ if (empty($methods)) : ?>
 
                             <?php if ($method->has_fields() || ! empty($method->get_description())) : ?>
                                 <div class="ppress-checkout-form__payment_method__content_wrap">
-                                    <?php $method->payment_fields() ?>
+                                    <?php if ($active_payment_method == $method->get_id()): ?>
+                                        <?php $method->payment_fields() ?>
+                                    <?php endif; ?>
                                 </div>
                             <?php endif; ?>
 

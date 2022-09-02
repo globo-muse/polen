@@ -18,7 +18,7 @@ $transaction_id       = $order_data->transaction_id;
 
 if ( ! empty($order_data->payment_method)) {
     $payment_method_instance = PaymentMethods::get_instance()->get_by_id($order_data->payment_method);
-    $transaction_id          = $payment_method_instance->link_transaction_id($transaction_id);
+    $transaction_id          = $payment_method_instance->link_transaction_id($transaction_id, $order_data);
     $payment_method_title    = $payment_method_instance->get_method_title();
 }
 
@@ -44,8 +44,8 @@ if ($order_data->date_completed) {
     /* translators: 1: date 2: time */
     $meta_list[] = sprintf(
         __('Paid on %1$s @ %2$s', 'wp-user-avatar'),
-        wp_date(get_option('date_format'), ppress_date_to_utc_timestamp($order_data->date_completed)),
-        wp_date(get_option('time_format'), ppress_date_to_utc_timestamp($order_data->date_completed))
+        wp_date(get_option('date_format'), ppress_strtotime_utc($order_data->date_completed)),
+        wp_date(get_option('time_format'), ppress_strtotime_utc($order_data->date_completed))
     );
 }
 
@@ -124,7 +124,7 @@ echo '</p>';
                         }
 
                         if ($field_id == CF::BILLING_STATE) {
-                            $state  = ppress_array_of_world_states($order_data->billing_country);
+                            $state  = ! empty($order_data->billing_country) ? ppress_array_of_world_states($order_data->billing_country) : [];
                             $detail = ppress_var($state, $detail, $detail, true);
                         }
 

@@ -89,8 +89,7 @@ class CheckoutController extends BaseController
         $response = LoginAuth::login_auth(
             trim($_POST['ppmb_user_login']),
             $_POST['ppmb_user_pass'],
-            true,
-            ppress_plan_checkout_url(absint($_GET['plan']))
+            true
         );
 
         if (is_wp_error($response)) {
@@ -261,7 +260,9 @@ class CheckoutController extends BaseController
             SubscriptionRepository::init()->updateColumn($subscription_id, 'parent_order_id', $order_id);
             OrderRepository::init()->updateColumn($order_id, 'subscription_id', $subscription_id);
 
-            if ( ! $payment_method || ! isset($payment_method->id)) $payment_method = StoreGateway::get_instance();
+            if ( ! $payment_method || ! $payment_method->get_id()) {
+                $payment_method = StoreGateway::get_instance();
+            }
 
             $this->save_eu_vat_details($payment_method->id, $order_id);
 
@@ -288,12 +289,14 @@ class CheckoutController extends BaseController
                 'redirect_url'      => $process_payment->redirect_url,
                 'gateway_response'  => $process_payment->gateway_response,
                 'error_message'     => $this->alert_message($process_payment->error_message),
-                'order_success_url' => add_query_arg(['payment_method' => $order->payment_method], ppress_get_success_url($order->order_key)),
+                'order_success_url' => ppress_get_success_url($order->order_key, $order->payment_method),
             ]);
 
         } catch (\Exception $e) {
 
             $error_message = ppress_is_json($e->getMessage()) ? json_decode($e->getMessage(), true) : $e->getMessage();
+
+            ppress_log_error($error_message);
 
             wp_send_json_error(
                 $this->alert_message($error_message)

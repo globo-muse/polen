@@ -6,7 +6,10 @@ use ProfilePress\Core\Membership\CurrencyFormatter;
 use ProfilePress\Core\Membership\Models\Order\OrderMode;
 use ProfilePress\Core\Membership\Models\Plan\PlanFactory;
 use ProfilePress\Core\Membership\Models\Plan\PlanEntity;
+use ProfilePress\Core\Membership\PaymentMethods\AbstractPaymentMethod;
 use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods;
+use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods as PaymentGateways;
+use ProfilePressVendor\Carbon\CarbonImmutable;
 
 /**
  * @param $plan_id
@@ -18,6 +21,11 @@ function ppress_get_plan($plan_id)
     return PlanFactory::fromId($plan_id);
 }
 
+/**
+ * @param $payment_method_id
+ *
+ * @return false|AbstractPaymentMethod
+ */
 function ppress_get_payment_method($payment_method_id)
 {
     return PaymentMethods::get_instance()->get_by_id($payment_method_id);
@@ -30,6 +38,13 @@ function ppress_is_any_active_plan()
     $table = Base::subscription_plans_db_table();
 
     return absint($wpdb->get_var("SELECT COUNT(id) FROM $table WHERE status = 'true'")) > 0;
+}
+
+function ppress_is_any_enabled_payment_method()
+{
+    $check = PaymentGateways::get_instance()->get_enabled_methods(true);
+
+    return ! empty($check);
 }
 
 function ppress_is_any_active_coupon()
@@ -516,34 +531,30 @@ function ppress_get_payment_mode()
 
 /**
  * Converts a date/time to UTC
- *
- * @throws Exception
  */
 function ppress_local_datetime_to_utc($date, $format = 'Y-m-d H:i:s')
 {
-    $a = new DateTime($date, wp_timezone());
-    $a->setTimezone(new DateTimeZone('UTC'));
+    try {
+        $a = new DateTime($date, wp_timezone());
+        $a->setTimezone(new DateTimeZone('UTC'));
 
-    return $a->format($format);
+        return $a->format($format);
+
+    } catch (\Exception $e) {
+        return false;
+    }
 }
 
 /**
- * Converts a mysql date/time to UTC timestamp
+ * Formats UTC datetime according to WordPress date/time format and using WordPress site timezone.
  *
- * @param $datetime
+ * Expects time/timestamp to be in UTC
  *
- * @return false|int
- */
-function ppress_date_to_utc_timestamp($datetime)
-{
-    return ppress_strtotime_utc($datetime);
-}
-
-/**
- * Formats date according to WordPress date/time format and using WordPress site timezone.
+ * @param string $timestamp timestamp or datetime in UTC
  *
- * @param $timestamp
  * @param string $format
+ *
+ * @return string datetime in WP timezone
  */
 function ppress_format_date_time($timestamp, $format = '')
 {
@@ -559,10 +570,12 @@ function ppress_format_date_time($timestamp, $format = '')
 }
 
 /**
- * Formats date according to WordPress date format and using WordPress site timezone.
+ * Formats UTC date according to WordPress date format and using WordPress site timezone.
  *
- * @param $timestamp
+ * @param string $timestamp timestamp or datetime in UTC
  * @param string $format
+ *
+ * @return string date in WP timezone
  */
 function ppress_format_date($timestamp, $format = '')
 {
@@ -623,10 +636,11 @@ function ppress_is_success_page()
 
 /**
  * @param $order_key
+ * @param $payment_method
  *
  * @return string
  */
-function ppress_get_success_url($order_key = '')
+function ppress_get_success_url($order_key = '', $payment_method = '')
 {
     $url = get_permalink(
         absint(ppress_settings_by_key('payment_success_page_id'))
@@ -636,6 +650,10 @@ function ppress_get_success_url($order_key = '')
 
     if ( ! empty($order_key)) {
         $url = add_query_arg(['order_key' => $order_key], $url);
+    }
+
+    if ( ! empty($payment_method)) {
+        $url = add_query_arg(['payment_method' => $payment_method], $url);
     }
 
     return apply_filters('ppress_get_success_url', esc_url_raw($url), $order_key);

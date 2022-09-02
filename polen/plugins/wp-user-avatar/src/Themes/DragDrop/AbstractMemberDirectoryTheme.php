@@ -516,8 +516,7 @@ abstract class AbstractMemberDirectoryTheme extends AbstractTheme
             'number'  => $parsed_args['number'],
             'paged'   => $parsed_args['paged'],
             'offset'  => $parsed_args['offset'],
-            // excluded cos we are doing this filtering in PHP self::wp_user_query()
-            //'role__in' => $parsed_args['roles'],
+            'role__in' => $parsed_args['roles'],
             'include' => $parsed_args['include_user_ids'],
             'exclude' => $parsed_args['exclude_user_ids']
         ];

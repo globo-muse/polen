@@ -5,6 +5,7 @@ namespace ProfilePress\Core\Membership\PaymentMethods\Stripe\WebhookHandlers;
 use ProfilePress\Core\Membership\Models\Order\OrderFactory;
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionFactory;
 use ProfilePress\Core\Membership\PaymentMethods\Stripe\APIClass;
+use ProfilePress\Core\Membership\PaymentMethods\WebhookHandlerInterface;
 
 class CheckoutSessionCompleted implements WebhookHandlerInterface
 {

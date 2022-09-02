@@ -323,7 +323,7 @@ class Custom_Settings_Page_Api
         ?>
         <script type="text/javascript">
             jQuery(document).ready(function ($) {
-                $('.wp_csa_view .handlediv').click(function () {
+                $('.wp_csa_view .handlediv').on('click', function () {
                     $(this).parent().toggleClass("closed").addClass('postbox');
                 });
             });

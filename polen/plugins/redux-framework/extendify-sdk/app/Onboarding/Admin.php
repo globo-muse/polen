@@ -191,6 +191,10 @@ class Admin
                 'partnerName' => defined('EXTENDIFY_PARTNER_NAME') ? constant('EXTENDIFY_PARTNER_NAME') : null,
                 'partnerSkipSteps' => defined('EXTENDIFY_SKIP_STEPS') ? constant('EXTENDIFY_SKIP_STEPS') : [],
                 'devbuild' => \esc_attr(Config::$environment === 'DEVELOPMENT'),
+                'version' => Config::$version,
+                'insightsId' => \get_option('extendify_site_id', ''),
+                // Only send insights if they have opted in explicitly.
+                'insightsEnabled' => defined('EXTENDIFY_INSIGHTS_URL'),
             ]),
             'before'
         );
@@ -204,7 +208,7 @@ class Admin
             $version,
             'all'
         );
-        $bg = defined('EXTENDIFY_ONBOARDING_BG') ? constant('EXTENDIFY_ONBOARDING_BG') : '#3e58e1';
+        $bg = defined('EXTENDIFY_ONBOARDING_BG') ? constant('EXTENDIFY_ONBOARDING_BG') : '#2c39bd';
         $txt = defined('EXTENDIFY_ONBOARDING_TXT') ? constant('EXTENDIFY_ONBOARDING_TXT') : '#ffffff';
         \wp_add_inline_style(Config::$slug . '-onboarding-styles', "body {
             --ext-partner-theme-primary-bg: {$bg};

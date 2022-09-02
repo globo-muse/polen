@@ -26,4 +26,20 @@ class SubscriptionFactory implements FactoryInterface
     {
         return SubscriptionRepository::init()->retrieve(absint($id));
     }
+
+    /**
+     * @param $profile_id
+     *
+     * @return SubscriptionEntity|false
+     */
+    public static function fromProfileId($profile_id)
+    {
+        $subs = SubscriptionRepository::init()->retrieveBy([
+            'profile_id' => $profile_id
+        ]);
+
+        if ( ! empty($subs)) return $subs[0];
+
+        return false;
+    }
 }

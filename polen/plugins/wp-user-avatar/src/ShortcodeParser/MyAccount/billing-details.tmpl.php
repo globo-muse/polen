@@ -54,7 +54,7 @@ if (is_array($billing_details_fields) && ! empty($billing_details_fields)) :
         if ($field_key == CheckoutFields::BILLING_STATE) {
 
             $billing_country        = get_user_meta(get_current_user_id(), CheckoutFields::BILLING_COUNTRY, true);
-            $billing_country_states = ppress_array_of_world_states($billing_country);
+            $billing_country_states = ! empty($billing_country) ? ppress_array_of_world_states($billing_country) : [];
 
             if ( ! empty($billing_country_states)) {
                 $field_type = 'select';

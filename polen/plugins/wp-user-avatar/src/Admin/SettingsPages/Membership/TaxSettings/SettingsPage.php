@@ -139,7 +139,7 @@ class SettingsPage
 
     public static function tax_rate_row($index = '0', $country = '', $state = '', $global = '', $rate = '')
     {
-        $country_states = ppress_array_of_world_states($country);
+        $country_states = ! empty($country) ? ppress_array_of_world_states($country) : [];
         ?>
         <tr data-row-index="<?= $index ?>">
             <td class="ppress-tax-rate-table-country">

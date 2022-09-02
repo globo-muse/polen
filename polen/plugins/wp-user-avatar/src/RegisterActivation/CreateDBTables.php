@@ -83,6 +83,8 @@ class CreateDBTables
         $coupons_table       = CoreBase::coupons_db_table();
         $customers_table     = CoreBase::customers_db_table();
 
+        //Not using CURRENT_TIMESTAMP because it uses mysql session/server timezone which always isn’t UTC
+
         $sqls[] = "CREATE TABLE IF NOT EXISTS $subscriptions_table (
                       id bigint(20) unsigned NOT NULL AUTO_INCREMENT,
                       parent_order_id bigint(20) unsigned NOT NULL,
@@ -100,7 +102,7 @@ class CreateDBTables
                       profile_id varchar(255) NOT NULL,
                       status varchar(20) NOT NULL,
                       notes longtext,
-                      created_date datetime DEFAULT CURRENT_TIMESTAMP,
+                      created_date datetime NOT NULL,
                       expiration_date datetime DEFAULT NULL,
                       PRIMARY KEY (id),
                       KEY plan_id (plan_id),
@@ -152,7 +154,7 @@ class CreateDBTables
                       mode enum('live','test') NOT NULL,
                       currency varchar(10) NOT NULL,
                       ip_address varchar(100) NOT NULL DEFAULT '',
-                      date_created datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                      date_created datetime NOT NULL,
                       date_completed datetime DEFAULT NULL,
                       PRIMARY KEY (id),
                       UNIQUE KEY order_key (order_key),
@@ -199,7 +201,7 @@ class CreateDBTables
                       total_spend decimal(18,9) NOT NULL DEFAULT '0.000000000',
                       purchase_count bigint(20) unsigned NOT NULL DEFAULT '0',
                       last_login datetime DEFAULT NULL,
-                      date_created datetime DEFAULT CURRENT_TIMESTAMP,
+                      date_created datetime NOT NULL,
                       PRIMARY KEY (id),
                       UNIQUE KEY user_id (user_id),
                       KEY date_created (date_created)

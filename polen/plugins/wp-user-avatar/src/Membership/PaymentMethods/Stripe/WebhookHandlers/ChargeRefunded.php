@@ -3,6 +3,7 @@
 namespace ProfilePress\Core\Membership\PaymentMethods\Stripe\WebhookHandlers;
 
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionFactory;
+use ProfilePress\Core\Membership\PaymentMethods\WebhookHandlerInterface;
 use ProfilePress\Core\Membership\Repositories\OrderRepository;
 
 class ChargeRefunded implements WebhookHandlerInterface

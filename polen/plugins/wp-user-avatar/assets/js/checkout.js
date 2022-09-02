@@ -32,9 +32,13 @@ export default function () {
                 $(document.body).trigger('ppress_update_checkout');
             }, 200));
         } else {
-
             $(document).on('change', '#ppress_mb_checkout_form .ppress_billing_country', _this.contextual_state_field);
         }
+
+        // Update payment method change
+        $(document.body).on('change', '#ppress_checkout_payment_methods [name=ppress_payment_method]', function () {
+            $(document.body).trigger('ppress_update_checkout');
+        });
 
         // Update on page load.
         $(document.body).trigger('ppress_update_checkout');
@@ -91,6 +95,7 @@ export default function () {
         let data = {
             'action': 'ppress_update_order_review',
             'plan_id': $('#ppress-checkout-plan-id').val(),
+            'ppress_payment_method': $('#ppress_checkout_payment_methods [name=ppress_payment_method]:checked').val(),
             'csrf': $('#ppress_checkout_nonce').val(),
             'address': $('.ppress-checkout-form__payment_method.ppress-active .ppress_billing_address').val(),
             'city': $('.ppress-checkout-form__payment_method.ppress-active .ppress_billing_city').val(),

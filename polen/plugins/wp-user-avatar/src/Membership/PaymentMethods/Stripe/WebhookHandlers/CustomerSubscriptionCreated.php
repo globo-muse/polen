@@ -3,6 +3,7 @@
 namespace ProfilePress\Core\Membership\PaymentMethods\Stripe\WebhookHandlers;
 
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionStatus;
+use ProfilePress\Core\Membership\PaymentMethods\WebhookHandlerInterface;
 use ProfilePress\Core\Membership\Repositories\SubscriptionRepository;
 use ProfilePressVendor\Carbon\CarbonImmutable;
 

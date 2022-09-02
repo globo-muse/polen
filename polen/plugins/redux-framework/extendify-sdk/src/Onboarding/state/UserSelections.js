@@ -6,6 +6,9 @@ const initialState = {
     siteInformation: {
         title: undefined,
     },
+    feedbackMissingSiteType: '',
+    feedbackMissingGoal: '',
+    siteTypeSearch: [],
     style: null,
     pages: [],
     plugins: [],
@@ -19,6 +22,12 @@ const store = (set, get) => ({
     setSiteInformation(name, value) {
         const siteInformation = { ...get().siteInformation, [name]: value }
         set({ siteInformation })
+    },
+    setFeedbackMissingSiteType(feedback) {
+        set({ feedbackMissingSiteType: feedback })
+    },
+    setFeedbackMissingGoal(feedback) {
+        set({ feedbackMissingGoal: feedback })
     },
     has(type, item) {
         if (!item?.id) return false
@@ -56,19 +65,25 @@ const store = (set, get) => ({
         set(initialState)
     },
 })
+
+const withDevtools = devtools(store, {
+    name: 'Extendify Launch User Selection',
+})
+const withPersist = persist(withDevtools, {
+    name: 'extendify-site-selection',
+    getStorage: () => localStorage,
+    partialize: (state) => ({
+        siteType: state?.siteType ?? {},
+        siteInformation: state?.siteInformation ?? {},
+        feedbackMissingSiteType: state?.feedbackMissingSiteType ?? '',
+        feedbackMissingGoal: state?.feedbackMissingGoal ?? '',
+        siteTypeSearch: state?.siteTypeSearch ?? [],
+        style: state?.style ?? null,
+        pages: state?.pages ?? [],
+        plugins: state?.plugins ?? [],
+        goals: state?.goals ?? [],
+    }),
+})
 export const useUserSelectionStore = window?.extOnbData?.devbuild
-    ? create(devtools(store))
-    : create(
-          persist(devtools(store), {
-              name: 'extendify-site-selection',
-              getStorage: () => localStorage,
-              partialize: (state) => ({
-                  siteType: state?.siteType ?? {},
-                  siteInformation: state?.siteInformation ?? {},
-                  style: state?.style ?? null,
-                  pages: state?.pages ?? [],
-                  plugins: state?.plugins ?? [],
-                  goals: state?.goals ?? [],
-              }),
-          }),
-      )
+    ? create(withDevtools)
+    : create(withPersist)

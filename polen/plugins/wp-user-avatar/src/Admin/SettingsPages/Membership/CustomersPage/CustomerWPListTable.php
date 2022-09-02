@@ -11,6 +11,7 @@ use ProfilePress\Core\Membership\Repositories\CustomerRepository;
 use ProfilePress\Core\Membership\Repositories\SubscriptionRepository;
 use ProfilePress\Core\Membership\Services\CustomerService;
 use ProfilePress\Core\Membership\Services\OrderService;
+use ProfilePressVendor\Carbon\CarbonImmutable;
 
 class CustomerWPListTable extends \WP_List_Table
 {
@@ -111,7 +112,7 @@ class CustomerWPListTable extends \WP_List_Table
      */
     public function column_customer_since($customer)
     {
-        return ppress_format_date($customer->get_date_created());
+        return $customer->get_date_created();
     }
 
     /**
@@ -121,7 +122,9 @@ class CustomerWPListTable extends \WP_List_Table
      */
     public function column_customer_last_login($customer)
     {
-        return ! empty($customer->get_last_login()) ? $customer->get_last_login() : '&mdash;&mdash;&mdash;';
+        $data = $customer->get_last_login();
+
+        return ! empty($data) ? $data : '&mdash;&mdash;&mdash;';
     }
 
     /**
@@ -213,13 +216,19 @@ class CustomerWPListTable extends \WP_List_Table
         $status     = ppressGET_var('status');
 
         $query_args = [
-            'number'     => $per_page,
-            'offset'     => $offset,
-            'search'     => $search,
-            'status'     => $status,
-            'start_date' => $start_date,
-            'end_date'   => $end_date
+            'number' => $per_page,
+            'offset' => $offset,
+            'search' => $search,
+            'status' => $status
         ];
+
+        if ( ! empty($start_date)) {
+            $query_args['start_date'] = CarbonImmutable::parse($start_date, wp_timezone())->startOfDay()->utc()->toDateTimeString();
+        }
+
+        if ( ! empty($end_date)) {
+            $query_args['end_date'] = CarbonImmutable::parse($end_date, wp_timezone())->endOfDay()->utc()->toDateTimeString();
+        }
 
         $this->items = CustomerRepository::init()->retrieveBy($query_args);
 

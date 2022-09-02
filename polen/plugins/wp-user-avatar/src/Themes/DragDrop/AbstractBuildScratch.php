@@ -675,8 +675,11 @@ HTML;
                 break;
         }
 
+        $google_font = apply_filters('ppress_disable_google_fonts', false) || in_array($form_font_family, ['Arial', 'Lucida'], true) ? '' :
+            "@import url('https://fonts.googleapis.com/css?family={$form_font_family}:300,400,600,700&display=swap');";
+
         return <<<CSS
-@import url('https://fonts.googleapis.com/css?family={$form_font_family}:300,400,600,700&display=swap');
+$google_font
 
 #pp-$form_type-$form_id-wrap $status_class {
   border-radius: 5px;

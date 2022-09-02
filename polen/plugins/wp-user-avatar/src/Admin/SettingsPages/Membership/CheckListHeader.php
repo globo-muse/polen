@@ -54,9 +54,7 @@ class CheckListHeader
 
     private function is_payment_method_done()
     {
-        $check = PaymentGateways::get_instance()->get_enabled_methods(true);
-
-        return ! empty($check);
+        return ppress_is_any_enabled_payment_method();
     }
 
     public function checklist_header()

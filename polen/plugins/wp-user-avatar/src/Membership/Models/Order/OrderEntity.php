@@ -195,13 +195,34 @@ class OrderEntity extends AbstractModel implements ModelInterface
     /**
      * @return false|int
      */
+    public function fail_order()
+    {
+        $this->status = OrderStatus::FAILED;
+
+        $order_id = $this->save();
+
+        do_action('ppress_order_failed', $this);
+
+        return $order_id;
+    }
+
+    /**
+     * @return false|int
+     */
     public function refund_order()
     {
         $this->status = OrderStatus::REFUNDED;
         $response     = $this->save();
 
         if ($response) {
-            $this->add_note(sprintf(__('Payment %s has been fully refunded in Stripe.', 'wp-user-avatar'), $this->transaction_id));
+            $this->add_note(
+                sprintf(
+                    __('Payment %s has been fully refunded in %s.', 'wp-user-avatar'),
+                    $this->transaction_id,
+                    ppress_get_payment_method($this->payment_method)->get_method_title()
+                )
+            );
+
             do_action('ppress_order_order_refunded', $this);
         }
 
@@ -377,19 +398,12 @@ class OrderEntity extends AbstractModel implements ModelInterface
 
     public function get_linked_transaction_id()
     {
-        return PaymentMethods::get_instance()->get_by_id($this->payment_method)->link_transaction_id($this->transaction_id);
+        return PaymentMethods::get_instance()->get_by_id($this->payment_method)->link_transaction_id($this->transaction_id, $this);
     }
 
     public function key_is_valid($key)
     {
         return hash_equals($this->get_order_key(), $key);
-    }
-
-    public function needs_payment()
-    {
-        $valid_order_statuses = apply_filters('woocommerce_valid_order_statuses_for_payment', array('pending', 'failed'), $this);
-
-        return apply_filters('woocommerce_order_needs_payment', ($this->has_status($valid_order_statuses) && $this->get_total() > 0), $this, $valid_order_statuses);
     }
 
     public function is_new_order()
@@ -437,6 +451,9 @@ class OrderEntity extends AbstractModel implements ModelInterface
         return $payment_method->supports($payment_method::REFUNDS);
     }
 
+    /**
+     * @return string
+     */
     public function get_refund_url()
     {
         $url = esc_url(wp_nonce_url(add_query_arg(array('ppress_order_action' => 'refund_order', 'id' => $this->id)), 'ppress-cancel-order'));

@@ -296,6 +296,10 @@
     margin: 20px 0 10px;
 }
 
+.ppress-checkout__form .ppress-checkout-section #ppress-paypal-button-element {
+    margin: 16px 0 0;
+}
+
 .ppress-checkout__form .ppress-checkout-section input:not([type=checkbox]):not([type=radio]),
 .ppress-checkout__form .ppress-checkout-section select,
 .ppress-checkout__form .ppress-checkout-section textarea,
@@ -333,6 +337,7 @@
     text-align: center;
     -webkit-appearance: none;
     width: 100%;
+    height:auto;
 }
 
 .ppress-checkout__form .ppress-checkout-section.ppress-checkout_main input[type=submit]:disabled {
@@ -516,7 +521,7 @@
 
 .ppress-checkout__form .ppress-checkout-form__payment_method__content_wrap .ppress-checkout-form__payment_method__heading {
     padding: 10px 5px;
-    margin: 0 0 15px;
+    margin: 15px 0;
     font-size: var(--ppress-body-fs);
     font-weight: bold;
     border-bottom: 1px solid #E4E4E4;

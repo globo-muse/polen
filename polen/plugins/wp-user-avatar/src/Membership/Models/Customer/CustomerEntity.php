@@ -19,6 +19,7 @@ use ProfilePress\Core\Membership\Repositories\SubscriptionRepository;
  * @property int $purchase_count
  * @property string $total_spend
  * @property string $private_note
+ * @property string $date_created
  */
 class CustomerEntity extends AbstractModel implements ModelInterface
 {
@@ -125,12 +126,12 @@ class CustomerEntity extends AbstractModel implements ModelInterface
     {
         if (empty($this->last_login)) return '';
 
-        return ppress_format_date_time(strtotime($this->last_login));
+        return ppress_format_date_time($this->last_login);
     }
 
     public function get_date_created()
     {
-        return ! empty($this->date_created) ? ppress_format_date_time($this->date_created) : '';
+        return ! empty($this->date_created) ? ppress_format_date($this->date_created) : '';
     }
 
     public function is_active($include_trial = true)
@@ -202,7 +203,8 @@ class CustomerEntity extends AbstractModel implements ModelInterface
     {
         $statuses = [
             SubscriptionStatus::ACTIVE,
-            SubscriptionStatus::COMPLETED
+            SubscriptionStatus::COMPLETED,
+            SubscriptionStatus::CANCELLED
         ];
 
         if ($include_trial) $statuses[] = SubscriptionStatus::TRIALLING;
@@ -287,16 +289,18 @@ class CustomerEntity extends AbstractModel implements ModelInterface
      */
     public function recalculate_stats()
     {
-        $this->purchase_count = OrderRepository::init()->retrieveBy([
-            'customer_id' => $this->id,
-            'status'      => [OrderStatus::COMPLETED]
-        ], true);
+        if ($this->exists()) {
+            $this->purchase_count = OrderRepository::init()->retrieveBy([
+                'customer_id' => $this->id,
+                'status'      => [OrderStatus::COMPLETED]
+            ], true);
 
-        $this->total_spend = OrderRepository::init()->get_customer_total_spend(
-            $this->id
-        );
+            $this->total_spend = OrderRepository::init()->get_customer_total_spend(
+                $this->id
+            );
 
-        return $this->save();
+            $this->save();
+        }
     }
 
     /**

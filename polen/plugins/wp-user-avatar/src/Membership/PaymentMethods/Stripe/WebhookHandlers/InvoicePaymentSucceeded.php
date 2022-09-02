@@ -4,6 +4,7 @@ namespace ProfilePress\Core\Membership\PaymentMethods\Stripe\WebhookHandlers;
 
 use ProfilePress\Core\Membership\Models\Order\OrderFactory;
 use ProfilePress\Core\Membership\PaymentMethods\Stripe\PaymentHelpers;
+use ProfilePress\Core\Membership\PaymentMethods\WebhookHandlerInterface;
 use ProfilePress\Core\Membership\Repositories\SubscriptionRepository;
 
 class InvoicePaymentSucceeded implements WebhookHandlerInterface

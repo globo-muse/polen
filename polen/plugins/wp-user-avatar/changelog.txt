@@ -1,7 +1,44 @@
 ﻿== Changelog ==
 
+= 4.1.2 =
+* Added "ppress_disable_google_fonts" filter to disable google fonts globally.
+* Added Oxygen builder compatibility to Admin Bar Control.
+* Fixed bug where new order creation with missing payment method failed.
+* Fixed bug where content protection failed to identify some posts/pages.
+* Fixed date related output and queries.
+
+= 4.1.1 =
+* Fixed bug with Stripe webhook 404ing.
+
+= 4.1.0 =
+* Pro: [PayPal Checkout addon](https://profilepress.com/addons/paypal/?ref=changelog) is live.
+* Pro: Added &mdash as default select options for [profile custom fields](https://profilepress.com/addons/custom-fields/?ref=changelog).
+* Added order refund support from single order admin page.
+* Added payment method icons to checkout page.
+* Added filter to remove billing custom fields in default WP user profile
+* Added filter to disable D&D custom html sanitization
+* Fixed bug with free trial subscriptions getting expired early.
+* Fixed: Duplicate entry '0' for key 'user_id' when recalculating stat.
+* Fixed jQuery deprecated syntax errors.
+* Fixed fatal error caused when loading billing address fields in builder.
+* Fixed contextual state display bugs.
+
+= 4.0.3 =
+* Fixed critical bug causing checkout not to work.
+* Fixed bug where plan with empty description caused checkout not to work.
+* Enhancement: Added endpoint as class to My Account tabs.
+
+= 4.0.2 =
+* Enhancement: Store admin bar menu now only display for active store.
+* Fixed bug where Stripe scripts were loaded when not enabled.
+* Fixed bug where pages where auto-created.
+
+= 4.0.1 =
+* Fixed bug with member directory role restriction not working.
+* Fixed: Uncaught Error: Call to a member function exists().
+
 = 4.0.0 =
-* Added paid membership feature.
+* Added [paid membership feature](https://profilepress.com/announcing-paid-membership/?ref=changelog).
 * Fixed bug where upload field with data is still required.
 
 = 3.2.15 =

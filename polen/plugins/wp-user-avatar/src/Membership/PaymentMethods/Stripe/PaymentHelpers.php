@@ -125,11 +125,13 @@ class PaymentHelpers
                 $create_product_args['statement_descriptor'] = $statement_descriptor;
             }
 
-            $create_product_args = apply_filters('ppress_stripe_create_product_args', $create_product_args, $subscription);
+            $create_product_args = array_filter(apply_filters('ppress_stripe_create_product_args', $create_product_args, $subscription));
 
             try {
                 APIClass::stripeClient()->products->create($create_product_args)->toArray();
             } catch (\Exception $e) {
+
+
             }
         }
 

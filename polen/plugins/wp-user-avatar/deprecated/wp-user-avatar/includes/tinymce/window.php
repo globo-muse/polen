@@ -89,7 +89,7 @@ if(!defined('ABSPATH')) {
         $('#wp_user_avatar_size_number_section').toggle($('#wp_user_avatar_size').val() == 'custom');
       });
 	  
-	  $("#wpua-tabs li a").click(function(){
+	  $("#wpua-tabs li a").on('click', function(){
 		 tab_id = $(this).attr('href');
 		 if( tab_id == '#wpua')
 		 $("#wpua-upload").hide();

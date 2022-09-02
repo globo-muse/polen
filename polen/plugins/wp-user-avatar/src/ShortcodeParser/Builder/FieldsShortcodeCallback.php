@@ -36,7 +36,7 @@ class FieldsShortcodeCallback
         $flag = false;
         if (function_exists('wp_get_current_user')) {
             $this->get_current_user();
-            if ($this->current_user->exists()) $flag = true;
+            if (method_exists($this->current_user, 'exists') && $this->current_user->exists()) $flag = true;
         }
 
         if ( ! $flag) {
@@ -762,6 +762,7 @@ class FieldsShortcodeCallback
 
             $_POST = $this->GET_POST();
 
+            $html .= '<option value="">&mdash;&mdash;&mdash;</option>';
             foreach ($option_values as $option_value => $value) {
 
                 $option_value = is_string($option_value) ? trim($option_value) : '';

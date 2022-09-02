@@ -566,7 +566,7 @@ class MyAccountTag extends FormProcessor
                     <div class="profilepress-myaccount-nav">
                         <?php foreach ($tabs as $key => $tab) :
                             ?>
-                            <a class="ppmyac-dashboard-item<?= self::is_endpoint($key) ? ' isactive' : ''; ?>" href="<?= $this->get_endpoint_url($key); ?>">
+                            <a class="ppmyac-dashboard-item <?= $key ?><?= self::is_endpoint($key) ? ' isactive' : ''; ?>" href="<?= $this->get_endpoint_url($key); ?>">
                                 <i class="ppmyac-icons">
                                     <?= isset($tab['icon']) ? $tab['icon'] : 'settings'; ?>
                                 </i>

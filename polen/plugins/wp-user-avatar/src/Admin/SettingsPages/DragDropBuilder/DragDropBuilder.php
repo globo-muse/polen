@@ -76,7 +76,7 @@ class DragDropBuilder
 
             // field key and type are being added to make the key unique for each defined fields array.
             $tag_name         = $this->form_type == FR::REGISTRATION_TYPE ? 'reg' : 'edit-profile';
-            $key              = $tag_name . '-cpf-' . $billing_field_id . $billing_field_id['field_type'];
+            $key              = $tag_name . '-cpf-' . $billing_field_id . $billing_address['field_type'];
             $definedFieldType = 'input';
 
             $field_key = $billing_field_id;

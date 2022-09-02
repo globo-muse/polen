@@ -116,7 +116,7 @@ class EditProfileBuilder
                     $('body input[name=eup_password]').trigger('keyup');
                 }
 
-                submitButton.click(function () {
+                submitButton.on('click', function () {
                     $('input[name=pp_enforce_password_meter]').val(pass_strength);
                 });
             });

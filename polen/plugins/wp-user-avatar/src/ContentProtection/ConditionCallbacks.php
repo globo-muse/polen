@@ -18,6 +18,8 @@ class ConditionCallbacks
     {
         global $post;
 
+        $post_id = absint($post->ID) > 0 ? $post->ID : get_queried_object_id();
+
         $target = explode('_', $condition_id);
 
         // Modifier should be the last key.
@@ -47,7 +49,7 @@ class ConditionCallbacks
 
             case 'selected':
 
-                if (self::_is_post_type($post_type) && in_array($post->ID, wp_parse_id_list($selected))) {
+                if (self::_is_post_type($post_type) && in_array($post_id, wp_parse_id_list($selected))) {
 
                     if (true === $is_redirect && ! is_singular($post_type)) return false;
 
@@ -82,7 +84,7 @@ class ConditionCallbacks
 
                     $ancestors = get_post_ancestors($id);
 
-                    if (in_array($post->ID, $ancestors)) {
+                    if (in_array($post_id, $ancestors)) {
 
                         if (true === $is_redirect && ! is_singular($post_type)) return false;
 

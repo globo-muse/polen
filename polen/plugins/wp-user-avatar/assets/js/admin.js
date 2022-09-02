@@ -88,7 +88,7 @@
             };
         });
 
-        $('input[type="submit"]').click(function () {
+        $('input[type="submit"]').on('click', function () {
             window.onbeforeunload = function (e) {
                 e = null;
             };
@@ -181,7 +181,7 @@
         $('.pp-group-wrapper').hide();
         var option_name = $('div.pp-settings-wrap').data('option-name');
 
-        $('.pp-settings-wrap .nav-tab-wrapper a').click(function (e) {
+        $('.pp-settings-wrap .nav-tab-wrapper a').on('click', function (e) {
             e.preventDefault();
             open_tab(this);
         });
@@ -324,7 +324,7 @@
             });
         });
 
-        $('.pp-email-editor-tablinks').click(function (e) {
+        $('.pp-email-editor-tablinks').on('click', function (e) {
             e.preventDefault();
             $(this).blur();
             var parent = $(this).parents('.ppress-email-editor-wrap');
@@ -366,7 +366,7 @@
                 prompt.removeClass('screen-reader-text');
             }
 
-            prompt.click(function () {
+            prompt.on('click', function () {
                 $(this).addClass('screen-reader-text');
                 input.focus();
             });
@@ -384,7 +384,7 @@
     };
 
     var shortcodeBuilderUI = function () {
-        $('.ppSCB-tab-box .nav-tab').click(function (e) {
+        $('.ppSCB-tab-box .nav-tab').on('click', function (e) {
             e.preventDefault();
             $('.ppSCB-tab-box .nav-tab').removeClass('nav-tab-active');
             var href = $(this).attr('href');
@@ -400,7 +400,7 @@
 
         }).eq(0).click();
 
-        $('.ppSCB-preview-h-left').click(function (e) {
+        $('.ppSCB-preview-h-left').on('click', function (e) {
             e.preventDefault();
             $('.ppSCB-preview-h-left, .ppSCB-preview-h-right').removeClass('ppSCB-preview-active');
             $('.ppSCB-sidebar.password-reset iframe').hide();
@@ -408,7 +408,7 @@
             $('#indexIframe').show();
         }).click();
 
-        $('.ppSCB-preview-h-right').click(function (e) {
+        $('.ppSCB-preview-h-right').on('click', function (e) {
             e.preventDefault();
             $('.ppSCB-preview-h-left, .ppSCB-preview-h-right').removeClass('ppSCB-preview-active');
             $('.ppSCB-sidebar.password-reset iframe').hide();
@@ -436,7 +436,7 @@
         sb.edit_profile();
 
         // confirm before deleting form
-        $('.pp-form-listing.pp-forms .pp-form-delete, .pp-builder-action-btn-block .pp-form-delete, .pp-confirm-delete').click(function (e) {
+        $('.pp-form-listing.pp-forms .pp-form-delete, .pp-builder-action-btn-block .pp-form-delete, .pp-confirm-delete').on('click', function (e) {
             e.preventDefault();
             if (confirm(pp_form_builder.confirm_delete)) {
                 window.location.href = $(this).attr('href');

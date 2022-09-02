@@ -245,13 +245,13 @@ class SubscriptionRepository extends BaseRepository
         }
 
         if ( ! empty($args['created_date'])) {
-            $sql           .= " AND DATE(created_date) $date_compare %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($args['created_date']));
+            $sql           .= " AND created_date $date_compare %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($args['created_date']));
         }
 
         if ( ! empty($args['expiration_date'])) {
-            $sql           .= " AND DATE(expiration_date) $date_compare %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($args['expiration_date']));
+            $sql           .= " AND expiration_date $date_compare %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($args['expiration_date']));
         }
 
         $start_date  = $args['start_date'];
@@ -259,13 +259,13 @@ class SubscriptionRepository extends BaseRepository
         $date_column = esc_sql($args['date_column']);
 
         if ( ! empty($start_date)) {
-            $sql           .= " AND DATE($date_column) >= %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($start_date), new \DateTimeZone('UTC'));
+            $sql           .= " AND $date_column >= %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($start_date));
         }
 
         if ( ! empty($end_date)) {
-            $sql           .= " AND DATE($date_column) <= %s";
-            $replacement[] = wp_date('Y-m-d', ppress_date_to_utc_timestamp($end_date), new \DateTimeZone('UTC'));
+            $sql           .= " AND $date_column <= %s";
+            $replacement[] = gmdate('Y-m-d H:i:s', ppress_strtotime_utc($end_date));
         }
 
         if ( ! empty($search)) {

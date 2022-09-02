@@ -227,8 +227,11 @@ HTML;
         $profile_info_background = $this->get_meta('dixon_profile_info_bg_color');
         $profile_info_text       = $this->get_meta('dixon_profile_info_text_color');
 
+        $google_font = apply_filters('ppress_disable_google_fonts', false) ? '' :
+            "@import url('https://fonts.googleapis.com/css?family=Lato:300,400,600,700|Raleway:300,400,600,700&display=swap');";
+
         return <<<CSS
-@import url(https://fonts.googleapis.com/css?family=Lato:300,400,600,700|Raleway:300,400,600,700&display=swap);
+$google_font
 
 div#pp-$form_type-$form_id.dixon-wrapper * {
     -webkit-box-sizing: border-box;

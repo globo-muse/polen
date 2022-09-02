@@ -1223,6 +1223,8 @@ function ppress_is_http_code_success($code)
 }
 
 /**
+ * Converts date/time to UTC timestamp.
+ *
  * strtotime uses the default timezone set in PHP which may or may not be UTC.
  *
  * @param $time
@@ -1569,7 +1571,10 @@ function ppress_render_view($template, $vars = [], $parentDir = '')
     $path = $parentDir . $template . '.php';
 
     extract($vars);
+    ob_start();
     require apply_filters('ppress_render_view', $path, $vars, $template, $parentDir);
+    echo apply_filters('ppress_render_view_output', ob_get_clean(), $template, $vars, $parentDir);
+
 }
 
 function ppress_post_content_has_shortcode($tag = '', $post = null)

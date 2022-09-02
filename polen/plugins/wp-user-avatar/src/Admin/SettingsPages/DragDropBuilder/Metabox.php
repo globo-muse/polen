@@ -222,18 +222,19 @@ class Metabox
         $setting['options'] = [
             ''                                             => esc_html__('Select...', 'wp-user-avatar'),
             esc_html__('Standard Fonts', 'wp-user-avatar') => [
-                'Arial'           => esc_html__('Arial', 'wp-user-avatar'),
-                'Comic Sans MS'   => esc_html__('Comic Sans MS', 'wp-user-avatar'),
-                'Courier New'     => esc_html__('Courier New', 'wp-user-avatar'),
-                'Georgia'         => esc_html__('Georgia', 'wp-user-avatar'),
-                'Helvetica'       => esc_html__('Helvetica', 'wp-user-avatar'),
-                'Lucida'          => esc_html__('Lucida', 'wp-user-avatar'),
-                'Tahoma'          => esc_html__('Tahoma', 'wp-user-avatar'),
-                'Times New Roman' => esc_html__('Times New Roman', 'wp-user-avatar'),
-                'Trebuchet MS'    => esc_html__('Trebuchet MS', 'wp-user-avatar'),
-                'Verdana'         => esc_html__('Verdana', 'wp-user-avatar')
+                'Arial'  => esc_html__('Arial', 'wp-user-avatar'),
+                'Lucida' => esc_html__('Lucida', 'wp-user-avatar'),
             ],
-            esc_html__('Google Fonts', 'wp-user-avatar')   => $this->get_google_fonts()
+            esc_html__('Google Fonts', 'wp-user-avatar')   => [
+                                                                  'Comic Sans MS'   => esc_html__('Comic Sans MS', 'wp-user-avatar'),
+                                                                  'Courier New'     => esc_html__('Courier New', 'wp-user-avatar'),
+                                                                  'Georgia'         => esc_html__('Georgia', 'wp-user-avatar'),
+                                                                  'Helvetica'       => esc_html__('Helvetica', 'wp-user-avatar'),
+                                                                  'Tahoma'          => esc_html__('Tahoma', 'wp-user-avatar'),
+                                                                  'Times New Roman' => esc_html__('Times New Roman', 'wp-user-avatar'),
+                                                                  'Trebuchet MS'    => esc_html__('Trebuchet MS', 'wp-user-avatar'),
+                                                                  'Verdana'         => esc_html__('Verdana', 'wp-user-avatar')
+                                                              ] + $this->get_google_fonts()
         ];
 
         $this->select($name, $setting);

@@ -15,7 +15,10 @@ use ProfilePress\Core\Membership\Models\Order\OrderStatus;
 use ProfilePress\Core\Membership\Models\Plan\PlanFactory;
 use ProfilePress\Core\Membership\Models\Subscription\SubscriptionEntity;
 use ProfilePress\Core\Membership\PaymentMethods\PaymentMethods;
+use ProfilePress\Core\Membership\PaymentMethods\StoreGateway;
+use ProfilePress\Core\Membership\Repositories\OrderRepository;
 use ProfilePress\Core\Membership\Repositories\PlanRepository;
+use ProfilePress\Core\Membership\Repositories\SubscriptionRepository;
 use ProfilePress\Core\Membership\Services\Calculator;
 use ProfilePress\Core\Membership\Services\CouponService;
 use ProfilePress\Core\Membership\Services\OrderService;
@@ -43,6 +46,7 @@ class SettingsPage extends AbstractSettingsPage
             add_action('admin_init', function () {
                 $this->save_order();
                 $this->add_order();
+                $this->refund_order();
             });
         }
 
@@ -103,7 +107,7 @@ class SettingsPage extends AbstractSettingsPage
         if (is_array($users) && ! empty($users)) {
             foreach ($users as $user) {
                 if ( ! empty($user['customer_id'])) {
-                    $customer_id          = (int)$user['customer_id'];
+                    $customer_id                      = (int)$user['customer_id'];
                     $results['results'][$customer_id] = array(
                         'id'   => $customer_id,
                         'text' => CustomerFactory::fromId($customer_id)->get_name(),
@@ -248,9 +252,44 @@ class SettingsPage extends AbstractSettingsPage
         wp_send_json_success();
     }
 
+    public function refund_order()
+    {
+        if (ppressGET_var('ppress_order_action') == 'refund_order') {
+
+            check_admin_referer('ppress-cancel-order');
+
+            if (current_user_can('manage_options')) {
+
+                $order_id = intval($_GET['id']);
+
+                $order = OrderRepository::init()->retrieve($order_id);
+
+                if ($order->exists() && $order->is_refundable()) {
+
+                    $payment_method = ppress_get_payment_method($order->payment_method);
+
+                    if (method_exists($payment_method, 'process_refund')) {
+
+                        $response = $payment_method->process_refund(
+                            $order->get_id(),
+                            $order->get_total()
+                        );
+
+                        if ($response === true) {
+                            $order->refund_order();
+                            SubscriptionRepository::init()->retrieve($order->subscription_id)->cancel(true);
+                        }
+                    }
+                }
+
+                wp_safe_redirect(add_query_arg(['ppress_order_action' => 'edit', 'id' => $order_id, 'saved' => 'true'], PPRESS_MEMBERSHIP_ORDERS_SETTINGS_PAGE));
+                exit;
+            }
+        }
+    }
+
     /**
-     * @return void|string
-     * @throws \Exception
+     * @return void
      */
     public function save_order()
     {
@@ -292,7 +331,6 @@ class SettingsPage extends AbstractSettingsPage
 
     /**
      * @return void|string
-     * @throws \Exception
      */
     public function add_order()
     {
@@ -327,6 +365,10 @@ class SettingsPage extends AbstractSettingsPage
                 ['response' => 403]
             );
         }
+
+        $order_data['payment_method'] = ! empty($order_data['payment_method']) ?
+            $order_data['payment_method'] :
+            StoreGateway::get_instance()->get_id();
 
         $order                 = new OrderEntity();
         $order->plan_id        = $plan_obj->id;
@@ -502,9 +544,9 @@ class SettingsPage extends AbstractSettingsPage
                         'description' => esc_html__('Enter the transaction ID, if any.', 'wp-user-avatar')
                     ],
                     'order_date'     => [
-                        'label' => __('Date', 'wp-user-avatar'),
-                        'type'  => 'text',
-                        'class' => 'ppress_datepicker',
+                        'label'       => __('Date', 'wp-user-avatar'),
+                        'type'        => 'text',
+                        'class'       => 'ppress_datepicker',
                         'description' => esc_html__("Enter the purchase date, or leave blank for today's date.", 'wp-user-avatar')
                     ],
                     'send_receipt'   => [

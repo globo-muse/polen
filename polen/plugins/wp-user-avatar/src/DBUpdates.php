@@ -2,11 +2,13 @@
 
 namespace ProfilePress\Core;
 
+use ProfilePress\Core\Classes\ExtensionManager;
+
 class DBUpdates
 {
     public static $instance;
 
-    const DB_VER = 0;
+    const DB_VER = 2;
 
     public function init_options()
     {
@@ -53,6 +55,26 @@ class DBUpdates
             // pick up where it left off
             update_option('ppress_db_ver', $current_db_ver);
         }
+    }
+
+    public function update_routine_1()
+    {
+        $a                           = get_option(ExtensionManager::DB_OPTION_NAME);
+        $a[ExtensionManager::PAYPAL] = 'true';
+        update_option(ExtensionManager::DB_OPTION_NAME, $a);
+    }
+
+    public function update_routine_2()
+    {
+        global $wpdb;
+
+        $table1 = DBTables::orders_db_table();
+        $table2 = DBTables::subscriptions_db_table();
+        $table3 = DBTables::customers_db_table();
+
+        $wpdb->query("ALTER TABLE $table1 CHANGE date_created date_created datetime NOT NULL;");
+        $wpdb->query("ALTER TABLE $table2 CHANGE created_date created_date datetime NOT NULL;");
+        $wpdb->query("ALTER TABLE $table3 CHANGE date_created date_created datetime NOT NULL;");
     }
 
     public static function get_instance()

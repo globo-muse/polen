@@ -16,7 +16,7 @@ let App = {
                 prompt.removeClass('screen-reader-text');
             }
 
-            prompt.click(function () {
+            prompt.on('click', function () {
                 $(this).addClass('screen-reader-text');
                 input.focus();
             });

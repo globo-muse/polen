@@ -1,13 +1,18 @@
-import { useCallback, useEffect, useState, useRef } from '@wordpress/element'
+import {
+    useCallback,
+    useEffect,
+    useState,
+    useRef,
+    useMemo,
+} from '@wordpress/element'
 import { __, sprintf } from '@wordpress/i18n'
 import { getStyles } from '@onboarding/api/DataApi'
 import { StylePreview } from '@onboarding/components/StyledPreview'
 import { useFetch } from '@onboarding/hooks/useFetch'
 import { useIsMountedLayout } from '@onboarding/hooks/useIsMounted'
 import { PageLayout } from '@onboarding/layouts/PageLayout'
-import { usePagesStore } from '@onboarding/state/Pages'
-import { useProgressStore } from '@onboarding/state/Progress'
 import { useUserSelectionStore } from '@onboarding/state/UserSelections'
+import { pageState } from '@onboarding/state/factory'
 import { SpinnerIcon } from '@onboarding/svg'
 
 export const fetcher = (params) => getStyles(params)
@@ -19,28 +24,25 @@ export const fetchData = (siteType) => {
         styles: siteType?.styles ?? [],
     }
 }
-export const metadata = {
-    key: 'style',
+export const state = pageState('Design', (set, get) => ({
     title: __('Design', 'extendify'),
-    completed: () => true,
-}
+    default: undefined,
+    showInSidebar: true,
+    ready: false,
+    isDefault: () =>
+        useUserSelectionStore.getState().style?.slug === get().default?.slug,
+}))
 export const SiteStyle = () => {
     const siteType = useUserSelectionStore((state) => state.siteType)
-    const nextPage = usePagesStore((state) => state.nextPage)
     const { data: styleData, loading } = useFetch(fetchData, fetcher)
     const once = useRef(false)
     const stylesRef = useRef()
     const isMounted = useIsMountedLayout()
-    const selectStyle = useCallback(
-        (style) => {
-            useUserSelectionStore.getState().setStyle(style)
-            touch(metadata.key)
-            nextPage()
-        },
-        [nextPage, touch],
-    )
     const [styles, setStyles] = useState([])
-    const touch = useProgressStore((state) => state.touch)
+
+    useEffect(() => {
+        state.setState({ ready: !loading })
+    }, [loading])
 
     useEffect(() => {
         if (!styleData?.length) return
@@ -56,6 +58,7 @@ export const SiteStyle = () => {
     useEffect(() => {
         if (styles?.length && !useUserSelectionStore.getState().style) {
             useUserSelectionStore.getState().setStyle(styles[0])
+            state.setState({ default: styles[0] })
         }
     }, [styles])
 
@@ -78,7 +81,7 @@ export const SiteStyle = () => {
                         siteType?.label?.toLowerCase(),
                     )}
                 </h1>
-                <p className="text-base opacity-70">
+                <p className="text-base opacity-70 mb-0">
                     {__('You can personalize this later.', 'extendify')}
                 </p>
             </div>
@@ -93,25 +96,19 @@ export const SiteStyle = () => {
                 </h2>
                 <div
                     ref={stylesRef}
-                    className="lg:flex space-y-6 lg:space-y-0 flex-wrap">
+                    className="flex gap-6 flex-wrap justify-center">
                     {styles?.map((style) => (
-                        <div
-                            className="p-3 relative"
-                            style={{ height: 590, width: 425 }}
-                            key={style.recordId}>
-                            <StylePreview
-                                style={style}
-                                selectStyle={selectStyle}
-                                blockHeight={590}
-                            />
-                        </div>
+                        <StylePreviewWrapper
+                            key={style.recordId}
+                            style={style}
+                        />
                     ))}
                     {/* Budget skeleton loaders */}
                     {styleData?.slice(styles?.length).map((data) => (
                         <div
                             key={data.slug}
-                            style={{ height: 590, width: 425 }}
-                            className="p-3 relative">
+                            style={{ height: 497, width: 352 }}
+                            className="relative">
                             <div className="bg-gray-50 h-full w-full flex items-center justify-center">
                                 <SpinnerIcon className="spin w-8" />
                             </div>
@@ -120,5 +117,32 @@ export const SiteStyle = () => {
                 </div>
             </div>
         </PageLayout>
+    )
+}
+
+const StylePreviewWrapper = ({ style }) => {
+    const onSelect = useCallback((style) => {
+        useUserSelectionStore.getState().setStyle(style)
+    }, [])
+    const context = useMemo(
+        () => ({
+            type: 'style',
+            detail: style.slug,
+            measure: true,
+        }),
+        [style],
+    )
+    return (
+        <div className="relative" style={{ height: 497, width: 352 }}>
+            <StylePreview
+                style={style}
+                context={context}
+                onSelect={onSelect}
+                active={
+                    useUserSelectionStore.getState()?.style?.slug === style.slug
+                }
+                blockHeight={497}
+            />
+        </div>
     )
 }

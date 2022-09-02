@@ -158,7 +158,11 @@ class GlobalShortcodes
             $val = base64_decode($atts['custom_html']);
         }
 
-        return do_shortcode(stripslashes(wp_kses_post($val)));
+        if (apply_filters('ppress_sanitize_custom_html_block', true)) {
+            $val = wp_kses_post($val);
+        }
+
+        return do_shortcode(stripslashes($val));
     }
 
     /**

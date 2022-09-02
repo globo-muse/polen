@@ -125,7 +125,7 @@ trait Creator
         }
         static::expectDateTime($date);
         $instance = new static($date->format('Y-m-d H:i:s.u'), $date->getTimezone());
-        if ($date instanceof CarbonInterface || $date instanceof Options) {
+        if ($date instanceof CarbonInterface) {
             $settings = $date->getSettings();
             if (!$date->hasLocalTranslator()) {
                 unset($settings['locale']);

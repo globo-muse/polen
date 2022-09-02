@@ -1712,10 +1712,14 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
      *
      * @return string
      */
-    public static function getDateIntervalSpec(DateInterval $interval)
+    public static function getDateIntervalSpec(DateInterval $interval, bool $microseconds = \false)
     {
         $date = \array_filter([static::PERIOD_YEARS => \abs($interval->y), static::PERIOD_MONTHS => \abs($interval->m), static::PERIOD_DAYS => \abs($interval->d)]);
-        $time = \array_filter([static::PERIOD_HOURS => \abs($interval->h), static::PERIOD_MINUTES => \abs($interval->i), static::PERIOD_SECONDS => \abs($interval->s)]);
+        $seconds = \abs($interval->s);
+        if ($microseconds && $interval->f > 0) {
+            $seconds = \sprintf('%d.%06d', $seconds, \abs($interval->f) * 1000000);
+        }
+        $time = \array_filter([static::PERIOD_HOURS => \abs($interval->h), static::PERIOD_MINUTES => \abs($interval->i), static::PERIOD_SECONDS => $seconds]);
         $specString = static::PERIOD_PREFIX;
         foreach ($date as $key => $value) {
             $specString .= $value . $key;
@@ -1733,9 +1737,9 @@ class CarbonInterval extends DateInterval implements CarbonConverterInterface
      *
      * @return string
      */
-    public function spec()
+    public function spec(bool $microseconds = \false)
     {
-        return static::getDateIntervalSpec($this);
+        return static::getDateIntervalSpec($this, $microseconds);
     }
     /**
      * Comparing 2 date intervals.

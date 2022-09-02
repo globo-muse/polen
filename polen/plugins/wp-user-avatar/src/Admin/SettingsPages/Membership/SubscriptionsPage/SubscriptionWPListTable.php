@@ -11,6 +11,7 @@ use ProfilePress\Core\Membership\Models\Subscription\SubscriptionStatus;
 use ProfilePress\Core\Membership\Repositories\SubscriptionRepository;
 use ProfilePress\Core\Membership\Services\Calculator;
 use ProfilePress\Core\Membership\Services\SubscriptionService;
+use ProfilePressVendor\Carbon\CarbonImmutable;
 
 class SubscriptionWPListTable extends \WP_List_Table
 {
@@ -207,13 +208,19 @@ class SubscriptionWPListTable extends \WP_List_Table
         $status     = ppressGET_var('status');
 
         $query_args = [
-            'number'     => $per_page,
-            'offset'     => $offset,
-            'search'     => $search,
-            'status'     => [$status],
-            'start_date' => $start_date,
-            'end_date'   => $end_date
+            'number' => $per_page,
+            'offset' => $offset,
+            'search' => $search,
+            'status' => [$status]
         ];
+
+        if ( ! empty($start_date)) {
+            $query_args['start_date'] = CarbonImmutable::parse($start_date, wp_timezone())->startOfDay()->utc()->toDateTimeString();
+        }
+
+        if ( ! empty($end_date)) {
+            $query_args['end_date'] = CarbonImmutable::parse($end_date, wp_timezone())->endOfDay()->utc()->toDateTimeString();
+        }
 
         if (ppressGET_var('by_ci')) {
             $query_args['customer_id'] = absint($_GET['by_ci']);

@@ -91,8 +91,7 @@ if (empty($billing_country)) {
             </tr>
             <tr class="ppress-submetabox-items-row-actions">
                 <td colspan="4" class="ppress-submetabox-items-column-actions">
-                    <?php /** @todo implement refund logic */
-                    if ( false/* $order_data->is_refundable() */) : ?>
+                    <?php if ($order_data->is_refundable()) : ?>
                         <a href="<?= $order_data->get_refund_url() ?>" id="order-refund" class="button button-secondary pp-confirm-delete order-refund"><?php esc_html_e('Refund Order', 'wp-user-avatar') ?></a>
                     <?php endif; ?>
 

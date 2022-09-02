@@ -28,6 +28,22 @@ class OrderFactory implements FactoryInterface
     }
 
     /**
+     * @param $id
+     *
+     * @return OrderEntity|false
+     */
+    public static function fromTransactionId($id)
+    {
+        $orders = OrderRepository::init()->retrieveBy([
+            'transaction_id' => $id
+        ]);
+
+        if ( ! empty($orders)) return $orders[0];
+
+        return false;
+    }
+
+    /**
      * @param $order_key
      *
      * @return OrderEntity

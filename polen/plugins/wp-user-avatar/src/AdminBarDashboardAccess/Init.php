@@ -28,8 +28,8 @@ class Init
     {
         $tabs[50] = [
             'parent' => 'general',
-            'id'    => 'admin-bar-dashboard',
-            'label' => esc_html__('Admin Bar & Dashboard', 'wp-user-avatar')
+            'id'     => 'admin-bar-dashboard',
+            'label'  => esc_html__('Admin Bar & Dashboard', 'wp-user-avatar')
         ];
 
         return $tabs;
@@ -110,8 +110,8 @@ class Init
     {
         $is_admin_bar_disabled = ppress_var($this->db_options(), 'disable_admin_bar', '', true);
 
-        // bail if the disable admin bar checkbox isn't checked.
-        if ($is_admin_bar_disabled != 'yes') return $show_admin_bar;
+        // bail if the disable admin bar checkbox isn't checked or we oxygen builder
+        if ($is_admin_bar_disabled != 'yes' | defined("SHOW_CT_BUILDER")) return $show_admin_bar;
 
         if (is_user_logged_in()) {
 

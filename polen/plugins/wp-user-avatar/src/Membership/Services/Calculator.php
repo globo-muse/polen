@@ -67,6 +67,11 @@ class Calculator
         return $this->result->isNegative();
     }
 
+    public function isEqualTo($val)
+    {
+        return $this->result->isEqualTo($val);
+    }
+
     public function isZero()
     {
         return $this->result->isZero();
@@ -75,6 +80,11 @@ class Calculator
     public function isGreaterThan($val)
     {
         return $this->result->isGreaterThan($val);
+    }
+
+    public function isLessThan($val)
+    {
+        return $this->result->isLessThan($val);
     }
 
     public function isGreaterThanZero()

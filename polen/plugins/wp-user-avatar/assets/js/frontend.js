@@ -9,8 +9,8 @@ function Frontend() {
 
         window.ppFormRecaptchaLoadCallback = this.recaptcha_processing;
 
-        $('.pp-del-profile-avatar').click(this.delete_avatar);
-        $('.pp-del-cover-image').click(this.delete_profile_image_cover);
+        $('.pp-del-profile-avatar').on('click', this.delete_avatar);
+        $('.pp-del-cover-image').on('click', this.delete_profile_image_cover);
 
         $(document).on('click', '.has-password-visibility-icon .pp-form-material-icons', this.toggle_password_visibility);
 
@@ -31,7 +31,7 @@ function Frontend() {
         $(document).on('submit', 'form[data-pp-form-submit="passwordreset"]', this.ajax_password_reset);
         $(document).on('submit', 'form[data-pp-form-submit="editprofile"]', this.ajax_edit_profile);
 
-        $('.ppress-confirm-delete').click(function (e) {
+        $('.ppress-confirm-delete').on('click', function (e) {
             e.preventDefault();
             if (confirm(pp_ajax_form.confirm_delete)) {
                 window.location.href = $(this).attr('href');

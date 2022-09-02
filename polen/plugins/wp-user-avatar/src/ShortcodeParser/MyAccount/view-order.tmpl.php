@@ -88,13 +88,13 @@ $customer_id = CustomerFactory::fromUserId(get_current_user_id())->id;
                                         }
 
                                         if ($field_id == CF::BILLING_STATE) {
-                                            $state  = ppress_array_of_world_states($order->billing_country);
+                                            $state  = ! empty($order->billing_country) ? ppress_array_of_world_states($order->billing_country) : [];
                                             $detail = ppress_var($state, $detail, $detail, true);
                                         }
 
                                     }
 
-                                    if(empty($detail)) continue;
+                                    if (empty($detail)) continue;
 
                                     echo '<p>';
                                     printf('<span class="ppress-billing-title">%s:</span> %s', esc_html($field['label']), $detail);
