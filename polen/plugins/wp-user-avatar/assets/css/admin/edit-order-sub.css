@@ -1,0 +1,418 @@
+.ppress-admin .handle-actions {
+    display: none;
+}
+
+.ppress-admin .postbox .hndle {
+    cursor: default !important;
+}
+
+.ppress-admin #ppress-membership-order-content .postbox-header,
+.ppress-admin #ppress-membership-subscription-content .postbox-header,
+.ppress-admin #ppress-membership-customer-content .postbox-header {
+    display: none
+}
+
+.ppress-admin #ppress-membership-order-content .inside,
+.ppress-admin #ppress-membership-item-content .inside,
+.ppress-admin #ppress-membership-customer-content .inside,
+.ppress-admin #ppress-membership-customer-subscriptions .inside,
+.ppress-admin #ppress-membership-subscription-content .inside,
+.ppress-admin #ppress-membership-subscription-payments .inside {
+    margin: 0;
+    padding: 0;
+    display: block !important;
+}
+
+.ppress-admin .ppress-membership-order-details,
+.ppress-admin .ppress-membership-subscription-details,
+.ppress-admin .ppress-membership-customer-details {
+    padding: 30px;
+}
+
+.ppress-admin .ppress-membership-order-details p,
+.ppress-admin .ppress-membership-subscription-details p,
+.ppress-admin .ppress-membership-customer-details p {
+    color: #777;
+}
+
+.ppress-admin .ppress-membership-order-details p a {
+    text-decoration: none;
+}
+
+.ppress-admin #poststuff h2.ppress-metabox-data-heading {
+    margin: 0;
+    font-family: HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-shadow: 1px 1px 1px #fff;
+    padding: 0;
+}
+
+.ppress-admin .ppress-metabox-meta-data {
+    margin: 0;
+    font-family: HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    line-height: 1.8em;
+    font-size: 16px;
+}
+
+.ppress-admin .ppress-metabox-data-column-container {
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.ppress-admin .ppress-metabox-data-column {
+    width: 50%;
+    padding-left: 0;
+    padding-right: 30px;
+}
+
+.ppress-admin .ppress-metabox-data-column:last-of-type {
+    padding-left: 30px;
+    padding-right: 0;
+}
+
+.ppview .postbox .ppress-metabox-data-column input:not([type=checkbox]):not([type=radio]),
+.ppview .postbox .ppress-metabox-data-column select {
+    width: 100% !important;
+}
+
+.ppress-admin .ppress-metabox-data-column h3 {
+    font-size: 14px;
+    color: #333;
+    margin: 1.33em 0 0;
+}
+
+.ppress-admin .ppress-metabox-data-column p {
+    padding: 0 !important;
+    margin: 9px 0 0;
+}
+
+.ppress-admin .ppress-metabox-data-column a.edit_address {
+    width: 14px;
+    height: 0;
+    padding: 14px 0 0;
+    margin: 0 0 0 6px;
+    overflow: hidden;
+    position: relative;
+    color: #999;
+    border: 0;
+    float: right;
+}
+
+.ppress-admin .ppress-metabox-data-column a.edit_address::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    text-align: center;
+    vertical-align: top;
+    line-height: 14px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.ppress-admin .ppress-metabox-data-column a.edit_address::after {
+    font-family: Dashicons;
+    content: "\f464";
+}
+
+.ppress-admin .ppress-metabox-data-column .ppress_edit_address_wrap {
+    display: none;
+}
+
+.ppress-admin #poststuff #ppress-membership-item-content h2 {
+    padding: 15px 30px;
+    margin: 0;
+    font-family: HelveticaNeue-Light, Helvetica Neue Light, Helvetica Neue, sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 1.2;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+
+.ppress-admin #ppress-submetabox-items table th {
+    text-align: left;
+    padding: 1em;
+    font-weight: 400;
+    color: #999;
+    background: #f8f8f8;
+    border-top: 0;
+    user-select: none;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.ppress-admin #ppress-submetabox-items table {
+    background: #fff;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ppress-admin #ppress-submetabox-items table th:first-child {
+    padding-left: 30px;
+}
+
+.ppress-admin #ppress-submetabox-items table th.ppress-submetabox-item-column-price,
+.ppress-admin #ppress-submetabox-items table th.ppress-submetabox-item-column-total,
+.ppress-admin #ppress-submetabox-items table td.ppress-submetabox-item-column-price,
+.ppress-admin #ppress-submetabox-items table td.ppress-submetabox-item-column-total {
+    width: 100px;
+    text-align: right;
+}
+
+.ppress-admin #ppress-submetabox-items table th.ppress-submetabox-item-column-action,
+.ppress-admin #ppress-submetabox-items table td.ppress-submetabox-items-column-action {
+    width: 5%;
+    text-align: left;
+}
+
+.ppress-admin #ppress-submetabox-items table td:first-child {
+    padding-left: 30px;
+}
+
+.ppress-admin #ppress-submetabox-items table td {
+    padding: 1.5em 1em 1em;
+    text-align: left;
+    line-height: 1.5em;
+    vertical-align: top;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-sub-total td,
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-tax td,
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-discounts td,
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-total td {
+    border-bottom: 0;
+}
+
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-sub-total td,
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-tax td,
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-discounts td,
+.ppress-admin #ppress-submetabox-items table td.ppress-submetabox-items-column-total,
+.ppress-admin #ppress-submetabox-items table td.ppress-submetabox-items-column-total-label {
+    text-align: right;
+}
+
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-border td {
+    padding: 0;
+    border: 0;
+}
+
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-discounts .coupon-wrap {
+    float: left;
+    text-align: left;
+}
+
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-discounts .coupon-wrap .coupons-label {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 2px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.ppress-admin #ppress-submetabox-items table .ppress-submetabox-items-row-discounts .coupon-wrap .coupon-code {
+    display: inline-block;
+    position: relative;
+    padding: 3px 10px;
+    background-color: #f7f7f7;
+    border: 1px solid #aaa;
+    box-shadow: 0 1px 0 #dfdfdf;
+    border-radius: 4px;
+    margin-right: 5px;
+    margin-top: 5px;
+    text-decoration: none;
+    color: #888;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.ppress-admin #ppress-submetabox-items table td.ppress-submetabox-items-column-actions {
+    border-top: 1px solid #ddd;
+    background: #f8f8f8;
+    text-align: right;
+}
+
+.ppress-admin #ppress-submetabox-items table td.ppress-submetabox-items-column-actions .order-refund {
+    float: left;
+}
+
+.ppress-admin #ppress-submetabox-items table td.ppress-submetabox-items-column-actions .message {
+    font-style: italic;
+    display: inline-block;
+    line-height: 28px;
+}
+
+.ppress-admin #ppress-membership-item-content .ppress-submetabox-items-column-actions .ppress-hint-tooltip {
+    text-align: left;
+}
+
+.ppress-admin #ppress-membership-order-subscription a {
+    text-decoration: none;
+}
+
+.ppress-admin .ppress-notes li {
+    padding: 0 10px;
+}
+
+.ppress-admin .ppress-notes li .ppress-note-content {
+    background: #efefef;
+    padding: 10px;
+    position: relative;
+}
+
+.ppress-admin .ppress-notes li .ppress-note-content p {
+    margin: 0;
+    padding: 0;
+}
+
+.ppress-admin .ppress-notes li .ppress-note-content:after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-color: #efefef transparent;
+    border-style: solid;
+    border-width: 10px 10px 0 0;
+}
+
+.ppress-admin .ppress-notes p.ppress-note-meta {
+    padding: 10px;
+    color: #999;
+    margin: 0;
+    font-size: 11px;
+}
+
+.ppress-admin .ppress-notes p.ppress-note-meta .ppress-note-date {
+    border-bottom: 1px dotted #fff;
+}
+
+.ppress-admin .ppress-notes p.ppress-note-meta a {
+    color: #a00;
+}
+
+#ppress-membership-order-notes.postbox .inside {
+    padding: 0 0 10px;
+}
+
+.ppress-admin .ppress-membership-order-details .ppress-order-badge {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 8px;
+    margin-left: 5px;
+    border-radius: 9999px;
+    vertical-align: middle;
+    background-color: rgb(220 252 231);
+    color: rgb(22 101 52);
+    line-height: 2.30769231;
+    text-shadow: none;
+}
+
+.ppress-order-item-modal-wrap {
+    width: 100%;
+    max-width: 500px;
+}
+
+.ppress-admin .ppress-order-item-modal-wrap label {
+    display: block;
+    font-weight: bold;
+}
+
+.ppress-admin .ppress-order-item-modal-wrap input,
+.ppress-admin .ppress-order-item-modal-wrap select {
+    width: 100%;
+    max-width: 100%;
+}
+
+.ppress-admin .select2-container .select2-dropdown {
+    z-index: 900000 !important;
+}
+
+
+/* customer edit UI */
+.ppress-membership-customer-details .ppress-customer-info .ppress-customer-info {
+    min-height: 185px;
+}
+
+.ppress-membership-customer-details .ppress-customer-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ppress-membership-customer-details .ppress-customer-info .ppress-avatar-wrap {
+    max-width: 250px;
+    width: 35%;
+}
+
+.ppress-membership-customer-details .ppress-customer-info .ppress-customer-main-wrapper {
+    width: 60%;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.ppress-membership-customer-details .ppress-customer-info span.customer-name {
+    margin-bottom: 6px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.ppress-membership-customer-details .ppress-customer-info .ppress-customer-main-wrapper span:not(.customer-name):not([class*="select2"]):not([class*="selection"]) {
+    display: block;
+    padding: 3px;
+    color: #777;
+}
+
+.ppress-membership-customer-details .ppress-customer-info .customer-user-id span {
+    display: inline-block;
+}
+
+.ppress-membership-customer-details .ppress-customer-info .ppres-customer-edit-link {
+    text-align: center;
+}
+
+.ppress-membership-customer-details .ppress-customer-info .ppress-avatar-wrap img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.ppress-membership-customer-details .ppress-customer-info .mb-form-field label {
+    font-weight: 500;
+}
+
+.ppress-membership-customer-details .ppress-customer-info .mb-form-field label a {
+    font-weight: normal;
+}
+
+.ppress-membership-customer-details .ppress-customer-stats-wrapper {
+    margin: 20px auto 10px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding: 30px 0 0;
+}
+
+.ppress-membership-customer-details .ppress-customer-stats-wrapper ul {
+    display: flex;
+    margin: 0;
+    list-style: none;
+}
+
+.ppress-membership-customer-details .ppress-customer-stats-wrapper li {
+    font-size: 14px;
+    margin-bottom: 0;
+    width: 50%;
+}
+
+.ppress-membership-customer-details .ppress-customer-stats-wrapper .dashicons {
+    color: #888;
+    margin-top: -2px;
+}
+
+.ppress-membership-customer-details .ppress-customer-stats-wrapper a {
+    text-decoration: none;
+}

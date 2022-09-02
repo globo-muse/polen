@@ -1,0 +1,43 @@
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https:\/\/github.com\/mailoptin\/composer-cleanup-plugin.git"
+        }
+    ],
+    "require": {
+        "collizo4sky\/persist-admin-notices-dismissal": "^1.3",
+        "pelago\/emogrifier": "3.1.0",
+        "barryvdh\/composer-cleanup-plugin": "dev-master",
+        "nesbot\/carbon": "^2.57",
+        "stripe\/stripe-php": "^7.117",
+        "brick\/math": "^0.9.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "ProfilePressVendor\\ProfilePress\\Core\\": "src\/"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.1.8"
+        },
+        "allow-plugins": {
+            "barryvdh\/composer-cleanup-plugin": true,
+            "kylekatarnls\/update-helper": true
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "~\/.composer\/vendor\/bin\/php-scoper add-prefix --output-dir=third-party",
+            "@composer dump-autoload --working-dir third-party --classmap-authoritative"
+        ],
+        "post-update-cmd": [
+            " ~\/.composer\/vendor\/bin\/php-scoper add-prefix --output-dir=third-party",
+            "@composer dump-autoload --working-dir third-party --classmap-authoritative"
+        ]
+    },
+    "require-dev": {
+        "sniccowp\/php-scoper-wordpress-excludes": "^6.0"
+    }
+}

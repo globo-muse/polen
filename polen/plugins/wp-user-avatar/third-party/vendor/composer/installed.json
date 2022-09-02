@@ -1,0 +1,876 @@
+{
+    "packages": [
+        {
+            "name": "barryvdh\/composer-cleanup-plugin",
+            "version": "dev-master",
+            "version_normalized": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/mailoptin\/composer-cleanup-plugin.git",
+                "reference": "74d878666436c99f5b671b90312e85479afeedb0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/mailoptin\/composer-cleanup-plugin\/zipball\/74d878666436c99f5b671b90312e85479afeedb0",
+                "reference": "74d878666436c99f5b671b90312e85479afeedb0",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^2.0"
+            },
+            "time": "2022-03-15T13:35:33+00:00",
+            "default-branch": true,
+            "type": "composer-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.1-dev"
+                },
+                "class": "Barryvdh\\Composer\\CleanupPlugin"
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ProfilePressVendor\\Barryvdh\\Composer\\": "src\/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "A composer cleanup plugin, to remove tests and documentation to save space",
+            "support": {
+                "source": "https:\/\/github.com\/mailoptin\/composer-cleanup-plugin\/tree\/master"
+            },
+            "install-path": "..\/barryvdh\/composer-cleanup-plugin"
+        },
+        {
+            "name": "brick\/math",
+            "version": "0.9.3",
+            "version_normalized": "0.9.3.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/brick\/math.git",
+                "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/brick\/math\/zipball\/ca57d18f028f84f777b2168cd1911b0dee2343ae",
+                "reference": "ca57d18f028f84f777b2168cd1911b0dee2343ae",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "php-coveralls\/php-coveralls": "^2.2",
+                "phpunit\/phpunit": "^7.5.15 || ^8.5 || ^9.0",
+                "vimeo\/psalm": "4.9.2"
+            },
+            "time": "2021-08-15T20:50:18+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ProfilePressVendor\\Brick\\Math\\": "src\/"
+                }
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Arbitrary-precision arithmetic library",
+            "keywords": [
+                "Arbitrary-precision",
+                "BigInteger",
+                "BigRational",
+                "arithmetic",
+                "bigdecimal",
+                "bignum",
+                "brick",
+                "math"
+            ],
+            "support": {
+                "issues": "https:\/\/github.com\/brick\/math\/issues",
+                "source": "https:\/\/github.com\/brick\/math\/tree\/0.9.3"
+            },
+            "funding": [
+                {
+                    "url": "https:\/\/github.com\/BenMorel",
+                    "type": "github"
+                },
+                {
+                    "url": "https:\/\/tidelift.com\/funding\/github\/packagist\/brick\/math",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "..\/brick\/math"
+        },
+        {
+            "name": "collizo4sky\/persist-admin-notices-dismissal",
+            "version": "1.4.4",
+            "version_normalized": "1.4.4.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/w3guy\/persist-admin-notices-dismissal.git",
+                "reference": "900739eb6b0ec0210465f5983a6d4e0e420289e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/w3guy\/persist-admin-notices-dismissal\/zipball\/900739eb6b0ec0210465f5983a6d4e0e420289e4",
+                "reference": "900739eb6b0ec0210465f5983a6d4e0e420289e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "time": "2020-12-31T17:12:37+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "classmap": [
+                    "persist-admin-notices-dismissal.php"
+                ]
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Collins Agbonghama",
+                    "email": "me@w3guy.com",
+                    "role": "developer"
+                }
+            ],
+            "description": "Simple library to persist dismissal of admin notices across pages in WordPress dashboard.",
+            "support": {
+                "issues": "https:\/\/github.com\/w3guy\/persist-admin-notices-dismissal\/issues",
+                "source": "https:\/\/github.com\/w3guy\/persist-admin-notices-dismissal"
+            },
+            "install-path": "..\/collizo4sky\/persist-admin-notices-dismissal"
+        },
+        {
+            "name": "nesbot\/carbon",
+            "version": "2.60.0",
+            "version_normalized": "2.60.0.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/briannesbitt\/Carbon.git",
+                "reference": "00a259ae02b003c563158b54fb6743252b638ea6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/briannesbitt\/Carbon\/zipball\/00a259ae02b003c563158b54fb6743252b638ea6",
+                "reference": "00a259ae02b003c563158b54fb6743252b638ea6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.1.8 || ^8.0",
+                "symfony\/polyfill-mbstring": "^1.0",
+                "symfony\/polyfill-php80": "^1.16",
+                "symfony\/translation": "^3.4 || ^4.0 || ^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "doctrine\/dbal": "^2.0 || ^3.0",
+                "doctrine\/orm": "^2.7",
+                "friendsofphp\/php-cs-fixer": "^3.0",
+                "kylekatarnls\/multi-tester": "^2.0",
+                "ondrejmirtes\/better-reflection": "*",
+                "phpmd\/phpmd": "^2.9",
+                "phpstan\/extension-installer": "^1.0",
+                "phpstan\/phpstan": "^0.12.99 || ^1.7.14",
+                "phpunit\/php-file-iterator": "^2.0.5 || ^3.0.6",
+                "phpunit\/phpunit": "^7.5.20 || ^8.5.26 || ^9.5.20",
+                "squizlabs\/php_codesniffer": "^3.4"
+            },
+            "time": "2022-07-27T15:57:48+00:00",
+            "bin": [
+                "bin\/carbon"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev",
+                    "dev-master": "2.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "ProfilePressVendor\\Carbon\\Laravel\\ServiceProvider"
+                    ]
+                },
+                "phpstan": {
+                    "includes": [
+                        "extension.neon"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ProfilePressVendor\\Carbon\\": "src\/Carbon\/"
+                }
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Nesbitt",
+                    "email": "brian@nesbot.com",
+                    "homepage": "https:\/\/markido.com"
+                },
+                {
+                    "name": "kylekatarnls",
+                    "homepage": "https:\/\/github.com\/kylekatarnls"
+                }
+            ],
+            "description": "An API extension for DateTime that supports 281 different languages.",
+            "homepage": "https:\/\/carbon.nesbot.com",
+            "keywords": [
+                "date",
+                "datetime",
+                "time"
+            ],
+            "support": {
+                "docs": "https:\/\/carbon.nesbot.com\/docs",
+                "issues": "https:\/\/github.com\/briannesbitt\/Carbon\/issues",
+                "source": "https:\/\/github.com\/briannesbitt\/Carbon"
+            },
+            "funding": [
+                {
+                    "url": "https:\/\/github.com\/sponsors\/kylekatarnls",
+                    "type": "github"
+                },
+                {
+                    "url": "https:\/\/opencollective.com\/Carbon#sponsor",
+                    "type": "opencollective"
+                },
+                {
+                    "url": "https:\/\/tidelift.com\/subscription\/pkg\/packagist-nesbot-carbon?utm_source=packagist-nesbot-carbon&utm_medium=referral&utm_campaign=readme",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "..\/nesbot\/carbon"
+        },
+        {
+            "name": "pelago\/emogrifier",
+            "version": "v3.1.0",
+            "version_normalized": "3.1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/MyIntervals\/emogrifier.git",
+                "reference": "f6a5c7d44612d86c3901c93f1592f5440e6b2cd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/MyIntervals\/emogrifier\/zipball\/f6a5c7d44612d86c3901c93f1592f5440e6b2cd8",
+                "reference": "f6a5c7d44612d86c3901c93f1592f5440e6b2cd8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-libxml": "*",
+                "php": "^5.6 || ~7.0 || ~7.1 || ~7.2 || ~7.3 || ~7.4",
+                "symfony\/css-selector": "^2.8 || ^3.0 || ^4.0 || ^5.0"
+            },
+            "require-dev": {
+                "friendsofphp\/php-cs-fixer": "^2.15.3",
+                "phpmd\/phpmd": "^2.7.0",
+                "phpunit\/phpunit": "^5.7.27",
+                "squizlabs\/php_codesniffer": "^3.5.0"
+            },
+            "time": "2019-12-26T19:37:31+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ProfilePressVendor\\Pelago\\": "src\/"
+                }
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Klee",
+                    "email": "github@oliverklee.de"
+                },
+                {
+                    "name": "Zoli Szab\u00f3",
+                    "email": "zoli.szabo+github@gmail.com"
+                },
+                {
+                    "name": "John Reeve",
+                    "email": "jreeve@pelagodesign.com"
+                },
+                {
+                    "name": "Jake Hotson",
+                    "email": "jake@qzdesign.co.uk"
+                },
+                {
+                    "name": "Cameron Brooks"
+                },
+                {
+                    "name": "Jaime Prado"
+                }
+            ],
+            "description": "Converts CSS styles into inline style attributes in your HTML code",
+            "homepage": "https:\/\/www.myintervals.com\/emogrifier.php",
+            "keywords": [
+                "css",
+                "email",
+                "pre-processing"
+            ],
+            "support": {
+                "issues": "https:\/\/github.com\/MyIntervals\/emogrifier\/issues",
+                "source": "https:\/\/github.com\/MyIntervals\/emogrifier"
+            },
+            "install-path": "..\/pelago\/emogrifier"
+        },
+        {
+            "name": "sniccowp\/php-scoper-wordpress-excludes",
+            "version": "6.0.0",
+            "version_normalized": "6.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/snicco\/php-scoper-wordpress-excludes.git",
+                "reference": "9fe5eeb044f7837b32df274857a91a635052fa49"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/snicco\/php-scoper-wordpress-excludes\/zipball\/9fe5eeb044f7837b32df274857a91a635052fa49",
+                "reference": "9fe5eeb044f7837b32df274857a91a635052fa49",
+                "shasum": ""
+            },
+            "require-dev": {
+                "php": "^7.4",
+                "php-stubs\/wordpress-globals": "0.2.0",
+                "php-stubs\/wordpress-stubs": "6.0.0",
+                "sniccowp\/php-scoper-excludes": "dev-master"
+            },
+            "time": "2022-05-27T01:48:22+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Calvin Alkan",
+                    "email": "calvin@snicco.de"
+                },
+                {
+                    "name": "Marlon Alkan",
+                    "email": "marlon@snicco.de"
+                }
+            ],
+            "description": "A list of all WordPress core classes, functions and constants. Meant to be used with the PHP-Scoper exclusion functionality.",
+            "keywords": [
+                "php-scoper",
+                "scoping WordPress",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https:\/\/github.com\/snicco\/php-scoper-wordpress-excludes\/issues",
+                "source": "https:\/\/github.com\/snicco\/php-scoper-wordpress-excludes\/tree\/6.0.0"
+            },
+            "install-path": "..\/sniccowp\/php-scoper-wordpress-excludes"
+        },
+        {
+            "name": "stripe\/stripe-php",
+            "version": "v7.128.0",
+            "version_normalized": "7.128.0.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/stripe\/stripe-php.git",
+                "reference": "c704949c49b72985c76cc61063aa26fefbd2724e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/stripe\/stripe-php\/zipball\/c704949c49b72985c76cc61063aa26fefbd2724e",
+                "reference": "c704949c49b72985c76cc61063aa26fefbd2724e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp\/php-cs-fixer": "3.5.0",
+                "phpstan\/phpstan": "^1.2",
+                "phpunit\/phpunit": "^5.7 || ^9.0",
+                "squizlabs\/php_codesniffer": "^3.3"
+            },
+            "time": "2022-05-05T17:18:02+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ProfilePressVendor\\Stripe\\": "lib\/"
+                }
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https:\/\/github.com\/stripe\/stripe-php\/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https:\/\/stripe.com\/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https:\/\/github.com\/stripe\/stripe-php\/issues",
+                "source": "https:\/\/github.com\/stripe\/stripe-php\/tree\/v7.128.0"
+            },
+            "install-path": "..\/stripe\/stripe-php"
+        },
+        {
+            "name": "symfony\/css-selector",
+            "version": "v4.4.37",
+            "version_normalized": "4.4.37.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/symfony\/css-selector.git",
+                "reference": "0628e6c6d7c92f1a7bae543959bdc17347be2436"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/symfony\/css-selector\/zipball\/0628e6c6d7c92f1a7bae543959bdc17347be2436",
+                "reference": "0628e6c6d7c92f1a7bae543959bdc17347be2436",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "symfony\/polyfill-php80": "^1.16"
+            },
+            "time": "2022-01-02T09:41:36+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ProfilePressVendor\\Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "\/Tests\/"
+                ]
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-Fran\u00e7ois Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https:\/\/symfony.com\/contributors"
+                }
+            ],
+            "description": "Converts CSS selectors to XPath expressions",
+            "homepage": "https:\/\/symfony.com",
+            "support": {
+                "source": "https:\/\/github.com\/symfony\/css-selector\/tree\/v4.4.37"
+            },
+            "funding": [
+                {
+                    "url": "https:\/\/symfony.com\/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https:\/\/github.com\/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https:\/\/tidelift.com\/funding\/github\/packagist\/symfony\/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "..\/symfony\/css-selector"
+        },
+        {
+            "name": "symfony\/polyfill-mbstring",
+            "version": "v1.26.0",
+            "version_normalized": "1.26.0.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/symfony\/polyfill-mbstring.git",
+                "reference": "9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/symfony\/polyfill-mbstring\/zipball\/9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e",
+                "reference": "9344f9cb97f3b19424af1a21a3b0e75b0a7d8d7e",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "provide": {
+                "ext-mbstring": "*"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance"
+            },
+            "time": "2022-05-24T11:49:31+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.26-dev"
+                },
+                "thanks": {
+                    "name": "symfony\/polyfill",
+                    "url": "https:\/\/github.com\/symfony\/polyfill"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "ProfilePressVendor\\Symfony\\Polyfill\\Mbstring\\": ""
+                }
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https:\/\/symfony.com\/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for the Mbstring extension",
+            "homepage": "https:\/\/symfony.com",
+            "keywords": [
+                "compatibility",
+                "mbstring",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https:\/\/github.com\/symfony\/polyfill-mbstring\/tree\/v1.26.0"
+            },
+            "funding": [
+                {
+                    "url": "https:\/\/symfony.com\/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https:\/\/github.com\/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https:\/\/tidelift.com\/funding\/github\/packagist\/symfony\/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "..\/symfony\/polyfill-mbstring"
+        },
+        {
+            "name": "symfony\/polyfill-php80",
+            "version": "v1.26.0",
+            "version_normalized": "1.26.0.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/symfony\/polyfill-php80.git",
+                "reference": "cfa0ae98841b9e461207c13ab093d76b0fa7bace"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/symfony\/polyfill-php80\/zipball\/cfa0ae98841b9e461207c13ab093d76b0fa7bace",
+                "reference": "cfa0ae98841b9e461207c13ab093d76b0fa7bace",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "time": "2022-05-10T07:21:04+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.26-dev"
+                },
+                "thanks": {
+                    "name": "symfony\/polyfill",
+                    "url": "https:\/\/github.com\/symfony\/polyfill"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "ProfilePressVendor\\Symfony\\Polyfill\\Php80\\": ""
+                },
+                "classmap": [
+                    "Resources\/stubs"
+                ]
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ion Bazan",
+                    "email": "ion.bazan@gmail.com"
+                },
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https:\/\/symfony.com\/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
+            "homepage": "https:\/\/symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https:\/\/github.com\/symfony\/polyfill-php80\/tree\/v1.26.0"
+            },
+            "funding": [
+                {
+                    "url": "https:\/\/symfony.com\/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https:\/\/github.com\/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https:\/\/tidelift.com\/funding\/github\/packagist\/symfony\/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "..\/symfony\/polyfill-php80"
+        },
+        {
+            "name": "symfony\/translation",
+            "version": "v4.4.41",
+            "version_normalized": "4.4.41.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/symfony\/translation.git",
+                "reference": "dcb67eae126e74507e0b4f0b9ac6ef35b37c3331"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/symfony\/translation\/zipball\/dcb67eae126e74507e0b4f0b9ac6ef35b37c3331",
+                "reference": "dcb67eae126e74507e0b4f0b9ac6ef35b37c3331",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3",
+                "symfony\/polyfill-mbstring": "~1.0",
+                "symfony\/polyfill-php80": "^1.16",
+                "symfony\/translation-contracts": "^1.1.6|^2"
+            },
+            "conflict": {
+                "symfony\/config": "<3.4",
+                "symfony\/dependency-injection": "<3.4",
+                "symfony\/http-kernel": "<4.4",
+                "symfony\/yaml": "<3.4"
+            },
+            "provide": {
+                "symfony\/translation-implementation": "1.0|2.0"
+            },
+            "require-dev": {
+                "psr\/log": "^1|^2|^3",
+                "symfony\/config": "^3.4|^4.0|^5.0",
+                "symfony\/console": "^3.4|^4.0|^5.0",
+                "symfony\/dependency-injection": "^3.4|^4.0|^5.0",
+                "symfony\/finder": "~2.8|~3.0|~4.0|^5.0",
+                "symfony\/http-kernel": "^4.4",
+                "symfony\/intl": "^3.4|^4.0|^5.0",
+                "symfony\/service-contracts": "^1.1.2|^2",
+                "symfony\/yaml": "^3.4|^4.0|^5.0"
+            },
+            "suggest": {
+                "psr\/log-implementation": "To use logging capability in translator",
+                "symfony\/config": "",
+                "symfony\/yaml": ""
+            },
+            "time": "2022-04-21T07:22:34+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ProfilePressVendor\\Symfony\\Component\\Translation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "\/Tests\/"
+                ]
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https:\/\/symfony.com\/contributors"
+                }
+            ],
+            "description": "Provides tools to internationalize your application",
+            "homepage": "https:\/\/symfony.com",
+            "support": {
+                "source": "https:\/\/github.com\/symfony\/translation\/tree\/v4.4.41"
+            },
+            "funding": [
+                {
+                    "url": "https:\/\/symfony.com\/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https:\/\/github.com\/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https:\/\/tidelift.com\/funding\/github\/packagist\/symfony\/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "..\/symfony\/translation"
+        },
+        {
+            "name": "symfony\/translation-contracts",
+            "version": "v1.1.13",
+            "version_normalized": "1.1.13.0",
+            "source": {
+                "type": "git",
+                "url": "https:\/\/github.com\/symfony\/translation-contracts.git",
+                "reference": "7462e5c4cb8b9cd152f992e8f10963b5641921f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https:\/\/api.github.com\/repos\/symfony\/translation-contracts\/zipball\/7462e5c4cb8b9cd152f992e8f10963b5641921f6",
+                "reference": "7462e5c4cb8b9cd152f992e8f10963b5641921f6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.3"
+            },
+            "suggest": {
+                "symfony\/translation-implementation": ""
+            },
+            "time": "2022-06-27T13:16:42+00:00",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "1.1-dev"
+                },
+                "thanks": {
+                    "name": "symfony\/contracts",
+                    "url": "https:\/\/github.com\/symfony\/contracts"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "ProfilePressVendor\\Symfony\\Contracts\\Translation\\": ""
+                }
+            },
+            "notification-url": "https:\/\/packagist.org\/downloads\/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https:\/\/symfony.com\/contributors"
+                }
+            ],
+            "description": "Generic abstractions related to translation",
+            "homepage": "https:\/\/symfony.com",
+            "keywords": [
+                "abstractions",
+                "contracts",
+                "decoupling",
+                "interfaces",
+                "interoperability",
+                "standards"
+            ],
+            "support": {
+                "source": "https:\/\/github.com\/symfony\/translation-contracts\/tree\/v1.1.13"
+            },
+            "funding": [
+                {
+                    "url": "https:\/\/symfony.com\/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https:\/\/github.com\/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https:\/\/tidelift.com\/funding\/github\/packagist\/symfony\/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "..\/symfony\/translation-contracts"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": [
+        "sniccowp\/php-scoper-wordpress-excludes"
+    ]
+}

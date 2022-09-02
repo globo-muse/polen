@@ -3,9 +3,9 @@
  * Helper class for interacting with the user
  */
 
-namespace Extendify\Library;
+namespace Extendify;
 
-use Extendify\Library\App;
+use Extendify\Config;
 
 /**
  * Helper class for interacting with the user
@@ -86,7 +86,7 @@ class User
     }
 
     /**
-     * Returns the application state for he current user
+     * Returns application state for the current user
      * Use it like User::data('ID') to get the user id
      *
      * @return string - JSON representation of the current state
@@ -118,7 +118,7 @@ class User
         }
 
         if (!isset($userData['state']['sdkPartner']) || !$userData['state']['sdkPartner']) {
-            $userData['state']['sdkPartner'] = App::$sdkPartner;
+            $userData['state']['sdkPartner'] = Config::$sdkPartner;
         }
 
         $userData['state']['uuid'] = self::data('uuid');
@@ -126,6 +126,14 @@ class User
         $userData['state']['canActivatePlugins'] = \current_user_can('activate_plugins');
         $userData['state']['isAdmin'] = \current_user_can('create_users');
 
+        // If the license key is set on the server, force use it.
+        if (defined('EXTENDIFY_SITE_LICENSE')) {
+            $userData['state']['apiKey'] = constant('EXTENDIFY_SITE_LICENSE');
+        }
+
+        // This probably shouldn't have been wrapped in wp_json_encode,
+        // but needs to remain until we can safely log pro users out,
+        // as changing this now would erase all user data.
         return \wp_json_encode($userData);
     }
 

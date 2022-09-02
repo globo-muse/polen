@@ -119,7 +119,7 @@ $args = array(
 	'disable_save_warn'         => false,
 
 	// Order where the menu appears in the admin area. If there is any conflict, something will not show. Warning.
-	'page_priority'             => null,
+	'page_priority'             => 90,
 
 	// For a full list of options, visit: http://codex.wordpress.org/Function_Reference/add_submenu_page#Parameters.
 	'page_parent'               => 'themes.php',
@@ -393,6 +393,7 @@ Redux::set_section(
 
 require_once Redux_Core::$dir . '../sample/sections/media-uploads/gallery.php';
 require_once Redux_Core::$dir . '../sample/sections/media-uploads/media.php';
+require_once Redux_Core::$dir . '../sample/sections/media-uploads/multi-media.php';
 require_once Redux_Core::$dir . '../sample/sections/media-uploads/slides.php';
 
 // -> START Presentation Fields.
@@ -471,6 +472,7 @@ Redux::set_section(
 );
 
 require_once Redux_Core::$dir . '../sample/sections/additional-types/date.php';
+require_once Redux_Core::$dir . '../sample/sections/additional-types/date-time-picker.php';
 require_once Redux_Core::$dir . '../sample/sections/additional-types/sorter.php';
 require_once Redux_Core::$dir . '../sample/sections/additional-types/raw.php';
 
@@ -507,6 +509,8 @@ Redux::set_section(
 require_once Redux_Core::$dir . '../sample/sections/disabling/disable-field.php';
 require_once Redux_Core::$dir . '../sample/sections/disabling/disable-section.php';
 
+require_once Redux_Core::$dir . '../sample/sections/accordion/accordion.php';
+require_once Redux_Core::$dir . '../sample/sections/js-button/js-button.php';
 require_once Redux_Core::$dir . '../sample/sections/repeater/repeater.php';
 require_once Redux_Core::$dir . '../sample/sections/search/search.php';
 require_once Redux_Core::$dir . '../sample/sections/shortcodes/shortcodes.php';
@@ -524,14 +528,10 @@ if ( class_exists( 'Redux_Pro' ) ) {
 		)
 	);
 
-	require_once Redux_Core::$dir . '../sample/sections/pro-fields/accordion.php';
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/color-scheme.php';
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/custom-fonts.php';
-	require_once Redux_Core::$dir . '../sample/sections/pro-fields/date-time-picker.php';
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/google-maps.php';
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/icon-select.php';
-	require_once Redux_Core::$dir . '../sample/sections/pro-fields/js-button.php';
-	require_once Redux_Core::$dir . '../sample/sections/pro-fields/multi-media.php';
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/social-profiles.php';
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/taxonomy.php';
 	require_once Redux_Core::$dir . '../sample/sections/pro-fields/users.php';
