@@ -140,15 +140,15 @@ class Api_Checkout extends WP_REST_Controller
             if ($method_payment == 'pix') {
                 $response_payment['pix_code'] = $payment->methods[0]->pixInfo->qrContent;
                 $response_payment['pix_qrcode'] = $payment->methods[0]->pixInfo->qrImage;
-                $hubspot_method_payment = Polen_Hubspot::PAYMENT_TYPE_PIX;
+                // $hubspot_method_payment = Polen_Hubspot::PAYMENT_TYPE_PIX;
             }
 
             update_post_meta($request['order_id'], '_accepted_term', date("Y-m-d H:i:s"));
 
-            $client_hubspot = Polen_Hubspot_Factory::create_client_with_redux();
-            $hubspot = new Polen_Hubspot($client_hubspot);
+            // $client_hubspot = Polen_Hubspot_Factory::create_client_with_redux();
+            // $hubspot = new Polen_Hubspot($client_hubspot);
             
-            $hubspot->update_ticket_payment_by_order_module($order_module, true, $hubspot_method_payment);
+            // $hubspot->update_ticket_payment_by_order_module($order_module, true, $hubspot_method_payment);
 
             return api_response($response_payment);
 

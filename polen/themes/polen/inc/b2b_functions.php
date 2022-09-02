@@ -34,7 +34,7 @@ function polen_b2b_influence_by_region($product_id): ?array
 {
     $user = Polen_User_Module::create_from_product_id($product_id);
     $metrics_talent = new Metrics();
-    $influence = $user->get_influence_by_region();
+    // $influence = $user->get_influence_by_region();
 
     if (empty($influence)) {
         return null;
@@ -51,12 +51,12 @@ function polen_b2b_age_group($product_id)
 {
     $user = Polen_User_Module::create_from_product_id($product_id);
 
-    return $user->get_age_group();
+    return '';//$user->get_age_group();
 }
 
 function polen_b2b_audience($product_id)
 {
     $user = Polen_User_Module::create_from_product_id($product_id);
 
-    return $user->get_audience();
+    return '';//$user->get_audience();
 }
