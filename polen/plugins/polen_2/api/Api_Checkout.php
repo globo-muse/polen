@@ -43,7 +43,7 @@ class Api_Checkout
             if( $nonce != '1d13b5e353' ) {
                 throw new Exception( 'Falha na verificação de segurança', 401 );
             }
-            $tuna = new Api_Gateway_Tuna();
+            // $tuna = new Api_Gateway_Tuna();
             $fields = $request->get_params();
             $required_fields = $this->required_fields();
             $errors = array();
@@ -84,16 +84,16 @@ class Api_Checkout
             }
 
             $coupon = null;
-            if (isset($fields['coupon'])) {
-                $this->check_cupom($fields['coupon']);
-                $coupon = sanitize_text_field($fields['coupon']);
+            // if (isset($fields['coupon'])) {
+            //     $this->check_cupom($fields['coupon']);
+            //     $coupon = sanitize_text_field($fields['coupon']);
 
-                $check_cupom_data = [ 'billing_email' => $fields[ 'email' ] ];
-                WC()->cart->check_customer_coupons( $check_cupom_data );
-                if( empty( WC()->cart->get_applied_coupons() ) ) {
-                    throw new Exception( 'Cupom inválido', 422 );
-                }
-            }
+            //     $check_cupom_data = [ 'billing_email' => $fields[ 'email' ] ];
+            //     WC()->cart->check_customer_coupons( $check_cupom_data );
+            //     if( empty( WC()->cart->get_applied_coupons() ) ) {
+            //         throw new Exception( 'Cupom inválido', 422 );
+            //     }
+            // }
 
             $order_woo = $this->order_payment_woocommerce($user['user_object']->data, $fields['product_id'], $coupon);
             $this->add_meta_to_order($order_woo, $data);
@@ -106,9 +106,10 @@ class Api_Checkout
                     'order_status' => 200,
                     'order_code' => $order_woo->get_order_key()
                 ];
+                WC()->cart->empty_cart();
                 $order_woo->payment_complete();
                 $order_woo->update_status('payment-approved');
-                WC()->cart->empty_cart();
+                $order_woo->save();
 
                 return api_response( $order_without_payment, 201 );
             // } else {

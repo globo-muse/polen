@@ -76,15 +76,8 @@ if (!$talent_is_social) {
                   </div>
 									<div class="col-12 col-md-12">
 										<div class="row">
-											<?php
-											if ( $polen_order->get_video_to() === Polen_Order_Module::VIDEO_TO_OTHER_ONE ) : ?>
-												<div class="col-12 col-md-6">
-													<p class="p">De</p>
-													<p class="value small"><?php echo $polen_order->get_offered_by(); ?></p>
-												</div>
-											<?php endif; ?>
-											<div class="col-12 col-md-6">
-												<p class="p">Para <?php echo (defined('ENV_DEV') && (ENV_DEV === true)) ? '(ID: ' . $order['order_id'] . ')' : ''; ?></p>
+											<div class="col-12 col-md-12">
+												<p class="p">Para #<?php echo $order['order_id']; ?></p>
 												<p class="value small"><?php echo $polen_order->get_name_to_video(); ?></p>
 											</div>
 											<!-- <div class="col-12 col-md-12">
@@ -93,7 +86,7 @@ if (!$talent_is_social) {
 											</div> -->
 										</div>
 										<?php
-										if (event_promotional_order_is_event_promotional($order_obj)) {
+										/*if (event_promotional_order_is_event_promotional($order_obj)) {
 											$item_cart = Polen_Cart_Item_Factory::polen_cart_item_from_order( $order_obj );
 										?>
 											<div class="row mt-2">
@@ -103,24 +96,24 @@ if (!$talent_is_social) {
 												</div>
 											</div>
 										<?php
-										} else {
+										} else {*/
 										?>
 											<div class="row mt-2">
-												<div class="col-6 col-md-6">
+												<div class="col-12 col-md-12">
 													<p class="p">Ocasião</p>
 													<p class="value small"><?php echo $order['category']; ?></p>
 												</div>
-												<div class="col-6 col-md-6">
+												<!-- <div class="col-6 col-md-6">
 													<p class="p">Valor</p>
-													<p class="value small"><?php echo wc_price($discounted_value_order); ?></p>
-												</div>
+													<p class="value small"><?php //echo wc_price($discounted_value_order); ?></p>
+												</div> -->
 											</div>
 										<?php
-										}
+										//}
 										?>
 									</div>
 									<div class="col-12 col-md-12">
-										<div class="row">
+										<!-- <div class="row">
 											<div class="col-md-12">
 												<div class="row mt-2">
 													<div class="col-6 col-md-6">
@@ -131,23 +124,23 @@ if (!$talent_is_social) {
 														<p class="p">Válido por</p>
 														<p class="value small">
 															<?php
-															echo Polen_Order::get_deadline_formatted_for_order_list( $order_obj ) . '<br>';
+															// echo Polen_Order::get_deadline_formatted_for_order_list( $order_obj ) . '<br>';
 															// echo $polen_talent->video_expiration_time($logged_user, $order['order_id'], $is_social);
 															?>
 														</p>
 													</div>
 												</div>
 											</div>
-										</div>
-										<div class="row mt-2">
+										</div> -->
+										<!-- <div class="row mt-2">
 <?php
-	echo $polen_order->get_html_origin_to_list_orders_talent();
+	// echo $polen_order->get_html_origin_to_list_orders_talent();
 ?>
 												<div class="col-6 col-md-6">
 													<p class="p"></p>
 													<p class="value small"></p>
 												</div>
-											</div>
+											</div> -->
 										<div class="row">
 											<div class="col-md-12">
 												<div class="row mt-2">
