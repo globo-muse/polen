@@ -98,7 +98,7 @@ class Api_Checkout
             $order_woo = $this->order_payment_woocommerce($user['user_object']->data, $fields['product_id'], $coupon);
             $this->add_meta_to_order($order_woo, $data);
 
-            if (WC()->cart->get_cart_contents_total() == 0) {
+            // if (WC()->cart->get_cart_contents_total() == 0) {
                 $order_without_payment = [
                     'message' => 'Order criada sem pagamento',
                     'order_id' => $order_woo->get_id(),
@@ -111,12 +111,20 @@ class Api_Checkout
                 WC()->cart->empty_cart();
 
                 return api_response( $order_without_payment, 201 );
-            } else {
-                $order_woo->set_payment_method_title($this->method_payment_name($data['method_payment']) ?? 'NONE');
-                $payment = $tuna->process_payment($order_woo->get_id(), $user, $fields);
-            }
+            // } else {
+            //     // $order_woo->set_payment_method_title($this->method_payment_name($data['method_payment']) ?? 'NONE');
+            // }
+            // // $payment = $tuna->process_payment($order_woo->get_id(), $user, $fields);
+            // $response_payment = [
+            //     'message' => 'ok',
+            //     'order_id' => $order_woo->get_id(),
+            //     // 'new_account' => $current_user['new_account'],
+            //     'method_payment' => 'none',
+            //     'order_status' => '200',//$response_message['status_code'],
+            //     'order_code' => $order_woo->get_order_key()
+            // ];
 
-            return api_response( $payment, 201 );
+            // return api_response( $response_payment, 201 );
 
         } catch (\Exception $e) {
             return api_response( $e->getMessage(), $e->getCode() );
