@@ -289,13 +289,13 @@ class Api_Checkout
 
         $order = wc_get_order($order_id);
         $status_woocommerce = $order->get_status();
-        $status_tuna = $tuna->get_tuna_status($order_id);
+        // $status_tuna = $tuna->get_tuna_status($order_id);
 
-        if ($status_woocommerce != $status_tuna) {
-            $order->update_status($status_tuna);
-        }
+        // if ($status_woocommerce != $status_tuna) {
+        //     $order->update_status($status_tuna);
+        // }
 
-        return $status_tuna;
+        return $status_woocommerce;
     }
 
     /**
