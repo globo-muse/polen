@@ -5,7 +5,7 @@ Tags: membership, ecommerce, user registration, user profile, stripe, paypal, lo
 Requires at least: 5.3
 Requires PHP: 7.1.8
 Tested up to: 6.0
-Stable tag: 4.1.2
+Stable tag: 4.1.3
 License: GPLv2 or later
 
 Paid membership plugin: accept payments, sell subscriptions, restrict content, user registration, frontend login form, user profile & member directory.
@@ -68,6 +68,8 @@ Never start from scratch again. ProfilePress comes with several beautiful, custo
 = Access & Content Restriction =
 
 ProfilePress gives you fine-grained control over what content your users can see based on your [protection rules](https://profilepress.com/article/adding-content-protection-rules/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion) and [shortcodes](https://profilepress.com/article/wordpress-content-restriction-shortcodes/?utm_source=wprepo&utm_medium=link&utm_campaign=liteversion). You can restrict content including pages, child pages, posts, custom post types, categories, tags and custom taxonomies based on their membership plans, user roles, usernames, and logged-in status.
+
+You can also control the visibility of [navigation menus](https://profilepress.com/article/wordpress-navigation-menu-restriction/) and widgets, modules & contents in [Elementor](https://profilepress.com/article/restrict-elementor-sections-widgets/) & [Beaver Builder](https://profilepress.com/article/restrict-content-beaver-builder-visibility/).
 
 = Detailed eCommerce Reports =
 
@@ -144,27 +146,23 @@ No. You can create and manage your forms, user profiles, and member directories 
 
 == Changelog ==
 
+= 4.1.3 =
+* Added [navigation menu protection](https://profilepress.com/article/wordpress-navigation-menu-restriction/).
+* Added [Elementor content restriction](https://profilepress.com/article/restrict-elementor-sections-widgets/).
+* Added [Beaver Builder content restriction](https://profilepress.com/article/restrict-content-beaver-builder-visibility/).
+* Added support for discounting subscription first payment.
+* Added support for [purchase note](https://profilepress.com/article/plan-purchase-note/?ref=changelog).
+* Added support for [checking active subscription via PHP](https://profilepress.com/article/php-check-user-has-active-subscription/).
+* Fixed bug where new order creation with missing payment method failed.
+* Fixed couple of date/time related query bugs.
+* Fixed bug where cancelled one-time subscription was still active.
+* Fixed bug where non-completed order email receipt can be sent.
+
 = 4.1.2 =
 * Added "ppress_disable_google_fonts" filter to disable google fonts globally.
 * Added Oxygen builder compatibility to Admin Bar Control.
 * Fixed bug where new order creation with missing payment method failed.
 * Fixed bug where content protection failed to identify some posts/pages.
 * Fixed date related output and queries.
-
-= 4.1.1 =
-* Fixed bug with Stripe webhook 404ing.
-
-= 4.1.0 =
-* Pro: [PayPal Checkout addon](https://profilepress.com/addons/paypal/?ref=changelog) is live.
-* Pro: Added &mdash as default select options for [profile custom fields](https://profilepress.com/addons/custom-fields/?ref=changelog).
-* Added order refund support from single order admin page.
-* Added payment method icons to checkout page.
-* Added filter to remove billing custom fields in default WP user profile
-* Added filter to disable D&D custom html sanitization
-* Fixed bug with free trial subscriptions getting expired early.
-* Fixed: Duplicate entry '0' for key 'user_id' when recalculating stat.
-* Fixed jQuery deprecated syntax errors.
-* Fixed fatal error caused when loading billing address fields in builder.
-* Fixed contextual state display bugs.
 
 See the [changelog file](https://plugins.svn.wordpress.org/wp-user-avatar/trunk/changelog.txt) for full change log information.

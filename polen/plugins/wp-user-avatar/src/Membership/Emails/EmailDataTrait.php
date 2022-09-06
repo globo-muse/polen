@@ -21,6 +21,7 @@ trait EmailDataTrait
             '{{order_total}}'          => esc_html__("Total order amount that was paid.", 'wp-user-avatar'),
             '{{order_date}}'           => esc_html__("Order date.", 'wp-user-avatar'),
             '{{order_payment_method}}' => esc_html__("Order payment method.", 'wp-user-avatar'),
+            '{{purchase_note}}'        => esc_html__("The purchase note of ordered plan.", 'wp-user-avatar'),
             '{{site_title}}'           => esc_html__('Name or title of this website.', 'wp-user-avatar'),
             '{{business_name}}'        => sprintf(
                 esc_html__('Your business name as defined in %sSettings%s.', 'wp-user-avatar'),
@@ -30,7 +31,7 @@ trait EmailDataTrait
                 esc_html__('Your business address as defined in %sSettings%s.', 'wp-user-avatar'),
                 '<a target="_blank" href="' . PPRESS_SETTINGS_SETTING_PAGE . '#business_info">', '</a>'
             ),
-            '{{business_tax_id}}'     => sprintf(
+            '{{business_tax_id}}'      => sprintf(
                 esc_html__('Your business Tax ID as defined in %sSettings%s.', 'wp-user-avatar'),
                 '<a target="_blank" href="' . PPRESS_SETTINGS_SETTING_PAGE . '#business_info">', '</a>'
             ),
@@ -115,6 +116,7 @@ trait EmailDataTrait
             </tr>
             </tbody>
         </table>
+        <p>{{purchase_note}}</p>
         <div style="margin:30px 0 0;padding: 10px 0 50px 0; text-align: center;">
             <a style="background: #555555; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 3px; letter-spacing: 0.3px;" href="{{order_url}}">View order details</a>
         </div>

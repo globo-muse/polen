@@ -17,6 +17,12 @@ $plan_details = [
         'description' => esc_html__('A description of this plan. This will be displayed on the checkout page.', 'wp-user-avatar')
     ],
     [
+        'id'          => 'order_note',
+        'type'        => 'textarea',
+        'label'       => esc_html__('Purchase Note', 'wp-user-avatar'),
+        'description' => esc_html__('Enter an optional note or special instructions to send the customer after purchase. These will be added to the order receipt.', 'wp-user-avatar')
+    ],
+    [
         'id'          => 'price',
         'type'        => 'price',
         'label'       => esc_html__('Price', 'wp-user-avatar') . sprintf(' (%s)', ppress_get_currency_symbol()),

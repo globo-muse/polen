@@ -4,6 +4,7 @@ namespace ProfilePress\Core\Admin\SettingsPages\Membership\CouponsPage;
 
 use ProfilePress\Core\Membership\Models\Coupon\CouponEntity;
 use ProfilePress\Core\Membership\Models\Coupon\CouponFactory;
+use ProfilePress\Core\Membership\Models\Coupon\CouponType;
 use ProfilePress\Core\Membership\Models\Coupon\CouponUnit;
 use ProfilePress\Core\Membership\Repositories\CouponRepository;
 
@@ -77,6 +78,10 @@ class CouponWPListTable extends \WP_List_Table
         $actions['delete'] = sprintf('<a class="pp-confirm-delete" href="%s">%s</a>', $delete_link, esc_html__('Delete', 'wp-user-avatar'));
 
         $a = '<a href="' . $edit_link . '">' . sanitize_text_field($item->code) . '</a>';
+
+        $coupon_type = $item->is_recurring() ? esc_html__('Recurring', 'wp-user-avatar') : esc_html__('One-time', 'wp-user-avatar');
+
+        $a .= '&nbsp;<span class="post-state"> — ' . $coupon_type . '</span>';
 
         return '<strong>' . $a . '</strong>' . $this->row_actions($actions);
     }

@@ -14,6 +14,38 @@ use ProfilePressVendor\Carbon\CarbonImmutable;
 
 class PaymentHelpers
 {
+    public static function add_coupon_to_bucket($stripe_coupon_id)
+    {
+        $data                    = \get_option('ppress_stripe_coupon_bucket', []);
+        $data[$stripe_coupon_id] = time() + (24 * HOUR_IN_SECONDS);
+        \update_option('ppress_stripe_coupon_bucket', $data);
+    }
+
+    public static function empty_coupon_bucket()
+    {
+        $data = \get_option('ppress_stripe_coupon_bucket', []);
+
+        if ( ! empty($data)) {
+
+            foreach ($data as $coupon_id => $time) {
+                if (time() >= $time) {
+                    self::delete_coupon($coupon_id);
+                    unset($data[$coupon_id]);
+                }
+            }
+
+            \update_option('ppress_stripe_coupon_bucket', $data);
+        }
+    }
+
+    public static function delete_coupon($stripe_coupon_id)
+    {
+        try {
+            APIClass::stripeClient()->coupons->delete($stripe_coupon_id);
+        } catch (\Exception $e) {
+        }
+    }
+
     /**
      * @return string
      */
@@ -114,7 +146,7 @@ class PaymentHelpers
             $create_product_args = [
                 'id'          => $stripe_product_id,
                 'name'        => $plan->name,
-                'description' => sanitize_textarea_field($plan->description),
+                'description' => strip_tags(sanitize_textarea_field($plan->description)),
                 'metadata'    => [
                     'plan_id' => $plan->id,
                     'caller'  => __CLASS__ . '|' . __METHOD__ . '|' . __LINE__ . '|' . PPRESS_VERSION_NUMBER,

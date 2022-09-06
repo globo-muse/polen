@@ -80,7 +80,7 @@ foreach (PlanRepository::init()->retrieveAll() as $plan) {
         <tr id="pp-cc-access-noaccess-action-row">
             <th>
                 <label for="pp-cc-access-noaccess-action">
-                    <?= esc_html__('What happens when users without access tries to view content?', 'wp-user-avatar') ?>
+                    <?= esc_html__('What happens when users without access try to view the content?', 'wp-user-avatar') ?>
                 </label>
             </th>
             <td>
@@ -99,7 +99,7 @@ foreach (PlanRepository::init()->retrieveAll() as $plan) {
             <td>
                 <select id="pp-cc-access-noaccess-action-message" name="ppress_cc_data[access_condition][noaccess_action_message_type]">
                     <option value="global" <?php selected($noaccess_action_message_type, 'global') ?>><?= esc_html__('Global Restrict Access Message', 'wp-user-avatar') ?></option>
-                    <option value="custom" <?php selected($noaccess_action_message_type, 'custom') ?>><?= esc_html__('Custom message', 'wp-user-avatar') ?></option>
+                    <option value="custom" <?php selected($noaccess_action_message_type, 'custom') ?>><?= esc_html__('Custom Message', 'wp-user-avatar') ?></option>
                     <option value="post_excerpt" <?php selected($noaccess_action_message_type, 'post_excerpt') ?>><?= esc_html__('Post Excerpt', 'wp-user-avatar') ?></option>
                     <option value="post_excerpt_global" <?php selected($noaccess_action_message_type, 'post_excerpt_global') ?>><?= esc_html__('Post Excerpt + Global Restrict Access Message', 'wp-user-avatar') ?></option>
                     <option value="post_excerpt_custom" <?php selected($noaccess_action_message_type, 'post_excerpt_custom') ?>><?= esc_html__('Post Excerpt + Custom Message', 'wp-user-avatar') ?></option>

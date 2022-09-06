@@ -123,7 +123,8 @@ class OrderService
 
         if ($couponObj->exists()) {
 
-            $discount_amount           = $couponObj->amount;
+            $discount_amount = $couponObj->amount;
+
             $recurring_discount_amount = $discount_amount;
 
             if ($couponObj->unit == CouponUnit::PERCENTAGE) {
@@ -141,8 +142,7 @@ class OrderService
                                                        ->val();
             }
 
-            if ($planObj->is_recurring()) {
-
+            if ($planObj->is_recurring() && $couponObj->is_recurring()) {
                 $recurring_amount = Calculator::init($recurring_amount)->minus($recurring_discount_amount)->val();
             }
         }

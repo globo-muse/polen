@@ -101,6 +101,7 @@ class SettingsPage extends AbstractSettingsPage
         $plan                      = ppress_get_plan(absint(ppressGET_var('id')));
         $plan->name                = sanitize_text_field($_POST['name']);
         $plan->description         = stripslashes(wp_kses_post($_POST['description']));
+        $plan->order_note          = stripslashes(wp_kses_post($_POST['order_note']));
         $plan->price               = ppress_sanitize_amount($_POST['price']);
         $plan->billing_frequency   = sanitize_text_field($_POST['billing_frequency']);
         $plan->subscription_length = sanitize_text_field($_POST['subscription_length']);

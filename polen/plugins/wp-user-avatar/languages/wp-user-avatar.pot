@@ -2,9 +2,9 @@
 # This file is distributed under the same license as the ProfilePress package.
 msgid ""
 msgstr ""
-"Project-Id-Version: ProfilePress 4.1.2\n"
+"Project-Id-Version: ProfilePress 4.1.3\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-user-avatar\n"
-"POT-Creation-Date: 2022-08-27 15:11:00+00:00\n"
+"POT-Creation-Date: 2022-09-05 15:51:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -722,8 +722,8 @@ msgstr ""
 #: src/Admin/SettingsPages/FormList.php:241
 #: src/Admin/SettingsPages/FormList.php:317
 #: src/Admin/SettingsPages/GeneralSettings.php:139
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:77
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:196
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:78
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:201
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:263
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:112
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:259
@@ -1510,12 +1510,12 @@ msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:133
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:149
-#: src/Membership/Emails/EmailDataTrait.php:37
+#: src/Membership/Emails/EmailDataTrait.php:38
 msgid "URL to reset password."
 msgstr ""
 
 #: src/Admin/SettingsPages/EmailSettings/EmailSettingsPage.php:134
-#: src/Membership/Emails/EmailDataTrait.php:38
+#: src/Membership/Emails/EmailDataTrait.php:39
 msgid "URL to login."
 msgstr ""
 
@@ -1890,7 +1890,7 @@ msgid "Date"
 msgstr ""
 
 #: src/Admin/SettingsPages/FormList.php:240
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:66
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:67
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:86
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:108
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:65
@@ -2240,8 +2240,8 @@ msgid "Redirect Default Edit Profile"
 msgstr ""
 
 #: src/Admin/SettingsPages/GeneralSettings.php:298
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:74
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:197
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:75
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:202
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:74
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:173
 #: src/ContentProtection/WPListTable.php:93
@@ -2423,6 +2423,7 @@ msgid "Check to allow homepage to be accessible by everyone."
 msgstr ""
 
 #: src/Admin/SettingsPages/GeneralSettings.php:461
+#: src/ContentProtection/ElementorRestriction.php:251
 #: src/ContentProtection/Frontend/PostContent.php:66
 #: src/RegisterActivation/Base.php:131
 msgid "You are unauthorized to view this page."
@@ -2712,28 +2713,28 @@ msgstr ""
 msgid "Checkout Fields"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:23
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:24
 msgid "No coupon code found."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:30
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:31
 #: src/Functions/custom-settings-api.php:873
 msgid "Code"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:31
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:32
 #: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:47
 #: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:48
 #: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:35
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:111
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:117
 msgid "Discount"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:32
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:33
 msgid "Redemptions"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:33
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:34
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:56
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:32
 #: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:52
@@ -2745,83 +2746,98 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:34
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:68
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:35
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:78
 #: src/ShortcodeParser/MyAccount/view-subscription.tmpl.php:75
 msgid "Start Date"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:35
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:78
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:36
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:88
 msgid "End Date"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:70
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:198
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:71
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:203
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:70
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:174
 #: src/ContentProtection/WPListTable.php:89
 msgid "Deactivate"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:118
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:87
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:82
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:42
+msgid "Recurring"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:82
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:43
+msgid "One-time"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:123
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:97
 msgid "Unlimited"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:129
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:134
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:109
 #: src/Membership/Models/Customer/CustomerStatus.php:13
 #: src/Membership/Models/Subscription/SubscriptionStatus.php:17
 msgid "Active"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:131
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:136
 #: src/Admin/SettingsPages/Membership/PlansPage/PlanWPListTable.php:111
 #: src/Membership/Models/Customer/CustomerStatus.php:14
 msgid "Inactive"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:135
+#: src/Admin/SettingsPages/Membership/CouponsPage/CouponWPListTable.php:140
 #: src/Membership/Models/Subscription/SubscriptionStatus.php:19
 msgid "Expired"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:49
 #: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:40
+msgid "Coupon Type"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:50
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:50
 msgid "Coupon Application"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:54
+#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:55
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:97
 msgid "%s cannot be empty."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:81
-#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:105
+#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:83
+#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:107
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:56
 msgid "Coupons"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:84
+#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:86
 msgid "Add a Coupon"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:88
+#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:90
 msgid "Edit Coupon"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:129
+#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:131
 #: src/Admin/SettingsPages/Membership/CustomersPage/SettingsPage.php:259
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:476
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:150
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:151
 #: src/Admin/SettingsPages/Membership/SubscriptionsPage/SettingsPage.php:165
 #: src/ContentProtection/SettingsPage.php:160
 #: src/Themes/DragDrop/AbstractTheme.php:114
 msgid "Changes saved."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:150
+#: src/Admin/SettingsPages/Membership/CouponsPage/SettingsPage.php:152
 msgid "Add New Coupon"
 msgstr ""
 
@@ -2864,7 +2880,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:317
 #: src/Admin/SettingsPages/Membership/DashboardPage/SettingsPage.php:264
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:346
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:349
 #: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:314
 msgctxt "date filter"
 msgid "From"
@@ -2872,7 +2888,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:320
 #: src/Admin/SettingsPages/Membership/DashboardPage/SettingsPage.php:267
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:349
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:352
 #: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:317
 msgctxt "date filter"
 msgid "To"
@@ -2880,14 +2896,14 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:325
 #: src/Admin/SettingsPages/Membership/DashboardPage/SettingsPage.php:283
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:375
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:378
 #: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:331
 msgid "Filter"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/CustomersPage/CustomerWPListTable.php:329
 #: src/Admin/SettingsPages/Membership/DashboardPage/SettingsPage.php:287
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:379
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:382
 #: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:335
 msgid "Clear"
 msgstr ""
@@ -3102,13 +3118,14 @@ msgstr ""
 #: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:51
 #: src/Admin/SettingsPages/Membership/views/customers/subcriptions-metabox.php:19
 #: src/Admin/SettingsPages/Membership/views/orders/add-edit-order.php:114
+#: src/ContentProtection/NavMenuProtection.php:90
 #: src/ShortcodeParser/MyAccount/view-subscription.tmpl.php:63
 msgid "Plan"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:55
 #: src/Admin/SettingsPages/Membership/views/subscriptions/sub-payments-metabox.php:19
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:131
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:137
 #: src/ShortcodeParser/MyAccount/view-subscription.tmpl.php:117
 #: src/templates/checkout/form-checkout-sidebar.php:107
 msgid "Total"
@@ -3116,7 +3133,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:57
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:531
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:70
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:76
 msgid "Payment Method"
 msgstr ""
 
@@ -3138,20 +3155,20 @@ msgstr ""
 msgid "Resend Order Receipt"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:335
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:338
 msgid "All Modes"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:356
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:359
 msgid "All Payment Methods"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:367
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:370
 #: src/Admin/SettingsPages/Membership/SubscriptionsPage/SubscriptionWPListTable.php:323
 msgid "All Customers"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:388
+#: src/Admin/SettingsPages/Membership/OrdersPage/OrderWPListTable.php:391
 msgid "Search Orders"
 msgstr ""
 
@@ -3194,7 +3211,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/OrdersPage/SettingsPage.php:526
 #: src/ShortcodeParser/MyAccount/orders.tmpl.php:57
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:58
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:64
 msgid "Order Status"
 msgstr ""
 
@@ -3358,8 +3375,8 @@ msgid "Checkout page not found"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:42
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:127
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:56
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:128
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:66
 msgid "Membership Plans"
 msgstr ""
 
@@ -3377,81 +3394,81 @@ msgid "Edit Plan"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:90
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:22
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:28
 #: src/Admin/SettingsPages/Membership/views/orders/order-item-metabox.php:26
 msgid "Price"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:91
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:31
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:37
 msgid "Billing Frequency"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:92
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:37
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:43
 msgid "Subscription Length"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:172
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:173
 msgid "Add New Plan"
-msgstr ""
-
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:201
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:215
-msgid "month"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:202
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:216
-msgid "week"
+msgid "month"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:203
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:217
-msgid "day"
+msgid "week"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:204
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:218
-msgid "quarter"
+msgid "day"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:205
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:219
-msgid "every 6 months"
+msgid "quarter"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:206
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:220
-msgid "year"
+msgid "every 6 months"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:207
 #: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:221
+msgid "year"
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:208
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:222
 msgid "one-time"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:237
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:238
 msgid "months"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:238
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:239
 msgid "for"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:239
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:240
 msgid " and a %s signup fee"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:240
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:241
 msgid "Renews indefinitely"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:241
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:242
 msgid "Never expires"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:242
+#: src/Admin/SettingsPages/Membership/PlansPage/SettingsPage.php:243
 msgid "Includes a %s free trial"
 msgstr ""
 
@@ -3598,7 +3615,7 @@ msgstr ""
 
 #: src/Admin/SettingsPages/Membership/TaxSettings/SettingsPage.php:113
 #: src/Admin/SettingsPages/Membership/views/orders/eu-vat-sidebar.php:46
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:136
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:142
 #: src/templates/checkout/form-billing-fields.php:47
 msgid "VAT Number"
 msgstr ""
@@ -3664,52 +3681,56 @@ msgstr ""
 msgid "A description of this coupon."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:42
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:45
+msgid "Selecting \"One-time\" applies the coupon discount only to the first payment while \"Recurring\" applies the discount to all payments."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:52
 msgid "To new purchases only"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:43
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:53
 msgid "To existing purchase (upgrades)"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:44
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:54
 msgid "To both new and existing purchases"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:47
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:57
 msgid "Select where members can apply this coupon."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:62
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:72
 msgid "Select membership plans this coupon can only be applied to. Leave blank for all plans."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:70
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:80
 msgid "Enter the date that this coupon will be valid from. Leave blank for no start date. (UTC %s)"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:80
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:90
 msgid "Enter the date that this coupon will expire on. Leave blank for no end date. (UTC %s)"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:88
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:98
 msgid "Maximum Redemptions "
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:89
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:99
 msgid "Limit the total amount of redemptions for this coupon. Leave blank for unlimited."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:104
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:115
 msgid "Coupon Details"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:115
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:126
 msgid "Redemption Settings"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:126
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:97
+#: src/Admin/SettingsPages/Membership/views/add-edit-coupon.php:137
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:103
 #: src/Admin/SettingsPages/Membership/views/customers/view-customer.php:48
 #: src/Admin/SettingsPages/Membership/views/orders/add-edit-order.php:38
 #: src/Admin/SettingsPages/Membership/views/subscriptions/add-edit-subscription.php:42
@@ -3725,60 +3746,69 @@ msgstr ""
 msgid "A description of this plan. This will be displayed on the checkout page."
 msgstr ""
 
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:22
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:59
+msgid "Purchase Note"
+msgstr ""
+
 #: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:23
+msgid "Enter an optional note or special instructions to send the customer after purchase. These will be added to the order receipt."
+msgstr ""
+
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:29
 msgid "The price of this membership plan. Enter 0 to make this plan free."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:39
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:45
 msgid "Renew indefinitely until member cancels"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:40
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:46
 msgid "Fixed number of payments"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:46
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:52
 msgid "Total Payments"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:47
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:53
 msgid "The total number of recurring billing cycles including the trial period (if applicable).  Keep in mind that once a member has completed the last payment, the subscription will not expire — essentially giving them lifetime access."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:52
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:58
 #: src/templates/checkout/form-checkout-sidebar.php:65
 msgid "Signup Fee"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:53
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:59
 msgid "Optional signup fee to charge subscribers for the first billing cycle."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:59
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:65
 msgid "Free Trial"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:60
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:66
 msgid "Allow members free access for a specified duration of time before charging them."
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:75
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:81
 msgid "Plan Details"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:86
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:92
 msgid "Subscription Settings"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:107
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:113
 msgid "Summary"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:121
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:127
 msgid "Order Links"
 msgstr ""
 
-#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:127
+#: src/Admin/SettingsPages/Membership/views/add-edit-plan.php:133
 msgid "Checkout link:"
 msgstr ""
 
@@ -3842,7 +3872,7 @@ msgstr ""
 #: src/Admin/SettingsPages/Membership/views/orders/order-data-metabox.php:110
 #: src/ShortcodeParser/MyAccount/MyAccountTag.php:75
 #: src/ShortcodeParser/MyAccount/billing-details.tmpl.php:17
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:74
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:80
 #: src/templates/checkout/form-billing-fields.php:36
 msgid "Billing Address"
 msgstr ""
@@ -3957,7 +3987,7 @@ msgid "Validated"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/views/orders/eu-vat-sidebar.php:52
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:125
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:131
 msgid "Reverse Charged"
 msgstr ""
 
@@ -4032,7 +4062,7 @@ msgid "Item"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/views/orders/order-item-metabox.php:43
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:106
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:112
 #: src/templates/checkout/form-checkout-sidebar.php:71
 msgid "Subtotal"
 msgstr ""
@@ -4157,7 +4187,7 @@ msgid "Renewal Date:"
 msgstr ""
 
 #: src/Admin/SettingsPages/Membership/views/subscriptions/data-metabox.php:133
-#: src/Membership/Models/Subscription/SubscriptionEntity.php:343
+#: src/Membership/Models/Subscription/SubscriptionEntity.php:350
 msgid "Lifetime"
 msgstr ""
 
@@ -4891,6 +4921,68 @@ msgstr ""
 msgid "Selected %s Archive Pages"
 msgstr ""
 
+#: src/ContentProtection/ElementorRestriction.php:38
+msgid "ProfilePress Content Restriction"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:52
+msgid "Target Audience"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:56
+#: src/ContentProtection/WPListTable.php:196
+#: src/ContentProtection/views/view.access-condition.php:33
+msgid "Everyone"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:57
+msgid "Logged-in Users"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:58
+msgid "Logged-out Users"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:68
+msgid "Restrict to Membership Plans"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:92
+msgid "Restrict to User Roles"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:119
+msgid "Alternate Content"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:120
+msgid "The message to show when the main content is restricted."
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:124
+msgid "Show Nothing"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:125
+#: src/ContentProtection/views/view.access-condition.php:101
+msgid "Global Restrict Access Message"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:126
+#: src/ContentProtection/ElementorRestriction.php:140
+#: src/ContentProtection/views/view.access-condition.php:102
+msgid "Custom Message"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:141
+msgid "This message will be shown as an alternate of your content"
+msgstr ""
+
+#: src/ContentProtection/ElementorRestriction.php:142
+#: src/ContentProtection/ElementorRestriction.php:244
+msgid "This content is restricted!"
+msgstr ""
+
 #: src/ContentProtection/SettingsPage.php:42
 #: src/ContentProtection/SettingsPage.php:60
 msgid "Content Protection"
@@ -4913,6 +5005,20 @@ msgid "Title cannot be empty."
 msgstr ""
 
 #: src/ContentProtection/SettingsPage.php:181
+#: src/ContentProtection/views/include.view.php:51
+msgid "Restrict Content Shortcode"
+msgstr ""
+
+#: src/ContentProtection/SettingsPage.php:190
+msgid "WordPress Menu Protection"
+msgstr ""
+
+#: src/ContentProtection/SettingsPage.php:202
+#: src/ContentProtection/views/include.view.php:72
+msgid "Elementor Restriction"
+msgstr ""
+
+#: src/ContentProtection/SettingsPage.php:222
 msgid "Add a Protection Rule"
 msgstr ""
 
@@ -4922,11 +5028,6 @@ msgstr ""
 
 #: src/ContentProtection/WPListTable.php:29
 msgid "Protected Contents"
-msgstr ""
-
-#: src/ContentProtection/WPListTable.php:196
-#: src/ContentProtection/views/view.access-condition.php:33
-msgid "Everyone"
 msgstr ""
 
 #: src/ContentProtection/WPListTable.php:199
@@ -4941,6 +5042,14 @@ msgstr ""
 
 #: src/ContentProtection/WPListTable.php:236
 msgid "%s plan"
+msgstr ""
+
+#: src/ContentProtection/views/include.elementor-protection.php:5
+msgid "Want to control the visibility of Elementor sections, containers and widgets based on user roles, logged-in status and membership plans? %sLearn how to%s"
+msgstr ""
+
+#: src/ContentProtection/views/include.menu-protection.php:5
+msgid "Want to control the visibility of WordPress navigation menus based on user roles, logged-in status and membership plans? %sLearn how to%s"
 msgstr ""
 
 #: src/ContentProtection/views/include.shortcode-doc-sidebar.php:5
@@ -4963,11 +5072,11 @@ msgstr ""
 msgid "Access Condition"
 msgstr ""
 
-#: src/ContentProtection/views/include.view.php:50
-msgid "Restrict Content Shortcode"
+#: src/ContentProtection/views/include.view.php:61
+msgid "WordPress Menu Restriction"
 msgstr ""
 
-#: src/ContentProtection/views/include.view.php:75
+#: src/ContentProtection/views/include.view.php:98
 msgid "Add title"
 msgstr ""
 
@@ -4988,7 +5097,7 @@ msgid "Select specific users that can access content"
 msgstr ""
 
 #: src/ContentProtection/views/view.access-condition.php:83
-msgid "What happens when users without access tries to view content?"
+msgid "What happens when users without access try to view the content?"
 msgstr ""
 
 #: src/ContentProtection/views/view.access-condition.php:88
@@ -5001,14 +5110,6 @@ msgstr ""
 
 #: src/ContentProtection/views/view.access-condition.php:96
 msgid "Message to show to unauthorized users"
-msgstr ""
-
-#: src/ContentProtection/views/view.access-condition.php:101
-msgid "Global Restrict Access Message"
-msgstr ""
-
-#: src/ContentProtection/views/view.access-condition.php:102
-msgid "Custom message"
 msgstr ""
 
 #: src/ContentProtection/views/view.access-condition.php:103
@@ -5100,655 +5201,655 @@ msgstr ""
 msgid "Error: The file you uploaded is not accepted on our website."
 msgstr ""
 
-#: src/Functions/MSFunctions.php:80
+#: src/Functions/MSFunctions.php:81
 msgid "United States (US) dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:81
+#: src/Functions/MSFunctions.php:82
 msgid "Euro"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:82
+#: src/Functions/MSFunctions.php:83
 msgid "Pound sterling"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:83
+#: src/Functions/MSFunctions.php:84
 msgid "United Arab Emirates dirham"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:84
+#: src/Functions/MSFunctions.php:85
 msgid "Afghan afghani"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:85
+#: src/Functions/MSFunctions.php:86
 msgid "Albanian lek"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:86
+#: src/Functions/MSFunctions.php:87
 msgid "Armenian dram"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:87
+#: src/Functions/MSFunctions.php:88
 msgid "Netherlands Antillean guilder"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:88
+#: src/Functions/MSFunctions.php:89
 msgid "Angolan kwanza"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:89
+#: src/Functions/MSFunctions.php:90
 msgid "Argentine peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:90
+#: src/Functions/MSFunctions.php:91
 msgid "Australian dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:91
+#: src/Functions/MSFunctions.php:92
 msgid "Aruban florin"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:92
+#: src/Functions/MSFunctions.php:93
 msgid "Azerbaijani manat"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:93
+#: src/Functions/MSFunctions.php:94
 msgid "Bosnia and Herzegovina convertible mark"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:94
+#: src/Functions/MSFunctions.php:95
 msgid "Barbadian dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:95
+#: src/Functions/MSFunctions.php:96
 msgid "Bangladeshi taka"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:96
+#: src/Functions/MSFunctions.php:97
 msgid "Bulgarian lev"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:97
+#: src/Functions/MSFunctions.php:98
 msgid "Bahraini dinar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:98
+#: src/Functions/MSFunctions.php:99
 msgid "Burundian franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:99
+#: src/Functions/MSFunctions.php:100
 msgid "Bermudian dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:100
+#: src/Functions/MSFunctions.php:101
 msgid "Brunei dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:101
+#: src/Functions/MSFunctions.php:102
 msgid "Bolivian boliviano"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:102
+#: src/Functions/MSFunctions.php:103
 msgid "Brazilian real"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:103
+#: src/Functions/MSFunctions.php:104
 msgid "Bahamian dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:104
+#: src/Functions/MSFunctions.php:105
 msgid "Bitcoin"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:105
+#: src/Functions/MSFunctions.php:106
 msgid "Bhutanese ngultrum"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:106
+#: src/Functions/MSFunctions.php:107
 msgid "Botswana pula"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:107
+#: src/Functions/MSFunctions.php:108
 msgid "Belarusian ruble (old)"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:108
+#: src/Functions/MSFunctions.php:109
 msgid "Belarusian ruble"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:109
+#: src/Functions/MSFunctions.php:110
 msgid "Belize dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:110
+#: src/Functions/MSFunctions.php:111
 msgid "Canadian dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:111
+#: src/Functions/MSFunctions.php:112
 msgid "Congolese franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:112
+#: src/Functions/MSFunctions.php:113
 msgid "Swiss franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:113
+#: src/Functions/MSFunctions.php:114
 msgid "Chilean peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:114
+#: src/Functions/MSFunctions.php:115
 msgid "Chinese yuan"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:115
+#: src/Functions/MSFunctions.php:116
 msgid "Colombian peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:116
+#: src/Functions/MSFunctions.php:117
 msgid "Costa Rican col&oacute;n"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:117
+#: src/Functions/MSFunctions.php:118
 msgid "Cuban convertible peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:118
+#: src/Functions/MSFunctions.php:119
 msgid "Cuban peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:119
+#: src/Functions/MSFunctions.php:120
 msgid "Cape Verdean escudo"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:120
+#: src/Functions/MSFunctions.php:121
 msgid "Czech koruna"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:121
+#: src/Functions/MSFunctions.php:122
 msgid "Djiboutian franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:122
+#: src/Functions/MSFunctions.php:123
 msgid "Danish krone"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:123
+#: src/Functions/MSFunctions.php:124
 msgid "Dominican peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:124
+#: src/Functions/MSFunctions.php:125
 msgid "Algerian dinar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:125
+#: src/Functions/MSFunctions.php:126
 msgid "Egyptian pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:126
+#: src/Functions/MSFunctions.php:127
 msgid "Eritrean nakfa"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:127
+#: src/Functions/MSFunctions.php:128
 msgid "Ethiopian birr"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:128
+#: src/Functions/MSFunctions.php:129
 msgid "Fijian dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:129
+#: src/Functions/MSFunctions.php:130
 msgid "Falkland Islands pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:130
+#: src/Functions/MSFunctions.php:131
 msgid "Georgian lari"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:131
+#: src/Functions/MSFunctions.php:132
 msgid "Guernsey pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:132
+#: src/Functions/MSFunctions.php:133
 msgid "Ghana cedi"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:133
+#: src/Functions/MSFunctions.php:134
 msgid "Gibraltar pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:134
+#: src/Functions/MSFunctions.php:135
 msgid "Gambian dalasi"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:135
+#: src/Functions/MSFunctions.php:136
 msgid "Guinean franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:136
+#: src/Functions/MSFunctions.php:137
 msgid "Guatemalan quetzal"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:137
+#: src/Functions/MSFunctions.php:138
 msgid "Guyanese dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:138
+#: src/Functions/MSFunctions.php:139
 msgid "Hong Kong dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:139
+#: src/Functions/MSFunctions.php:140
 msgid "Honduran lempira"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:140
+#: src/Functions/MSFunctions.php:141
 msgid "Croatian kuna"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:141
+#: src/Functions/MSFunctions.php:142
 msgid "Haitian gourde"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:142
+#: src/Functions/MSFunctions.php:143
 msgid "Hungarian forint"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:143
+#: src/Functions/MSFunctions.php:144
 msgid "Indonesian rupiah"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:144
+#: src/Functions/MSFunctions.php:145
 msgid "Israeli new shekel"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:145
+#: src/Functions/MSFunctions.php:146
 msgid "Manx pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:146
+#: src/Functions/MSFunctions.php:147
 msgid "Indian rupee"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:147
+#: src/Functions/MSFunctions.php:148
 msgid "Iraqi dinar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:148
+#: src/Functions/MSFunctions.php:149
 msgid "Iranian rial"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:149
+#: src/Functions/MSFunctions.php:150
 msgid "Iranian toman"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:150
+#: src/Functions/MSFunctions.php:151
 msgid "Icelandic kr&oacute;na"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:151
+#: src/Functions/MSFunctions.php:152
 msgid "Jersey pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:152
+#: src/Functions/MSFunctions.php:153
 msgid "Jamaican dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:153
+#: src/Functions/MSFunctions.php:154
 msgid "Jordanian dinar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:154
+#: src/Functions/MSFunctions.php:155
 msgid "Japanese yen"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:155
+#: src/Functions/MSFunctions.php:156
 msgid "Kenyan shilling"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:156
+#: src/Functions/MSFunctions.php:157
 msgid "Kyrgyzstani som"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:157
+#: src/Functions/MSFunctions.php:158
 msgid "Cambodian riel"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:158
+#: src/Functions/MSFunctions.php:159
 msgid "Comorian franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:159
+#: src/Functions/MSFunctions.php:160
 msgid "North Korean won"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:160
+#: src/Functions/MSFunctions.php:161
 msgid "South Korean won"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:161
+#: src/Functions/MSFunctions.php:162
 msgid "Kuwaiti dinar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:162
+#: src/Functions/MSFunctions.php:163
 msgid "Cayman Islands dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:163
+#: src/Functions/MSFunctions.php:164
 msgid "Kazakhstani tenge"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:164
+#: src/Functions/MSFunctions.php:165
 msgid "Lao kip"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:165
+#: src/Functions/MSFunctions.php:166
 msgid "Lebanese pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:166
+#: src/Functions/MSFunctions.php:167
 msgid "Sri Lankan rupee"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:167
+#: src/Functions/MSFunctions.php:168
 msgid "Liberian dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:168
+#: src/Functions/MSFunctions.php:169
 msgid "Lesotho loti"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:169
+#: src/Functions/MSFunctions.php:170
 msgid "Libyan dinar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:170
+#: src/Functions/MSFunctions.php:171
 msgid "Moroccan dirham"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:171
+#: src/Functions/MSFunctions.php:172
 msgid "Moldovan leu"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:172
+#: src/Functions/MSFunctions.php:173
 msgid "Malagasy ariary"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:173
+#: src/Functions/MSFunctions.php:174
 msgid "Macedonian denar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:174
+#: src/Functions/MSFunctions.php:175
 msgid "Burmese kyat"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:175
+#: src/Functions/MSFunctions.php:176
 msgid "Mongolian t&ouml;gr&ouml;g"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:176
+#: src/Functions/MSFunctions.php:177
 msgid "Macanese pataca"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:177
+#: src/Functions/MSFunctions.php:178
 msgid "Mauritanian ouguiya"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:178
+#: src/Functions/MSFunctions.php:179
 msgid "Mauritian rupee"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:179
+#: src/Functions/MSFunctions.php:180
 msgid "Maldivian rufiyaa"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:180
+#: src/Functions/MSFunctions.php:181
 msgid "Malawian kwacha"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:181
+#: src/Functions/MSFunctions.php:182
 msgid "Mexican peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:182
+#: src/Functions/MSFunctions.php:183
 msgid "Malaysian ringgit"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:183
+#: src/Functions/MSFunctions.php:184
 msgid "Mozambican metical"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:184
+#: src/Functions/MSFunctions.php:185
 msgid "Namibian dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:185
+#: src/Functions/MSFunctions.php:186
 msgid "Nigerian naira"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:186
+#: src/Functions/MSFunctions.php:187
 msgid "Nicaraguan c&oacute;rdoba"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:187
+#: src/Functions/MSFunctions.php:188
 msgid "Norwegian krone"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:188
+#: src/Functions/MSFunctions.php:189
 msgid "Nepalese rupee"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:189
+#: src/Functions/MSFunctions.php:190
 msgid "New Zealand dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:190
+#: src/Functions/MSFunctions.php:191
 msgid "Omani rial"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:191
+#: src/Functions/MSFunctions.php:192
 msgid "Panamanian balboa"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:192
+#: src/Functions/MSFunctions.php:193
 msgid "Sol"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:193
+#: src/Functions/MSFunctions.php:194
 msgid "Papua New Guinean kina"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:194
+#: src/Functions/MSFunctions.php:195
 msgid "Philippine peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:195
+#: src/Functions/MSFunctions.php:196
 msgid "Pakistani rupee"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:196
+#: src/Functions/MSFunctions.php:197
 msgid "Polish z&#x142;oty"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:197
+#: src/Functions/MSFunctions.php:198
 msgid "Transnistrian ruble"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:198
+#: src/Functions/MSFunctions.php:199
 msgid "Paraguayan guaran&iacute;"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:199
+#: src/Functions/MSFunctions.php:200
 msgid "Qatari riyal"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:200
+#: src/Functions/MSFunctions.php:201
 msgid "Romanian leu"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:201
+#: src/Functions/MSFunctions.php:202
 msgid "Serbian dinar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:202
+#: src/Functions/MSFunctions.php:203
 msgid "Russian ruble"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:203
+#: src/Functions/MSFunctions.php:204
 msgid "Rwandan franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:204
+#: src/Functions/MSFunctions.php:205
 msgid "Saudi riyal"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:205
+#: src/Functions/MSFunctions.php:206
 msgid "Solomon Islands dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:206
+#: src/Functions/MSFunctions.php:207
 msgid "Seychellois rupee"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:207
+#: src/Functions/MSFunctions.php:208
 msgid "Sudanese pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:208
+#: src/Functions/MSFunctions.php:209
 msgid "Swedish krona"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:209
+#: src/Functions/MSFunctions.php:210
 msgid "Singapore dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:210
+#: src/Functions/MSFunctions.php:211
 msgid "Saint Helena pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:211
+#: src/Functions/MSFunctions.php:212
 msgid "Sierra Leonean leone"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:212
+#: src/Functions/MSFunctions.php:213
 msgid "Somali shilling"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:213
+#: src/Functions/MSFunctions.php:214
 msgid "Surinamese dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:214
+#: src/Functions/MSFunctions.php:215
 msgid "South Sudanese pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:215
+#: src/Functions/MSFunctions.php:216
 msgid "S&atilde;o Tom&eacute; and Pr&iacute;ncipe dobra"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:216
+#: src/Functions/MSFunctions.php:217
 msgid "Syrian pound"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:217
+#: src/Functions/MSFunctions.php:218
 msgid "Swazi lilangeni"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:218
+#: src/Functions/MSFunctions.php:219
 msgid "Thai baht"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:219
+#: src/Functions/MSFunctions.php:220
 msgid "Tajikistani somoni"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:220
+#: src/Functions/MSFunctions.php:221
 msgid "Turkmenistan manat"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:221
+#: src/Functions/MSFunctions.php:222
 msgid "Tunisian dinar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:222
+#: src/Functions/MSFunctions.php:223
 msgid "Tongan pa&#x2bb;anga"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:223
+#: src/Functions/MSFunctions.php:224
 msgid "Turkish lira"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:224
+#: src/Functions/MSFunctions.php:225
 msgid "Trinidad and Tobago dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:225
+#: src/Functions/MSFunctions.php:226
 msgid "New Taiwan dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:226
+#: src/Functions/MSFunctions.php:227
 msgid "Tanzanian shilling"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:227
+#: src/Functions/MSFunctions.php:228
 msgid "Ukrainian hryvnia"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:228
+#: src/Functions/MSFunctions.php:229
 msgid "Ugandan shilling"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:229
+#: src/Functions/MSFunctions.php:230
 msgid "Uruguayan peso"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:230
+#: src/Functions/MSFunctions.php:231
 msgid "Uzbekistani som"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:231
+#: src/Functions/MSFunctions.php:232
 msgid "Venezuelan bol&iacute;var"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:232
+#: src/Functions/MSFunctions.php:233
 msgid "Bol&iacute;var soberano"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:233
+#: src/Functions/MSFunctions.php:234
 msgid "Vietnamese &#x111;&#x1ed3;ng"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:234
+#: src/Functions/MSFunctions.php:235
 msgid "Vanuatu vatu"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:235
+#: src/Functions/MSFunctions.php:236
 msgid "Samoan t&#x101;l&#x101;"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:236
+#: src/Functions/MSFunctions.php:237
 msgid "Central African CFA franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:237
+#: src/Functions/MSFunctions.php:238
 msgid "East Caribbean dollar"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:238
+#: src/Functions/MSFunctions.php:239
 msgid "West African CFA franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:239
+#: src/Functions/MSFunctions.php:240
 msgid "CFP franc"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:240
+#: src/Functions/MSFunctions.php:241
 msgid "Yemeni rial"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:241
+#: src/Functions/MSFunctions.php:242
 msgid "South African rand"
 msgstr ""
 
-#: src/Functions/MSFunctions.php:242
+#: src/Functions/MSFunctions.php:243
 msgid "Zambian kwacha"
 msgstr ""
 
@@ -14343,17 +14444,17 @@ msgid "Username is invalid because it uses illegal characters"
 msgstr ""
 
 #: src/Membership/Emails/EmailDataTrait.php:10
-#: src/Membership/Emails/EmailDataTrait.php:45
+#: src/Membership/Emails/EmailDataTrait.php:46
 msgid "Email address of the customer."
 msgstr ""
 
 #: src/Membership/Emails/EmailDataTrait.php:11
-#: src/Membership/Emails/EmailDataTrait.php:46
+#: src/Membership/Emails/EmailDataTrait.php:47
 msgid "First name of the customer."
 msgstr ""
 
 #: src/Membership/Emails/EmailDataTrait.php:12
-#: src/Membership/Emails/EmailDataTrait.php:47
+#: src/Membership/Emails/EmailDataTrait.php:48
 msgid "Last name of the customer."
 msgstr ""
 
@@ -14402,43 +14503,47 @@ msgid "Order payment method."
 msgstr ""
 
 #: src/Membership/Emails/EmailDataTrait.php:24
-#: src/Membership/Emails/EmailDataTrait.php:54
+msgid "The purchase note of ordered plan."
+msgstr ""
+
+#: src/Membership/Emails/EmailDataTrait.php:25
+#: src/Membership/Emails/EmailDataTrait.php:55
 msgid "Name or title of this website."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:26
+#: src/Membership/Emails/EmailDataTrait.php:27
 msgid "Your business name as defined in %sSettings%s."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:30
+#: src/Membership/Emails/EmailDataTrait.php:31
 msgid "Your business address as defined in %sSettings%s."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:34
+#: src/Membership/Emails/EmailDataTrait.php:35
 msgid "Your business Tax ID as defined in %sSettings%s."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:48
+#: src/Membership/Emails/EmailDataTrait.php:49
 msgid "Subscription ID."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:49
+#: src/Membership/Emails/EmailDataTrait.php:50
 msgid "URL to view subscription."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:50
+#: src/Membership/Emails/EmailDataTrait.php:51
 msgid "URL to re-subscribe to the subscription plan."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:51
+#: src/Membership/Emails/EmailDataTrait.php:52
 msgid "Name or title of subscription plan."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:52
+#: src/Membership/Emails/EmailDataTrait.php:53
 msgid "The recurring amount of the subscription."
 msgstr ""
 
-#: src/Membership/Emails/EmailDataTrait.php:53
+#: src/Membership/Emails/EmailDataTrait.php:54
 msgid "The expiration or renewal date for the subscription."
 msgstr ""
 
@@ -14451,7 +14556,7 @@ msgid "Payment %s has been fully refunded in %s."
 msgstr ""
 
 #: src/Membership/Models/Order/OrderEntity.php:240
-#: src/Membership/Models/Subscription/SubscriptionEntity.php:465
+#: src/Membership/Models/Subscription/SubscriptionEntity.php:472
 msgid "payment method"
 msgstr ""
 
@@ -14522,7 +14627,7 @@ msgstr ""
 msgid "One-time purchase"
 msgstr ""
 
-#: src/Membership/Models/Subscription/SubscriptionEntity.php:468
+#: src/Membership/Models/Subscription/SubscriptionEntity.php:475
 msgid "Subscription changed from %s to %s by %s"
 msgstr ""
 
@@ -14639,7 +14744,7 @@ msgstr ""
 msgid "Pay as you go pricing: 2%% per-transaction fee + Stripe fees. Remove the 2%% fee by %supgrading to premium%s."
 msgstr ""
 
-#: src/Membership/PaymentMethods/Stripe/PaymentHelpers.php:22
+#: src/Membership/PaymentMethods/Stripe/PaymentHelpers.php:54
 msgid "Setup Fee"
 msgstr ""
 
@@ -14768,19 +14873,19 @@ msgstr ""
 msgid "Credit card"
 msgstr ""
 
-#: src/Membership/PaymentMethods/Stripe/Stripe.php:689
+#: src/Membership/PaymentMethods/Stripe/Stripe.php:723
 msgid "No payment method found. Please try again."
 msgstr ""
 
-#: src/Membership/PaymentMethods/Stripe/Stripe.php:823
+#: src/Membership/PaymentMethods/Stripe/Stripe.php:878
 msgid "Refund request is pending"
 msgstr ""
 
-#: src/Membership/PaymentMethods/Stripe/Stripe.php:826
+#: src/Membership/PaymentMethods/Stripe/Stripe.php:881
 msgid "Refund request failed"
 msgstr ""
 
-#: src/Membership/PaymentMethods/Stripe/Stripe.php:829
+#: src/Membership/PaymentMethods/Stripe/Stripe.php:884
 msgid "Refund request failed. Status: %s"
 msgstr ""
 
@@ -15253,7 +15358,7 @@ msgstr ""
 msgid "Item Description"
 msgstr ""
 
-#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:64
+#: src/ShortcodeParser/MyAccount/view-order.tmpl.php:70
 msgid "Order Type"
 msgstr ""
 

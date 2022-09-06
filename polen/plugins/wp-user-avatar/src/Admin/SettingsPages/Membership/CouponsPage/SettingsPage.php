@@ -46,6 +46,7 @@ class SettingsPage extends AbstractSettingsPage
         $required_fields = [
             'amount'             => esc_html__('Discount', 'wp-user-avatar'),
             'unit'               => esc_html__('Discount', 'wp-user-avatar'),
+            'coupon_type'        => esc_html__('Coupon Type', 'wp-user-avatar'),
             'coupon_application' => esc_html__('Coupon Application', 'wp-user-avatar')
         ];
 
@@ -62,6 +63,7 @@ class SettingsPage extends AbstractSettingsPage
         $coupon->description        = sanitize_textarea_field($_POST['description']);
         $coupon->amount             = sanitize_text_field($_POST['amount']);
         $coupon->unit               = sanitize_text_field($_POST['unit']);
+        $coupon->coupon_type        = sanitize_text_field($_POST['coupon_type']);
         $coupon->coupon_application = sanitize_text_field($_POST['coupon_application']);
         $coupon->plan_ids           = ppress_clean(ppressPOST_var('plan_ids', [], true), 'absint');
         $coupon->start_date         = sanitize_text_field($_POST['start_date']);

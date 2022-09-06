@@ -1,5 +1,17 @@
 ﻿== Changelog ==
 
+= 4.1.3 =
+* Added [navigation menu protection](https://profilepress.com/article/wordpress-navigation-menu-restriction/).
+* Added [Elementor content restriction](https://profilepress.com/article/restrict-elementor-sections-widgets/).
+* Added [Beaver Builder content restriction](https://profilepress.com/article/restrict-content-beaver-builder-visibility/).
+* Added support for discounting subscription first payment.
+* Added support for [purchase note](https://profilepress.com/article/plan-purchase-note/?ref=changelog).
+* Added support for [checking active subscription via PHP](https://profilepress.com/article/php-check-user-has-active-subscription/).
+* Fixed bug where new order creation with missing payment method failed.
+* Fixed couple of date/time related query bugs.
+* Fixed bug where cancelled one-time subscription was still active.
+* Fixed bug where non-completed order email receipt can be sent.
+
 = 4.1.2 =
 * Added "ppress_disable_google_fonts" filter to disable google fonts globally.
 * Added Oxygen builder compatibility to Admin Bar Control.

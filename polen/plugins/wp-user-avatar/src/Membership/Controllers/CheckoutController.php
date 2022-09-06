@@ -384,6 +384,8 @@ class CheckoutController extends BaseController
                 );
             }
 
+            global $cart_vars;
+
             $planObj = ppress_get_plan(absint($_POST['plan_id']));
 
             $country_code       = sanitize_text_field(ppressPOST_var('country', '', true));

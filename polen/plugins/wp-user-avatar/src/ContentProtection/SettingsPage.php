@@ -56,7 +56,7 @@ class SettingsPage extends AbstractSettingsPage
     {
         $hook = add_submenu_page(
             PPRESS_DASHBOARD_SETTINGS_SLUG,
-            'ProfilePress '. $this->admin_page_title(),
+            'ProfilePress ' . $this->admin_page_title(),
             esc_html__('Content Protection', 'wp-user-avatar'),
             'manage_options',
             PPRESS_CONTENT_PROTECTION_SETTINGS_SLUG,
@@ -168,10 +168,51 @@ class SettingsPage extends AbstractSettingsPage
         add_action('wp_cspa_main_content_area', array($this, 'admin_settings_page_callback'), 10, 2);
         add_action('wp_cspa_before_closing_header', [$this, 'add_new_button']);
 
+        $is_sidebar = ! isset($_GET['action'], $_GET['id']);
+
         $instance = Custom_Settings_Page_Api::instance();
         $instance->option_name('ppview'); // adds ppview css class to #poststuff
         $instance->page_header($this->admin_page_title());
-        $instance->build(true);
+
+        if ($is_sidebar) {
+
+            $sidebar_args = [
+                [
+                    'section_title' => esc_html__('Restrict Content Shortcode', 'wp-user-avatar'),
+                    'content'       => (function () {
+                        ob_start();
+                        require dirname(__FILE__) . '/views/include.shortcode-doc-sidebar.php';
+
+                        return ob_get_clean();
+                    })()
+                ],
+                [
+                    'section_title' => esc_html__('WordPress Menu Protection', 'wp-user-avatar'),
+                    'content'       => (function () {
+                        ob_start();
+                        require dirname(__FILE__) . '/views/include.menu-protection.php';
+
+                        return ob_get_clean();
+                    })()
+                ]
+            ];
+
+            if(defined('ELEMENTOR_VERSION')) {
+                $sidebar_args[] = [
+                    'section_title' => esc_html__('Elementor Restriction', 'wp-user-avatar'),
+                    'content'       => (function () {
+                        ob_start();
+                        require dirname(__FILE__) . '/views/include.elementor-protection.php';
+
+                        return ob_get_clean();
+                    })()
+                ];
+            }
+
+            $instance->sidebar($sidebar_args);
+        }
+
+        $instance->build(! $is_sidebar);
     }
 
     public function add_new_button()

@@ -301,7 +301,10 @@ class OrderWPListTable extends \WP_List_Table
             $order_ids = array_map('absint', $_GET['order_id']);
 
             foreach ($order_ids as $order_id) {
-                NewOrderReceipt::init()->dispatch_email(OrderFactory::fromId($order_id));
+                $order = OrderFactory::fromId($order_id);
+                if ($order->is_completed()) {
+                    NewOrderReceipt::init()->dispatch_email($order);
+                }
             }
         }
 

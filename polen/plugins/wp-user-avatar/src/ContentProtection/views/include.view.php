@@ -45,6 +45,7 @@ add_action('add_meta_boxes', function () {
 });
 
 add_action('add_meta_boxes', function () {
+
     add_meta_box(
         'shortcode-doc',
         __('Restrict Content Shortcode', 'wp-user-avatar'),
@@ -54,6 +55,28 @@ add_action('add_meta_boxes', function () {
         'ppcontentprotection',
         'sidebar'
     );
+
+    add_meta_box(
+        'wp-menu-protection',
+        __('WordPress Menu Restriction', 'wp-user-avatar'),
+        function () {
+            require dirname(__FILE__) . '/include.menu-protection.php';
+        },
+        'ppcontentprotection',
+        'sidebar'
+    );
+
+    if (defined('ELEMENTOR_VERSION')) {
+        add_meta_box(
+            'elementor-restriction',
+            __('Elementor Restriction', 'wp-user-avatar'),
+            function () {
+                require dirname(__FILE__) . '/include.elementor-protection.php';
+            },
+            'ppcontentprotection',
+            'sidebar'
+        );
+    }
 });
 
 do_action('add_meta_boxes', 'ppcontentprotection', new WP_Post(new stdClass()));

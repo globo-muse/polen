@@ -15,6 +15,7 @@ use ProfilePressVendor\Carbon\CarbonImmutable;
  * @property int $id
  * @property string $code
  * @property string $description
+ * @property string $coupon_type
  * @property string $coupon_application
  * @property string $amount
  * @property string $unit
@@ -31,6 +32,8 @@ class CouponEntity extends AbstractModel implements ModelInterface
     protected $code = '';
 
     protected $description = '';
+
+    protected $coupon_type = CouponType::RECURRING;
 
     protected $coupon_application = CouponApplication::NEW_PURCHASE;
 
@@ -75,6 +78,11 @@ class CouponEntity extends AbstractModel implements ModelInterface
         return $this->status == 'true';
     }
 
+    public function is_recurring()
+    {
+        return $this->get_coupon_type() == CouponType::RECURRING;
+    }
+
     public function is_expired()
     {
         $end_date = $this->get_end_date();
@@ -93,6 +101,11 @@ class CouponEntity extends AbstractModel implements ModelInterface
         if (in_array($val, $valid_options)) {
             $this->coupon_application = $val;
         }
+    }
+
+    public function get_coupon_type()
+    {
+        return ! empty($this->coupon_type) ? $this->coupon_type : CouponType::RECURRING;
     }
 
     public function get_coupon_application()

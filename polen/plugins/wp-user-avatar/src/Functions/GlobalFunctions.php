@@ -1574,7 +1574,6 @@ function ppress_render_view($template, $vars = [], $parentDir = '')
     ob_start();
     require apply_filters('ppress_render_view', $path, $vars, $template, $parentDir);
     echo apply_filters('ppress_render_view_output', ob_get_clean(), $template, $vars, $parentDir);
-
 }
 
 function ppress_post_content_has_shortcode($tag = '', $post = null)

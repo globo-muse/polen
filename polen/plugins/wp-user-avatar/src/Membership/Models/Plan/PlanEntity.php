@@ -13,6 +13,7 @@ use ProfilePress\Core\Membership\Services\OrderService;
 /**
  * @property int $id
  * @property string $name
+ * @property string $order_note
  * @property string $description
  * @property string $price
  * @property string $billing_frequency
@@ -28,6 +29,8 @@ class PlanEntity extends AbstractModel implements ModelInterface
     protected $name = '';
 
     protected $description = '';
+
+    protected $order_note = '';
 
     protected $price = '0';
 

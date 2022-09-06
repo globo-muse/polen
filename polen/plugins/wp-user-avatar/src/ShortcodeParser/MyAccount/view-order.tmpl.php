@@ -27,8 +27,8 @@ $customer_id = CustomerFactory::fromUserId(get_current_user_id())->id;
 
         else :
             $plan = ppress_get_plan($order->plan_id);
-
             $vat_number = $order->get_customer_tax_id();
+            $plan_purchase_note = $order->get_plan_purchase_note();
             ?>
 
             <div class="profilepress-myaccount-order-details-wrap">
@@ -52,6 +52,12 @@ $customer_id = CustomerFactory::fromUserId(get_current_user_id())->id;
                             <tr>
                                 <td><?php esc_html_e('Item Description', 'wp-user-avatar'); ?></td>
                                 <td><?= wpautop($plan->description) ?></td>
+                            </tr>
+                        <?php endif; ?>
+                        <?php if ($order->is_completed() && ! empty($plan_purchase_note)): ?>
+                            <tr>
+                                <td><?php esc_html_e('Purchase Note', 'wp-user-avatar'); ?></td>
+                                <td><?= $plan_purchase_note ?></td>
                             </tr>
                         <?php endif; ?>
                         <tr>

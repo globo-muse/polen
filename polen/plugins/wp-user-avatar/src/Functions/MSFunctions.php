@@ -3,6 +3,7 @@
 use ProfilePress\Core\Base;
 use ProfilePress\Core\Classes\PPRESS_Session;
 use ProfilePress\Core\Membership\CurrencyFormatter;
+use ProfilePress\Core\Membership\Models\Customer\CustomerFactory;
 use ProfilePress\Core\Membership\Models\Order\OrderMode;
 use ProfilePress\Core\Membership\Models\Plan\PlanFactory;
 use ProfilePress\Core\Membership\Models\Plan\PlanEntity;
@@ -730,4 +731,22 @@ function ppress_business_full_address()
 function ppress_business_tax_id($default = '')
 {
     return ppress_settings_by_key('business_tin', $default, true);
+}
+
+/**
+ * @param int $user_id
+ * @param int $plan_id
+ * @param bool $by_customer_id
+ *
+ * @return bool
+ */
+function ppress_has_active_subscription($user_id, $plan_id, $by_customer_id = false)
+{
+    if (false === $by_customer_id) {
+        $customer = CustomerFactory::fromUserId($user_id);
+    } else {
+        $customer = CustomerFactory::fromId($user_id);
+    }
+
+    return $customer->has_active_subscription($plan_id);
 }

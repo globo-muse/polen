@@ -401,6 +401,17 @@ class OrderEntity extends AbstractModel implements ModelInterface
         return PaymentMethods::get_instance()->get_by_id($this->payment_method)->link_transaction_id($this->transaction_id, $this);
     }
 
+    public function get_plan_purchase_note()
+    {
+        return wpautop(
+            do_shortcode(
+                wp_kses_post(
+                    ppress_get_plan($this->plan_id)->order_note
+                )
+            )
+        );
+    }
+
     public function key_is_valid($key)
     {
         return hash_equals($this->get_order_key(), $key);

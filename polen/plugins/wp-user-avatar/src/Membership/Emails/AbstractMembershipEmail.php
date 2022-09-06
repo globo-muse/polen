@@ -23,7 +23,7 @@ abstract class AbstractMembershipEmail
     {
         $customer = CustomerFactory::fromId($order->customer_id);
 
-        return apply_filters('ppress_order_placeholders_values', [
+        $args = apply_filters('ppress_order_placeholders_values', [
             '{{email}}'                => $customer->get_email(),
             '{{first_name}}'           => $customer->get_first_name(),
             '{{last_name}}'            => $customer->get_last_name(),
@@ -41,11 +41,16 @@ abstract class AbstractMembershipEmail
             '{{order_total}}'          => ppress_display_amount($order->total, $order->currency),
             '{{order_date}}'           => ppress_format_date($order->date_created),
             '{{order_payment_method}}' => PaymentMethods::get_instance()->get_by_id($order->payment_method)->get_method_title(),
+            '{{purchase_note}}'        => $order->get_plan_purchase_note(),
             '{{site_title}}'           => ppress_site_title(),
             '{{business_name}}'        => ppress_business_name(),
             '{{business_address}}'     => ppress_business_full_address(),
             '{{business_tax_id}}'      => ppress_business_tax_id(),
         ]);
+
+        return array_map(function ($val) {
+            return ! empty($val) ? $val : '—';
+        }, $args);
     }
 
     /**

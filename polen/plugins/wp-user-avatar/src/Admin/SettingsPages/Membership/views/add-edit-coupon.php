@@ -35,6 +35,16 @@ $coupon_details = [
         'label' => esc_html__('Discount', 'wp-user-avatar'),
     ],
     [
+        'id'          => 'coupon_type',
+        'type'        => 'select',
+        'label'       => esc_html__('Coupon Type', 'wp-user-avatar'),
+        'options'     => [
+            'recurring' => esc_html__('Recurring', 'wp-user-avatar'),
+            'one_time'  => esc_html__('One-time', 'wp-user-avatar')
+        ],
+        'description' => esc_html__('Selecting "One-time" applies the coupon discount only to the first payment while "Recurring" applies the discount to all payments.', 'wp-user-avatar')
+    ],
+    [
         'id'          => 'coupon_application',
         'type'        => 'radio',
         'label'       => esc_html__('Coupon Application', 'wp-user-avatar'),
@@ -92,8 +102,9 @@ $redemption_settings = [
 
 $coupon_data = CouponFactory::fromId(absint(ppressGET_var('id')));
 
-if (ppressGET_var('ppress_coupon_action') =='edit' && ! $coupon_data->exists()) {
+if (ppressGET_var('ppress_coupon_action') == 'edit' && ! $coupon_data->exists()) {
     ppress_content_http_redirect(PPRESS_MEMBERSHIP_COUPONS_SETTINGS_PAGE);
+
     return;
 }
 

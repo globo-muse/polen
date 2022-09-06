@@ -216,7 +216,6 @@ class CustomerEntity extends AbstractModel implements ModelInterface
         if ( ! empty($subs)) {
 
             foreach ($subs as $sub) {
-
                 if ($sub->is_active() && ! $sub->is_expired()) $result[] = $sub;
             }
         }

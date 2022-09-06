@@ -27,8 +27,8 @@ class CouponRepository extends BaseRepository
             $this->table,
             array(
                 'code'               => $data->code,
-                'type'               => $data->type,
                 'description'        => $data->description,
+                'coupon_type'        => $data->coupon_type,
                 'coupon_application' => $data->coupon_application,
                 'amount'             => $data->amount,
                 'unit'               => $data->unit,
@@ -67,8 +67,8 @@ class CouponRepository extends BaseRepository
             $this->table,
             [
                 'code'               => $data->code,
-                'type'               => $data->type,
                 'description'        => $data->description,
+                'coupon_type'        => $data->coupon_type,
                 'coupon_application' => $data->coupon_application,
                 'amount'             => $data->amount,
                 'unit'               => $data->unit,

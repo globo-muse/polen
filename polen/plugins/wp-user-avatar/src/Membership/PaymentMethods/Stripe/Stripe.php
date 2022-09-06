@@ -578,6 +578,8 @@ class Stripe extends AbstractPaymentMethod
     {
         try {
 
+            PaymentHelpers::empty_coupon_bucket();
+
             $product_price = PaymentHelpers::get_product_price($subscription, $this->get_statement_descriptor());
 
             if (is_wp_error($product_price)) {
@@ -613,16 +615,27 @@ class Stripe extends AbstractPaymentMethod
 
             if ($plan->has_signup_fee()) {
 
-                $create_session_args['line_items'][] = [
-                    'quantity'   => 1,
-                    'price_data' => [
-                        'unit_amount'  => PaymentHelpers::process_amount($order->total),
-                        'currency'     => ppress_get_currency(),
-                        'product_data' => [
-                            'name' => PaymentHelpers::get_signup_fee_label(),
-                        ],
-                    ]
-                ];
+                $signup_fee = $plan->has_free_trial() ? $order->total : '0';
+
+                if (
+                    ! $plan->has_free_trial() &&
+                    Calculator::init($order->total)->isGreaterThan($subscription->recurring_amount)) {
+                    $signup_fee = Calculator::init($order->total)->minus($subscription->recurring_amount)->val();
+                }
+
+                if (Calculator::init($signup_fee)->isGreaterThanZero()) {
+
+                    $create_session_args['line_items'][] = [
+                        'quantity'   => 1,
+                        'price_data' => [
+                            'unit_amount'  => PaymentHelpers::process_amount($signup_fee),
+                            'currency'     => ppress_get_currency(),
+                            'product_data' => [
+                                'name' => PaymentHelpers::get_signup_fee_label(),
+                            ],
+                        ]
+                    ];
+                }
             }
 
             if ($plan->has_free_trial()) {
@@ -632,6 +645,24 @@ class Stripe extends AbstractPaymentMethod
                 if ($trial_period_days > 0) {
                     $create_session_args['subscription_data']['trial_period_days'] = $trial_period_days;
                 }
+            }
+
+            if (
+                ! $plan->has_free_trial() &&
+                Calculator::init($order->total)->isLessThan($subscription->recurring_amount)
+            ) {
+
+                $discount_amount = Calculator::init($subscription->recurring_amount)->minus($order->total)->val();
+
+                $stripe_coupon = APIClass::stripeClient()->coupons->create([
+                    'amount_off' => PaymentHelpers::process_amount($discount_amount),
+                    'currency'   => ppress_get_currency(),
+                    'duration'   => 'once'
+                ])->toArray();
+
+                $create_session_args['discounts'][] = ['coupon' => $stripe_coupon['id']];
+
+                PaymentHelpers::add_coupon_to_bucket($stripe_coupon['id']);
             }
 
             $create_session_args = apply_filters('ppress_stripe_create_session_args', $create_session_args, $this);
@@ -650,6 +681,7 @@ class Stripe extends AbstractPaymentMethod
             $checkoutResponse = new CheckoutResponse();
 
             if (isset($session_response['url'])) {
+
                 return $checkoutResponse
                     ->set_is_success(true)
                     ->set_redirect_url($session_response['url'])
@@ -681,6 +713,8 @@ class Stripe extends AbstractPaymentMethod
         }
 
         try {
+
+            $stripe_coupon = false;
 
             $customer_id = PaymentHelpers::get_stripe_customer_id($customer);
 
@@ -721,6 +755,8 @@ class Stripe extends AbstractPaymentMethod
 
                 $signup_fee = Calculator::init($order->total)->minus($subscription->recurring_amount)->val();
 
+                // if there is a free trial, no amount is charged hence order total is 0
+                // however if the plan has a signup fee, it becomes the order total hence the below code.
                 if ($plan->has_free_trial()) {
 
                     $signup_fee = $order->total;
@@ -732,7 +768,7 @@ class Stripe extends AbstractPaymentMethod
                     }
                 }
 
-                if ($plan->has_signup_fee()) {
+                if ($plan->has_signup_fee() && Calculator::init($signup_fee)->isGreaterThanZero()) {
 
                     $create_subscription_args['add_invoice_items'][] = [
                         'quantity'   => 1,
@@ -742,6 +778,22 @@ class Stripe extends AbstractPaymentMethod
                             'currency'    => ppress_get_currency(),
                         ]
                     ];
+                }
+
+                if (
+                    ! $plan->has_free_trial() &&
+                    Calculator::init($order->total)->isLessThan($subscription->recurring_amount)
+                ) {
+
+                    $discount_amount = Calculator::init($subscription->recurring_amount)->minus($order->total)->val();
+
+                    $stripe_coupon = APIClass::stripeClient()->coupons->create([
+                        'amount_off' => PaymentHelpers::process_amount($discount_amount),
+                        'currency'   => ppress_get_currency(),
+                        'duration'   => 'once'
+                    ])->toArray();
+
+                    $create_subscription_args['coupon'] = $stripe_coupon['id'];
                 }
 
                 $create_subscription_args = apply_filters('ppress_stripe_create_subscription_args', $create_subscription_args, $this);
@@ -758,10 +810,13 @@ class Stripe extends AbstractPaymentMethod
                     $subscription->update_profile_id($response['id']);
                 }
 
+                if (false !== $stripe_coupon) {
+                    PaymentHelpers::delete_coupon($stripe_coupon['id']);
+                }
+
                 return (new CheckoutResponse())
                     ->set_is_success(true)
                     ->set_gateway_response($response);
-
             }
 
             $create_payment_intent_args = [

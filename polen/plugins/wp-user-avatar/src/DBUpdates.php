@@ -8,7 +8,7 @@ class DBUpdates
 {
     public static $instance;
 
-    const DB_VER = 2;
+    const DB_VER = 3;
 
     public function init_options()
     {
@@ -75,6 +75,17 @@ class DBUpdates
         $wpdb->query("ALTER TABLE $table1 CHANGE date_created date_created datetime NOT NULL;");
         $wpdb->query("ALTER TABLE $table2 CHANGE created_date created_date datetime NOT NULL;");
         $wpdb->query("ALTER TABLE $table3 CHANGE date_created date_created datetime NOT NULL;");
+    }
+
+    public function update_routine_3()
+    {
+        global $wpdb;
+
+        $table  = DBTables::coupons_db_table();
+        $table2 = DBTables::subscription_plans_db_table();
+
+        $wpdb->query("ALTER TABLE $table CHANGE type coupon_type varchar(50) NULL;");
+        $wpdb->query("ALTER TABLE $table2 ADD COLUMN order_note text NULL AFTER description;");
     }
 
     public static function get_instance()

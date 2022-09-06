@@ -177,8 +177,15 @@ class SubscriptionEntity extends AbstractModel implements ModelInterface
             SubscriptionStatus::TRIALLING,
         ];
 
-        if ( ! $this->is_expired() && in_array($this->status, $active_statuses, true)) {
-            $ret = true;
+        // one-time payments with lifetime expiration is considered not active if they are cancelled
+        // unlike recurring sub which is only not active if expired.
+        if ($this->is_lifetime() && $this->is_cancelled()) {
+            $ret = false;
+        } else {
+
+            if ( ! $this->is_expired() && in_array($this->status, $active_statuses, true)) {
+                $ret = true;
+            }
         }
 
         return apply_filters('ppress_subscription_is_active', $ret, $this->id, $this);

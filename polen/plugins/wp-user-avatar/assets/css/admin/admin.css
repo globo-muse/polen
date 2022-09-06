@@ -2437,6 +2437,10 @@ textarea.wp-editor-area {
     width: 16%;
 }
 
+.ppress-admin .ppview th#coupon_code {
+    width: 18%;
+}
+
 /* ProfilePress Report */
 .ppress-report-charts-container * {
     box-sizing: border-box;
