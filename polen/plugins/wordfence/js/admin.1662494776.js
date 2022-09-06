@@ -597,15 +597,20 @@
 						var selected = $(this).find('option:selected');
 						var tagsElement = optionElement.find('.wf-option-token-tags');
 						var list = $('<ul>');
-						selected.each(function(index, value) {
-							var li = $('<li class="wf-tag-selected"><a class="wf-destroy-tag-selected">×</a>' + $(value).text() + '</li>');
-							li.children('a.wf-destroy-tag-selected')
+						selected.each(function(index, option) {
+							option = $(option);
+							var value = option.val();
+							var destroyButton = $('<a>').addClass('wf-destroy-tag-selected')
+								.text('x')
 								.off('click.wfselect2-copy')
 								.on('click.wfselect2-copy', function(e) {
-									var opt = $(this).data('wfselect2-opt');
-									opt.prop('selected', false);
-									opt.parents('select').trigger('change');
-								}).data('wfselect2-opt', $(value));
+									option.prop('selected', false);
+									option.parents('select').trigger('change');
+									option.remove();
+								});
+							var li = $('<li>').addClass('wf-tag-selected')
+								.text(value)
+								.prepend(destroyButton);
 							list.append(li);
 						});
 						tagsElement.html('').append(list);
